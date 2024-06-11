@@ -6,7 +6,6 @@ let saveButton, loadButton;
 let gui;
 let zoomSettings = { zoom: 1 };
 let centerX, centerY;
-let drawMode = true; // Variable para alternar entre Draw Mode y Delete Mode
 
 function setup() {
   createCanvas(800, 600);
@@ -18,31 +17,17 @@ function setup() {
   loadButton = select('#loadButton');
   loadButton.mousePressed(loadGraph);
 
-  drawModeButton = select('#drawModeButton');
-  drawModeButton.mousePressed(() => {
-    drawMode = true;
-    drawModeButton.style('background-color', '#ddd'); // Cambiar color para indicar modo activo
-    deleteModeButton.style('background-color', ''); // Restaurar color del otro botón
-  });
-
-  deleteModeButton = select('#deleteModeButton');
-  deleteModeButton.mousePressed(() => {
-    drawMode = false;
-    deleteModeButton.style('background-color', '#ddd'); // Cambiar color para indicar modo activo
-    drawModeButton.style('background-color', ''); // Restaurar color del otro botón
-  });
-
   // Crear la barra de zoom
   gui = createGui('Settings');
   gui.addObject(zoomSettings, 'zoom', 0.5, 2);
-  gui.setPosition(10, 130);
+  gui.setPosition(10, 100);
 
   centerX = width / 2;
   centerY = height / 2;
 }
 
 function applyRepulsion() {
-  let repulsionForce = 0.1; // Ajustar valor según la intensidad de repulsión que se desee
+  let repulsionForce = 0.1; // Ajusta este valor según la intensidad de repulsión que desees
   let minDistance = 150; // Distancia mínima permitida entre los nodos
 
   for (let i = 0; i < nodes.length; i++) {
@@ -111,7 +96,19 @@ function mousePressed() {
   let mouseXAdj = (mouseX - centerX) / zoomFactor + centerX;
   let mouseYAdj = (mouseY - centerY) / zoomFactor + centerY;
 
-  if (drawMode) {
+  if (mouseButton === RIGHT) {
+    // Eliminar nodos y aristas con clic derecho
+    for (let i = nodes.length - 1; i >= 0; i--) {
+      let node = nodes[i];
+      let d = dist(mouseXAdj, mouseYAdj, node.x, node.y);
+      if (d < 10) {
+        nodes.splice(i, 1);
+        // Eliminar las aristas conectadas a este nodo
+        edges = edges.filter(edge => edge[0] !== node && edge[1] !== node);
+        return;
+      }
+    }
+  } else {
     // Verificar si se hizo clic en un nodo existente
     for (let node of nodes) {
       let d = dist(mouseXAdj, mouseYAdj, node.x, node.y);
@@ -130,21 +127,7 @@ function mousePressed() {
     // Si no se hizo clic en un nodo existente, crear un nuevo nodo
     let newNode = { x: mouseXAdj, y: mouseYAdj, label: nodes.length.toString() };
     nodes.push(newNode);
-    selectedNode = newNode;
-  } else {
-    // Modo de eliminación
-    // Verificar si se hizo clic en un nodo existente
-    for (let i = nodes.length - 1; i >= 0; i--) {
-      let node = nodes[i];
-      let d = dist(mouseXAdj, mouseYAdj, node.x, node.y);
-      if (d < 10) {
-        // Eliminar el nodo
-        nodes.splice(i, 1);
-        // Eliminar las aristas conectadas a este nodo
-        edges = edges.filter(edge => edge[0] !== node && edge[1] !== node);
-        return;
-      }
-    }
+    selectedNode = null;
   }
 }
 
@@ -172,7 +155,7 @@ function mouseReleased() {
 }
 
 function saveGraph() {
-  // Guardar grafo con la estructura elegida
+  // Guardar grafo en la estructura especificada
   let graph = {
     directed: true,
     graph: {},
