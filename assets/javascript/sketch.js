@@ -4,9 +4,10 @@ let selectedNode = null;
 let draggingNode = null;
 let saveButton, loadButton;
 let gui;
-let zoomSettings = { zoom: 1 };
+let zoomSettings = { zoom: 35 }; 
 let centerX, centerY;
 let drawMode = true; // Variable para alternar entre Draw Mode y Delete Mode
+let nodeCounter = 0; // Contador global para los nodos
 
 function setup() {
   createCanvas(800, 600);
@@ -34,7 +35,7 @@ function setup() {
 
   // Crear la barra de zoom
   gui = createGui('Settings');
-  gui.addObject(zoomSettings, 'zoom', 0.5, 2);
+  gui.addObject(zoomSettings, 'zoom', 15, 50); // Ajuste del rango mínimo y máximo
   gui.setPosition(10, 130);
 
   centerX = width / 2;
@@ -78,7 +79,7 @@ function draw() {
   background(220);
 
   // Ajustar el zoom según el valor del slider
-  let zoomFactor = zoomSettings.zoom;
+  let zoomFactor = map(zoomSettings.zoom, 15, 50, 0.5, 2); // Mapear el valor del zoom al rango deseado
   
   // Translación al centro y aplicar zoom
   translate(centerX, centerY);
@@ -107,49 +108,54 @@ function draw() {
 }
 
 function mousePressed() {
-  let zoomFactor = zoomSettings.zoom;
-  let mouseXAdj = (mouseX - centerX) / zoomFactor + centerX;
-  let mouseYAdj = (mouseY - centerY) / zoomFactor + centerY;
+  // Verificar si el clic se realizó dentro del área del lienzo
+  if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
+    // Calcular las coordenadas del ratón ajustadas al desplazamiento y zoom del lienzo
+    let zoomFactor = map(zoomSettings.zoom, 15, 50, 0.5, 2); // Mapear el valor del zoom al rango deseado
+    let mouseXAdj = (mouseX - centerX) / zoomFactor + centerX;
+    let mouseYAdj = (mouseY - centerY) / zoomFactor + centerY;
 
-  if (drawMode) {
-    // Verificar si se hizo clic en un nodo existente
-    for (let node of nodes) {
-      let d = dist(mouseXAdj, mouseYAdj, node.x, node.y);
-      if (d < 10) {
-        if (selectedNode === null) {
-          selectedNode = node;
-        } else {
-          // Crear una arista entre los dos nodos seleccionados
-          edges.push([selectedNode, node]);
-          selectedNode = null;
+    if (drawMode) {
+      // Verificar si se hizo clic en un nodo existente
+      for (let node of nodes) {
+        let d = dist(mouseXAdj, mouseYAdj, node.x, node.y);
+        if (d < 10) {
+          if (selectedNode === null) {
+            selectedNode = node;
+          } else {
+            // Crear una arista entre los dos nodos seleccionados
+            edges.push([selectedNode, node]);
+            selectedNode = null;
+          }
+          return;
         }
-        return;
       }
-    }
 
-    // Si no se hizo clic en un nodo existente, crear un nuevo nodo
-    let newNode = { x: mouseXAdj, y: mouseYAdj, label: nodes.length.toString() };
-    nodes.push(newNode);
-    selectedNode = newNode;
-  } else {
-    // Modo de eliminación
-    // Verificar si se hizo clic en un nodo existente
-    for (let i = nodes.length - 1; i >= 0; i--) {
-      let node = nodes[i];
-      let d = dist(mouseXAdj, mouseYAdj, node.x, node.y);
-      if (d < 10) {
-        // Eliminar el nodo
-        nodes.splice(i, 1);
-        // Eliminar las aristas conectadas a este nodo
-        edges = edges.filter(edge => edge[0] !== node && edge[1] !== node);
-        return;
+      // Si no se hizo clic en un nodo existente, crear un nuevo nodo
+      let newNode = { x: mouseXAdj, y: mouseYAdj, label: (nodeCounter + 1).toString() };
+      nodes.push(newNode);
+      selectedNode = newNode;
+      nodeCounter++;
+    } else {
+      // Modo de eliminación
+      // Verificar si se hizo clic en un nodo existente
+      for (let i = nodes.length - 1; i >= 0; i--) {
+        let node = nodes[i];
+        let d = dist(mouseXAdj, mouseYAdj, node.x, node.y);
+        if (d < 10) {
+          // Eliminar el nodo
+          nodes.splice(i, 1);
+          // Eliminar las aristas conectadas a este nodo
+          edges = edges.filter(edge => edge[0] !== node && edge[1] !== node);
+          return;
+        }
       }
     }
   }
 }
 
 function mouseDragged() {
-  let zoomFactor = zoomSettings.zoom;
+  let zoomFactor = map(zoomSettings.zoom, 15, 50, 0.5, 2); // Mapear el valor del zoom al rango deseado
   let mouseXAdj = (mouseX - centerX) / zoomFactor + centerX;
   let mouseYAdj = (mouseY - centerY) / zoomFactor + centerY;
 
@@ -200,8 +206,9 @@ function handleFile(file) {
       nodes = graph.nodes.map((node, index) => ({
         x: random(width),
         y: random(height),
-        label: (index + 1).toString()
+        label: (nodeCounter + index + 1).toString()
       }));
+      nodeCounter += graph.nodes.length; // Aumentar el contador de nodos para evitar duplicados
       edges = graph.links.map(link => [
         nodes[parseInt(link.source.substring(1)) - 1],
         nodes[parseInt(link.target.substring(1)) - 1]
