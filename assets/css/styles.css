@@ -1,0 +1,12 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#button-container {
+    margin-top: 10px;
+    margin-bottom: 20px; 
+}
+button {
+    cursor: pointer;
+}
