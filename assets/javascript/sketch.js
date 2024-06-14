@@ -7,6 +7,7 @@ let gui;
 let zoomSettings = { zoom: 35 };
 let centerX, centerY;
 let drawMode = true;
+let nodeCounter = 1;
 
 function setup() {
   createCanvas(800, 600);
@@ -23,14 +24,23 @@ function setup() {
   loadButton.mousePressed(() => graphManager.loadGraph(graph => {
     nodes = new Nodos();
     graphManager = new GraphManager(nodes);
+
+    // Mapa de nodos para mantener posiciones
+    let nodeMap = {};
     for (let node of graph.nodes) {
-      nodes.addNode(random(width), random(height));
+      let newNode = nodes.addNode(random(width), random(height)); 
+      newNode.label = node.id;
+      nodeMap[node.id] = newNode;
     }
+    
     graphManager.edges = graph.links.map(link => [
-      nodes.nodes.find(n => n.label === link.source),
-      nodes.nodes.find(n => n.label === link.target)
+      nodeMap[link.source],
+      nodeMap[link.target]
     ]);
-    graphManager.updateGraph();  // Actualizar el grafo después de cargarlo
+    graphManager.updateGraph();
+
+    // Actualizar nodeCounter para evitar duplicados
+    nodeCounter = Math.max(...graph.nodes.map(node => parseInt(node.id))) + 1;
   }));
 
   drawModeButton = select('#drawModeButton');
@@ -72,7 +82,6 @@ function draw() {
 }
 
 function mousePressed() {
-  // Verificar si el clic del ratón está dentro del lienzo
   if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
     let zoomFactor = map(zoomSettings.zoom, 15, 50, 0.5, 2);
     let mouseXAdj = (mouseX - centerX) / zoomFactor + centerX;
@@ -88,7 +97,10 @@ function mousePressed() {
           selectedNode = null;
         }
       } else {
-        selectedNode = nodes.addNode(mouseXAdj, mouseYAdj);
+        let newNode = nodes.addNode(mouseXAdj, mouseYAdj);
+        newNode.label = nodeCounter.toString();
+        nodeCounter++;
+        selectedNode = newNode;
       }
     } else {
       let node = nodes.findNode(mouseXAdj, mouseYAdj);
@@ -97,7 +109,7 @@ function mousePressed() {
         graphManager.removeEdgesConnectedToNode(node);
       }
     }
-    graphManager.updateGraph();  // Actualizar grafo después de cada operación
+    graphManager.updateGraph();
   }
 }
 
@@ -109,7 +121,7 @@ function mouseDragged() {
   if (draggingNode) {
     draggingNode.x = mouseXAdj;
     draggingNode.y = mouseYAdj;
-    graphManager.updateGraph();  // Actualizar el grafo cuando se mueve un nodo
+    graphManager.updateGraph();
   } else {
     draggingNode = nodes.findNode(mouseXAdj, mouseYAdj);
   }
