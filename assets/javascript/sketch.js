@@ -1,29 +1,36 @@
-let nodes = new Nodos();
-let edges = [];
+let nodes;
+let graphManager;
 let selectedNode = null;
 let draggingNode = null;
-let saveButton, loadButton;
+let saveButton, loadButton, drawModeButton, deleteModeButton;
 let gui;
-let zoomSettings = { zoom: 35 }; 
+let zoomSettings = { zoom: 35 };
 let centerX, centerY;
 let drawMode = true;
 
 function setup() {
   createCanvas(800, 600);
 
+  nodes = new Nodos();
+  graphManager = new GraphManager(nodes);
+
   saveButton = select('#saveButton');
-  saveButton.mousePressed(() => saveGraph(nodes, edges));
+  saveButton.mousePressed(() => {
+    graphManager.saveGraph();
+  });
 
   loadButton = select('#loadButton');
-  loadButton.mousePressed(() => loadGraph(graph => {
+  loadButton.mousePressed(() => graphManager.loadGraph(graph => {
     nodes = new Nodos();
+    graphManager = new GraphManager(nodes);
     for (let node of graph.nodes) {
       nodes.addNode(random(width), random(height));
     }
-    edges = graph.links.map(link => [
-      nodes.nodes[parseInt(link.source.substring(1)) - 1],
-      nodes.nodes[parseInt(link.target.substring(1)) - 1]
+    graphManager.edges = graph.links.map(link => [
+      nodes.nodes.find(n => n.label === link.source),
+      nodes.nodes.find(n => n.label === link.target)
     ]);
+    graphManager.updateGraph();  // Actualizar el grafo después de cargarlo
   }));
 
   drawModeButton = select('#drawModeButton');
@@ -59,15 +66,13 @@ function draw() {
   nodes.applyRepulsion();
 
   stroke(0);
-  for (let edge of edges) {
-    line(edge[0].x, edge[0].y, edge[1].x, edge[1].y);
-  }
+  graphManager.drawEdges();
 
-  fill(255);
   nodes.draw();
 }
 
 function mousePressed() {
+  // Verificar si el clic del ratón está dentro del lienzo
   if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
     let zoomFactor = map(zoomSettings.zoom, 15, 50, 0.5, 2);
     let mouseXAdj = (mouseX - centerX) / zoomFactor + centerX;
@@ -79,7 +84,7 @@ function mousePressed() {
         if (selectedNode === null) {
           selectedNode = node;
         } else {
-          edges.push([selectedNode, node]);
+          graphManager.addEdge(selectedNode, node);
           selectedNode = null;
         }
       } else {
@@ -89,9 +94,10 @@ function mousePressed() {
       let node = nodes.findNode(mouseXAdj, mouseYAdj);
       if (node) {
         nodes.removeNode(node);
-        edges = edges.filter(edge => edge[0] !== node && edge[1] !== node);
+        graphManager.removeEdgesConnectedToNode(node);
       }
     }
+    graphManager.updateGraph();  // Actualizar grafo después de cada operación
   }
 }
 
@@ -103,6 +109,7 @@ function mouseDragged() {
   if (draggingNode) {
     draggingNode.x = mouseXAdj;
     draggingNode.y = mouseYAdj;
+    graphManager.updateGraph();  // Actualizar el grafo cuando se mueve un nodo
   } else {
     draggingNode = nodes.findNode(mouseXAdj, mouseYAdj);
   }
