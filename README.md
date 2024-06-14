@@ -11,4 +11,4 @@ https://p5js.org/reference/#/p5/createFileInput
 
 https://p5js.org/reference/#/p5/select 
 
-Funciona todo excepto lo de cargar el archivo json
+Funciona todo, pero las posiciones de los nodos del grafo guardado no son las mismas al cargar el grafo
