@@ -10,3 +10,5 @@ https://p5js.org/reference/#/p5/createButton
 https://p5js.org/reference/#/p5/createFileInput 
 
 https://p5js.org/reference/#/p5/select 
+
+Funciona todo excepto lo de cargar el archivo json
