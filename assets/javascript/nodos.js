@@ -3,6 +3,7 @@ class Nodos {
   constructor() {
     this.nodes = [];
     this.nodeCounter = 0;
+    this.nodeSelected = null;
   }
 
   addNode(x, y) {
@@ -10,6 +11,21 @@ class Nodos {
     this.nodes.push(newNode);
     this.nodeCounter++;
     return newNode;
+  }
+
+  selectNode(node){
+    this.unSelectNodes();
+    this.nodeSelected = node;
+    node.select();
+  }
+
+  unSelectNodes(){
+
+    this.nodes.forEach(node => {
+      if (node.selected === true) {
+        node.selected= false;
+      }});
+    this.nodeSelected = null;
   }
 
   removeNode(node) {

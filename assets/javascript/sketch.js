@@ -1,6 +1,6 @@
 let nodes;
 let graphManager;
-let selectedNode = null;
+//let selectedNode = null;
 let draggingNode = null;
 let saveButton, loadButton, drawModeButton, deleteModeButton;
 let gui;
@@ -52,6 +52,7 @@ function setup() {
 
   deleteModeButton = select('#deleteModeButton');
   deleteModeButton.mousePressed(() => {
+    nodes.unSelectNodes();
     drawMode = false;
     deleteModeButton.style('background-color', '#ddd');
     drawModeButton.style('background-color', '');
@@ -89,20 +90,30 @@ function mousePressed() {
 
     if (drawMode) {
       let node = nodes.findNode(mouseXAdj, mouseYAdj);
+
       if (node) {
-        if (selectedNode === null) {
-          selectedNode = node;
-        } else {
-          graphManager.addEdge(selectedNode, node);
-          selectedNode = null;
+
+        if (nodes.nodeSelected !== null && nodes.nodeSelected !== node ) {
+          graphManager.addEdge(nodes.nodeSelected, node);
+          nodes.unSelectNodes();
         }
+
+        if (nodes.nodeSelected === null &&  node.selected === false) {
+          nodes.selectNode(node);
+        } 
+      } 
+      else if (nodes.nodeSelected != null) {
+        
+        nodes.unSelectNodes();
+      
       } else {
         let newNode = nodes.addNode(mouseXAdj, mouseYAdj);
         newNode.label = nodeCounter.toString();
         nodeCounter++;
-        selectedNode = newNode;
-      }
-    } else {
+        }
+        
+    } 
+    else {
       let node = nodes.findNode(mouseXAdj, mouseYAdj);
       if (node) {
         nodes.removeNode(node);
