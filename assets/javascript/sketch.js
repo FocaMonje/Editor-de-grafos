@@ -7,9 +7,22 @@ let zoomSettings = { zoom: 35 };
 let centerX, centerY;
 let nodeCounter = 1;
 let workMode = 'drawMode'; 
+var label = "id";
 
 function setup() {
   createCanvas(800, 600);
+
+  gui = createGui('Settings');
+  gui.addObject(zoomSettings, 'zoom', 15, 50);
+  gui.setPosition(20, 80);
+  /* Crea el panel de visualización de atributos a la derecha del canvas */
+  label = createInput('');
+  label.position(20, 200);
+  // Call modifyNodeName() when input is detected.
+  label.input(modifyNodeName);
+
+  let textLabel = createSpan('Node Label');
+  textLabel.position(20, 180);
 
   nodes = new Nodos();
   graphManager = new GraphManager(nodes);
@@ -60,10 +73,6 @@ function setup() {
     drawModeButton.style('background-color', '');
   });
 
-  gui = createGui('Settings');
-  gui.addObject(zoomSettings, 'zoom', 15, 50);
-  gui.setPosition(10, 130);
-
   centerX = width / 2;
   centerY = height / 2;
 }
@@ -113,6 +122,7 @@ function mousePressed() {
             nodes.unSelectNodes();
           } else if (nodes.nodeSelected === null && node.selected === false) {
             nodes.selectNode(node);
+            label.value(node.label);
           }
         } else if (nodes.nodeSelected != null) {
           nodes.unSelectNodes();
@@ -160,4 +170,11 @@ function mouseDragged() {
 
 function mouseReleased() {
   draggingNode = null;
+}
+
+function modifyNodeName(){
+  node = nodes.nodeSelected;
+  if (node) {
+    node.label = label.value();
+  }
 }
