@@ -88,7 +88,7 @@ function draw() {
 
   // Hay que cambiar zoomSettings por slider_zoom.value()
   // let zoomFactor = map(slider_zoom.value(), 0, 100, 0, 2);
-  let zoomFactor = map(zoomSettings.zoom, 0, 100, 0.5, 2);
+  let zoomFactor = map(zoomSettings.zoom, 1, 50, 0.5, 2);
   translate(centerX, centerY);
   scale(zoomFactor);
   translate(-centerX, -centerY);
