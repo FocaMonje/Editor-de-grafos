@@ -3,13 +3,8 @@ body {
     flex-direction: column;
     align-items: center;
 }
-#button-container {
-    margin-top: 10px;
-    margin-bottom: 20px; 
-}
-button {
-    cursor: pointer;
-}
+
+
 
 #edge-info {
     display: none;
@@ -33,7 +28,7 @@ button {
       "i i c c c c i i"
       "i i c c c c i i"
       "i i c c c c i i";
-    align-items: start;
+    align-items: center;
   }
   .header {
     grid-area: h;

@@ -15,15 +15,20 @@ function setup() {
   gui = createGui('Settings');
   gui.addObject(zoomSettings, 'zoom', 15, 50);
   gui.setPosition(20, 80);
+
+  let zoom_Label = createSpan('zoom');
+  zoom_Label.parent('div-derecha');
+  slider_zoom = createSlider(0, 100);
+  slider_zoom.parent('div-derecha');
   /* Crea el panel de visualización de atributos a la derecha del canvas */
   label = createInput('');
-  label.parent
-  label.position(20, 200);
+  label.parent('div-derecha');
+  //label.position(20, 200);
   // Call modifyNodeName() when input is detected.
   label.input(modifyNodeName);
 
   let textLabel = createSpan('Node Label');
-  textLabel.position(20, 180);
+  textLabel.parent('div-derecha');
 
   nodes = new Nodos();
   graphManager = new GraphManager(nodes);
@@ -81,7 +86,9 @@ function setup() {
 function draw() {
   background(220);
 
-  let zoomFactor = map(zoomSettings.zoom, 15, 50, 0.5, 2);
+  // Hay que cambiar zoomSettings por slider_zoom.value()
+  // let zoomFactor = map(slider_zoom.value(), 0, 100, 0, 2);
+  let zoomFactor = map(zoomSettings.zoom, 0, 100, 0.5, 2);
   translate(centerX, centerY);
   scale(zoomFactor);
   translate(-centerX, -centerY);
