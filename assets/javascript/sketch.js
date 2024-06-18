@@ -17,6 +17,7 @@ function setup() {
   gui.setPosition(20, 80);
   /* Crea el panel de visualización de atributos a la derecha del canvas */
   label = createInput('');
+  label.parent
   label.position(20, 200);
   // Call modifyNodeName() when input is detected.
   label.input(modifyNodeName);
