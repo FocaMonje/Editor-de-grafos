@@ -11,4 +11,8 @@ https://p5js.org/reference/#/p5/createFileInput
 
 https://p5js.org/reference/#/p5/select 
 
-Funciona todo, pero las posiciones de los nodos del grafo guardado no son las mismas al cargar el grafo
+Cosas hechas:
+Creación clase edge y clase edges
+Mostrar mini ventana con la información de la flecha al pasar el ratón sobre ella
+Delete mode fue modificado para eliminar una flecha al clicar sobre ella o un nodo
+Se ha usado el switch case para quitar algunos if de la función mousePressed()

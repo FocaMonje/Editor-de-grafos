@@ -16,7 +16,7 @@ class Nodo {
   }
 
   draw() {
-    if(this.selected){
+    if (this.selected) {
       strokeWeight(4);
       stroke(51);
     }
@@ -37,5 +37,3 @@ class Nodo {
     this.y -= fy / 2;
   }
 }
-
-  

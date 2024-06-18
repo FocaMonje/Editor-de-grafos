@@ -11,3 +11,12 @@ button {
     cursor: pointer;
 }
 
+#edge-info {
+    display: none;
+    position: absolute;
+    background: white;
+    border: 1px solid black;
+    padding: 10px;
+    z-index: 10;
+  }
+  
