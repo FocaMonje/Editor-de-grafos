@@ -1,4 +1,3 @@
-
 class Nodos {
   constructor() {
     this.nodes = [];
@@ -13,18 +12,14 @@ class Nodos {
     return newNode;
   }
 
-  selectNode(node){
+  selectNode(node) {
     this.unSelectNodes();
     this.nodeSelected = node;
     node.select();
   }
 
-  unSelectNodes(){
-
-    this.nodes.forEach(node => {
-      if (node.selected === true) {
-        node.selected= false;
-      }});
+  unSelectNodes() {
+    this.nodes.forEach(node => node.deselect());
     this.nodeSelected = null;
   }
 

@@ -1,7 +1,8 @@
+
 class GraphManager {
   constructor(nodos) {
     this.nodos = nodos;
-    this.edges = [];
+    this.edges = new Edges();
     this.updateGraph();
   }
 
@@ -10,21 +11,27 @@ class GraphManager {
       directed: true,
       graph: {},
       nodes: this.nodos.nodes.map(node => ({ id: node.label })),
-      links: this.edges.map(edge => ({
-        source: edge[0]?.label,
-        target: edge[1]?.label
+      links: this.edges.edges.map(edge => ({
+        source: edge.source.label,
+        target: edge.target.label,
+        explicacion : edge.explicacion  // Información asociada a la flecha
       })).filter(link => link.source && link.target),
       multigraph: false
     };
   }
 
-  addEdge(node1, node2) {
-    this.edges.push([node1, node2]);
+  addEdge(node1, node2, explicacion = '') {
+    this.edges.addEdge(node1, node2, explicacion);
     this.updateGraph();
   }
 
   removeEdgesConnectedToNode(node) {
-    this.edges = this.edges.filter(edge => edge[0] !== node && edge[1] !== node);
+    this.edges.removeEdgesConnectedToNode(node);
+    this.updateGraph();
+  }
+
+  removeEdge(edge) {
+    this.edges.edges = this.edges.edges.filter(e => e !== edge);
     this.updateGraph();
   }
 
@@ -47,6 +54,7 @@ class GraphManager {
           let graph = JSON.parse(event.target.result);
           callback(graph);
         } catch (error) {
+          console.error("Error parsing graph JSON:", error);
         }
       };
       reader.readAsText(file.file);
@@ -54,13 +62,6 @@ class GraphManager {
   }
 
   drawEdges() {
-    stroke(0);
-    for (let edge of this.edges) {
-      let nodeA = edge[0];
-      let nodeB = edge[1];
-      if (nodeA && nodeB) {
-        line(nodeA.x, nodeA.y, nodeB.x, nodeB.y);
-      }
-    }
+    this.edges.draw();
   }
 }
