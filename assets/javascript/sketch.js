@@ -1,16 +1,39 @@
 let nodes;
 let graphManager;
-//let selectedNode = null;
 let draggingNode = null;
 let saveButton, loadButton, drawModeButton, deleteModeButton;
-let gui;
-let zoomSettings = { zoom: 35 };
+var guiSettings;
+var guiAtributes;
+var zoomSettings = { zoom: 35 };
+var label = "id";
+var radius = 20;
 let centerX, centerY;
 let drawMode = true;
 let nodeCounter = 1;
+let workMode = 'drawMode'; 
+
+
+
 
 function setup() {
+
+  /* Crea el canvas de dibujo y lo mete en su div del index */
   createCanvas(800, 600);
+
+  /* Crea el panel de opciones de visualización a la izquierda del canvas */
+  guiSettings = createGui('Settings').setPosition(20, 60);;
+  guiSettings.addObject(zoomSettings, 'zoom', 15, 50);
+  
+  
+  /* Crea el panel de visualización de atributos a la derecha del canvas */
+  label = createInput('');
+  label.position(20, 200);
+  // Call modifyNodeName() when input is detected.
+  label.input(modifyNodeName);
+
+  let textLabel = createSpan('Node Label');
+  textLabel.position(20, 180);
+
 
   nodes = new Nodos();
   graphManager = new GraphManager(nodes);
@@ -41,6 +64,7 @@ function setup() {
 
     // Actualizar nodeCounter para evitar duplicados
     nodeCounter = Math.max(...graph.nodes.map(node => parseInt(node.id))) + 1;
+    
   }));
 
   drawModeButton = select('#drawModeButton');
@@ -58,13 +82,11 @@ function setup() {
     drawModeButton.style('background-color', '');
   });
 
-  gui = createGui('Settings');
-  gui.addObject(zoomSettings, 'zoom', 15, 50);
-  gui.setPosition(10, 130);
-
   centerX = width / 2;
   centerY = height / 2;
 }
+
+
 
 function draw() {
   background(220);
@@ -80,6 +102,14 @@ function draw() {
   graphManager.drawEdges();
 
   nodes.draw();
+
+}
+
+function modifyNodeName(){
+  node = nodes.nodeSelected;
+  if (node) {
+    node.label = label.value();
+  }
 }
 
 function mousePressed() {
@@ -100,6 +130,8 @@ function mousePressed() {
 
         if (nodes.nodeSelected === null &&  node.selected === false) {
           nodes.selectNode(node);
+          label.value(node.label);
+          console.log(label.html())
         } 
       } 
       else if (nodes.nodeSelected != null) {
