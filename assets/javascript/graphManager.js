@@ -14,7 +14,7 @@ class GraphManager {
       links: this.edges.edges.map(edge => ({
         source: edge.source.label,
         target: edge.target.label,
-        explicacion : edge.explicacion  // Información asociada a la flecha
+        explicacion: edge.explicacion  // Información asociada a la flecha
       })).filter(link => link.source && link.target),
       multigraph: false
     };
@@ -59,6 +59,27 @@ class GraphManager {
       };
       reader.readAsText(file.file);
     }
+  }
+
+  rebuildGraph(graph) {
+    this.nodos.clear(); // Limpia los nodos existentes
+    let nodeMap = {};
+    for (let node of graph.nodes) {
+      let newNode = this.nodos.addNode(random(width), random(height));
+      newNode.label = node.id;
+      nodeMap[node.id] = newNode;
+    }
+
+    this.edges = new Edges();
+    graph.links.forEach(link => {
+      let source = nodeMap[link.source];
+      let target = nodeMap[link.target];
+      if (source && target) {
+        this.addEdge(source, target, link.explicacion);
+      }
+    });
+
+    this.updateGraph();
   }
 
   drawEdges() {

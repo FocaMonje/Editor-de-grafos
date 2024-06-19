@@ -12,10 +12,12 @@
     <script src="assets/javascript/graphManager.js"></script>
     <script src="assets/javascript/edge.js"></script>
     <script src="assets/javascript/edges.js"></script>
+    <script src="assets/javascript/funciones.js"></script>
     <script src="assets/javascript/sketch.js" defer></script>
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
+<<<<<<< Updated upstream
     <div > 
         
         <button id="saveButton">Guardar Grafo</button>
@@ -23,7 +25,25 @@
         <button id="drawModeButton">Draw Mode</button>
         <button id="deleteModeButton">Delete Mode</button>
        
+=======
+    <div class="wrapper">
+        <div id="header">
+            <button id="saveButton" class="header">Guardar Grafo</button>
+            <button id="loadButton" class="header">Cargar Grafo</button>
+            <button id="drawModeButton" class="header">Draw Mode</button>
+            <button id="deleteModeButton" class="header">Delete Mode</button>
+            <button id="selectedModeButton" class="header">Selected Mode</button>
+        </div>
+        <div id="div-izquierda" class="colum-info">
+            <label for="slider_zoom">Zoom:</label>
+            <input type="range" id="slider_zoom" min="15" max="50" value="35">
+        </div>
+        <div id="div-derecha" class="colum-info">
+            <label for="node_label">Node Label:</label>
+            <input type="text" id="node_label">
+        </div>
+        <div id="edge-info"></div>
+>>>>>>> Stashed changes
     </div>
-    <div id="edge-info"></div>
 </body>
 </html>

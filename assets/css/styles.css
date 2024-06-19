@@ -12,11 +12,45 @@ button {
 }
 
 #edge-info {
-    display: none;
-    position: absolute;
-    background: white;
-    border: 1px solid black;
+    border: 1px solid #ccc;
     padding: 10px;
-    z-index: 10;
-  }
+    margin-top: 10px;
+    display: none;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+#header {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.colum-info {
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.colum-canvas {
+    width: 70%;
+}
+
+#div-izquierda {
+    position: absolute;
+    top: 80px;
+    left: 20px;
+}
+#div-derecha {
+    position: absolute;
+    top: 80px; 
+    right: 20px;
+}
+/* #div-derecha label {
+    margin-top: 50px;
+} */
   
