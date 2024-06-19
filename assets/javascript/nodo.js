@@ -1,10 +1,11 @@
 
 class Nodo {
-  constructor(x, y, label) {
+  constructor(x, y, label, size) {
     this.x = x;
     this.y = y;
     this.label = label;
     this.selected = false;
+    this.size = size;
   }
 
   select() {
@@ -15,15 +16,17 @@ class Nodo {
     this.selected = false;
   }
 
-  draw() {
+  draw(size) {
+    this.size = size;
     if (this.selected) {
       strokeWeight(4);
       stroke(51);
     }
-    ellipse(this.x, this.y, 20, 20);
+    ellipse(this.x, this.y, this.size, this.size);
     fill(0);
     strokeWeight(1);
     textAlign(CENTER, CENTER);
+    textSize(this.size);
     text(this.label, this.x, this.y);
     fill(255);
   }

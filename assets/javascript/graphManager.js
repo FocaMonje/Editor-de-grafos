@@ -20,8 +20,8 @@ class GraphManager {
     };
   }
 
-  addEdge(node1, node2, explicacion = '') {
-    this.edges.addEdge(node1, node2, explicacion);
+  addEdge(node1, node2, explicacion = '', size) {
+    this.edges.addEdge(node1, node2, explicacion, size);
     this.updateGraph();
   }
 

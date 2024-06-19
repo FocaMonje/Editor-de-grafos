@@ -3,18 +3,32 @@ let graphManager;
 let draggingNode = null;
 let saveButton, loadButton, drawModeButton, deleteModeButton;
 let gui;
-let zoomSettings = { zoom: 35 };
+let zoomSettings = { zoom: 0 };
 let centerX, centerY;
 let nodeCounter = 1;
 let workMode = 'drawMode'; 
 var label = "id";
 
-function setup() {
-  createCanvas(800, 600);
+const controls = {
+  view: {x: 0, y: 0, zoom: 1},
+  viewPos: { prevX: null,  prevY: null,  isDragging: false },
+}
 
-  gui = createGui('Settings');
-  gui.addObject(zoomSettings, 'zoom', 15, 50);
-  gui.setPosition(20, 80);
+
+
+function setup() {
+
+  let canvasWidth = 2 * windowWidth / 3 ;
+  let canvasHeight =  2 * windowHeight / 3 ;
+
+  canvas = createCanvas(canvasWidth, canvasHeight);
+
+  canvas.mouseWheel(e => doZoom(controls).worldZoom(e));
+
+  slider_node_size = createSlider(5, 20, 10, 1);
+  slider_node_size.position(10, 10);
+  slider_node_size.size(80);
+
   /* Crea el panel de visualización de atributos a la derecha del canvas */
   label = createInput('');
   label.position(20, 200);
@@ -24,8 +38,9 @@ function setup() {
   let textLabel = createSpan('Node Label');
   textLabel.position(20, 180);
 
-  nodes = new Nodos();
+  nodes = new Nodos(20);
   graphManager = new GraphManager(nodes);
+  
 
   saveButton = select('#saveButton');
   saveButton.mousePressed(() => {
@@ -33,14 +48,18 @@ function setup() {
   });
 
   loadButton = select('#loadButton');
+
   loadButton.mousePressed(() => graphManager.loadGraph(graph => {
-    nodes = new Nodos();
+   
+    nodes = new Nodos(20);
     graphManager = new GraphManager(nodes);
 
     let nodeMap = {};
     for (let node of graph.nodes) {
-      let newNode = nodes.addNode(random(width), random(height));
-      newNode.label = node.id;
+
+      let newNode = nodes.addNode(random(canvasWidth), random(canvasHeight),slider_node_size.value());
+
+      console.log(newNode.x, newNode.y);
       nodeMap[node.id] = newNode;
     }
 
@@ -48,8 +67,9 @@ function setup() {
     graph.links.forEach(link => {
       let source = nodeMap[link.source];
       let target = nodeMap[link.target];
+      //console.log(nodeSize);
       if (source && target) {
-        graphManager.addEdge(source, target, link.explicacion);
+        graphManager.addEdge(source, target, link.explicacion );
       }
     });
 
@@ -80,97 +100,102 @@ function setup() {
 function draw() {
   background(220);
 
-  let zoomFactor = map(zoomSettings.zoom, 15, 50, 0.5, 2);
-  translate(centerX, centerY);
-  scale(zoomFactor);
-  translate(-centerX, -centerY);
+  translate(controls.view.x, controls.view.y);
+  scale(controls.view.zoom)
+
+  // let zoomFactor = map(zoomSettings.zoom, 15, 50, 0.5, 2);
+  // translate(centerX, centerY);
+  // scale(zoomFactor);
+  // translate(-centerX, -centerY);
 
   nodes.applyRepulsion();
 
+  
+  nodes.draw(slider_node_size.value());
   stroke(0);
   graphManager.drawEdges();
 
-  nodes.draw();
+  
 
   // Mostrar información de la flecha si el ratón está sobre ella
-  let mouseXAdj = (mouseX - centerX) / zoomFactor + centerX;
-  let mouseYAdj = (mouseY - centerY) / zoomFactor + centerY;
-  let edge = graphManager.edges.findEdge(mouseXAdj, mouseYAdj);
+  // let mouseXAdj = (mouseX - centerX) / zoomFactor + centerX;
+  // let mouseYAdj = (mouseY - centerY) / zoomFactor + centerY;
+  // let edge = graphManager.edges.findEdge(mouseXAdj, mouseYAdj);
 
-  let edgeInfoDiv = select('#edge-info');
-  if (edge) {
-    edgeInfoDiv.html(edge.explicacion || "No hay información");
-    edgeInfoDiv.position(mouseX + 15, mouseY + 15);
-    edgeInfoDiv.style('display', 'block');
-  } else {
-    edgeInfoDiv.style('display', 'none');
-  }
+  // let edgeInfoDiv = select('#edge-info');
+  // if (edge) {
+  //   edgeInfoDiv.html(edge.explicacion || "No hay información");
+  //   edgeInfoDiv.position(mouseX + 15, mouseY + 15);
+  //   edgeInfoDiv.style('display', 'block');
+  // } else {
+  //   edgeInfoDiv.style('display', 'none');
+  // }
 }
 
-function mousePressed() {
-  if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
-    let zoomFactor = map(zoomSettings.zoom, 15, 50, 0.5, 2);
-    let mouseXAdj = (mouseX - centerX) / zoomFactor + centerX;
-    let mouseYAdj = (mouseY - centerY) / zoomFactor + centerY;
+// function mousePressed() {
+//   if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
+//     // let zoomFactor = map(zoomSettings.zoom, 15, 50, 0.5, 2);
+//     // let mouseXAdj = (mouseX - centerX) / zoomFactor + centerX;
+//     // let mouseYAdj = (mouseY - centerY) / zoomFactor + centerY;
 
-    switch (workMode) {
-      case 'drawMode': {
-        let node = nodes.findNode(mouseXAdj, mouseYAdj);
-        if (node) {
-          if (nodes.nodeSelected !== null && nodes.nodeSelected !== node) {
-            graphManager.addEdge(nodes.nodeSelected, node); // No se pide info
-            nodes.unSelectNodes();
-          } else if (nodes.nodeSelected === null && node.selected === false) {
-            nodes.selectNode(node);
-            label.value(node.label);
-          }
-        } else if (nodes.nodeSelected != null) {
-          nodes.unSelectNodes();
-        } else {
-          let edge = graphManager.edges.findEdge(mouseXAdj, mouseYAdj);
-          if (!edge) {
-            let newNode = nodes.addNode(mouseXAdj, mouseYAdj);
-            newNode.label = nodeCounter.toString();
-            nodeCounter++;
-          }
-        }
-        break;
-      }
-      case 'deleteMode': {
-        let edge = graphManager.edges.findEdge(mouseXAdj, mouseYAdj);
-        if (edge) {
-          graphManager.edges.removeEdge(edge);
-          return;
-        }
+//     switch (workMode) {
+//       case 'drawMode': {
+//         let node = nodes.findNode(mouseXAdj, mouseYAdj);
+//         if (node) {
+//           if (nodes.nodeSelected !== null && nodes.nodeSelected !== node) {
+//             graphManager.addEdge(nodes.nodeSelected, node); // No se pide info
+//             nodes.unSelectNodes();
+//           } else if (nodes.nodeSelected === null && node.selected === false) {
+//             nodes.selectNode(node);
+//             label.value(node.label);
+//           }
+//         } else if (nodes.nodeSelected != null) {
+//           nodes.unSelectNodes();
+//         } else {
+//           let edge = graphManager.edges.findEdge(mouseXAdj, mouseYAdj);
+//           if (!edge) {
+//             let newNode = nodes.addNode(mouseXAdj, mouseYAdj, slider_node_size.value());
+//             newNode.label = nodeCounter.toString();
+//             nodeCounter++;
+//           }
+//         }
+//         break;
+//       }
+//       case 'deleteMode': {
+//         let edge = graphManager.edges.findEdge(mouseXAdj, mouseYAdj);
+//         if (edge) {
+//           graphManager.edges.removeEdge(edge);
+//           return;
+//         }
 
-        let node = nodes.findNode(mouseXAdj, mouseYAdj);
-        if (node) {
-          nodes.removeNode(node);
-          graphManager.removeEdgesConnectedToNode(node);
-        }
-        break;
-      }
-    }
-  }
-}
+//         let node = nodes.findNode(mouseXAdj, mouseYAdj);
+//         if (node) {
+//           nodes.removeNode(node);
+//           graphManager.removeEdgesConnectedToNode(node);
+//         }
+//         break;
+//       }
+//     }
+//   }
+// }
 
-function mouseDragged() {
-  let zoomFactor = map(zoomSettings.zoom, 15, 50, 0.5, 2);
-  let mouseXAdj = (mouseX - centerX) / zoomFactor + centerX;
-  let mouseYAdj = (mouseY - centerY) / zoomFactor + centerY;
+// function mouseDragged() {
+//   let zoomFactor = map(zoomSettings.zoom, 15, 50, 0.5, 2);
+//   let mouseXAdj = (mouseX - centerX) / zoomFactor + centerX;
+//   let mouseYAdj = (mouseY - centerY) / zoomFactor + centerY;
 
-  if (draggingNode) {
-    draggingNode.x = mouseXAdj;
-    draggingNode.y = mouseYAdj;
-    graphManager.updateGraph();
-  } else {
-    draggingNode = nodes.findNode(mouseXAdj, mouseYAdj);
-  }
-}
+//   if (draggingNode) {
+//     draggingNode.x = mouseXAdj;
+//     draggingNode.y = mouseYAdj;
+//     graphManager.updateGraph();
+//   } else {
+//     draggingNode = nodes.findNode(mouseXAdj, mouseYAdj);
+//   }
+// }
 
-function mouseReleased() {
-  draggingNode = null;
-}
+// function mouseReleased() {
+//   draggingNode = null;
+// }
 
 function modifyNodeName(){
   node = nodes.nodeSelected;
@@ -178,3 +203,33 @@ function modifyNodeName(){
     node.label = label.value();
   }
 }
+
+
+//window.mousePressed = e => Controls.move(controls).mousePressed(e)
+//window.mouseDragged = e => Controls.move(controls).mouseDragged(e);
+//window.mouseReleased = e => Controls.move(controls).mouseReleased(e);
+
+
+  function doZoom(controls) {
+    // function calcPos(x, y, zoom) {
+    //   const newX = width - (width * zoom - x);
+    //   const newY = height - (height * zoom - y);
+    //   return {x: newX, y: newY}
+    // }
+
+    function worldZoom(e) {
+      const {x, y, deltaY} = e;
+      const direction = deltaY > 0 ? -1 : 1;
+      const factor = 0.05;
+      const zoom = 1 * direction * factor;
+
+      const wx = (x-controls.view.x)/(width*controls.view.zoom);
+      const wy = (y-controls.view.y)/(height*controls.view.zoom);
+      
+      controls.view.x -= wx*width*zoom;
+      controls.view.y -= wy*height*zoom;
+      controls.view.zoom += zoom;
+    }
+
+    return {worldZoom}
+  }

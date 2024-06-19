@@ -1,14 +1,18 @@
 class Nodos {
-  constructor() {
+  constructor(size) {
     this.nodes = [];
-    this.nodeCounter = 0;
     this.nodeSelected = null;
+    this.id_counter = 0;
+    this.size = size;
+
   }
 
-  addNode(x, y) {
-    let newNode = new Nodo(x, y, (this.nodeCounter + 1).toString());
+
+  addNode(x, y , size) {
+
+    let newNode = new Nodo(x, y, (this.id_counter + 1).toString(), size);
     this.nodes.push(newNode);
-    this.nodeCounter++;
+    this.id_counter++;
     return newNode;
   }
 
@@ -27,9 +31,9 @@ class Nodos {
     this.nodes = this.nodes.filter(n => n !== node);
   }
 
-  draw() {
+  draw(size) {
     for (let node of this.nodes) {
-      node.draw();
+      node.draw(size);
     }
   }
 

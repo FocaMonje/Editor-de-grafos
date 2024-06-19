@@ -2,10 +2,16 @@
 class Edges {
   constructor() {
     this.edges = [];
+    this.edgeCounter = 0;
     this.selectedEdge = null;
+
   }
 
+
   addEdge(source, target, explicacion = "") {
+
+    this.edgeCounter++;
+
     this.edges.push(new Edge(source, target, explicacion));
   }
 
