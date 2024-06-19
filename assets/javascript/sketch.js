@@ -20,6 +20,7 @@ function setup() {
   zoom_Label.parent('div-derecha');
   slider_zoom = createSlider(0, 100);
   slider_zoom.parent('div-derecha');
+  
   /* Crea el panel de visualización de atributos a la derecha del canvas */
   label = createInput('');
   label.parent('div-derecha');

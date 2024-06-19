@@ -30,12 +30,15 @@ body {
       "i i c c c c i i";
     align-items: center;
   }
+
   .header {
     grid-area: h;
   }
+
   .colum-info {
     grid-area: i;
   }
+  
   .colum-canvas{
     grid-area: c;
   }
