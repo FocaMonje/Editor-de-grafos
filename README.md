@@ -12,7 +12,7 @@ https://p5js.org/reference/#/p5/createFileInput
 https://p5js.org/reference/#/p5/select 
 
 Cosas hechas:
-Creación clase edge y clase edges
-Mostrar mini ventana con la información de la flecha al pasar el ratón sobre ella
-Delete mode fue modificado para eliminar una flecha al clicar sobre ella o un nodo
-Se ha usado el switch case para quitar algunos if de la función mousePressed()
+1. Botones arriva al centro, zoom a la izquierda y Node label a la derecha.
+2. Refactorización del código.
+3. Implementación del Selected Mode, funciona pero muy feamente.
+4. Que asco le estoy cogiendo a Git hub, por suerte tenía una copia de gran parte del código y ha sido fácil recuperar lo que perdí.
