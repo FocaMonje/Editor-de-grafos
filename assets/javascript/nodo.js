@@ -1,6 +1,7 @@
 
-class Nodo {
+class Nodo extends VerletParticle2D {
   constructor(x, y, label) {
+    super(x, y);
     this.x = x;
     this.y = y;
     this.label = label;

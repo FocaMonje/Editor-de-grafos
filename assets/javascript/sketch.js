@@ -9,8 +9,35 @@ let nodeCounter = 1;
 let workMode = 'drawMode'; 
 var label = "id";
 
+
+
+
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+let {
+  VerletPhysics2D,
+  VerletParticle2D,
+  VerletSpring2D,
+  VerletMinDistanceSpring2D,
+} = toxi.physics2d;
+
+// Reference to physics world
+let physics;
+
+
+
 function setup() {
   createCanvas(800, 600);
+
+
+  // Initialize the physics
+  physics = new VerletPhysics2D();
+  // Clear physics
+  physics.clear();
+
+
 
   gui = createGui('Settings');
   gui.addObject(zoomSettings, 'zoom', 15, 50);
@@ -50,6 +77,11 @@ function setup() {
       let target = nodeMap[link.target];
       if (source && target) {
         graphManager.addEdge(source, target, link.explicacion);
+
+
+        physics.addSpring(new VerletSpring2D(source, target, 100, 0.01));
+
+        
       }
     });
 
@@ -78,6 +110,13 @@ function setup() {
 }
 
 function draw() {
+
+
+
+  // Update the physics world
+  physics.update();
+
+
   background(220);
 
   let zoomFactor = map(zoomSettings.zoom, 15, 50, 0.5, 2);
@@ -119,6 +158,17 @@ function mousePressed() {
         if (node) {
           if (nodes.nodeSelected !== null && nodes.nodeSelected !== node) {
             graphManager.addEdge(nodes.nodeSelected, node); // No se pide info
+
+
+
+
+
+            physics.addSpring(new VerletSpring2D(nodes.nodeSelected, node, 100, 0.01));
+
+
+
+
+
             nodes.unSelectNodes();
           } else if (nodes.nodeSelected === null && node.selected === false) {
             nodes.selectNode(node);
