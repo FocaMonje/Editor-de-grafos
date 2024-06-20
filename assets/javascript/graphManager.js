@@ -64,4 +64,26 @@ class GraphManager {
   drawEdges() {
     this.edges.draw();
   }
+
+  rebuildGraph(graph,physics) {
+    this.nodos.clear(); // Limpia los nodos existentes
+    let nodeMap = {};
+    for (let node of graph.nodes) {
+      let newNode = this.nodos.addNode(random(width), random(height));
+      newNode.label = node.id;
+      nodeMap[node.id] = newNode;
+    }
+
+    this.edges = new Edges();
+    graph.links.forEach(link => {
+      let source = nodeMap[link.source];
+      let target = nodeMap[link.target];
+      if (source && target) {
+        this.addEdge(source, target, link.explicacion);
+        physics.addSpring(new VerletSpring2D(source, target, 100, 0.01));
+      }
+    });
+
+    this.updateGraph();
+  }
 }

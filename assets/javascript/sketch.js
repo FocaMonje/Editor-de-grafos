@@ -2,7 +2,6 @@ let nodes;
 let graphManager;
 let draggingNode = null;
 let saveButton, loadButton, drawModeButton, deleteModeButton;
-let gui;
 let zoomSettings = { zoom: 35 };
 let centerX, centerY;
 let nodeCounter = 1;
@@ -23,25 +22,25 @@ let {
 // Reference to physics world
 let physics;
 
-
-
 function setup() {
+
   createCanvas(800, 600);
+
   // Initialize the physics
   physics = new VerletPhysics2D();
   // Clear physics
   physics.clear();
-  gui = createGui('Settings');
-  gui.addObject(zoomSettings, 'zoom', 15, 50);
-  gui.setPosition(20, 80);
-  /* Crea el panel de visualización de atributos a la derecha del canvas */
-  label = createInput('');
-  label.position(20, 200);
-  // Call modifyNodeName() when input is detected.
-  label.input(modifyNodeName);
 
-  let textLabel = createSpan('Node Label');
-  textLabel.position(20, 180);
+ 
+  /* Crea el panel de visualización de atributos a la derecha del canvas */
+  let slider_zoom = select('#slider_zoom');
+  slider_zoom.input(updateZoom);
+
+  labelInput = select('#node_label');
+  labelInput.input(modifyNodeName);
+
+  labelInput.value(''); // limpiar node label
+
 
   nodes = new Nodos();
   graphManager = new GraphManager(nodes);
@@ -51,31 +50,42 @@ function setup() {
     graphManager.saveGraph();
   });
 
+
   loadButton = select('#loadButton');
-  loadButton.mousePressed(() => graphManager.loadGraph(graph => {
-    nodes = new Nodos();
-    graphManager = new GraphManager(nodes);
-
-    let nodeMap = {};
-    for (let node of graph.nodes) {
-      let newNode = nodes.addNode(random(width), random(height));
-      newNode.label = node.id;
-      nodeMap[node.id] = newNode;
-    }
-
-    graphManager.edges = new Edges();
-    graph.links.forEach(link => {
-      let source = nodeMap[link.source];
-      let target = nodeMap[link.target];
-      if (source && target) {
-        graphManager.addEdge(source, target, link.explicacion);
-        physics.addSpring(new VerletSpring2D(source, target, 100, 0.01));
-      }
+    loadButton.mousePressed(() => {
+        graphManager.loadGraph(graph => {
+            graphManager.rebuildGraph(graph,physics);
+            nodeCounter = Math.max(...graph.nodes.map(node => parseInt(node.id))) + 1;
+        });
     });
 
-    graphManager.updateGraph();
-    nodeCounter = Math.max(...graph.nodes.map(node => parseInt(node.id))) + 1;
-  }));
+
+
+  // loadButton = select('#loadButton');
+  // loadButton.mousePressed(() => graphManager.loadGraph(graph => {
+  //   nodes = new Nodos();
+  //   graphManager = new GraphManager(nodes);
+
+  //   let nodeMap = {};
+  //   for (let node of graph.nodes) {
+  //     let newNode = nodes.addNode(random(width), random(height));
+  //     newNode.label = node.id;
+  //     nodeMap[node.id] = newNode;
+  //   }
+
+  //   graphManager.edges = new Edges();
+  //   graph.links.forEach(link => {
+  //     let source = nodeMap[link.source];
+  //     let target = nodeMap[link.target];
+  //     if (source && target) {
+  //       graphManager.addEdge(source, target, link.explicacion);
+  //       physics.addSpring(new VerletSpring2D(source, target, 100, 0.01));
+  //     }
+  //   });
+
+  //   graphManager.updateGraph();
+  //   nodeCounter = Math.max(...graph.nodes.map(node => parseInt(node.id))) + 1;
+  // }));
 
   drawModeButton = select('#drawModeButton');
   drawModeButton.mousePressed(() => {
