@@ -1,9 +1,10 @@
 
 class GraphManager {
-  constructor(nodos) {
+  constructor(nodos,physics) {
     this.nodos = nodos;
     this.edges = new Edges();
     this.updateGraph();
+    this.physics = physics;
   }
 
   updateGraph() {
@@ -22,6 +23,7 @@ class GraphManager {
 
   addEdge(node1, node2, explicacion = '') {
     this.edges.addEdge(node1, node2, explicacion);
+    this.physics.addSpring(new VerletSpring2D(node1, node2, 100, 0.01));
     this.updateGraph();
   }
 
@@ -63,5 +65,26 @@ class GraphManager {
 
   drawEdges() {
     this.edges.draw();
+  }
+
+  rebuildGraph(graph) {
+    this.nodos.clear(); // Limpia los nodos existentes
+    let nodeMap = {};
+    for (let node of graph.nodes) {
+      let newNode = this.nodos.addNode(random(width), random(height));
+      newNode.label = node.id;
+      nodeMap[node.id] = newNode;
+    }
+
+    this.edges = new Edges();
+    graph.links.forEach(link => {
+      let source = nodeMap[link.source];
+      let target = nodeMap[link.target];
+      if (source && target) {
+        this.addEdge(source, target, link.explicacion);
+      }
+    });
+
+    this.updateGraph();
   }
 }

@@ -12,6 +12,12 @@ class Nodos {
     return newNode;
   }
 
+  clear() {
+    this.nodes = [];
+    this.nodeCounter = 0;
+    this.nodeSelected = null;
+  }
+
   selectNode(node) {
     this.unSelectNodes();
     this.nodeSelected = node;
