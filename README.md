@@ -12,7 +12,7 @@ https://p5js.org/reference/#/p5/createFileInput
 https://p5js.org/reference/#/p5/select 
 
 Cosas hechas:
-1. Botones arriva al centro, zoom a la izquierda y Node label a la derecha.
-2. Refactorización del código.
-3. Implementación del Selected Mode, funciona pero muy feamente.
-4. Que asco le estoy cogiendo a Git hub, por suerte tenía una copia de gran parte del código y ha sido fácil recuperar lo que perdí.
+1. Implementación de la física
+2. Implementación de la barra para aumentar el tamaño de los nodos
+3. Implementación del zoom con la rueda del ratón, mi ratón no tiene rueda así que ni idea de si funciona
+4. Hay un pequeño error y es que si haces clic cerca del borde del nodo no lo selecciona, crea uno nuevo
