@@ -7,6 +7,7 @@ let centerX, centerY;
 let nodeCounter = 1;
 let workMode = 'drawMode'; 
 var label = "id";
+let selectedEdge = null;
 
 // The Nature of Code
 // Daniel Shiffman
@@ -43,7 +44,7 @@ function setup() {
 
 
   nodes = new Nodos();
-  graphManager = new GraphManager(nodes);
+  graphManager = new GraphManager(nodes,physics);
 
   saveButton = select('#saveButton');
   saveButton.mousePressed(() => {
@@ -54,54 +55,38 @@ function setup() {
   loadButton = select('#loadButton');
     loadButton.mousePressed(() => {
         graphManager.loadGraph(graph => {
-            graphManager.rebuildGraph(graph,physics);
+            graphManager.rebuildGraph(graph);
             nodeCounter = Math.max(...graph.nodes.map(node => parseInt(node.id))) + 1;
         });
     });
 
 
+    drawModeButton = select('#drawModeButton');
+    drawModeButton.mousePressed(() => {
+        workMode = 'drawMode';
+        drawModeButton.style('background-color', '#ddd');
+        deleteModeButton.style('background-color', '');
+        selectedModeButton.style('background-color', '');
+    });
 
-  // loadButton = select('#loadButton');
-  // loadButton.mousePressed(() => graphManager.loadGraph(graph => {
-  //   nodes = new Nodos();
-  //   graphManager = new GraphManager(nodes);
+    deleteModeButton = select('#deleteModeButton');
+    deleteModeButton.mousePressed(() => {
+        workMode = 'deleteMode';
+        nodes.unSelectNodes();
+        graphManager.edges.unselectEdges();
+        deleteModeButton.style('background-color', '#ddd');
+        drawModeButton.style('background-color', '');
+        selectedModeButton.style('background-color', '');
+    });
 
-  //   let nodeMap = {};
-  //   for (let node of graph.nodes) {
-  //     let newNode = nodes.addNode(random(width), random(height));
-  //     newNode.label = node.id;
-  //     nodeMap[node.id] = newNode;
-  //   }
+    selectedModeButton = select('#selectedModeButton');
+    selectedModeButton.mousePressed(() => {
+        workMode = 'selectedMode';
+        selectedModeButton.style('background-color', '#ddd');
+        drawModeButton.style('background-color', '');
+        deleteModeButton.style('background-color', '');
+    });
 
-  //   graphManager.edges = new Edges();
-  //   graph.links.forEach(link => {
-  //     let source = nodeMap[link.source];
-  //     let target = nodeMap[link.target];
-  //     if (source && target) {
-  //       graphManager.addEdge(source, target, link.explicacion);
-  //       physics.addSpring(new VerletSpring2D(source, target, 100, 0.01));
-  //     }
-  //   });
-
-  //   graphManager.updateGraph();
-  //   nodeCounter = Math.max(...graph.nodes.map(node => parseInt(node.id))) + 1;
-  // }));
-
-  drawModeButton = select('#drawModeButton');
-  drawModeButton.mousePressed(() => {
-    workMode = 'drawMode';
-    drawModeButton.style('background-color', '#ddd');
-    deleteModeButton.style('background-color', '');
-  });
-
-  deleteModeButton = select('#deleteModeButton');
-  deleteModeButton.mousePressed(() => {
-    workMode = 'deleteMode';
-    nodes.unSelectNodes();
-    graphManager.edges.unselectEdges();
-    deleteModeButton.style('background-color', '#ddd');
-    drawModeButton.style('background-color', '');
-  });
 
   centerX = width / 2;
   centerY = height / 2;
@@ -124,18 +109,15 @@ function draw() {
 
   nodes.draw();
 
-  // Mostrar información de la flecha si el ratón está sobre ella
-  let mouseXAdj = (mouseX - centerX) / zoomFactor + centerX;
-  let mouseYAdj = (mouseY - centerY) / zoomFactor + centerY;
-  let edge = graphManager.edges.findEdge(mouseXAdj, mouseYAdj);
+  if (workMode === 'selectedMode') {
+    let edgeInfoDiv = select('#edge-info');
+    if (selectedEdge) {
+        edgeInfoDiv.html(selectedEdge.explicacion || "No hay información");
+        edgeInfoDiv.style('display', 'block');
+    } else {
+        edgeInfoDiv.style('display', 'none');
+    }
+}
 
-  let edgeInfoDiv = select('#edge-info');
-  if (edge) {
-    edgeInfoDiv.html(edge.explicacion || "No hay información");
-    edgeInfoDiv.position(mouseX + 15, mouseY + 15);
-    edgeInfoDiv.style('display', 'block');
-  } else {
-    edgeInfoDiv.style('display', 'none');
-  }
 }
 
