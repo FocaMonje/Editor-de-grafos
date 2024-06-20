@@ -1,12 +1,13 @@
 class Nodos {
-  constructor() {
+  constructor(size) {
     this.nodes = [];
     this.nodeCounter = 0;
     this.nodeSelected = null;
+    this.size = size;
   }
 
-  addNode(x, y) {
-    let newNode = new Nodo(x, y, (this.nodeCounter + 1).toString());
+  addNode(x, y, size) {
+    let newNode = new Nodo(x, y, (this.nodeCounter + 1).toString(), size);
     this.nodes.push(newNode);
     this.nodeCounter++;
     return newNode;
@@ -33,20 +34,26 @@ class Nodos {
     this.nodes = this.nodes.filter(n => n !== node);
   }
 
-  draw() {
+  draw(size) {
     for (let node of this.nodes) {
-      node.draw();
+      node.draw(size);
     }
   }
 
-  findNode(mouseXAdj, mouseYAdj) {
+  findNode(x, y, nodeSize = 20, zoomFactor = 1) {
     for (let node of this.nodes) {
-      if (node.isMouseOver(mouseXAdj, mouseYAdj)) {
-        return node;
-      }
+        // Ajuste dinámico de la distancia de detección
+        let detectionRadius = (nodeSize / 2) / zoomFactor;
+        let d = dist(x, y, node.x, node.y);
+        
+        // Si la distancia es menor que el radio de detección ajustado
+        if (d < detectionRadius) {
+            return node;
+        }
     }
     return null;
   }
+
 
   applyRepulsion() {
     let repulsionForce = 0.1;

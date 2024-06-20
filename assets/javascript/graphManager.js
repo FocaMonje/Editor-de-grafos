@@ -15,7 +15,7 @@ class GraphManager {
       links: this.edges.edges.map(edge => ({
         source: edge.source.label,
         target: edge.target.label,
-        explicacion : edge.explicacion  // Información asociada a la flecha
+        explicacion: edge.explicacion  // Información asociada a la flecha
       })).filter(link => link.source && link.target),
       multigraph: false
     };
@@ -63,10 +63,6 @@ class GraphManager {
     }
   }
 
-  drawEdges() {
-    this.edges.draw();
-  }
-
   rebuildGraph(graph) {
     this.nodos.clear(); // Limpia los nodos existentes
     let nodeMap = {};
@@ -86,5 +82,9 @@ class GraphManager {
     });
 
     this.updateGraph();
+  }
+
+  drawEdges() {
+    this.edges.draw();
   }
 }
