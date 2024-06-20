@@ -8,9 +8,38 @@ let nodeCounter = 1;
 let workMode = 'drawMode';
 let labelInput;
 let selectedEdge = null;
+let slider_node_size;
+
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+let {
+    VerletPhysics2D,
+    VerletParticle2D,
+    VerletSpring2D,
+    VerletMinDistanceSpring2D,
+  } = toxi.physics2d;
+  
+  // Reference to physics world
+  let physics;
+
+  const controls = {
+    view: { x: 0, y: 0, zoom: 1 },
+    viewPos: { prevX: null, prevY: null, isDragging: false },
+  };
 
 function setup() {
-    createCanvas(800, 600);
+  
+    canvas = createCanvas(800, 600);
+
+    // Initialize the physics
+    physics = new VerletPhysics2D();
+    // Clear physics
+    physics.clear();
+
+    // Creación del slider para el tamaño de los nodos
+    slider_node_size = select('#slider_node_size');
 
     let slider_zoom = select('#slider_zoom');
     slider_zoom.input(updateZoom);
@@ -21,7 +50,7 @@ function setup() {
     labelInput.value(''); // limpiar node label
 
     nodes = new Nodos();
-    graphManager = new GraphManager(nodes);
+    graphManager = new GraphManager(nodes, physics);
 
     saveButton = select('#saveButton');
     saveButton.mousePressed(() => {
@@ -64,10 +93,21 @@ function setup() {
 
     centerX = width / 2;
     centerY = height / 2;
+
+    // Aplicar zoom con la rueda del ratón
+    canvas.mouseWheel(e => doZoom(e));
 }
 
 function draw() {
+
+    // Update the physics world
+    physics.update();
+
     background(220);
+
+    // Se aplica para mouseWheel
+    translate(controls.view.x, controls.view.y);
+    scale(controls.view.zoom);
 
     let zoomFactor = map(zoomSettings.zoom, 15, 50, 0.5, 2);
     translate(centerX, centerY);
@@ -79,7 +119,7 @@ function draw() {
     stroke(0);
     graphManager.drawEdges();
 
-    nodes.draw();
+    nodes.draw(slider_node_size.value()); // Aquí se usa el valor del deslizador para el tamaño de los nodos
 
     if (workMode === 'selectedMode') {
         let edgeInfoDiv = select('#edge-info');
