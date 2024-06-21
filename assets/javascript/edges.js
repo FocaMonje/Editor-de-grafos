@@ -4,7 +4,6 @@ class Edges {
     this.edges = [];
     this.edgeCounter = 0;
     this.selectedEdge = null;
-
   }
 
 
