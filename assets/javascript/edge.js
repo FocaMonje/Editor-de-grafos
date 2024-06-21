@@ -17,22 +17,36 @@ class Edge {
 
   draw() {
     strokeWeight(this.selected ? 4 : 1);
-    drawArrow(this.source.x, this.source.y, this.target.x, this.target.y);
+    this.drawArrow(this.source.x, this.source.y, this.target.x, this.target.y, this.source.size/3);
   }
-}
 
-function drawArrow(x1, y1, x2, y2) {
-  let arrowSize = 10; // Tamaño de la punta de la flecha
-  let arrowLength = dist(x1, y1, x2, y2) - arrowSize * 2; // Longitud del cuerpo de la flecha
-  arrowLength /= 1.1; // Reducimos el tamaño del cuerpo de la flecha
-  let arrowAngle = atan2(y2 - y1, x2 - x1); // Para orientar la flecha en la dirección adecuada
-  push();
-  translate(x1, y1);
-  rotate(arrowAngle);
-  // Dibujar el cuerpo de la flecha
-  line(0, 0, arrowLength, 0);
-  // Dibujar la punta de la flecha
-  translate(arrowLength, 0);
-  triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
-  pop();
+
+  drawArrow(x1, y1, x2, y2,arrowSize) {
+
+    let arrowLength = dist(x1, y1, x2, y2) - arrowSize * 2; // Longitud del cuerpo de la flecha
+    arrowLength /= 1.1; // Reducimos el tamaño del cuerpo de la flecha
+    let arrowAngle = atan2(y2 - y1, x2 - x1); // Para orientar la flecha en la dirección adecuada
+
+    push();
+    translate(x1, y1);
+    rotate(arrowAngle);
+    
+    var c = 0;
+
+    if(this.explicacion === null){
+      c = 180;
+    }
+    else{
+      c = 80;
+    }
+
+    stroke(c);
+
+    line(0, 0, arrowLength, 0);
+    // Dibujar la punta de la flecha
+    translate(arrowLength, 0);
+    fill(c);
+    triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
+    pop();
+  }
 }

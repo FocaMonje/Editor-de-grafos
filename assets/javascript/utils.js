@@ -1,4 +1,7 @@
 
+var colors = ['#008080', '#ADD8E6', '#61B2CB', '#2EA2D1'];
+
+
 function mousePressed() {
     if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
         let zoomFactor = map(zoomSettings.zoom, 15, 50, 0.5, 2);
@@ -96,4 +99,14 @@ function doZoom(event) {
     controls.view.x -= wx * width * zoom;
     controls.view.y -= wy * height * zoom;
     controls.view.zoom += zoom;
+}
+
+
+function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
 }
