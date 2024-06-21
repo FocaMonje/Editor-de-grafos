@@ -28,6 +28,12 @@ class Edges {
     }
   }
 
+  selectEdge(edge) {
+    this.unselectEdges();
+    this.selectedEdge = edge;
+    edge.select();
+  }
+
   unselectEdges() {
     this.selectedEdge = null;
     for (let edge of this.edges) {

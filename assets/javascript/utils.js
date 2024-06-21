@@ -47,10 +47,15 @@ function mousePressed() {
           }
           case 'selectedMode': {
               let edge = graphManager.edges.findEdge(mouseXAdj, mouseYAdj);
-              if (edge) {
-                  selectedEdge = edge;
+              if (edge != null) {
+                  graphManager.edges.selectEdge(edge);
+                  edgeInput.value(edge.info);
               } else {
-                  selectedEdge = null;
+                    try {
+                        graphManager.edges.unselectEdges();
+                    } catch (e) {
+                        console.log(e);
+                    }             
               }
               break;
           }
@@ -80,6 +85,13 @@ function modifyNodeName() {
   let node = nodes.nodeSelected;
   if (node) {
       node.label = labelInput.value();
+  }
+}
+
+function modifyEdgeInfo(){
+  let edge = graphManager.edges.selectedEdge;
+  if (edge) {
+      edge.info = edgeInput.value();
   }
 }
 
