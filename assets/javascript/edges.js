@@ -5,7 +5,7 @@ class Edges {
     this.selectedEdge = null;
   }
 
-  addEdge(source, target, explicacion = "") {
+  addEdge(source, target, explicacion = null) {
     this.edges.push(new Edge(source, target, explicacion));
   }
 
