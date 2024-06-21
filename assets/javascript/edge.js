@@ -1,9 +1,17 @@
 
 class Edge {
-  constructor(source, target, explicacion) {
+  constructor(source, target, info) {
     this.source = source;
     this.target = target;
-    this.explicacion = explicacion;
+    this.info = info;
+    this.selected = false;
+  }
+
+  select() {
+    this.selected = true;
+  }
+
+  deselect() {
     this.selected = false;
   }
 
@@ -16,7 +24,6 @@ class Edge {
   }
 
   draw() {
-    strokeWeight(this.selected ? 4 : 1);
     this.drawArrow(this.source.x, this.source.y, this.target.x, this.target.y, this.source.size/3);
   }
 
@@ -33,13 +40,14 @@ class Edge {
     
     var c = 0;
 
-    if(this.explicacion === null){
+    if(this.info === null){
       c = 180;
     }
     else{
       c = 80;
     }
 
+    strokeWeight(this.selected ? 4 : 1);
     stroke(c);
 
     line(0, 0, arrowLength, 0);

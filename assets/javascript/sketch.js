@@ -7,6 +7,7 @@ let centerX, centerY;
 let nodeCounter = 1;
 let workMode = 'drawMode';
 let labelInput;
+let edgeInput;
 let selectedEdge = null;
 let slider_node_size;
 
@@ -46,8 +47,11 @@ function setup() {
 
     labelInput = select('#node_label');
     labelInput.input(modifyNodeName);
-
     labelInput.value(''); // limpiar node label
+
+    edgeInput = select('#edge_info');
+    edgeInput.input(modifyEdgeInfo);
+    edgeInput.value(''); // limpiar node label
 
     nodes = new Nodos();
     graphManager = new GraphManager(nodes, physics);
@@ -121,13 +125,4 @@ function draw() {
 
     nodes.draw(slider_node_size.value()); // Aquí se usa el valor del deslizador para el tamaño de los nodos
 
-    if (workMode === 'selectedMode') {
-        let edgeInfoDiv = select('#edge-info');
-        if (selectedEdge) {
-            edgeInfoDiv.html(selectedEdge.explicacion || "No hay información");
-            edgeInfoDiv.style('display', 'block');
-        } else {
-            edgeInfoDiv.style('display', 'none');
-        }
-    }
 }
