@@ -53,6 +53,10 @@ button {
     top: 80px; 
     right: 20px;
 }
+
+#animation-controls {
+    display: none;
+}
 /* #div-derecha label {
     margin-top: 50px;
 } */

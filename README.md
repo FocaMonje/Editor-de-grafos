@@ -12,7 +12,7 @@ https://p5js.org/reference/#/p5/createFileInput
 https://p5js.org/reference/#/p5/select 
 
 Cosas hechas:
-1. Implementación de la física
-2. Implementación de la barra para aumentar el tamaño de los nodos
-3. Implementación del zoom con la rueda del ratón, mi ratón no tiene rueda así que ni idea de si funciona
-4. Hay un pequeño error y es que si haces clic cerca del borde del nodo no lo selecciona, crea uno nuevo
+1. Creación de Animation Mode.
+2. Creación de dos barras deslizantes, una para elegir en que año inicia la animación y la otra el año en el que debe finalizar.
+3. Creación del botón start para iniciar la animación una vez elegido el rango de tiempo.
+4. La animación no funciona, haces clic en start y no hace nada.

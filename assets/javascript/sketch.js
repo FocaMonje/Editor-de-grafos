@@ -1,14 +1,17 @@
 let nodes;
 let graphManager;
 let draggingNode = null;
-let saveButton, loadButton, drawModeButton, deleteModeButton, selectedModeButton;
+let saveButton, loadButton, drawModeButton, deleteModeButton, selectedModeButton, animationModeButton, startButton;
 let zoomSettings = { zoom: 35 };
 let centerX, centerY;
 let nodeCounter = 1;
 let workMode = 'drawMode';
 let labelInput;
 let selectedEdge = null;
-let slider_node_size;
+let slider_node_size, slider_start_year, slider_end_year;
+let animationSettings = { startYear: 0, endYear: 0 };
+let isAnimating = false;
+let animationInterval;
 
 // The Nature of Code
 // Daniel Shiffman
@@ -30,7 +33,6 @@ let {
   };
 
 function setup() {
-  
     canvas = createCanvas(800, 600);
 
     // Initialize the physics
@@ -62,15 +64,15 @@ function setup() {
         graphManager.loadGraph(graph => {
             graphManager.rebuildGraph(graph);
             nodeCounter = Math.max(...graph.nodes.map(node => parseInt(node.id))) + 1;
+            setupYearSliders(graph);
         });
     });
 
     drawModeButton = select('#drawModeButton');
     drawModeButton.mousePressed(() => {
         workMode = 'drawMode';
+        resetButtonStyles();
         drawModeButton.style('background-color', '#ddd');
-        deleteModeButton.style('background-color', '');
-        selectedModeButton.style('background-color', '');
     });
 
     deleteModeButton = select('#deleteModeButton');
@@ -78,18 +80,43 @@ function setup() {
         workMode = 'deleteMode';
         nodes.unSelectNodes();
         graphManager.edges.unselectEdges();
+        resetButtonStyles();
         deleteModeButton.style('background-color', '#ddd');
-        drawModeButton.style('background-color', '');
-        selectedModeButton.style('background-color', '');
     });
 
     selectedModeButton = select('#selectedModeButton');
     selectedModeButton.mousePressed(() => {
         workMode = 'selectedMode';
+        resetButtonStyles();
         selectedModeButton.style('background-color', '#ddd');
-        drawModeButton.style('background-color', '');
-        deleteModeButton.style('background-color', '');
     });
+
+    animationModeButton = select('#animationModeButton');
+    animationModeButton.mousePressed(() => {
+        workMode = 'animationMode';
+        resetButtonStyles();
+        animationModeButton.style('background-color', '#ddd');
+        showAnimationControls();
+    });
+
+    startButton = select('#startButton');
+    startButton.mousePressed(startAnimation);
+
+    slider_start_year = select('#slider_start_year');
+    slider_start_year.input(() => {
+        animationSettings.startYear = slider_start_year.value();
+        select('#start_year_value').html(slider_start_year.value()); // Actualizar etiqueta
+    });
+
+    slider_end_year = select('#slider_end_year');
+    slider_end_year.input(() => {
+        animationSettings.endYear = slider_end_year.value();
+        select('#end_year_value').html(slider_end_year.value()); // Actualizar etiqueta
+    });
+
+    // Inicializar los valores de las etiquetas con los valores actuales de los deslizadores
+    select('#start_year_value').html(slider_start_year.value());
+    select('#end_year_value').html(slider_end_year.value());
 
     centerX = width / 2;
     centerY = height / 2;
@@ -99,7 +126,6 @@ function setup() {
 }
 
 function draw() {
-
     // Update the physics world
     physics.update();
 
@@ -129,5 +155,9 @@ function draw() {
         } else {
             edgeInfoDiv.style('display', 'none');
         }
+    }
+
+    if (isAnimating) {
+        animateNodes();
     }
 }
