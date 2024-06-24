@@ -21,7 +21,7 @@ class GraphManager {
     };
   }
 
-  addEdge(node1, node2, explicacion = null) {
+  addEdge(node1, node2, explicacion = '') {
     this.edges.addEdge(node1, node2, explicacion);
     this.physics.addSpring(new VerletSpring2D(node1, node2, 100, 0.01));
     this.updateGraph();

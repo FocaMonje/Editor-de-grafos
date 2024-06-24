@@ -54,6 +54,11 @@ class Nodos {
     return null;
   }
 
+  updateNodes(currentTime) {
+    for (let node of this.nodes) {
+        node.updateState(currentTime);
+    }
+}
 
   applyRepulsion() {
     let repulsionForce = 0.1;
