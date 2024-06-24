@@ -43,20 +43,20 @@ function mousePressed() {
               break;
           }
           case 'selectedMode': {
-              let edge = graphManager.edges.findEdge(mouseXAdj, mouseYAdj);
-              if (edge) {
-                  selectedEdge = edge;
-              } else {
-                  selectedEdge = null;
-              }
-              break;
-          }
+            let edge = graphManager.edges.findEdge(mouseXAdj, mouseYAdj);
+            if (edge) {
+                selectedEdge = edge;
+            } else {
+                selectedEdge = null;
+            }
+            break;
+            }
 
           case 'animationMode': {
             startAnimation();
             break;
-        }
-      }
+            }
+    }
   }
 }
 
@@ -172,4 +172,20 @@ function showAnimationControls() {
 
 function hideAnimationControls() {
     select('#animation-controls').style('display', 'none');
+}
+
+function drawArrow(x1, y1, x2, y2) {
+    let arrowSize = 10; // Tamaño de la punta de la flecha
+    let arrowLength = dist(x1, y1, x2, y2) - arrowSize * 2; // Longitud del cuerpo de la flecha
+    arrowLength /= 1.1; // Reducimos el tamaño del cuerpo de la flecha
+    let arrowAngle = atan2(y2 - y1, x2 - x1); // Para orientar la flecha en la dirección adecuada
+    push();
+    translate(x1, y1);
+    rotate(arrowAngle);
+    // Dibujar el cuerpo de la flecha
+    line(0, 0, arrowLength, 0);
+    // Dibujar la punta de la flecha
+    translate(arrowLength, 0);
+    triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
+    pop();
 }
