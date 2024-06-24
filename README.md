@@ -12,7 +12,8 @@ https://p5js.org/reference/#/p5/createFileInput
 https://p5js.org/reference/#/p5/select 
 
 Cosas hechas:
-1. Implementación de la física
-2. Implementación de la barra para aumentar el tamaño de los nodos
-3. Implementación del zoom con la rueda del ratón, mi ratón no tiene rueda así que ni idea de si funciona
-4. Hay un pequeño error y es que si haces clic cerca del borde del nodo no lo selecciona, crea uno nuevo
+1. Implementación de Game Mode, funciona.
+
+Cosas por hacer: 
+1. Hay que añadir cosas, como por ejemplo avisar al jugador que ya encontró todas las flechas.
+2. Hay que implementar los cambios que hay en main.
