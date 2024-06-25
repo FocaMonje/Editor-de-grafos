@@ -225,6 +225,9 @@ function enterGameMode() {
     graphManager.edges.edges.forEach(edge => {
         edge.visible = false;
     });
+
+    // Ocultar la ventana de fin del juego si está visible
+    gameOverWindow.style('display', 'none');
 }
 
 function exitGameMode() {
@@ -236,4 +239,17 @@ function exitGameMode() {
     graphManager.edges.edges.forEach(edge => {
         edge.visible = true; // Implementar la lógica de visibilidad según el juego
     });
+
+    // Ocultar la ventana de fin del juego si está visible
+    gameOverWindow.style('display', 'none');
+}
+
+function checkGameCompletion() {
+    // Verificar si todas las flechas están visibles
+    let allEdgesVisible = graphManager.edges.edges.every(edge => edge.visible);
+
+    // Si todas las flechas están visibles, mostrar la ventana de fin del juego
+    if (allEdgesVisible) {
+        gameOverWindow.style('display', 'block');
+    }
 }

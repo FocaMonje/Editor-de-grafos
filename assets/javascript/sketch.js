@@ -14,6 +14,7 @@ let isAnimating = false;
 let animationInterval;
 let gameModeButton;
 let gameModeActive = false;
+let gameOverWindow;
 
 // The Nature of Code
 // Daniel Shiffman
@@ -136,6 +137,8 @@ function setup() {
       exitGameMode();
     }
   });
+  
+  gameOverWindow = select('#game-over-window');
 }
 
 function draw() {
@@ -172,5 +175,9 @@ function draw() {
 
     if (isAnimating) {
         animateNodes();
+    }
+
+    if (gameModeActive) {
+        checkGameCompletion();
     }
 }
