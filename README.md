@@ -13,7 +13,9 @@ https://p5js.org/reference/#/p5/select
 
 Cosas hechas:
 1. Implementación de Game Mode, funciona.
+2. Implementación de una mini ventana para avisar al jugador que ya encontró todas las flechas.
 
 Cosas por hacer: 
-1. Hay que añadir cosas, como por ejemplo avisar al jugador que ya encontró todas las flechas.
+1. Añadir un sistema de puntuación.
 2. Hay que implementar los cambios que hay en main.
+3. Añadir un temporizador.
