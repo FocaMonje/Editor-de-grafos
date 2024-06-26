@@ -12,12 +12,15 @@ let slider_node_size, slider_start_year, slider_end_year;
 let animationSettings = { startYear: 0, endYear: 0 };
 let isAnimating = false;
 let animationInterval;
-let gameModeButton, showScoreButton;
+let gameModeButton;
 let gameModeActive = false;
 let gameOverWindow;
 let score = 0; 
 let edges = [];
 let finalPath = [];
+let timer; 
+let countdown = 30; // Tiempo inicial del cronómetro en segundos
+let countdownInterval; // Intervalo para la cuenta atrás
 
 
 // The Nature of Code
@@ -145,10 +148,7 @@ function setup() {
   gameOverWindow = select('#game-over-window');
   scoreDisplay = select('#scoreDisplay'); 
 
-  showScoreButton = select('#showScoreButton');
-  showScoreButton.mousePressed(() => {
-    displayScore();
-  });
+  timer = select('#timer'); // Seleccionar el elemento del cronómetro
 }
     
 

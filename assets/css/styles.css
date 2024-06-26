@@ -72,8 +72,11 @@ button {
     display:none;
 }
 
-#showScoreButton {
-    display:none;
+#timer {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    display: none;
 }
 /* #div-derecha label {
     margin-top: 50px;

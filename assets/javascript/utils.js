@@ -220,7 +220,6 @@ function enterGameMode() {
     gameModeActive = true;
     const button = document.getElementById('gameModeButton');
     button.textContent = 'Exit Game Mode'; // Cambiar texto del botón
-    showScoreButton.style('display', 'inline-block'); // Mostrar el botón de mostrar puntuación
     score = 0;
     // Ocultar los controles y deshabilitar la creación de nodos
     slider_node_size.attribute('disabled', true);
@@ -233,13 +232,24 @@ function enterGameMode() {
     console.log(score);
     // Ocultar la ventana de fin del juego si está visible
     gameOverWindow.style('display', 'none');
+    // Iniciar el cronómetro
+    countdown = 30; // Reiniciar el tiempo del cronómetro
+    timer.html('Tiempo: ' + countdown); // Mostrar el tiempo inicial
+    timer.style('display', 'block');
+    countdownInterval = setInterval(() => {
+        countdown--;
+        timer.html('Tiempo: ' + countdown);
+        if (countdown <= 0) {
+            clearInterval(countdownInterval);
+            endGame();
+        }
+    }, 1000);
 }
 
 function exitGameMode() {
     gameModeActive = false;
     const button = document.getElementById('gameModeButton');
     button.textContent = 'Game Mode'; // Restaurar texto original del botón
-    showScoreButton.style('display', 'none'); // Ocultar el botón de mostrar puntuación
     hideScore();
     // Mostrar los controles y habilitar la creación de nodos
     slider_node_size.removeAttribute('disabled');
@@ -252,6 +262,10 @@ function exitGameMode() {
 
     // Ocultar la ventana de fin del juego si está visible
     gameOverWindow.style('display', 'none');
+   // Detener el cronómetro
+   clearInterval(countdownInterval); // Detener el cronómetro
+   timer.html('Tiempo: 30'); // Resetear el tiempo mostrado
+   timer.style('display', 'none'); // Ocultar el temporizador
 }
 
 function checkGameCompletion() {
@@ -260,12 +274,14 @@ function checkGameCompletion() {
 
     // Si todas las flechas están visibles, mostrar la ventana de fin del juego
     if (allEdgesVisible) {
+        endGame();
         gameOverWindow.style('display', 'block');
     }
 }
 
 // Función para terminar el juego y evaluar la puntuación
 function endGame() {
+    clearInterval(countdownInterval); // Detener el cronómetro
     evaluateScore();
     displayScore();
 }
