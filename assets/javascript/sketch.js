@@ -149,6 +149,29 @@ function setup() {
   scoreDisplay = select('#scoreDisplay'); 
 
   timer = select('#timer'); // Seleccionar el elemento del cronómetro
+
+  // Botones de navegación
+  let moveUpButton = select('#moveUp');
+  let moveLeftButton = select('#moveLeft');
+  let moveDownButton = select('#moveDown');
+  let moveRightButton = select('#moveRight');
+  
+    moveUpButton.mousePressed(() => {
+        moveView(0, -20);
+        synchronizeWorkMode();
+    });
+    moveLeftButton.mousePressed(() => {
+        moveView(-20, 0);
+        synchronizeWorkMode();
+    });
+    moveDownButton.mousePressed(() => {
+        moveView(0, 20);
+        synchronizeWorkMode();
+    });
+    moveRightButton.mousePressed(() => {
+        moveView(20, 0);
+        synchronizeWorkMode();
+    });
 }
     
 

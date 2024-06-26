@@ -2,8 +2,8 @@
 function mousePressed() {
     if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
         let zoomFactor = map(zoomSettings.zoom, 15, 50, 0.5, 2);
-        let mouseXAdj = (mouseX - centerX) / zoomFactor + centerX;
-        let mouseYAdj = (mouseY - centerY) / zoomFactor + centerY;
+        let mouseXAdj = (mouseX - centerX - controls.view.x) / zoomFactor + centerX;
+        let mouseYAdj = (mouseY - centerY - controls.view.y) / zoomFactor + centerY;
 
       switch (workMode) {
             case 'drawMode': {
@@ -88,8 +88,8 @@ function mousePressed() {
 
 function mouseDragged() {
   let zoomFactor = map(zoomSettings.zoom, 15, 50, 0.5, 2);
-  let mouseXAdj = (mouseX - centerX) / zoomFactor + centerX;
-  let mouseYAdj = (mouseY - centerY) / zoomFactor + centerY;
+  let mouseXAdj = (mouseX - centerX - controls.view.x) / zoomFactor + centerX;
+  let mouseYAdj = (mouseY - centerY - controls.view.y) / zoomFactor + centerY;
 
   if (draggingNode) {
       draggingNode.x = mouseXAdj;
@@ -265,7 +265,7 @@ function exitGameMode() {
    // Detener el cronómetro
    clearInterval(countdownInterval); // Detener el cronómetro
    timer.html('Tiempo: 30'); // Resetear el tiempo mostrado
-   timer.style('display', 'none'); // Ocultar el temporizador
+    timer.style('display', 'none'); // Ocultar el temporizador
 }
 
 function checkGameCompletion() {
@@ -344,4 +344,15 @@ function getPlayerEdges() {
 // Función para comparar dos flechas
 function areEdgesEqual(edge1, edge2) {
     return edge1.from === edge2.from && edge1.to === edge2.to;
+}
+
+function moveView(deltaX, deltaY) {
+    controls.view.x += deltaX;
+    controls.view.y += deltaY;
+    // Ajustar las coordenadas de los nodos y aristas según el movimiento
+    nodes.nodes.forEach(node => {
+        node.x += deltaX;
+        node.y += deltaY;
+    });
+    graphManager.updateGraph(); // Actualizar el grafo
 }
