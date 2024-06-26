@@ -67,6 +67,14 @@ button {
     background: white; 
     border: 2px solid black;
 }
+
+#scoreDisplay {
+    display:none;
+}
+
+#showScoreButton {
+    display:none;
+}
 /* #div-derecha label {
     margin-top: 50px;
 } */

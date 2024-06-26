@@ -217,6 +217,11 @@ function drawArrow(x1, y1, x2, y2) {
 }
 
 function enterGameMode() {
+    gameModeActive = true;
+    const button = document.getElementById('gameModeButton');
+    button.textContent = 'Exit Game Mode'; // Cambiar texto del botón
+    showScoreButton.style('display', 'inline-block'); // Mostrar el botón de mostrar puntuación
+    score = 0;
     // Ocultar los controles y deshabilitar la creación de nodos
     slider_node_size.attribute('disabled', true);
     labelInput.attribute('disabled', true);
@@ -225,12 +230,17 @@ function enterGameMode() {
     graphManager.edges.edges.forEach(edge => {
         edge.visible = false;
     });
-
+    console.log(score);
     // Ocultar la ventana de fin del juego si está visible
     gameOverWindow.style('display', 'none');
 }
 
 function exitGameMode() {
+    gameModeActive = false;
+    const button = document.getElementById('gameModeButton');
+    button.textContent = 'Game Mode'; // Restaurar texto original del botón
+    showScoreButton.style('display', 'none'); // Ocultar el botón de mostrar puntuación
+    hideScore();
     // Mostrar los controles y habilitar la creación de nodos
     slider_node_size.removeAttribute('disabled');
     labelInput.removeAttribute('disabled');
@@ -252,4 +262,70 @@ function checkGameCompletion() {
     if (allEdgesVisible) {
         gameOverWindow.style('display', 'block');
     }
+}
+
+// Función para terminar el juego y evaluar la puntuación
+function endGame() {
+    evaluateScore();
+    displayScore();
+}
+
+// Función para evaluar la puntuación
+function evaluateScore() {
+    score = 0;  // Reiniciar la puntuación
+    let realEdges = getRealEdges();  // Obtener flechas reales del grafo
+    let playerEdges = getPlayerEdges();  // Obtener flechas propuestas por el jugador
+
+    // Verificar cada arista propuesta por el jugador
+    playerEdges.forEach(playerEdge => {
+        let foundMatch = realEdges.some(realEdge => areEdgesEqual(realEdge, playerEdge));
+
+        if (foundMatch) {
+            score += 1;  // Acierto: sumar 1 punto
+        } else {
+            score -= 0.2;  // Error: restar 0.2 puntos
+        }
+    });
+
+    // Asegurarse de que la puntuación no sea negativa
+    if (score < 0) {
+        score = 0;
+    }
+    console.log(`Puntuación actualizada: ${score.toFixed(1)}`);
+}
+
+// Función para mostrar la puntuación
+function displayScore() {
+    evaluateScore(); // Calcular la puntuación actualizada
+    scoreDisplay.html(`Puntuación: ${score}`); // Mostrar la puntuación en el elemento HTML correspondiente
+    scoreDisplay.style('display', 'block'); // Asegurarse de que el elemento sea visible
+}
+
+function hideScore() {
+    scoreDisplay.style('display', 'none');
+}
+
+// Función para obtener las flechas reales
+function getRealEdges() {
+    let edgesList = [];
+    for (let from in edges) {
+        edges[from].forEach(to => {
+            edgesList.push({ from: from, to: to });
+        });
+    }
+    return edgesList;
+}
+
+// Función para obtener las flechas propuestas por el jugador
+function getPlayerEdges() {
+    let playerEdgesList = [];
+    for (let i = 0; i < finalPath.length - 1; i++) {
+        playerEdgesList.push({ from: finalPath[i], to: finalPath[i + 1] });
+    }
+    return playerEdgesList;
+}
+
+// Función para comparar dos flechas
+function areEdgesEqual(edge1, edge2) {
+    return edge1.from === edge2.from && edge1.to === edge2.to;
 }

@@ -12,9 +12,13 @@ let slider_node_size, slider_start_year, slider_end_year;
 let animationSettings = { startYear: 0, endYear: 0 };
 let isAnimating = false;
 let animationInterval;
-let gameModeButton;
+let gameModeButton, showScoreButton;
 let gameModeActive = false;
 let gameOverWindow;
+let score = 0; 
+let edges = [];
+let finalPath = [];
+
 
 // The Nature of Code
 // Daniel Shiffman
@@ -139,7 +143,14 @@ function setup() {
   });
   
   gameOverWindow = select('#game-over-window');
+  scoreDisplay = select('#scoreDisplay'); 
+
+  showScoreButton = select('#showScoreButton');
+  showScoreButton.mousePressed(() => {
+    displayScore();
+  });
 }
+    
 
 function draw() {
     // Update the physics world
