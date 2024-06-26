@@ -16,7 +16,7 @@ Cosas hechas:
 2. Implementación de una mini ventana para avisar al jugador que ya encontró todas las flechas.
 3. Implementación de un sistema de puntuación, no funciona la puntuación no se actualiza o no se calcula bien o ambas cosas, el caso es que siempre muestra una puntuación igual a 0.
 4. Implementación de un temporizador, funciona.
+5. Implementación de flechas de navegación N-S-E-O, funciona.
 
 Cosas por hacer: 
 1. Hay que implementar los cambios que hay en main.
-2. Creación de flechas de navegación N-S-E-O.
