@@ -137,6 +137,7 @@ function setup() {
     // Botón del modo de juego
   gameModeButton = select('#gameModeButton');
   gameModeButton.mousePressed(() => {
+    resetButtonStyles();
     gameModeActive = !gameModeActive;
     if (gameModeActive) {
       enterGameMode();
@@ -158,19 +159,15 @@ function setup() {
   
     moveUpButton.mousePressed(() => {
         moveView(0, -20);
-        synchronizeWorkMode();
     });
     moveLeftButton.mousePressed(() => {
         moveView(-20, 0);
-        synchronizeWorkMode();
     });
     moveDownButton.mousePressed(() => {
         moveView(0, 20);
-        synchronizeWorkMode();
     });
     moveRightButton.mousePressed(() => {
         moveView(20, 0);
-        synchronizeWorkMode();
     });
 }
     

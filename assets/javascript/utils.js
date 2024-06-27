@@ -21,6 +21,7 @@ function mousePressed() {
                                         edge.visible = true;
                                     }
                                 });
+                                addEdgeToFinalPath(nodes.nodeSelected, node); // Añadir arista propuesta
                             }
                             nodes.unSelectNodes();
                         } else if (nodes.nodeSelected === null && node.selected === false) {
@@ -158,6 +159,7 @@ function resetButtonStyles() {
     deleteModeButton.style('background-color', '');
     selectedModeButton.style('background-color', '');
     animationModeButton.style('background-color', '');
+    gameModeButton.style('background-color', '');
     hideAnimationControls();
 }
 
@@ -220,7 +222,6 @@ function enterGameMode() {
     gameModeActive = true;
     const button = document.getElementById('gameModeButton');
     button.textContent = 'Exit Game Mode'; // Cambiar texto del botón
-    score = 0;
     // Ocultar los controles y deshabilitar la creación de nodos
     slider_node_size.attribute('disabled', true);
     labelInput.attribute('disabled', true);
@@ -229,7 +230,6 @@ function enterGameMode() {
     graphManager.edges.edges.forEach(edge => {
         edge.visible = false;
     });
-    console.log(score);
     // Ocultar la ventana de fin del juego si está visible
     gameOverWindow.style('display', 'none');
     // Iniciar el cronómetro
@@ -291,10 +291,14 @@ function evaluateScore() {
     score = 0;  // Reiniciar la puntuación
     let realEdges = getRealEdges();  // Obtener flechas reales del grafo
     let playerEdges = getPlayerEdges();  // Obtener flechas propuestas por el jugador
+    
+    // console.log("Real Edges:", realEdges);
+    // console.log("Player Edges:", playerEdges);
 
     // Verificar cada arista propuesta por el jugador
     playerEdges.forEach(playerEdge => {
         let foundMatch = realEdges.some(realEdge => areEdgesEqual(realEdge, playerEdge));
+        // console.log(`Player Edge: ${JSON.stringify(playerEdge.from)} -> ${JSON.stringify(playerEdge.to)}, Match Found: ${foundMatch}`);
 
         if (foundMatch) {
             score += 1;  // Acierto: sumar 1 punto
@@ -307,12 +311,14 @@ function evaluateScore() {
     if (score < 0) {
         score = 0;
     }
-    console.log(`Puntuación actualizada: ${score.toFixed(1)}`);
+
+    console.log("Final Score:", score);
+    return score;
 }
+
 
 // Función para mostrar la puntuación
 function displayScore() {
-    evaluateScore(); // Calcular la puntuación actualizada
     scoreDisplay.html(`Puntuación: ${score}`); // Mostrar la puntuación en el elemento HTML correspondiente
     scoreDisplay.style('display', 'block'); // Asegurarse de que el elemento sea visible
 }
@@ -329,6 +335,7 @@ function getRealEdges() {
             edgesList.push({ from: from, to: to });
         });
     }
+    // console.log('Real Edges:', edgesList);
     return edgesList;
 }
 
@@ -338,13 +345,18 @@ function getPlayerEdges() {
     for (let i = 0; i < finalPath.length - 1; i++) {
         playerEdgesList.push({ from: finalPath[i], to: finalPath[i + 1] });
     }
+    // console.log('Player Edges:', playerEdgesList);
     return playerEdgesList;
 }
 
 // Función para comparar dos flechas
 function areEdgesEqual(edge1, edge2) {
-    return edge1.from === edge2.from && edge1.to === edge2.to;
+    return edge1.from.x === edge2.from.x && edge1.from.y === edge2.from.y &&
+           edge1.to.x === edge2.to.x && edge1.to.y === edge2.to.y;
 }
+// function areEdgesEqual(edge1, edge2) {
+//     return edge1.x === edge2.x && edge1.y === edge2.y && edge1.label === edge2.label;
+// }
 
 function moveView(deltaX, deltaY) {
     controls.view.x += deltaX;
@@ -355,4 +367,17 @@ function moveView(deltaX, deltaY) {
         node.y += deltaY;
     });
     graphManager.updateGraph(); // Actualizar el grafo
+}
+
+function addEdgeToFinalPath(fromNode, toNode) {
+    if (!finalPath.includes(fromNode)) {
+        finalPath.push(fromNode);
+    }
+    finalPath.push(toNode);
+
+    // Añadir la arista a la estructura edges
+    if (!edges[fromNode]) {
+        edges[fromNode] = [];
+    }
+    edges[fromNode].push(toNode);
 }
