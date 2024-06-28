@@ -5,7 +5,7 @@ class Edges {
     this.selectedEdge = null;
   }
 
-  addEdge(source, target, explicacion = "") {
+  addEdge(source, target, explicacion = null) {
     this.edges.push(new Edge(source, target, explicacion));
   }
 
@@ -26,6 +26,12 @@ class Edges {
     for (let edge of this.edges) {
       edge.draw();
     }
+  }
+
+  selectEdge(edge) {
+    this.unselectEdges();
+    this.selectedEdge = edge;
+    edge.select();
   }
 
   unselectEdges() {

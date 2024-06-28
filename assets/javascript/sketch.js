@@ -21,6 +21,7 @@ let finalPath = [];
 let timer; 
 let countdown = 30; // Tiempo inicial del cronómetro en segundos
 let countdownInterval; // Intervalo para la cuenta atrás
+let edgeInput;
 
 
 // The Nature of Code
@@ -60,6 +61,11 @@ function setup() {
     labelInput.input(modifyNodeName);
 
     labelInput.value(''); // limpiar node label
+    
+    edgeInput = select('#edge_info');
+    edgeInput.input(modifyEdgeInfo);
+
+    edgeInput.value(''); // limpiar Edge info
 
     nodes = new Nodos();
     graphManager = new GraphManager(nodes, physics);
@@ -194,16 +200,16 @@ function draw() {
 
     nodes.draw(slider_node_size.value()); // Aquí se usa el valor del deslizador para el tamaño de los nodos
 
-    if (workMode === 'selectedMode') {
-        let edgeInfoDiv = select('#edge-info');
-        if (selectedEdge) {
-            edgeInfoDiv.html(selectedEdge.explicacion || "No hay información");
-            edgeInfoDiv.style('display', 'block');
-        } else {
-            edgeInfoDiv.style('display', 'none');
-        }
-    }
-
+    // if (workMode === 'selectedMode') {
+    //     let edgeInfoDiv = select('#edge-info');
+    //     if (selectedEdge) {
+    //         edgeInfoDiv.html(selectedEdge.explicacion || "No hay información");
+    //         edgeInfoDiv.style('display', 'block');
+    //     } else {
+    //         edgeInfoDiv.style('display', 'none');
+    //     }
+    // }
+    
     if (isAnimating) {
         animateNodes();
     }
