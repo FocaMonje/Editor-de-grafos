@@ -294,17 +294,17 @@ function endGame() {
 
 // Función para evaluar la puntuación
 function evaluateScore() {
-    score = 0;  // Reiniciar la puntuación
+    let score = 0;  // Reiniciar la puntuación
     let realEdges = getRealEdges();  // Obtener flechas reales del grafo
     let playerEdges = getPlayerEdges();  // Obtener flechas propuestas por el jugador
     
-    // console.log("Real Edges:", realEdges);
-    // console.log("Player Edges:", playerEdges);
+    console.log("Real Edges:", JSON.stringify(realEdges, null, 2));
+    console.log("Player Edges:", JSON.stringify(playerEdges, null, 2));
 
     // Verificar cada arista propuesta por el jugador
     playerEdges.forEach(playerEdge => {
         let foundMatch = realEdges.some(realEdge => areEdgesEqual(realEdge, playerEdge));
-        // console.log(`Player Edge: ${JSON.stringify(playerEdge.from)} -> ${JSON.stringify(playerEdge.to)}, Match Found: ${foundMatch}`);
+        console.log(`Player Edge: ${JSON.stringify(playerEdge.from)} -> ${JSON.stringify(playerEdge.to)}, Match Found: ${foundMatch}`);
 
         if (foundMatch) {
             score += 1;  // Acierto: sumar 1 punto
@@ -318,7 +318,7 @@ function evaluateScore() {
         score = 0;
     }
 
-    // console.log("Final Score:", score);
+    console.log("Final Score:", score);
     return score;
 }
 
@@ -337,11 +337,20 @@ function hideScore() {
 function getRealEdges() {
     let edgesList = [];
     for (let from in edges) {
-        edges[from].forEach(to => {
-            edgesList.push({ from: from, to: to });
-        });
+        if (edges.hasOwnProperty(from)) {
+            let coords = from.split(',');
+            let fromX = parseFloat(coords[0]);
+            let fromY = parseFloat(coords[1]);
+
+            edges[from].forEach(to => {
+                edgesList.push({
+                    from: { x: fromX, y: fromY },
+                    to: { x: to.x, y: to.y }
+                });
+            });
+        }
     }
-    // console.log('Real Edges:', edgesList);
+    console.log('Real Edges:', JSON.stringify(edgesList, null, 2));
     return edgesList;
 }
 
@@ -349,20 +358,35 @@ function getRealEdges() {
 function getPlayerEdges() {
     let playerEdgesList = [];
     for (let i = 0; i < finalPath.length - 1; i++) {
-        playerEdgesList.push({ from: finalPath[i], to: finalPath[i + 1] });
+        playerEdgesList.push({
+            from: { x: finalPath[i].x, y: finalPath[i].y },
+            to: { x: finalPath[i + 1].x, y: finalPath[i + 1].y }
+        });
     }
-    // console.log('Player Edges:', playerEdgesList);
+    console.log('Player Edges:', JSON.stringify(playerEdgesList, null, 2));
     return playerEdgesList;
 }
 
+
 // Función para comparar dos flechas
-function areEdgesEqual(edge1, edge2) {
-    return edge1.from.x === edge2.from.x && edge1.from.y === edge2.from.y &&
-           edge1.to.x === edge2.to.x && edge1.to.y === edge2.to.y;
-}
+// function areEdgesEqual(edge1, edge2) {
+//     return edge1.from.x === edge2.from.x && edge1.from.y === edge2.from.y &&
+//            edge1.to.x === edge2.to.x && edge1.to.y === edge2.to.y;
+// }
 // function areEdgesEqual(edge1, edge2) {
 //     return edge1.x === edge2.x && edge1.y === edge2.y && edge1.label === edge2.label;
 // }
+// Función para comparar dos flechas con una tolerancia
+function areEdgesEqual(edge1, edge2, delta = 110.1) {
+    function arePointsEqual(point1, point2, delta) {
+        return Math.abs(point1.x - point2.x) < delta && Math.abs(point1.y - point2.y) < delta;
+    }
+    
+    console.log(`Comparing edges with tolerance: ${JSON.stringify(edge1)} === ${JSON.stringify(edge2)}`);
+    
+    return arePointsEqual(edge1.from, edge2.from, delta) && arePointsEqual(edge1.to, edge2.to, delta);
+}
+
 
 function moveView(deltaX, deltaY) {
     controls.view.x += deltaX;
@@ -376,16 +400,17 @@ function moveView(deltaX, deltaY) {
 }
 
 function addEdgeToFinalPath(fromNode, toNode) {
-    if (!finalPath.includes(fromNode)) {
+    if (!finalPath.some(node => node.x === fromNode.x && node.y === fromNode.y)) {
         finalPath.push(fromNode);
     }
     finalPath.push(toNode);
 
     // Añadir la arista a la estructura edges
-    if (!edges[fromNode]) {
-        edges[fromNode] = [];
+    let fromKey = `${fromNode.x},${fromNode.y}`;
+    if (!edges[fromKey]) {
+        edges[fromKey] = [];
     }
-    edges[fromNode].push(toNode);
+    edges[fromKey].push(toNode);
 }
 
 function modifyEdgeInfo(){
