@@ -7,53 +7,57 @@ function mousePressed() {
         let mouseYAdj = (mouseY - centerY - controls.view.y) / zoomFactor + centerY;
 
       switch (workMode) {
+        
+            case 'gameMode':{
+
+                 // Lógica para verificar si el jugador acierta
+                 let node = nodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
+                 if (node) {
+                     if (nodes.nodeSelected !== null && nodes.nodeSelected !== node) {
+                         let correctDirection = graphManager.edges.edges.some(edge => {
+                             return edge.source === nodes.nodeSelected && edge.target === node;
+                         });
+                         if (correctDirection) {
+                             graphManager.edges.edges.forEach(edge => {
+                                 if (edge.source === nodes.nodeSelected && edge.target === node) {
+                                     edge.visible = true;
+                                 }
+                             });
+                             addEdgeToFinalPath(nodes.nodeSelected, node); // Añadir arista propuesta
+                         }
+                         nodes.unSelectNodes();
+                     } else if (nodes.nodeSelected === null && node.selected === false) {
+                         nodes.selectNode(node);
+                         labelInput.value(node.label);
+                     } } else if (nodes.nodeSelected != null) {
+                        nodes.unSelectNodes();
+                    }
+                break;
+            }
+
             case 'drawMode': {
-                if (gameModeActive) {
-                    // Lógica para verificar si el jugador acierta
-                    let node = nodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
-                    if (node) {
-                        if (nodes.nodeSelected !== null && nodes.nodeSelected !== node) {
-                            let correctDirection = graphManager.edges.edges.some(edge => {
-                                return edge.source === nodes.nodeSelected && edge.target === node;
-                            });
-                            if (correctDirection) {
-                                graphManager.edges.edges.forEach(edge => {
-                                    if (edge.source === nodes.nodeSelected && edge.target === node) {
-                                        edge.visible = true;
-                                    }
-                                });
-                                addEdgeToFinalPath(nodes.nodeSelected, node); // Añadir arista propuesta
-                            }
-                            nodes.unSelectNodes();
-                        } else if (nodes.nodeSelected === null && node.selected === false) {
-                            nodes.selectNode(node);
-                            labelInput.value(node.label);
-                        }
-                    } else if (nodes.nodeSelected != null) {
+             
+                // Lógica normal de creación de flechas
+                let node = nodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
+                if (node) {
+                    if (nodes.nodeSelected !== null && nodes.nodeSelected !== node) {
+                        graphManager.addEdge(nodes.nodeSelected, node);
                         nodes.unSelectNodes();
+                    } else if (nodes.nodeSelected === null && node.selected === false) {
+                        nodes.selectNode(node);
+                        labelInput.value(node.label);
                     }
+                } else if (nodes.nodeSelected != null) {
+                    nodes.unSelectNodes();
                 } else {
-                    // Lógica normal de creación de flechas
-                    let node = nodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
-                    if (node) {
-                        if (nodes.nodeSelected !== null && nodes.nodeSelected !== node) {
-                            graphManager.addEdge(nodes.nodeSelected, node);
-                            nodes.unSelectNodes();
-                        } else if (nodes.nodeSelected === null && node.selected === false) {
-                            nodes.selectNode(node);
-                            labelInput.value(node.label);
-                        }
-                    } else if (nodes.nodeSelected != null) {
-                        nodes.unSelectNodes();
-                    } else {
-                        let edge = graphManager.edges.findEdge(mouseXAdj, mouseYAdj);
-                        if (!edge) {
-                            let newNode = nodes.addNode(mouseXAdj, mouseYAdj);
-                            newNode.label = nodeCounter.toString();
-                            nodeCounter++;
-                        }
-                    }
+                    let edge = graphManager.edges.findEdge(mouseXAdj, mouseYAdj);
+                    if (!edge) {
+                        let newNode = nodes.addNode(mouseXAdj, mouseYAdj);
+                        newNode.label = nodeCounter.toString();
+                        nodeCounter++;
+                    // }
                 }
+            }
                 break;
             }
           case 'deleteMode': {
@@ -225,7 +229,7 @@ function hideAnimationControls() {
 // }
 
 function enterGameMode() {
-    gameModeActive = true;
+    workMode = "gameMode";
     const button = document.getElementById('gameModeButton');
     button.textContent = 'Exit Game Mode'; // Cambiar texto del botón
     // Ocultar los controles y deshabilitar la creación de nodos
@@ -253,7 +257,7 @@ function enterGameMode() {
 }
 
 function exitGameMode() {
-    gameModeActive = false;
+    workMode = "drawMode";
     const button = document.getElementById('gameModeButton');
     button.textContent = 'Game Mode'; // Restaurar texto original del botón
     hideScore();
