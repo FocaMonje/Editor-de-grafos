@@ -1,5 +1,7 @@
 var colors = ['#008080', '#ADD8E6', '#61B2CB', '#2EA2D1'];
 
+let score_points = 0;  // Reiniciar la puntuación
+
 function mousePressed() {
     if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
         let zoomFactor = map(zoomSettings.zoom, 15, 50, 0.5, 2);
@@ -23,9 +25,14 @@ function mousePressed() {
                                      edge.visible = true;
                                  }
                              });
+                             score_points += 1 ;
                              addEdgeToFinalPath(nodes.nodeSelected, node); // Añadir arista propuesta
                          }
+                         else {
+                            score_points -= 1 ;
+                         }
                          nodes.unSelectNodes();
+                         console.log(score_points);
                      } else if (nodes.nodeSelected === null && node.selected === false) {
                          nodes.selectNode(node);
                          labelInput.value(node.label);
@@ -289,47 +296,65 @@ function checkGameCompletion() {
     }
 }
 
+// function endGame() {
+//     clearInterval(countdownInterval); // Detener el cronómetro
+//     evaluateScore();
+//     displayScore();
+// }
+
+
 // Función para terminar el juego y evaluar la puntuación
 function endGame() {
     clearInterval(countdownInterval); // Detener el cronómetro
-    evaluateScore();
-    displayScore();
+    let points = evaluateScorePoints();
+    displayScore(points);
+}
+
+function evaluateScorePoints(){
+
+     // Asegurarse de que la puntuación no sea negativa
+     if (    score_points < 0) {
+        score_points = 0;
+    }
+
+    console.log("Final Score:", score_points);
+    return score_points;
 }
 
 // Función para evaluar la puntuación
-function evaluateScore() {
-    let score = 0;  // Reiniciar la puntuación
-    let realEdges = getRealEdges();  // Obtener flechas reales del grafo
-    let playerEdges = getPlayerEdges();  // Obtener flechas propuestas por el jugador
+// function evaluateScore() {
+//     let score = 0;  // Reiniciar la puntuación
+//     let realEdges = getRealEdges();  // Obtener flechas reales del grafo
+//     let playerEdges = getPlayerEdges();  // Obtener flechas propuestas por el jugador
     
-    console.log("Real Edges:", JSON.stringify(realEdges, null, 2));
-    console.log("Player Edges:", JSON.stringify(playerEdges, null, 2));
+//     console.log("Real Edges:", JSON.stringify(realEdges, null, 2));
+//     console.log("Player Edges:", JSON.stringify(playerEdges, null, 2));
 
-    // Verificar cada arista propuesta por el jugador
-    playerEdges.forEach(playerEdge => {
-        let foundMatch = realEdges.some(realEdge => areEdgesEqual(realEdge, playerEdge));
-        console.log(`Player Edge: ${JSON.stringify(playerEdge.from)} -> ${JSON.stringify(playerEdge.to)}, Match Found: ${foundMatch}`);
+//     // Verificar cada arista propuesta por el jugador
+//     playerEdges.forEach(playerEdge => {
+//         let foundMatch = realEdges.some(realEdge => areEdgesEqual(realEdge, playerEdge));
+//         console.log(`Player Edge: ${JSON.stringify(playerEdge.from)} -> ${JSON.stringify(playerEdge.to)}, Match Found: ${foundMatch}`);
 
-        if (foundMatch) {
-            score += 1;  // Acierto: sumar 1 punto
-        } else {
-            score -= 0.2;  // Error: restar 0.2 puntos
-        }
-    });
+//         if (foundMatch) {
+//             score += 1;  // Acierto: sumar 1 punto
+//         } else {
+//             score -= 0.2;  // Error: restar 0.2 puntos
+//         }
+//     });
 
-    // Asegurarse de que la puntuación no sea negativa
-    if (score < 0) {
-        score = 0;
-    }
+//     // Asegurarse de que la puntuación no sea negativa
+//     if (score < 0) {
+//         score = 0;
+//     }
 
-    console.log("Final Score:", score);
-    return score;
-}
+//     console.log("Final Score:", score);
+//     return score;
+// }
 
 
 // Función para mostrar la puntuación
-function displayScore() {
-    scoreDisplay.html(`Puntuación: ${score}`); // Mostrar la puntuación en el elemento HTML correspondiente
+function displayScore(points) {
+    scoreDisplay.html(`Puntuación: ${points}`); // Mostrar la puntuación en el elemento HTML correspondiente
     scoreDisplay.style('display', 'block'); // Asegurarse de que el elemento sea visible
 }
 
