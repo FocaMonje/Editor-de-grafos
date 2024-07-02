@@ -1,12 +1,48 @@
+var colors = ['#008080', '#ADD8E6', '#61B2CB', '#2EA2D1'];
 
 function mousePressed() {
     if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
         let zoomFactor = map(zoomSettings.zoom, 15, 50, 0.5, 2);
-        let mouseXAdj = (mouseX - centerX) / zoomFactor + centerX;
-        let mouseYAdj = (mouseY - centerY) / zoomFactor + centerY;
+        let mouseXAdj = (mouseX - centerX - controls.view.x) / zoomFactor + centerX;
+        let mouseYAdj = (mouseY - centerY - controls.view.y) / zoomFactor + centerY;
 
       switch (workMode) {
+        
+            case 'gameMode':{
+
+                 // Lógica para verificar si el jugador acierta
+                 let node = nodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
+                 if (node) {
+                     if (nodes.nodeSelected !== null && nodes.nodeSelected !== node) {
+                         let correctDirection = graphManager.edges.edges.some(edge => {
+                             return edge.source === nodes.nodeSelected && edge.target === node;
+                         });
+                         if (correctDirection) {
+                             graphManager.edges.edges.forEach(edge => {
+                                 if (edge.source === nodes.nodeSelected && edge.target === node) {
+                                     edge.visible = true;
+                                 }
+                             });
+                             score_points += 1 ;
+                             addEdgeToFinalPath(nodes.nodeSelected, node); // Añadir arista propuesta
+                         }
+                         else {
+                            score_points -= 1 ;
+                         }
+                         nodes.unSelectNodes();
+                         console.log(score_points);
+                     } else if (nodes.nodeSelected === null && node.selected === false) {
+                         nodes.selectNode(node);
+                         labelInput.value(node.label);
+                     } } else if (nodes.nodeSelected != null) {
+                        nodes.unSelectNodes();
+                    }
+                break;
+            }
+
             case 'drawMode': {
+             
+                // Lógica normal de creación de flechas
                 let node = nodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
                 if (node) {
                     if (nodes.nodeSelected !== null && nodes.nodeSelected !== node) {
@@ -24,8 +60,9 @@ function mousePressed() {
                         let newNode = nodes.addNode(mouseXAdj, mouseYAdj);
                         newNode.label = nodeCounter.toString();
                         nodeCounter++;
-                    }
+                    // }
                 }
+            }
                 break;
             }
           case 'deleteMode': {
@@ -44,10 +81,15 @@ function mousePressed() {
           }
           case 'selectedMode': {
             let edge = graphManager.edges.findEdge(mouseXAdj, mouseYAdj);
-            if (edge) {
-                selectedEdge = edge;
+            if (edge != null) {
+                graphManager.edges.selectEdge(edge);
+                edgeInput.value(edge.explicacion);
             } else {
-                selectedEdge = null;
+                  try {
+                      graphManager.edges.unselectEdges();
+                  } catch (e) {
+                      console.log(e);
+                  }             
             }
             break;
             }
@@ -62,8 +104,8 @@ function mousePressed() {
 
 function mouseDragged() {
   let zoomFactor = map(zoomSettings.zoom, 15, 50, 0.5, 2);
-  let mouseXAdj = (mouseX - centerX) / zoomFactor + centerX;
-  let mouseYAdj = (mouseY - centerY) / zoomFactor + centerY;
+  let mouseXAdj = (mouseX - centerX - controls.view.x) / zoomFactor + centerX;
+  let mouseYAdj = (mouseY - centerY - controls.view.y) / zoomFactor + centerY;
 
   if (draggingNode) {
       draggingNode.x = mouseXAdj;
@@ -103,89 +145,54 @@ function doZoom(event) {
     controls.view.zoom += zoom;
 }
 
-function setupYearSliders(graph) {
-    let years = graph.nodes.map(node => node.year);
-    let minYear = Math.min(...years);
-    let maxYear = Math.max(...years);
-
-    minYear = Math.max(minYear, 1000);
-    maxYear = Math.min(maxYear, 3000);
-
-    slider_start_year.attribute('min', 1000); 
-    slider_start_year.attribute('max', 3000); 
-    slider_start_year.value(minYear);
-
-    slider_end_year.attribute('min', 1000); 
-    slider_end_year.attribute('max', 3000); 
-    slider_end_year.value(maxYear);
-
-    animationSettings.startYear = minYear;
-    animationSettings.endYear = maxYear;
-
-    select('#start_year_value').html(minYear);
-    select('#end_year_value').html(maxYear);
-}
-
-
 function resetButtonStyles() {
     drawModeButton.style('background-color', '');
     deleteModeButton.style('background-color', '');
     selectedModeButton.style('background-color', '');
     animationModeButton.style('background-color', '');
+    gameModeButton.style('background-color', '');
     hideAnimationControls();
 }
 
-function startAnimation() {
-    if (workMode === 'animationMode') {
-        isAnimating = true;
-        if (animationInterval) clearInterval(animationInterval);
-        
-        let currentYear = animationSettings.startYear;
-        let endYear = animationSettings.endYear;
-        
-        // Iterar a través de los nodos para mostrar solo aquellos en el rango de años seleccionado
-        nodes.nodes.forEach(node => {
-            node.visible = node.year >= currentYear && node.year <= endYear;
-        });
+// function drawArrow(x1, y1, x2, y2) {
+//     let arrowSize = 10; // Tamaño de la punta de la flecha
+//     let arrowLength = dist(x1, y1, x2, y2) - arrowSize * 2; // Longitud del cuerpo de la flecha
+//     arrowLength /= 1.1; // Reducimos el tamaño del cuerpo de la flecha
+//     let arrowAngle = atan2(y2 - y1, x2 - x1); // Para orientar la flecha en la dirección adecuada
+//     push();
+//     translate(x1, y1);
+//     rotate(arrowAngle);
+//     // Dibujar el cuerpo de la flecha
+//     line(0, 0, arrowLength, 0);
+//     // Dibujar la punta de la flecha
+//     translate(arrowLength, 0);
+//     triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
+//     pop();
+// }
 
-        animationInterval = setInterval(() => {
-            graphManager.updateGraph(); // Para actualizar el grafo con los cambios en la visibilidad
-            currentYear++;
-            if (currentYear > endYear) {
-                clearInterval(animationInterval);
-                isAnimating = false;
-            }
-        }, 1000); // Intervalo de 1 segundo (1000 ms) para cada año
+function moveView(deltaX, deltaY) {
+    controls.view.x += deltaX;
+    controls.view.y += deltaY;
+    // Ajustar las coordenadas de los nodos y aristas según el movimiento
+    nodes.nodes.forEach(node => {
+        node.x += deltaX;
+        node.y += deltaY;
+    });
+    graphManager.updateGraph(); // Actualizar el grafo
+}
+
+function modifyEdgeInfo(){
+    let edge = graphManager.edges.selectedEdge;
+    if (edge) {
+        edge.explicacion = edgeInput.value();
     }
 }
 
-function animateNodes(currentYear, endYear) {
-    nodes.nodes.forEach(node => {
-        node.visible = node.year >= currentYear && node.year <= endYear;
-    });
-    graphManager.updateGraph(); 
-}
-
-function showAnimationControls() {
-    select('#animation-controls').style('display', 'block');
-}
-
-function hideAnimationControls() {
-    select('#animation-controls').style('display', 'none');
-}
-
-function drawArrow(x1, y1, x2, y2) {
-    let arrowSize = 10; // Tamaño de la punta de la flecha
-    let arrowLength = dist(x1, y1, x2, y2) - arrowSize * 2; // Longitud del cuerpo de la flecha
-    arrowLength /= 1.1; // Reducimos el tamaño del cuerpo de la flecha
-    let arrowAngle = atan2(y2 - y1, x2 - x1); // Para orientar la flecha en la dirección adecuada
-    push();
-    translate(x1, y1);
-    rotate(arrowAngle);
-    // Dibujar el cuerpo de la flecha
-    line(0, 0, arrowLength, 0);
-    // Dibujar la punta de la flecha
-    translate(arrowLength, 0);
-    triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
-    pop();
+function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
 }

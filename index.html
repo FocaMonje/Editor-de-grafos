@@ -18,6 +18,8 @@
     <script src="assets/javascript/edge.js"></script>
     <script src="assets/javascript/edges.js"></script>
     <script src="assets/javascript/utils.js"></script>
+    <script src="assets/javascript/animacion.js"></script>
+    <script src="assets/javascript/game.js"></script>
     <script src="assets/javascript/sketch.js" defer></script>
 
     <div class="wrapper">
@@ -28,16 +30,18 @@
             <button id="deleteModeButton" class="header">Delete Mode</button>
             <button id="selectedModeButton" class="header">Selected Mode</button>
             <button id="animationModeButton" class="header">Animation Mode</button>
+            <button id="gameModeButton" class="header">Game Mode</button>
+
         </div>
         <div id="div-izquierda" class="colum-info">
             <label for="slider_zoom">Zoom:</label>
             <input type="range" id="slider_zoom" min="15" max="50" value="35">
             <label for="slider_node_size">Node Size:</label>
             <input type="range" id="slider_node_size" min="5" max="50" value="20">
-            <div id="animation-controls">
+            <div id="animation-controls"><br><br>
                 <label for="slider_start_year">Start Year:</label>
                 <input type="range" id="slider_start_year" min="1000" max="3000" value="1000">
-                <span id="start_year_value">1000</span>
+                <span id="start_year_value">1000</span><br>
                 <label for="slider_end_year">End Year:</label>
                 <input type="range" id="slider_end_year" min="1000" max="3000" value="3000">
                 <span id="end_year_value">3000</span>
@@ -47,8 +51,23 @@
         <div id="div-derecha" class="colum-info">
             <label for="node_label">Node Label:</label>
             <input type="text" id="node_label">
+
+            <label for="edge_label">Edge Info:</label>
+            <input type="text" id="edge_info">
+            
+            <div id="timer">Tiempo: 30</div>
         </div>
         <div id="edge-info" class="colum-info"></div>
+        <div id="game-over-window">
+            ¡Felicidades! Has encontrado todas las flechas.
+        </div>
+        <div id="scoreDisplay"></div>
+        <div id="navigation-controls">
+            <button id="moveUp" class="nav-button">↑</button>
+            <button id="moveLeft" class="nav-button">←</button>
+            <button id="moveDown" class="nav-button">↓</button>
+            <button id="moveRight" class="nav-button">→</button>
+        </div>
     </div>
 </body>
 </html>

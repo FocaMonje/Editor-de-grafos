@@ -12,6 +12,17 @@ let slider_node_size, slider_start_year, slider_end_year;
 let animationSettings = { startYear: 0, endYear: 0 };
 let isAnimating = false;
 let animationInterval;
+let gameModeButton;
+let gameModeActive = false;
+let gameOverWindow;
+let score_points = 0; 
+let edges = [];
+let finalPath = [];
+let timer; 
+let countdown = 30; // Tiempo inicial del cronómetro en segundos
+let countdownInterval; // Intervalo para la cuenta atrás
+let edgeInput;
+
 
 // The Nature of Code
 // Daniel Shiffman
@@ -50,6 +61,11 @@ function setup() {
     labelInput.input(modifyNodeName);
 
     labelInput.value(''); // limpiar node label
+    
+    edgeInput = select('#edge_info');
+    edgeInput.input(modifyEdgeInfo);
+
+    edgeInput.value(''); // limpiar Edge info
 
     nodes = new Nodos();
     graphManager = new GraphManager(nodes, physics);
@@ -123,7 +139,44 @@ function setup() {
 
     // Aplicar zoom con la rueda del ratón
     canvas.mouseWheel(e => doZoom(e));
+
+    // Botón del modo de juego
+  gameModeButton = select('#gameModeButton');
+  gameModeButton.mousePressed(() => {
+    resetButtonStyles();
+    gameModeActive = !gameModeActive;
+    if (gameModeActive) {
+      enterGameMode();
+    } else {
+      exitGameMode();
+    }
+  });
+  
+  gameOverWindow = select('#game-over-window');
+  scoreDisplay = select('#scoreDisplay'); 
+
+  timer = select('#timer'); // Seleccionar el elemento del cronómetro
+
+  // Botones de navegación
+  let moveUpButton = select('#moveUp');
+  let moveLeftButton = select('#moveLeft');
+  let moveDownButton = select('#moveDown');
+  let moveRightButton = select('#moveRight');
+  
+    moveUpButton.mousePressed(() => {
+        moveView(0, -20);
+    });
+    moveLeftButton.mousePressed(() => {
+        moveView(-20, 0);
+    });
+    moveDownButton.mousePressed(() => {
+        moveView(0, 20);
+    });
+    moveRightButton.mousePressed(() => {
+        moveView(20, 0);
+    });
 }
+    
 
 function draw() {
     // Update the physics world
@@ -147,17 +200,21 @@ function draw() {
 
     nodes.draw(slider_node_size.value()); // Aquí se usa el valor del deslizador para el tamaño de los nodos
 
-    if (workMode === 'selectedMode') {
-        let edgeInfoDiv = select('#edge-info');
-        if (selectedEdge) {
-            edgeInfoDiv.html(selectedEdge.explicacion || "No hay información");
-            edgeInfoDiv.style('display', 'block');
-        } else {
-            edgeInfoDiv.style('display', 'none');
-        }
-    }
-
+    // if (workMode === 'selectedMode') {
+    //     let edgeInfoDiv = select('#edge-info');
+    //     if (selectedEdge) {
+    //         edgeInfoDiv.html(selectedEdge.explicacion || "No hay información");
+    //         edgeInfoDiv.style('display', 'block');
+    //     } else {
+    //         edgeInfoDiv.style('display', 'none');
+    //     }
+    // }
+    
     if (isAnimating) {
         animateNodes();
+    }
+
+    if (gameModeActive) {
+        checkGameCompletion();
     }
 }

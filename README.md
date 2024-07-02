@@ -12,7 +12,9 @@ https://p5js.org/reference/#/p5/createFileInput
 https://p5js.org/reference/#/p5/select 
 
 Cosas hechas:
-1. Creación de Animation Mode.
-2. Creación de dos barras deslizantes, una para elegir en que año inicia la animación y la otra el año en el que debe finalizar.
-3. Creación del botón start para iniciar la animación una vez elegido el rango de tiempo.
-4. La animación no funciona, haces clic en start y no hace nada.
+1. Implementación de Game Mode, funciona.
+2. Implementación de una mini ventana para avisar al jugador que ya encontró todas las flechas.
+3. Implementación de un sistema de puntuación, no funciona la puntuación no se actualiza o no se calcula bien o ambas cosas, el caso es que siempre muestra una puntuación igual a 0.
+4. Implementación de un temporizador, funciona.
+5. Implementación de flechas de navegación N-S-E-O, funciona.
+6. Implementación de los cambios que hay en main, pero hay un pequeño error.
