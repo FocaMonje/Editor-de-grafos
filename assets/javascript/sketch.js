@@ -15,7 +15,7 @@ let animationInterval;
 let gameModeButton;
 let gameModeActive = false;
 let gameOverWindow;
-let score = 0; 
+let score_points = 0; 
 let edges = [];
 let finalPath = [];
 let timer; 

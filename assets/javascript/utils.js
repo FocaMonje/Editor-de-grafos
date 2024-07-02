@@ -7,53 +7,62 @@ function mousePressed() {
         let mouseYAdj = (mouseY - centerY - controls.view.y) / zoomFactor + centerY;
 
       switch (workMode) {
+        
+            case 'gameMode':{
+
+                 // Lógica para verificar si el jugador acierta
+                 let node = nodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
+                 if (node) {
+                     if (nodes.nodeSelected !== null && nodes.nodeSelected !== node) {
+                         let correctDirection = graphManager.edges.edges.some(edge => {
+                             return edge.source === nodes.nodeSelected && edge.target === node;
+                         });
+                         if (correctDirection) {
+                             graphManager.edges.edges.forEach(edge => {
+                                 if (edge.source === nodes.nodeSelected && edge.target === node) {
+                                     edge.visible = true;
+                                 }
+                             });
+                             score_points += 1 ;
+                             addEdgeToFinalPath(nodes.nodeSelected, node); // Añadir arista propuesta
+                         }
+                         else {
+                            score_points -= 1 ;
+                         }
+                         nodes.unSelectNodes();
+                         console.log(score_points);
+                     } else if (nodes.nodeSelected === null && node.selected === false) {
+                         nodes.selectNode(node);
+                         labelInput.value(node.label);
+                     } } else if (nodes.nodeSelected != null) {
+                        nodes.unSelectNodes();
+                    }
+                break;
+            }
+
             case 'drawMode': {
-                if (gameModeActive) {
-                    // Lógica para verificar si el jugador acierta
-                    let node = nodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
-                    if (node) {
-                        if (nodes.nodeSelected !== null && nodes.nodeSelected !== node) {
-                            let correctDirection = graphManager.edges.edges.some(edge => {
-                                return edge.source === nodes.nodeSelected && edge.target === node;
-                            });
-                            if (correctDirection) {
-                                graphManager.edges.edges.forEach(edge => {
-                                    if (edge.source === nodes.nodeSelected && edge.target === node) {
-                                        edge.visible = true;
-                                    }
-                                });
-                                addEdgeToFinalPath(nodes.nodeSelected, node); // Añadir arista propuesta
-                            }
-                            nodes.unSelectNodes();
-                        } else if (nodes.nodeSelected === null && node.selected === false) {
-                            nodes.selectNode(node);
-                            labelInput.value(node.label);
-                        }
-                    } else if (nodes.nodeSelected != null) {
+             
+                // Lógica normal de creación de flechas
+                let node = nodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
+                if (node) {
+                    if (nodes.nodeSelected !== null && nodes.nodeSelected !== node) {
+                        graphManager.addEdge(nodes.nodeSelected, node);
                         nodes.unSelectNodes();
+                    } else if (nodes.nodeSelected === null && node.selected === false) {
+                        nodes.selectNode(node);
+                        labelInput.value(node.label);
                     }
+                } else if (nodes.nodeSelected != null) {
+                    nodes.unSelectNodes();
                 } else {
-                    // Lógica normal de creación de flechas
-                    let node = nodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
-                    if (node) {
-                        if (nodes.nodeSelected !== null && nodes.nodeSelected !== node) {
-                            graphManager.addEdge(nodes.nodeSelected, node);
-                            nodes.unSelectNodes();
-                        } else if (nodes.nodeSelected === null && node.selected === false) {
-                            nodes.selectNode(node);
-                            labelInput.value(node.label);
-                        }
-                    } else if (nodes.nodeSelected != null) {
-                        nodes.unSelectNodes();
-                    } else {
-                        let edge = graphManager.edges.findEdge(mouseXAdj, mouseYAdj);
-                        if (!edge) {
-                            let newNode = nodes.addNode(mouseXAdj, mouseYAdj);
-                            newNode.label = nodeCounter.toString();
-                            nodeCounter++;
-                        }
-                    }
+                    let edge = graphManager.edges.findEdge(mouseXAdj, mouseYAdj);
+                    if (!edge) {
+                        let newNode = nodes.addNode(mouseXAdj, mouseYAdj);
+                        newNode.label = nodeCounter.toString();
+                        nodeCounter++;
+                    // }
                 }
+            }
                 break;
             }
           case 'deleteMode': {
@@ -136,30 +145,6 @@ function doZoom(event) {
     controls.view.zoom += zoom;
 }
 
-function setupYearSliders(graph) {
-    let years = graph.nodes.map(node => node.year);
-    let minYear = Math.min(...years);
-    let maxYear = Math.max(...years);
-
-    minYear = Math.max(minYear, 1000);
-    maxYear = Math.min(maxYear, 3000);
-
-    slider_start_year.attribute('min', 1000); 
-    slider_start_year.attribute('max', 3000); 
-    slider_start_year.value(minYear);
-
-    slider_end_year.attribute('min', 1000); 
-    slider_end_year.attribute('max', 3000); 
-    slider_end_year.value(maxYear);
-
-    animationSettings.startYear = minYear;
-    animationSettings.endYear = maxYear;
-
-    select('#start_year_value').html(minYear);
-    select('#end_year_value').html(maxYear);
-}
-
-
 function resetButtonStyles() {
     drawModeButton.style('background-color', '');
     deleteModeButton.style('background-color', '');
@@ -167,45 +152,6 @@ function resetButtonStyles() {
     animationModeButton.style('background-color', '');
     gameModeButton.style('background-color', '');
     hideAnimationControls();
-}
-
-function startAnimation() {
-    if (workMode === 'animationMode') {
-        isAnimating = true;
-        if (animationInterval) clearInterval(animationInterval);
-        
-        let currentYear = animationSettings.startYear;
-        let endYear = animationSettings.endYear;
-        
-        // Iterar a través de los nodos para mostrar solo aquellos en el rango de años seleccionado
-        nodes.nodes.forEach(node => {
-            node.visible = node.year >= currentYear && node.year <= endYear;
-        });
-
-        animationInterval = setInterval(() => {
-            graphManager.updateGraph(); // Para actualizar el grafo con los cambios en la visibilidad
-            currentYear++;
-            if (currentYear > endYear) {
-                clearInterval(animationInterval);
-                isAnimating = false;
-            }
-        }, 1000); // Intervalo de 1 segundo (1000 ms) para cada año
-    }
-}
-
-function animateNodes(currentYear, endYear) {
-    nodes.nodes.forEach(node => {
-        node.visible = node.year >= currentYear && node.year <= endYear;
-    });
-    graphManager.updateGraph(); 
-}
-
-function showAnimationControls() {
-    select('#animation-controls').style('display', 'block');
-}
-
-function hideAnimationControls() {
-    select('#animation-controls').style('display', 'none');
 }
 
 // function drawArrow(x1, y1, x2, y2) {
@@ -225,7 +171,7 @@ function hideAnimationControls() {
 // }
 
 function enterGameMode() {
-    gameModeActive = true;
+    workMode = "gameMode";
     const button = document.getElementById('gameModeButton');
     button.textContent = 'Exit Game Mode'; // Cambiar texto del botón
     // Ocultar los controles y deshabilitar la creación de nodos
@@ -253,7 +199,7 @@ function enterGameMode() {
 }
 
 function exitGameMode() {
-    gameModeActive = false;
+    workMode = "drawMode";
     const button = document.getElementById('gameModeButton');
     button.textContent = 'Game Mode'; // Restaurar texto original del botón
     hideScore();
@@ -288,44 +234,55 @@ function checkGameCompletion() {
 // Función para terminar el juego y evaluar la puntuación
 function endGame() {
     clearInterval(countdownInterval); // Detener el cronómetro
-    evaluateScore();
-    displayScore();
+    let points = evaluateScorePoints();
+    displayScore(points);
+}
+
+function evaluateScorePoints(){
+
+     // Asegurarse de que la puntuación no sea negativa
+     if (    score_points < 0) {
+        score_points = 0;
+    }
+
+    console.log("Final Score:", score_points);
+    return score_points;
 }
 
 // Función para evaluar la puntuación
-function evaluateScore() {
-    let score = 0;  // Reiniciar la puntuación
-    let realEdges = getRealEdges();  // Obtener flechas reales del grafo
-    let playerEdges = getPlayerEdges();  // Obtener flechas propuestas por el jugador
+// function evaluateScore() {
+//     let score = 0;  // Reiniciar la puntuación
+//     let realEdges = getRealEdges();  // Obtener flechas reales del grafo
+//     let playerEdges = getPlayerEdges();  // Obtener flechas propuestas por el jugador
     
-    console.log("Real Edges:", JSON.stringify(realEdges, null, 2));
-    console.log("Player Edges:", JSON.stringify(playerEdges, null, 2));
+//     console.log("Real Edges:", JSON.stringify(realEdges, null, 2));
+//     console.log("Player Edges:", JSON.stringify(playerEdges, null, 2));
 
-    // Verificar cada arista propuesta por el jugador
-    playerEdges.forEach(playerEdge => {
-        let foundMatch = realEdges.some(realEdge => areEdgesEqual(realEdge, playerEdge));
-        console.log(`Player Edge: ${JSON.stringify(playerEdge.from)} -> ${JSON.stringify(playerEdge.to)}, Match Found: ${foundMatch}`);
+//     // Verificar cada arista propuesta por el jugador
+//     playerEdges.forEach(playerEdge => {
+//         let foundMatch = realEdges.some(realEdge => areEdgesEqual(realEdge, playerEdge));
+//         console.log(`Player Edge: ${JSON.stringify(playerEdge.from)} -> ${JSON.stringify(playerEdge.to)}, Match Found: ${foundMatch}`);
 
-        if (foundMatch) {
-            score += 1;  // Acierto: sumar 1 punto
-        } else {
-            score -= 0.2;  // Error: restar 0.2 puntos
-        }
-    });
+//         if (foundMatch) {
+//             score += 1;  // Acierto: sumar 1 punto
+//         } else {
+//             score -= 0.2;  // Error: restar 0.2 puntos
+//         }
+//     });
 
-    // Asegurarse de que la puntuación no sea negativa
-    if (score < 0) {
-        score = 0;
-    }
+//     // Asegurarse de que la puntuación no sea negativa
+//     if (score < 0) {
+//         score = 0;
+//     }
 
-    console.log("Final Score:", score);
-    return score;
-}
+//     console.log("Final Score:", score);
+//     return score;
+// }
 
 
 // Función para mostrar la puntuación
-function displayScore() {
-    scoreDisplay.html(`Puntuación: ${score}`); // Mostrar la puntuación en el elemento HTML correspondiente
+function displayScore(points) {
+    scoreDisplay.html(`Puntuación: ${points}`); // Mostrar la puntuación en el elemento HTML correspondiente
     scoreDisplay.style('display', 'block'); // Asegurarse de que el elemento sea visible
 }
 
@@ -367,15 +324,6 @@ function getPlayerEdges() {
     return playerEdgesList;
 }
 
-
-// Función para comparar dos flechas
-// function areEdgesEqual(edge1, edge2) {
-//     return edge1.from.x === edge2.from.x && edge1.from.y === edge2.from.y &&
-//            edge1.to.x === edge2.to.x && edge1.to.y === edge2.to.y;
-// }
-// function areEdgesEqual(edge1, edge2) {
-//     return edge1.x === edge2.x && edge1.y === edge2.y && edge1.label === edge2.label;
-// }
 // Función para comparar dos flechas con una tolerancia
 function areEdgesEqual(edge1, edge2, delta = 110.1) {
     function arePointsEqual(point1, point2, delta) {
