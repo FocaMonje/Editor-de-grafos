@@ -1,0 +1,862 @@
+{
+  "directed": true,
+  "graph": {},
+  "nodes": [
+    {
+      "id": "La pila"
+    },
+    {
+      "id": "El primer asteroide"
+    },
+    {
+      "id": "El sistema métrico"
+    },
+    {
+      "id": "El sacacorchos"
+    },
+    {
+      "id": "El lapicero"
+    },
+    {
+      "id": "La imprenta"
+    },
+    {
+      "id": "El cañón"
+    },
+    {
+      "id": "El telégrafo"
+    },
+    {
+      "id": "El acordeón"
+    },
+    {
+      "id": "La cerilla"
+    },
+    {
+      "id": "El telescopio"
+    },
+    {
+      "id": "El periódico"
+    },
+    {
+      "id": "El lenguaje de signos"
+    },
+    {
+      "id": "La goma elástica"
+    },
+    {
+      "id": "La caja fuerte"
+    },
+    {
+      "id": "La jeringuilla"
+    },
+    {
+      "id": "El código morse"
+    },
+    {
+      "id": "La escafandra"
+    },
+    {
+      "id": "El barómetro"
+    },
+    {
+      "id": "El termómetro"
+    },
+    {
+      "id": "El motor de combustión"
+    },
+    {
+      "id": "El sujetador"
+    },
+    {
+      "id": "El abrelatas"
+    },
+    {
+      "id": "El saxofón"
+    },
+    {
+      "id": "La máquina de escribir"
+    },
+    {
+      "id": "La máquina de vapor"
+    },
+    {
+      "id": "El diapasón"
+    },
+    {
+      "id": "El tapón de corcho"
+    },
+    {
+      "id": "Los pantalones vaqueros"
+    },
+    {
+      "id": "La motocicleta"
+    },
+    {
+      "id": "El capital"
+    },
+    {
+      "id": "El alambre de espino"
+    },
+    {
+      "id": "La goma de borrar"
+    },
+    {
+      "id": "Los raíles ferroviarios"
+    },
+    {
+      "id": "El cinematógrafo"
+    },
+    {
+      "id": "El telégrafo sin hilos"
+    },
+    {
+      "id": "La vacuna contra la rabia"
+    },
+    {
+      "id": "La dinamita"
+    },
+    {
+      "id": "El winchester"
+    },
+    {
+      "id": "Los miserables"
+    },
+    {
+      "id": "La enciclopedia"
+    },
+    {
+      "id": "El cheque"
+    },
+    {
+      "id": "La escala Celsius"
+    },
+    {
+      "id": "La bombilla"
+    },
+    {
+      "id": "El fonógrafo"
+    },
+    {
+      "id": "El teléfono"
+    },
+    {
+      "id": "La revolución francesa"
+    },
+    {
+      "id": "Urano"
+    },
+    {
+      "id": "La teoría general de la relatividad"
+    },
+    {
+      "id": "El Ford T"
+    },
+    {
+      "id": "El aeroplano"
+    },
+    {
+      "id": "Las huellas dactilares"
+    },
+    {
+      "id": "La bomba atómica"
+    },
+    {
+      "id": "La televisión en color"
+    },
+    {
+      "id": "La fotocopiadora"
+    },
+    {
+      "id": "El bolígrafo"
+    },
+    {
+      "id": "La televisión"
+    },
+    {
+      "id": "El transistor"
+    },
+    {
+      "id": "El juego de rol"
+    },
+    {
+      "id": "El ratón de ordenador"
+    },
+    {
+      "id": "La lata con abrefácil"
+    },
+    {
+      "id": "El zepelín"
+    },
+    {
+      "id": "El velocípedo"
+    },
+    {
+      "id": "La locomotora"
+    },
+    {
+      "id": "El ordenador portátil"
+    },
+    {
+      "id": "El compact disc"
+    },
+    {
+      "id": "La tarjeta inteligente"
+    },
+    {
+      "id": "El satélite"
+    },
+    {
+      "id": "Reproductores portátiles de CDs"
+    },
+    {
+      "id": "El submarino"
+    },
+    {
+      "id": "El periódico (1605)"
+    },
+    {
+      "id": "La enciclopedia (1751)"
+    },
+    {
+      "id": "La máquina de escribir (1868)"
+    },
+    {
+      "id": "El código Morse"
+    },
+    {
+      "id": "El código morse (1838)"
+    },
+    {
+      "id": "El telégrafo sin hilos (1895)"
+    },
+    {
+      "id": "El periódico (siglo XVII)"
+    },
+    {
+      "id": "Los miserables (1862)"
+    },
+    {
+      "id": "La teoría general de la relatividad (1915)"
+    },
+    {
+      "id": "El capital (1883)"
+    },
+    {
+      "id": "Impresión, sol naciente (1872)"
+    },
+    {
+      "id": "La revolución francesa (1789)"
+    },
+    {
+      "id": "El winchester (1866)"
+    },
+    {
+      "id": "El submarino (Turtle) (1775)"
+    },
+    {
+      "id": "La radio"
+    },
+    {
+      "id": "La televisón"
+    }
+  ],
+  "links": [
+    {
+      "source": "La pila",
+      "target": "El telégrafo",
+      "explicacion": "Requirió de las baterías para transmitir señales eléctricas."
+    },
+    {
+      "source": "La pila",
+      "target": "La bombilla",
+      "explicacion": "Aunque inicialmente se utilizaron generadores eléctricos, los dispositivos portátiles con bombillas dependen de baterías."
+    },
+    {
+      "source": "La pila",
+      "target": "El fonógrafo",
+      "explicacion": "Dispositivos portátiles y versiones posteriores dependían de baterías."
+    },
+    {
+      "source": "La pila",
+      "target": "El teléfono",
+      "explicacion": "Las baterías eran fundamentales para los primeros sistemas telefónicos y equipos portátiles."
+    },
+    {
+      "source": "La pila",
+      "target": "La televisión",
+      "explicacion": "Televisores portátiles y algunos modelos requerían baterías."
+    },
+    {
+      "source": "La pila",
+      "target": "El transistor",
+      "explicacion": "Permitió el desarrollo de dispositivos electrónicos portátiles, los cuales necesitaron baterías."
+    },
+    {
+      "source": "La pila",
+      "target": "El satélite",
+      "explicacion": "Requirió de las baterías para transmitir señales eléctricas."
+    },
+    {
+      "source": "La pila",
+      "target": "El ordenador portátil",
+      "explicacion": "Depende de baterías para su portabilidad."
+    },
+    {
+      "source": "La pila",
+      "target": "El compact disc",
+      "explicacion": "Reproductores portátiles de CDs (Discman) necesitan baterías."
+    },
+    {
+      "source": "La pila",
+      "target": "Reproductores portátiles de CDs",
+      "explicacion": "Algunas versiones requieren baterías para mantener su funcionalidad."
+    },
+    {
+      "source": "La pila",
+      "target": "La tarjeta inteligente",
+      "explicacion": "Algunas versiones requieren baterías para mantener su funcionalidad."
+    },
+    {
+      "source": "La pila",
+      "target": "El telégrafo sin hilos",
+      "explicacion": "Necesitó baterías para la transmisión de señales de radio a larga distancia."
+    },
+    {
+      "source": "El primer asteroide",
+      "target": "El telescopio",
+      "explicacion": "El descubrimiento del primer asteroide, Ceres, fue posible gracias al uso del telescopio."
+    },
+    {
+      "source": "El sistema métrico",
+      "target": "La escala Celsius",
+      "explicacion": "Es una unidad de medida de temperatura del sistema métrico, esencial para científicos y la vida cotidiana."
+    },
+    {
+      "source": "El sistema métrico",
+      "target": "El barómetro",
+      "explicacion": "1. **El barómetro (1643)**: Requiere de unidades de presión estándar para medir la presión atmosférica con precisión."
+    },
+    {
+      "source": "El sistema métrico",
+      "target": "El termómetro",
+      "explicacion": "Utiliza una escala métrica de temperatura (como Celsius) para medir la temperatura de manera consistente y universal."
+    },
+    {
+      "source": "El sistema métrico",
+      "target": "El motor de combustión",
+      "explicacion": ""
+    },
+    {
+      "source": "El sistema métrico",
+      "target": "El aeroplano",
+      "explicacion": ""
+    },
+    {
+      "source": "El sistema métrico",
+      "target": "El submarino",
+      "explicacion": ""
+    },
+    {
+      "source": "El sistema métrico",
+      "target": "La vacuna contra la rabia",
+      "explicacion": ""
+    },
+    {
+      "source": "El sistema métrico",
+      "target": "La bomba atómica",
+      "explicacion": ""
+    },
+    {
+      "source": "El sistema métrico",
+      "target": "El satélite",
+      "explicacion": ""
+    },
+    {
+      "source": "El sistema métrico",
+      "target": "El transistor",
+      "explicacion": ""
+    },
+    {
+      "source": "El sistema métrico",
+      "target": "La teoría general de la relatividad",
+      "explicacion": ""
+    },
+    {
+      "source": "El sistema métrico",
+      "target": "La imprenta",
+      "explicacion": "La imprenta permitió la distribución de tratados y tablas de conversión, facilitando su adopción y estandarización internacional."
+    },
+    {
+      "source": "El sacacorchos",
+      "target": "El tapón de corcho",
+      "explicacion": "1. **El sacacorchos**: El sacacorchos fue inventado específicamente para abrir botellas que tienen tapones de corcho. Por lo tanto, sin la invención del tapón de corcho, el sacacorchos no habría sido necesario y probablemente no habría existido."
+    },
+    {
+      "source": "El lapicero",
+      "target": "La goma de borrar",
+      "explicacion": "La goma de borrar es fundamental para este invento, ya que permite corregir errores realizados con el lapicero. Sin la goma de borrar, el lapicero no tendría la misma funcionalidad en términos de corrección de errores escritos."
+    },
+    {
+      "source": "La imprenta",
+      "target": "El periódico (1605)",
+      "explicacion": "La imprenta permitió la producción masiva de textos, incluidas las publicaciones periódicas. Sin la imprenta, la difusión regular y amplia de noticias como se realiza con los periódicos habría sido imposible."
+    },
+    {
+      "source": "La imprenta",
+      "target": "La enciclopedia (1751)",
+      "explicacion": "La imprenta facilitó la compilación y difusión de vastos volúmenes de conocimiento en un formato accesible y reproducible, como en las enciclopedias."
+    },
+    {
+      "source": "La imprenta",
+      "target": "La máquina de escribir (1868)",
+      "explicacion": "Aunque la funcionalidad técnica no depende directamente de la imprenta, el concepto de mecanografiar texto para reproducir múltiples copias surge de la capacidad de la imprenta de distribuir documentos de forma masiva."
+    },
+    {
+      "source": "La imprenta",
+      "target": "El periódico",
+      "explicacion": "La imprenta permitió la producción masiva y distribución de periódicos."
+    },
+    {
+      "source": "La imprenta",
+      "target": "La enciclopedia",
+      "explicacion": "La imprenta fue fundamental para la creación y distribución de enciclopedias."
+    },
+    {
+      "source": "La imprenta",
+      "target": "Los miserables",
+      "explicacion": "Las novelas y otros libros impresos no habrían sido posibles sin la imprenta."
+    },
+    {
+      "source": "La imprenta",
+      "target": "El cheque",
+      "explicacion": "Aunque los cheques como documentos financieros existían antes de la imprenta, la imprenta permitió la producción masiva y uniforme de formularios de cheques."
+    },
+    {
+      "source": "La imprenta",
+      "target": "El código Morse",
+      "explicacion": "Dependió de la imprenta para la difusión de su tabla y la publicación de manuales y guías para su uso eficaz."
+    },
+    {
+      "source": "La imprenta",
+      "target": "La máquina de escribir",
+      "explicacion": "Aunque no directamente dependiente de la imprenta, el desarrollo de técnicas de impresión y producción de tipos influyó en la creación de dispositivos mecanográficos."
+    },
+    {
+      "source": "La imprenta",
+      "target": "El bolígrafo",
+      "explicacion": "El desarrollo y popularización del bolígrafo se beneficiaron de los sistemas de impresión masiva para la distribución de manuales y otros documentos."
+    },
+    {
+      "source": "La imprenta",
+      "target": "El telégrafo",
+      "explicacion": "Necesitó la imprenta para la creación y distribución masiva de manuales y documentación técnica."
+    },
+    {
+      "source": "La imprenta",
+      "target": "La teoría general de la relatividad",
+      "explicacion": "La imprenta permitió la difusión de teorías científicas a través de libros y artículos, facilitando un mayor entendimiento y discusión."
+    },
+    {
+      "source": "La imprenta",
+      "target": "El lenguaje de signos",
+      "explicacion": "Aunque el lenguaje de signos se basa en la comunicación visual y gestual, la imprenta permitió la documentación y distribución de guías y manuales para su aprendizaje."
+    },
+    {
+      "source": "La imprenta",
+      "target": "El capital",
+      "explicacion": "Este libro, escrito por Karl Marx, fue distribuido a través de la imprenta, permitiendo su amplio alcance e impacto social y político."
+    },
+    {
+      "source": "La imprenta",
+      "target": "Urano",
+      "explicacion": "Descubierto por astronomía observacional, su difusión y los estudios relacionados se expandieron gracias a documentos impresos."
+    },
+    {
+      "source": "La imprenta",
+      "target": "La revolución francesa",
+      "explicacion": "Aunque no es un invento per se, la imprenta jugó un papel crítico en la difusión de ideas revolucionarias, panfletos y propaganda."
+    },
+    {
+      "source": "La imprenta",
+      "target": "Las huellas dactilares",
+      "explicacion": "La imprenta permitió la masificación de técnicas y manuales para el uso y el análisis de huellas dactilares en la criminalística."
+    },
+    {
+      "source": "La imprenta",
+      "target": "El juego de rol",
+      "explicacion": "Los manuales y guías de juegos de rol fueron posibles gracias a la impresión masiva de libros de instrucciones y aventuras."
+    },
+    {
+      "source": "La imprenta",
+      "target": "El periódico (siglo XVII)",
+      "explicacion": ""
+    },
+    {
+      "source": "La imprenta",
+      "target": "Los miserables (1862)",
+      "explicacion": ""
+    },
+    {
+      "source": "La imprenta",
+      "target": "La teoría general de la relatividad (1915)",
+      "explicacion": ""
+    },
+    {
+      "source": "La imprenta",
+      "target": "El capital (1883)",
+      "explicacion": ""
+    },
+    {
+      "source": "La imprenta",
+      "target": "Impresión, sol naciente (1872)",
+      "explicacion": ""
+    },
+    {
+      "source": "La imprenta",
+      "target": "La revolución francesa (1789)",
+      "explicacion": ""
+    },
+    {
+      "source": "La imprenta",
+      "target": "El código morse",
+      "explicacion": "La imprenta facilitó la enseñanza y aprendizaje del Código Morse mediante la publicación de manuales y guías impresas."
+    },
+    {
+      "source": "La imprenta",
+      "target": "El fonógrafo",
+      "explicacion": "Publicaciones impresas fueron esenciales para la difusión de información técnica sobre su uso y producción de grabaciones a escala industrial."
+    },
+    {
+      "source": "La imprenta",
+      "target": "La cerilla",
+      "explicacion": "La producción en masa y distribución de este invento fueron muy influenciadas por la imprenta, que permitía instrucciones impresas para su uso seguro."
+    },
+    {
+      "source": "La imprenta",
+      "target": "El telescopio",
+      "explicacion": "Publicaciones científicas y manuales impresos facilitados por la imprenta fueron esenciales para la difusión y mejora de este instrumento."
+    },
+    {
+      "source": "La imprenta",
+      "target": "El alambre de espino",
+      "explicacion": "La imprenta permitió la distribución masiva de manuales y guías de uso para los agricultores."
+    },
+    {
+      "source": "El cañón",
+      "target": "El winchester",
+      "explicacion": "Este famoso rifle Winchester utilizó innovaciones en la tecnología de armas de fuego que evolucionaron en parte gracias a la tecnología desarrollada para los cañones."
+    },
+    {
+      "source": "El cañón",
+      "target": "El submarino",
+      "explicacion": "La invención del cañón fue fundamental para el desarrollo de las armas de fuego modernas, incluyendo los rifles como el Winchester."
+    },
+    {
+      "source": "El cañón",
+      "target": "El winchester (1866)",
+      "explicacion": ""
+    },
+    {
+      "source": "El cañón",
+      "target": "El submarino (Turtle) (1775)",
+      "explicacion": ""
+    },
+    {
+      "source": "El cañón",
+      "target": "La dinamita",
+      "explicacion": "1. **La dinamita (1867)**: La invención del cañón fue fundamental para el descubrimiento y desarrollo de explosivos, como la dinamita, utilizada a menudo en aplicaciones militares y civiles que requirieron cañones para su implementación."
+    },
+    {
+      "source": "El cañón",
+      "target": "La máquina de vapor",
+      "explicacion": "La invención de la máquina de vapor permitió la creación de cañones más grandes y poderosos, ya que podían ser producidos en serie con mayor precisión y transportados más fácilmente."
+    },
+    {
+      "source": "El telégrafo",
+      "target": "El código morse",
+      "explicacion": "El código morse fue desarrollado específicamente para ser utilizado con el telégrafo, permitiendo la transmisión de información a través de señales eléctricas codificadas."
+    },
+    {
+      "source": "El telégrafo",
+      "target": "El telégrafo sin hilos",
+      "explicacion": "Este fue una evolución del telégrafo al permitir la transmisión de señales a distancia sin necesidad de cables, basándose en el principio del telégrafo."
+    },
+    {
+      "source": "El telégrafo",
+      "target": "El código morse (1838)",
+      "explicacion": "Depende directamente de la invención del telégrafo, ya que es un sistema de señales que se transmiten a través del telégrafo."
+    },
+    {
+      "source": "El telégrafo",
+      "target": "El telégrafo sin hilos (1895)",
+      "explicacion": "Evolución directa del telégrafo al añadir la capacidad de transmitir señales de forma inalámbrica."
+    },
+    {
+      "source": "El telégrafo",
+      "target": "El teléfono",
+      "explicacion": "El desarrollo del teléfono estuvo inspirado y facilitado por la tecnología del telégrafo, ya que ambos sistemas comparten principios de transmisión de señales eléctricas."
+    },
+    {
+      "source": "El telégrafo",
+      "target": "La radio",
+      "explicacion": "Aunque no aparece en la lista, es un invento claramente influenciado por el telégrafo y el telégrafo sin hilos, utilizando también la idea de transmitir señales a distancia. El mismo concepto aparece en En el \"telégrafo sin hilos\"."
+    },
+    {
+      "source": "El telégrafo",
+      "target": "La máquina de vapor",
+      "explicacion": "Las primeras estaciones de telégrafo dependían de generadores y motores de vapor para la producción de electricidad."
+    },
+    {
+      "source": "El acordeón",
+      "target": "El diapasón",
+      "explicacion": "Utilizó el diapasón para afinar sus lengüetas y asegurar una precisa emisión del sonido."
+    },
+    {
+      "source": "El telescopio",
+      "target": "Urano",
+      "explicacion": "El planeta Urano fue descubierto por William Herschel utilizando un telescopio."
+    },
+    {
+      "source": "El telescopio",
+      "target": "El telescopio",
+      "explicacion": "Invento de referencia."
+    },
+    {
+      "source": "El telescopio",
+      "target": "La teoría general de la relatividad",
+      "explicacion": "Los estudios astronómicos y observaciones de fenómenos como la curvatura de la luz alrededor de estrellas fueron cruciales para apoyar la teoría, muchos de los cuales se verificaron mediante telescopios."
+    },
+    {
+      "source": "El telescopio",
+      "target": "El satélite",
+      "explicacion": "Aunque no depende directamente del telescopio, el desarrollo de satélites y la observación espacial tiene sus raíces en la astronomía, que depende del telescopio."
+    },
+    {
+      "source": "El telescopio",
+      "target": "El zepelín",
+      "explicacion": "La navegación y exploración de las estrellas ayudaron al desarrollo de modernos vehículos de navegación, donde el telescopio jugó su papel para mapear rutas y estudiar el espacio aéreo."
+    },
+    {
+      "source": "El telescopio",
+      "target": "La goma elástica",
+      "explicacion": "En algunos telescopios modernos, la goma elástica se usa para componentes ajustables como las cubiertas protectoras y los mecanismos de enfoque."
+    },
+    {
+      "source": "La goma elástica",
+      "target": "El sujetador",
+      "explicacion": "La goma elástica es fundamental en la construcción de sujetadores, proporcionando la elasticidad necesaria para un ajuste adecuado y soporte."
+    },
+    {
+      "source": "La goma elástica",
+      "target": "Los pantalones vaqueros",
+      "explicacion": "La goma elástica se utiliza en algunas versiones de los pantalones vaqueros, especialmente en la cintura y los puños, para mejorar el ajuste y la comodidad."
+    },
+    {
+      "source": "La goma elástica",
+      "target": "La caja fuerte",
+      "explicacion": "La goma elástica puede ser utilizada en los mecanismos internos de las cajas fuertes modernas para asegurar el funcionamiento adecuado de los sistemas de cierre y apertura."
+    },
+    {
+      "source": "La goma elástica",
+      "target": "La jeringuilla",
+      "explicacion": "Las jeringuillas modernas utilizan a menudo gomas elásticas para establecer un sello hermético en los émbolos, permitiendo que el líquido se administre de manera controlada."
+    },
+    {
+      "source": "La goma elástica",
+      "target": "El barómetro",
+      "explicacion": "Los barómetros aneroides modernos utilizan goma elástica en su diseño para medir la presión atmosférica."
+    },
+    {
+      "source": "La goma elástica",
+      "target": "El fonógrafo",
+      "explicacion": "Algunas versiones antiguas del fonógrafo usaban bandas de goma elástica para el mecanismo de transmisión."
+    },
+    {
+      "source": "El código morse",
+      "target": "El telégrafo sin hilos",
+      "explicacion": "También conocido como la radio telegráfica, utilizó el código morse para la transmisión de mensajes a través de ondas de radio, convirtiéndose en una extensión del sistema de telégrafo."
+    },
+    {
+      "source": "La escafandra",
+      "target": "El submarino",
+      "explicacion": "La escafandra permitió a los inventores y tripulantes realizar inmersiones prolongadas y mejorar las condiciones de trabajo bajo el agua, fundamentales para el desarrollo y operación de submarinos como el Turtle."
+    },
+    {
+      "source": "El barómetro",
+      "target": "El barómetro",
+      "explicacion": "La invención misma es relevante en esta lista, ya que el propio barómetro revolucionó la medición de la presión atmosférica y tuvo una gran influencia en la meteorología y otras áreas científicas, pero no es listado como un derivado de otro invento."
+    },
+    {
+      "source": "El motor de combustión",
+      "target": "El submarino",
+      "explicacion": "El desarrollo de las motocicletas modernas depende directamente del motor de combustión interna, el cual proporciona la fuente de energía necesaria para su funcionamiento."
+    },
+    {
+      "source": "El abrelatas",
+      "target": "La lata con abrefácil",
+      "explicacion": "La existencia y desarrollo de la lata con abrefácil están directamente influenciados por la invención del abrelatas, ya que la necesidad de abrir latas de manera más sencilla llevó al diseño de latas con mecanismos que facilitan su apertura sin necesidad de un abrelatas convencional."
+    },
+    {
+      "source": "El saxofón",
+      "target": "El diapasón",
+      "explicacion": "El diapasón fue fundamental para la afinación precisa del instrumento."
+    },
+    {
+      "source": "La máquina de vapor",
+      "target": "Los raíles ferroviarios",
+      "explicacion": "El desarrollo del sistema ferroviario dependió de la invención de la máquina de vapor para impulsar las locomotoras."
+    },
+    {
+      "source": "La máquina de vapor",
+      "target": "La locomotora",
+      "explicacion": "La primera locomotora de vapor fue una aplicación directa de la máquina de vapor."
+    },
+    {
+      "source": "La máquina de vapor",
+      "target": "El zepelín",
+      "explicacion": "Los primeros proyectos de dirigibles estaban equipados con motores de combustión interna y motores de vapor."
+    },
+    {
+      "source": "La máquina de vapor",
+      "target": "El submarino",
+      "explicacion": "Aunque los primeros submarinos no fueron movidos por la máquina de vapor, los submarinos posteriores como el famoso Nautilus de Robert Fulton sí lo fueron."
+    },
+    {
+      "source": "La máquina de vapor",
+      "target": "La motocicleta",
+      "explicacion": "Las primeras motocicletas eran versiones motorizadas de bicicletas propulsadas por máquinas de vapor."
+    },
+    {
+      "source": "La máquina de vapor",
+      "target": "El aeroplano",
+      "explicacion": "Los primeros intentos de vuelos tripulados, como los experimentos de Sir George Cayley, utilizaron motores de vapor."
+    },
+    {
+      "source": "La máquina de vapor",
+      "target": "El fonógrafo",
+      "explicacion": "Los primeros modelos de fonógrafos usaban motores de vapor para funciones de reproducción, antes de la llegada de la electricidad."
+    },
+    {
+      "source": "El diapasón",
+      "target": "El fonógrafo",
+      "explicacion": "La afinación precisa de los dispositivos de grabación y reproducción de sonido dependía del uso del diapasón."
+    },
+    {
+      "source": "La motocicleta",
+      "target": "El velocípedo",
+      "explicacion": "A pesar de que el automóvil no figura específicamente como una evolución directa del velocípedo, la ingeniería de vehículos de dos ruedas típicamente su motor y la estructura influyeron en la innovación y diseño de vehículos motorizados, incluyendo modelos tempranos como el Ford T."
+    },
+    {
+      "source": "Los raíles ferroviarios",
+      "target": "La locomotora",
+      "explicacion": "Los raíles ferroviarios son fundamentales para la existencia de la locomotora, ya que esta maquinaria pesada y poderosa fue diseñada para desplazarse sobre ellos de manera eficiente, facilitando el transporte de personas y mercancías."
+    },
+    {
+      "source": "El cinematógrafo",
+      "target": "La televisión",
+      "explicacion": "Evolucionó a partir del cinematógrafo para transmitir imágenes en movimiento."
+    },
+    {
+      "source": "El cinematógrafo",
+      "target": "El fonógrafo",
+      "explicacion": "Aunque no depende directamente del cinematógrafo, ambos compartieron avances en tecnología de grabación y reproducción audiovisual."
+    },
+    {
+      "source": "El cinematógrafo",
+      "target": "La televisión en color",
+      "explicacion": "Una extensión de la tecnología televisiva que se originó con el cinematógrafo."
+    },
+    {
+      "source": "El cinematógrafo",
+      "target": "El ordenador portátil",
+      "explicacion": "Los avances en la tecnología audiovisual iniciados por el cinematógrafo influyeron en el desarrollo de la multimedia gráfica en los ordenadores portátiles."
+    },
+    {
+      "source": "El cinematógrafo",
+      "target": "El compact disc",
+      "explicacion": "Su desarrollo y popularización están vinculados al almacenamiento y reproducción de audiovisual."
+    },
+    {
+      "source": "El telégrafo sin hilos",
+      "target": "El submarino",
+      "explicacion": "Los primeros submarinos comenzaron a experimentar con el uso de comunicaciones sin hilos para mantener el contacto con la superficie mientras estaban sumergidos."
+    },
+    {
+      "source": "El telégrafo sin hilos",
+      "target": "El fonógrafo",
+      "explicacion": "Las primeras versiones inalámbricas dependían del telégrafo sin hilos para transmisiones remotas."
+    },
+    {
+      "source": "El telégrafo sin hilos",
+      "target": "El teléfono",
+      "explicacion": "Las versiones inalámbricas del teléfono surgieron gracias al desarrollo del telégrafo sin hilos."
+    },
+    {
+      "source": "El telégrafo sin hilos",
+      "target": "La televisón",
+      "explicacion": "Las transmisiones de televisión inalámbrica dependían del telégrafo sin hilos para la transmisión de señales."
+    },
+    {
+      "source": "El telégrafo sin hilos",
+      "target": "El aeroplano",
+      "explicacion": "La comunicación inalámbrica entre las aeronaves y las estaciones terrestres dependía del telégrafo sin hilos."
+    },
+    {
+      "source": "El telégrafo sin hilos",
+      "target": "El satélite",
+      "explicacion": "La comunicación entre los satélites y la Tierra inicialmente utilizó tecnologías de transmisión inalámbrica basadas en el telégrafo sin hilos."
+    },
+    {
+      "source": "El telégrafo sin hilos",
+      "target": "El ordenador portátil",
+      "explicacion": "Las capacidades de comunicación inalámbrica en los computadores portátiles (Wi-Fi) derivan de los principios establecidos por el telégrafo sin hilos."
+    },
+    {
+      "source": "El teléfono",
+      "target": "El transistor",
+      "explicacion": "Los teléfonos modernos (especialmente los móviles) dependen esencialmente de transistores para su funcionamiento."
+    },
+    {
+      "source": "El Ford T",
+      "target": "El velocípedo",
+      "explicacion": "Aunque no está en la lista, es importante mencionarlo como contexto. El velocípedo fue el precursor directo de la bicicleta moderna, y la evolución de estas máquinas llevó a otras innovaciones como la motocicleta."
+    },
+    {
+      "source": "La fotocopiadora",
+      "target": "El transistor",
+      "explicacion": "Los sistemas de fotocopiado contienen circuitos electrónicos basados en transistores."
+    },
+    {
+      "source": "La televisión",
+      "target": "El transistor",
+      "explicacion": "La tecnología de transistores revolucionó la televisión, permitiendo la miniaturización y mejora de los circuitos."
+    },
+    {
+      "source": "El transistor",
+      "target": "El ratón de ordenador",
+      "explicacion": "No podría existir sin transistores, ya que estos son esenciales para los circuitos electrónicos involucrados en la detección y transmisión del movimiento del ratón."
+    },
+    {
+      "source": "El transistor",
+      "target": "El ordenador portátil",
+      "explicacion": "El desarrollo de los transistores permitió la creación de computadoras más pequeñas y portátiles."
+    },
+    {
+      "source": "El transistor",
+      "target": "El compact disc",
+      "explicacion": "Los reproductores de CD necesitan transistores en sus circuitos electrónicos para funcionar."
+    },
+    {
+      "source": "El transistor",
+      "target": "La tarjeta inteligente",
+      "explicacion": "Las tarjetas inteligentes contienen microchips basados en transistores para almacenar y procesar datos."
+    },
+    {
+      "source": "El transistor",
+      "target": "El satélite",
+      "explicacion": "La electrónica a bordo de satélites emplea transistores para su procesamiento y comunicación."
+    }
+  ],
+  "multigraph": false
+}
