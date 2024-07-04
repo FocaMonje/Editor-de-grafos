@@ -1,7 +1,7 @@
 let nodes;
 let graphManager;
 let draggingNode = null;
-let saveButton, loadButton, drawModeButton, deleteModeButton, animationModeButton, startButton, stopButton;
+let saveButton, loadButton, drawModeButton, deleteModeButton, animationModeButton, startButton, stopButton, restartButton;
 let zoomSettings = { zoom: 35 };
 let centerX, centerY;
 let nodeCounter = 1;
@@ -22,6 +22,7 @@ let timer;
 let countdown = 30; // Tiempo inicial del cronómetro en segundos
 let countdownInterval; // Intervalo para la cuenta atrás
 let edgeInput;
+let currentYearIndex = 0;
 var colors = ['#008080', '#ADD8E6', '#61B2CB', '#2EA2D1'];
 
 
@@ -122,6 +123,11 @@ function setup() {
     stopButton = select('#stopButton');
     stopButton.mousePressed(stopAnimation);
     stopButton.hide(); // Ocultar el botón de detener inicialmente
+
+    // Seleccionar el botón de reiniciar
+    restartButton = select('#restartButton');
+    restartButton.mousePressed(restartAnimation);
+    restartButton.hide(); // Ocultar el botón de reiniciar inicialmente
 
     slider_start_year = select('#slider_start_year');
     slider_start_year.input(() => {

@@ -20,6 +20,8 @@ function setupYearSliders(graph) {
 
     select('#start_year_value').html(minYear);
     select('#end_year_value').html(maxYear);
+
+    currentYearIndex = 0; // Reiniciar el índice del año actual
 }
 
 function stopAnimation() {
@@ -28,8 +30,21 @@ function stopAnimation() {
         isAnimating = false;
         
         // Mostrar el botón de inicio y ocultar el botón de detener
+        startButton.hide();
+        stopButton.hide();
+        restartButton.show();
+    }
+}
+
+function stopAnimationEndInterval() {
+    if (isAnimating) {
+        clearInterval(animationInterval);
+        isAnimating = false;
+        
+        // Mostrar el botón de inicio y ocultar el botón de detener
         startButton.show();
         stopButton.hide();
+        restartButton.hide();
     }
 }
 
@@ -54,6 +69,7 @@ function startAnimation() {
         // Ocultar el botón de inicio y mostrar el botón de detener
         startButton.hide();
         stopButton.show();
+        restartButton.hide(); 
 
         animationInterval = setInterval(() => {
             if (currentYearIndex <= endYearIndex) {
@@ -76,9 +92,51 @@ function startAnimation() {
                 graphManager.updateGraph(); // Actualiza el grafo con los cambios en la visibilidad
                 currentYearIndex++;
             } else {
-                stopAnimation(); // Llama a stopAnimation cuando termine la animación
+                stopAnimationEndInterval(); // Llama a stopAnimationEndInterval cuando termine la animación
             }
         }, 1000); // Intervalo de 1 segundo (1000 ms) para cada año
+    }
+}
+
+function restartAnimation() {
+    if (workMode === 'animationMode' && !isAnimating) {
+        // Inicializar el intervalo de animación desde el último año reproducido
+        isAnimating = true;
+        if (animationInterval) clearInterval(animationInterval);
+
+        let uniqueYears = graphManager.getUniqueSortedYears();
+        uniqueYears = uniqueYears.filter(year => year >= animationSettings.startYear && year <= animationSettings.endYear);
+
+        let endYearIndex = uniqueYears.length - 1;
+
+        // Ocultar el botón de reiniciar y mostrar el botón de detener
+        restartButton.hide();
+        startButton.hide();
+        stopButton.show();
+
+        animationInterval = setInterval(() => {
+            if (currentYearIndex <= endYearIndex) {
+                let currentYear = uniqueYears[currentYearIndex];
+
+                nodes.nodes.forEach(node => {
+                    if (node.year <= currentYear && node.year >= animationSettings.startYear) {
+                        node.setVisible(true);
+                        graphManager.edges.edges.forEach(edge => {
+                            if ((edge.source === node || edge.target === node) &&
+                                edge.source.year <= currentYear &&
+                                edge.target.year <= currentYear) {
+                                edge.visible = true;
+                            }
+                        });
+                    }
+                });
+
+                graphManager.updateGraph();
+                currentYearIndex++;
+            } else {
+                stopAnimationEndInterval();
+            }
+        }, 1000);
     }
 }
 

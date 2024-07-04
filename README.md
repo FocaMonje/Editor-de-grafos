@@ -14,7 +14,7 @@ https://p5js.org/reference/#/p5/select
 https://esdocu.dev/javascript/funciones-orden-superior#sort
 
 Cosas hechas:
-1. Animation Mode funciona, pero sin respetar el intervalo de tiempo.
+1. Animation Mode funciona y se le ha añadido los botones stop y restart.
 2. Implementación de las funcionalidades de Selected Mode a Draw Mode.
 3. Eliminación de Selected Mode.
 4. Se han añadido los años de los inventos al grafo.
