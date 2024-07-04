@@ -16,12 +16,33 @@ class Edge {
     this.selected = false;
   }
 
+  isPointInsideNode(x, y, node) {
+    let distance = dist(x, y, node.x, node.y);
+    return distance <= node.size / 2;
+  }
+
   isMouseOver(x, y) {
-    const buffer = 0.01; // margen de error para la detección
-    let d1 = dist(x, y, this.source.x, this.source.y);
-    let d2 = dist(x, y, this.target.x, this.target.y);
-    let lineLen = dist(this.source.x, this.source.y, this.target.x, this.target.y);
-    return d1 + d2 >= lineLen - buffer && d1 + d2 <= lineLen + buffer;
+    const margin = 5; // margen para ampliar la zona de selección
+
+    let x1 = this.source.x;
+    let y1 = this.source.y;
+    let x2 = this.target.x;
+    let y2 = this.target.y;
+
+    // Verificar si el punto está dentro del nodo de origen o destino
+    if (this.isPointInsideNode(x, y, this.source) || this.isPointInsideNode(x, y, this.target)) {
+      return false;
+    }
+
+    // Calcular la distancia perpendicular desde (x, y) a la línea
+    let distToLine = abs((y2 - y1) * x - (x2 - x1) * y + x2 * y1 - y2 * x1) / dist(x1, y1, x2, y2);
+
+    // Si la distancia es menor que el margen 
+    if (distToLine <= margin) {
+      return true;
+    }
+
+    return false;
   }
 
   draw() {

@@ -28,7 +28,6 @@
             <button id="loadButton" class="header">Cargar Grafo</button>
             <button id="drawModeButton" class="header">Draw Mode</button>
             <button id="deleteModeButton" class="header">Delete Mode</button>
-            <button id="selectedModeButton" class="header">Selected Mode</button>
             <button id="animationModeButton" class="header">Animation Mode</button>
             <button id="gameModeButton" class="header">Game Mode</button>
 
@@ -40,12 +39,14 @@
             <input type="range" id="slider_node_size" min="5" max="50" value="20">
             <div id="animation-controls"><br><br>
                 <label for="slider_start_year">Start Year:</label>
-                <input type="range" id="slider_start_year" min="1000" max="3000" value="1000">
+                <input type="range" id="slider_start_year" min="1000" max="2024" value="1000">
                 <span id="start_year_value">1000</span><br>
                 <label for="slider_end_year">End Year:</label>
-                <input type="range" id="slider_end_year" min="1000" max="3000" value="3000">
-                <span id="end_year_value">3000</span>
+                <input type="range" id="slider_end_year" min="1000" max="2024" value="2024">
+                <span id="end_year_value">2024</span>
                 <button id="startButton" class="header">Start</button>
+                <button id="stopButton" class="header">Stop</button>
+
             </div>
         </div>
         <div id="div-derecha" class="colum-info">
@@ -53,11 +54,11 @@
             <input type="text" id="node_label">
 
             <label for="edge_label">Edge Info:</label>
-            <input type="text" id="edge_info">
+            <textarea id="edge_info" rows="6" cols="30"></textarea>
             
             <div id="timer">Tiempo: 30</div>
         </div>
-        <div id="edge-info" class="colum-info"></div>
+        
         <div id="game-over-window">
             ¡Felicidades! Has encontrado todas las flechas.
         </div>

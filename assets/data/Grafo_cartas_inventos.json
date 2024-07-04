@@ -3,205 +3,272 @@
   "graph": {},
   "nodes": [
     {
-      "id": "La pila"
+      "id": "La pila",
+      "year": 1800
     },
     {
-      "id": "El primer asteroide"
+      "id": "El primer asteroide",
+      "year": 1801
     },
     {
-      "id": "El sistema métrico"
+      "id": "El sistema métrico",
+      "year": 1799
     },
     {
-      "id": "El sacacorchos"
+      "id": "El sacacorchos",
+      "year": 1795
     },
     {
-      "id": "El lapicero"
+      "id": "El lapicero",
+      "year": 1795
     },
     {
-      "id": "La imprenta"
+      "id": "La imprenta",
+      "year": 1437
     },
     {
-      "id": "El cañón"
+      "id": "El cañón",
+      "year": 1313
     },
     {
-      "id": "El telégrafo"
+      "id": "El telégrafo",
+      "year": 1837
     },
     {
-      "id": "El acordeón"
+      "id": "El acordeón",
+      "year": 1829
     },
     {
-      "id": "La cerilla"
+      "id": "La cerilla",
+      "year": 1827
     },
     {
-      "id": "El telescopio"
+      "id": "El telescopio",
+      "year": 1609
     },
     {
-      "id": "El periódico"
+      "id": "El periódico",
+      "year": 1605
     },
     {
-      "id": "El lenguaje de signos"
+      "id": "El lenguaje de signos",
+      "year": 1593
     },
     {
-      "id": "La goma elástica"
+      "id": "La goma elástica",
+      "year": 1845
     },
     {
-      "id": "La caja fuerte"
+      "id": "La caja fuerte",
+      "year": 1844
     },
     {
-      "id": "La jeringuilla"
+      "id": "La jeringuilla",
+      "year": 1841
     },
     {
-      "id": "El código morse"
+      "id": "El código morse",
+      "year": 1838
     },
     {
-      "id": "La escafandra"
+      "id": "La escafandra",
+      "year": 1679
     },
     {
-      "id": "El barómetro"
+      "id": "El barómetro",
+      "year": 1643
     },
     {
-      "id": "El termómetro"
+      "id": "El termómetro",
+      "year": 1612
     },
     {
-      "id": "El motor de combustión"
+      "id": "El motor de combustión",
+      "year": 1860
     },
     {
-      "id": "El sujetador"
+      "id": "El sujetador",
+      "year": 1859
     },
     {
-      "id": "El abrelatas"
+      "id": "El abrelatas",
+      "year": 1858
     },
     {
-      "id": "El saxofón"
+      "id": "El saxofón",
+      "year": 1846
     },
     {
-      "id": "La máquina de escribir"
+      "id": "La máquina de escribir",
+      "year": 1714
     },
     {
-      "id": "La máquina de vapor"
+      "id": "La máquina de vapor",
+      "year": 1712
     },
     {
-      "id": "El diapasón"
+      "id": "El diapasón",
+      "year": 1711
     },
     {
-      "id": "El tapón de corcho"
+      "id": "El tapón de corcho",
+      "year": 1695
     },
     {
-      "id": "Los pantalones vaqueros"
+      "id": "Los pantalones vaqueros",
+      "year": 1873
     },
     {
-      "id": "La motocicleta"
+      "id": "La motocicleta",
+      "year": 1868
     },
     {
-      "id": "El capital"
+      "id": "El capital",
+      "year": 1867
     },
     {
-      "id": "El alambre de espino"
+      "id": "El alambre de espino",
+      "year": 1867
     },
     {
-      "id": "La goma de borrar"
+      "id": "La goma de borrar",
+      "year": 1770
     },
     {
-      "id": "Los raíles ferroviarios"
+      "id": "Los raíles ferroviarios",
+      "year": 1763
     },
     {
-      "id": "El cinematógrafo"
+      "id": "El cinematógrafo",
+      "year": 1895
     },
     {
-      "id": "El telégrafo sin hilos"
+      "id": "El telégrafo sin hilos",
+      "year": 1895
     },
     {
-      "id": "La vacuna contra la rabia"
+      "id": "La vacuna contra la rabia",
+      "year": 1885
     },
     {
-      "id": "La dinamita"
+      "id": "La dinamita",
+      "year": 1867
     },
     {
-      "id": "El winchester"
+      "id": "El winchester",
+      "year": 1866
     },
     {
-      "id": "Los miserables"
+      "id": "Los miserables",
+      "year": 1862
     },
     {
-      "id": "La enciclopedia"
+      "id": "La enciclopedia",
+      "year": 1751
     },
     {
-      "id": "El cheque"
+      "id": "El cheque",
+      "year": 1742
     },
     {
-      "id": "La escala Celsius"
+      "id": "La escala Celsius",
+      "year": 1741
     },
     {
-      "id": "La bombilla"
+      "id": "La bombilla",
+      "year": 1879
     },
     {
-      "id": "El fonógrafo"
+      "id": "El fonógrafo",
+      "year": 1877
     },
     {
-      "id": "El teléfono"
+      "id": "El teléfono",
+      "year": 1876
     },
     {
-      "id": "La revolución francesa"
+      "id": "La revolución francesa",
+      "year": 1789
     },
     {
-      "id": "Urano"
+      "id": "Urano",
+      "year": 1781
     },
     {
-      "id": "La teoría general de la relatividad"
+      "id": "La teoría general de la relatividad",
+      "year": 1915
     },
     {
-      "id": "El Ford T"
+      "id": "El Ford T",
+      "year": 1908
     },
     {
-      "id": "El aeroplano"
+      "id": "El aeroplano",
+      "year": 1903
     },
     {
-      "id": "Las huellas dactilares"
+      "id": "Las huellas dactilares",
+      "year": 1902
     },
     {
-      "id": "La bomba atómica"
+      "id": "La bomba atómica",
+      "year": 1945
     },
     {
-      "id": "La televisión en color"
+      "id": "La televisión en color",
+      "year": 1938
     },
     {
-      "id": "La fotocopiadora"
+      "id": "La fotocopiadora",
+      "year": 1938
     },
     {
-      "id": "El bolígrafo"
+      "id": "El bolígrafo",
+      "year": 1938
     },
     {
-      "id": "La televisión"
+      "id": "La televisión",
+      "year": 1925
     },
     {
-      "id": "El transistor"
+      "id": "El transistor",
+      "year": 1947
     },
     {
-      "id": "El juego de rol"
+      "id": "El juego de rol",
+      "year": 1974
     },
     {
-      "id": "El ratón de ordenador"
+      "id": "El ratón de ordenador",
+      "year": 1963
     },
     {
-      "id": "La lata con abrefácil"
+      "id": "La lata con abrefácil",
+      "year": 1962
     },
     {
-      "id": "El zepelín"
+      "id": "El zepelín",
+      "year": 1900
     },
     {
-      "id": "El velocípedo"
+      "id": "El velocípedo",
+      "year": 1817
     },
     {
-      "id": "La locomotora"
+      "id": "La locomotora",
+      "year": 1804
     },
     {
-      "id": "El ordenador portátil"
+      "id": "El ordenador portátil",
+      "year": 1981
     },
     {
-      "id": "El compact disc"
+      "id": "El compact disc",
+      "year": 1979
     },
     {
-      "id": "La tarjeta inteligente"
+      "id": "La tarjeta inteligente",
+      "year": 1974
     },
     {
       "id": "El satélite"

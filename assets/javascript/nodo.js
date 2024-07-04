@@ -32,18 +32,24 @@ class Nodo extends toxi.physics2d.VerletParticle2D {
   }
 
   draw(size) {
-    this.size = size;
-    if (this.selected) {
-      strokeWeight(4);
-      stroke(51);
+    if (this.visible) { // Solo dibuja si el nodo es visible
+      this.size = size;
+      if (this.selected) {
+          strokeWeight(4);
+          stroke(51);
+      }
+      ellipse(this.x, this.y, this.size, this.size);
+      fill(0);
+      strokeWeight(1);
+      textAlign(CENTER, CENTER);
+      textSize(this.size);
+      text(this.label, this.x, this.y);
+      fill(255);
     }
-    ellipse(this.x, this.y, this.size, this.size);
-    fill(0);
-    strokeWeight(1);
-    textAlign(CENTER, CENTER);
-    textSize(this.size);
-    text(this.label, this.x, this.y);
-    fill(255);
+  }
+
+  setVisible(visible) {
+    this.visible = visible;
   }
 
   isMouseOver(mouseXAdj, mouseYAdj) {

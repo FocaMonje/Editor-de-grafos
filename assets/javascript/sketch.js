@@ -1,7 +1,7 @@
 let nodes;
 let graphManager;
 let draggingNode = null;
-let saveButton, loadButton, drawModeButton, deleteModeButton, selectedModeButton, animationModeButton, startButton;
+let saveButton, loadButton, drawModeButton, deleteModeButton, animationModeButton, startButton, stopButton;
 let zoomSettings = { zoom: 35 };
 let centerX, centerY;
 let nodeCounter = 1;
@@ -22,6 +22,7 @@ let timer;
 let countdown = 30; // Tiempo inicial del cronómetro en segundos
 let countdownInterval; // Intervalo para la cuenta atrás
 let edgeInput;
+var colors = ['#008080', '#ADD8E6', '#61B2CB', '#2EA2D1'];
 
 
 // The Nature of Code
@@ -100,23 +101,27 @@ function setup() {
         deleteModeButton.style('background-color', '#ddd');
     });
 
-    selectedModeButton = select('#selectedModeButton');
-    selectedModeButton.mousePressed(() => {
-        workMode = 'selectedMode';
-        resetButtonStyles();
-        selectedModeButton.style('background-color', '#ddd');
-    });
-
     animationModeButton = select('#animationModeButton');
     animationModeButton.mousePressed(() => {
         workMode = 'animationMode';
         resetButtonStyles();
         animationModeButton.style('background-color', '#ddd');
         showAnimationControls();
+        graphManager.edges.edges.forEach(edge => edge.visible = false); // Ocultar todas las aristas
+         // Ocultar todos los nodos
+        nodes.setAllNodesInvisible();
+        // Actualizar el gráfico para reflejar los cambios
+        graphManager.updateGraph();
     });
+    
 
     startButton = select('#startButton');
     startButton.mousePressed(startAnimation);
+
+    // Inicializar el botón de detener
+    stopButton = select('#stopButton');
+    stopButton.mousePressed(stopAnimation);
+    stopButton.hide(); // Ocultar el botón de detener inicialmente
 
     slider_start_year = select('#slider_start_year');
     slider_start_year.input(() => {
@@ -199,20 +204,6 @@ function draw() {
     graphManager.drawEdges();
 
     nodes.draw(slider_node_size.value()); // Aquí se usa el valor del deslizador para el tamaño de los nodos
-
-    // if (workMode === 'selectedMode') {
-    //     let edgeInfoDiv = select('#edge-info');
-    //     if (selectedEdge) {
-    //         edgeInfoDiv.html(selectedEdge.explicacion || "No hay información");
-    //         edgeInfoDiv.style('display', 'block');
-    //     } else {
-    //         edgeInfoDiv.style('display', 'none');
-    //     }
-    // }
-    
-    if (isAnimating) {
-        animateNodes();
-    }
 
     if (gameModeActive) {
         checkGameCompletion();

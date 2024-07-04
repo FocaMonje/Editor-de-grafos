@@ -5,14 +5,14 @@ function setupYearSliders(graph) {
     let maxYear = Math.max(...years);
 
     minYear = Math.max(minYear, 1000);
-    maxYear = Math.min(maxYear, 3000);
+    maxYear = Math.min(maxYear, 2024);
 
     slider_start_year.attribute('min', 1000); 
-    slider_start_year.attribute('max', 3000); 
+    slider_start_year.attribute('max', 2024); 
     slider_start_year.value(minYear);
 
     slider_end_year.attribute('min', 1000); 
-    slider_end_year.attribute('max', 3000); 
+    slider_end_year.attribute('max', 2024); 
     slider_end_year.value(maxYear);
 
     animationSettings.startYear = minYear;
@@ -22,35 +22,60 @@ function setupYearSliders(graph) {
     select('#end_year_value').html(maxYear);
 }
 
-function startAnimation() {
-    if (workMode === 'animationMode') {
-        isAnimating = true;
-        if (animationInterval) clearInterval(animationInterval);
+function stopAnimation() {
+    if (isAnimating) {
+        clearInterval(animationInterval);
+        isAnimating = false;
         
-        let currentYear = animationSettings.startYear;
-        let endYear = animationSettings.endYear;
-        
-        // Iterar a través de los nodos para mostrar solo aquellos en el rango de años seleccionado
-        nodes.nodes.forEach(node => {
-            node.visible = node.year >= currentYear && node.year <= endYear;
-        });
-
-        animationInterval = setInterval(() => {
-            graphManager.updateGraph(); // Para actualizar el grafo con los cambios en la visibilidad
-            currentYear++;
-            if (currentYear > endYear) {
-                clearInterval(animationInterval);
-                isAnimating = false;
-            }
-        }, 1000); // Intervalo de 1 segundo (1000 ms) para cada año
+        // Mostrar el botón de inicio y ocultar el botón de detener
+        startButton.show();
+        stopButton.hide();
     }
 }
 
-function animateNodes(currentYear, endYear) {
-    nodes.nodes.forEach(node => {
-        node.visible = node.year >= currentYear && node.year <= endYear;
-    });
-    graphManager.updateGraph(); 
+function startAnimation() {
+   
+    if (workMode === 'animationMode') {
+        isAnimating = true;
+        if (animationInterval) clearInterval(animationInterval);
+
+        let uniqueYears = graphManager.getUniqueSortedYears();
+        let currentYearIndex = 0;
+        let endYearIndex = uniqueYears.length - 1;
+
+        // Inicialmente ocultar todos los nodos y aristas
+        nodes.setAllNodesInvisible();
+        graphManager.edges.edges.forEach(edge => edge.visible = false);
+
+        // Ocultar el botón de inicio y mostrar el botón de detener
+        startButton.hide();
+        stopButton.show();
+
+        animationInterval = setInterval(() => {
+            if (currentYearIndex <= endYearIndex) {
+                let currentYear = uniqueYears[currentYearIndex];
+
+                // Mostrar los nodos dentro del rango de años
+                nodes.nodes.forEach(node => {
+                    if (node.year <= currentYear) {
+                        node.setVisible(true);
+                        graphManager.edges.edges.forEach(edge => {
+                            if ((edge.source === node || edge.target === node) &&
+                                edge.source.year <= currentYear &&
+                                edge.target.year <= currentYear) {
+                                edge.visible = true;
+                            }
+                        });
+                    }
+                });
+
+                graphManager.updateGraph(); // Actualiza el grafo con los cambios en la visibilidad
+                currentYearIndex++;
+            } else {
+                stopAnimation(); // Llama a stopAnimation cuando termine la animación
+            }
+        }, 1000); // Intervalo de 1 segundo (1000 ms) para cada año
+    }
 }
 
 function showAnimationControls() {

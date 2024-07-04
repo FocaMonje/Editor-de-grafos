@@ -1,4 +1,3 @@
-var colors = ['#008080', '#ADD8E6', '#61B2CB', '#2EA2D1'];
 
 function mousePressed() {
     if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
@@ -41,7 +40,21 @@ function mousePressed() {
             }
 
             case 'drawMode': {
-             
+                // Verificar si se ha hecho clic en una flecha
+                let edge = graphManager.edges.findEdge(mouseXAdj, mouseYAdj);
+                if (edge) {
+                    // Si la flecha ya está seleccionada, se deselecciona
+                    if (graphManager.edges.selectedEdge === edge) {
+                        graphManager.edges.unselectEdges();
+                        edgeInput.value('');
+                    } else {
+                        // Si se ha hecho clic en una flecha, se maneja como en 'selectedMode'
+                        graphManager.edges.selectEdge(edge);
+                        edgeInput.value(edge.explicacion);
+                    }
+                    break;
+                }
+
                 // Lógica normal de creación de flechas
                 let node = nodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
                 if (node) {
@@ -60,9 +73,8 @@ function mousePressed() {
                         let newNode = nodes.addNode(mouseXAdj, mouseYAdj);
                         newNode.label = nodeCounter.toString();
                         nodeCounter++;
-                    // }
+                    }
                 }
-            }
                 break;
             }
           case 'deleteMode': {
@@ -79,21 +91,6 @@ function mousePressed() {
               }
               break;
           }
-          case 'selectedMode': {
-            let edge = graphManager.edges.findEdge(mouseXAdj, mouseYAdj);
-            if (edge != null) {
-                graphManager.edges.selectEdge(edge);
-                edgeInput.value(edge.explicacion);
-            } else {
-                  try {
-                      graphManager.edges.unselectEdges();
-                  } catch (e) {
-                      console.log(e);
-                  }             
-            }
-            break;
-            }
-
           case 'animationMode': {
             startAnimation();
             break;
@@ -148,27 +145,11 @@ function doZoom(event) {
 function resetButtonStyles() {
     drawModeButton.style('background-color', '');
     deleteModeButton.style('background-color', '');
-    selectedModeButton.style('background-color', '');
+    // selectedModeButton.style('background-color', '');
     animationModeButton.style('background-color', '');
     gameModeButton.style('background-color', '');
     hideAnimationControls();
 }
-
-// function drawArrow(x1, y1, x2, y2) {
-//     let arrowSize = 10; // Tamaño de la punta de la flecha
-//     let arrowLength = dist(x1, y1, x2, y2) - arrowSize * 2; // Longitud del cuerpo de la flecha
-//     arrowLength /= 1.1; // Reducimos el tamaño del cuerpo de la flecha
-//     let arrowAngle = atan2(y2 - y1, x2 - x1); // Para orientar la flecha en la dirección adecuada
-//     push();
-//     translate(x1, y1);
-//     rotate(arrowAngle);
-//     // Dibujar el cuerpo de la flecha
-//     line(0, 0, arrowLength, 0);
-//     // Dibujar la punta de la flecha
-//     translate(arrowLength, 0);
-//     triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
-//     pop();
-// }
 
 function moveView(deltaX, deltaY) {
     controls.view.x += deltaX;

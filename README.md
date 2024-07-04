@@ -11,10 +11,10 @@ https://p5js.org/reference/#/p5/createFileInput
 
 https://p5js.org/reference/#/p5/select 
 
+https://esdocu.dev/javascript/funciones-orden-superior#sort
+
 Cosas hechas:
-1. Implementación de Game Mode, funciona.
-2. Implementación de una mini ventana para avisar al jugador que ya encontró todas las flechas.
-3. Implementación de un sistema de puntuación, no funciona la puntuación no se actualiza o no se calcula bien o ambas cosas, el caso es que siempre muestra una puntuación igual a 0.
-4. Implementación de un temporizador, funciona.
-5. Implementación de flechas de navegación N-S-E-O, funciona.
-6. Implementación de los cambios que hay en main, pero hay un pequeño error.
+1. Animation Mode funciona, pero sin respetar el intervalo de tiempo.
+2. Implementación de las funcionalidades de Selected Mode a Draw Mode.
+3. Eliminación de Selected Mode.
+4. Se han añadido los años de los inventos al grafo.

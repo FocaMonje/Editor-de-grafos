@@ -40,6 +40,14 @@ class Nodos {
     }
   }
 
+  setAllNodesInvisible() {
+      this.nodes.forEach(node => node.setVisible(false));
+  }
+
+  setAllNodesVisible() {
+    this.nodes.forEach(node => node.setVisible(true));
+  }
+
   findNode(x, y, nodeSize = 20, zoomFactor = 1) {
     for (let node of this.nodes) {
         // Ajuste dinámico de la distancia de detección
@@ -58,7 +66,7 @@ class Nodos {
     for (let node of this.nodes) {
         node.updateState(currentTime);
     }
-}
+  }
 
   applyRepulsion() {
     let repulsionForce = 0.1;
