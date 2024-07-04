@@ -34,12 +34,16 @@ function stopAnimation() {
 }
 
 function startAnimation() {
-   
     if (workMode === 'animationMode') {
         isAnimating = true;
         if (animationInterval) clearInterval(animationInterval);
 
+        // Obtén los años únicos y ordenados
         let uniqueYears = graphManager.getUniqueSortedYears();
+
+        // Filtra los años dentro del rango seleccionado
+        uniqueYears = uniqueYears.filter(year => year >= animationSettings.startYear && year <= animationSettings.endYear);
+
         let currentYearIndex = 0;
         let endYearIndex = uniqueYears.length - 1;
 
@@ -55,9 +59,9 @@ function startAnimation() {
             if (currentYearIndex <= endYearIndex) {
                 let currentYear = uniqueYears[currentYearIndex];
 
-                // Mostrar los nodos dentro del rango de años
+                // Mostrar los nodos y aristas dentro del rango de años
                 nodes.nodes.forEach(node => {
-                    if (node.year <= currentYear) {
+                    if (node.year <= currentYear && node.year >= animationSettings.startYear) {
                         node.setVisible(true);
                         graphManager.edges.edges.forEach(edge => {
                             if ((edge.source === node || edge.target === node) &&
