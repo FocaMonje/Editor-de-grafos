@@ -198,6 +198,9 @@ function setup() {
     solutionButton.mousePressed(showSolution);
     solutionButton.hide(); // Ocultar el botón de solución inicialmente
 
+    info = select('#info');
+    info.hide();
+
   // Botones de navegación
   let moveUpButton = select('#moveUp');
   let moveLeftButton = select('#moveLeft');

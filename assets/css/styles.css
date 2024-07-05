@@ -100,3 +100,8 @@ button {
 #solutionButton {
     display: none;
 }
+
+#info {
+    background-color: rgb(5, 241, 245);
+    display: none;
+}

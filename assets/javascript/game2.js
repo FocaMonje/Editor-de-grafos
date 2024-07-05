@@ -27,6 +27,8 @@ function enterGameMode2() {
     // Ocultar el botón "Show Solution"
     document.getElementById('solutionButton').style.display = 'none';
 
+    document.getElementById('info').style.display = 'block';
+
     // Ocultar los controles y deshabilitar la creación de nodos
     slider_node_size.attribute('disabled', true);
     labelInput.attribute('disabled', true);
@@ -43,7 +45,7 @@ function enterGameMode2() {
         timer.html('Tiempo: ' + countdown);
         if (countdown <= 0) {
             clearInterval(countdownInterval);
-            endGame();
+            endGame2();
         }
     }, 1000);
 
@@ -71,13 +73,18 @@ function enterGameMode2() {
         node.visible = selectedNodes.includes(node);
     });
 
-     // Ocultar las flechas (edges)
-     graphManager.edges.edges.forEach(edge => {
+    // Ocultar las flechas (edges)
+    graphManager.edges.edges.forEach(edge => {
         edge.visible = false;
     });
 
     // Ocultar la ventana de fin del juego si está visible
-    gameOverWindow.style.display = 'none';
+    // gameOverWindow.style.display = 'none';
+
+    // Evento para verificar la finalización del juego cuando se cambia la visibilidad de un edge
+    // graphManager.edges.edges.forEach(edge => {
+    //     edge.onVisibilityChange = checkGameCompletion2;
+    // });
 }
 
 function exitGameMode2() {
@@ -87,6 +94,8 @@ function exitGameMode2() {
 
     // Ocultar el botón "Show Solution"
     document.getElementById('solutionButton').style.display = 'none';
+
+    document.getElementById('info').style.display = 'none';
 
     hideScore();
 
@@ -104,7 +113,7 @@ function exitGameMode2() {
     });
 
     // Ocultar la ventana de fin del juego si está visible
-    gameOverWindow.style('display', 'none');
+    // gameOverWindow.style('display', 'none');
 
     // Detener el cronómetro
     clearInterval(countdownInterval);
@@ -115,7 +124,7 @@ function exitGameMode2() {
 function endGame2() {
     clearInterval(countdownInterval);
     let points = evaluateScorePoints();
-    displayScore(points);
+    displayScore2(points);
 
      // Verificar si se encontraron todas las flechas
      let allEdgesVisible = graphManager.edges.edges.every(edge => edge.visible);
@@ -126,24 +135,23 @@ function endGame2() {
 }
 
 function checkGameCompletion2() {
-    // Verificar si todas las flechas están visibles
-    let allEdgesVisible = graphManager.edges.edges.every(edge => edge.visible);
+    // Verificar si todas las flechas correspondientes a los nodos seleccionados están visibles
+    let allEdgesVisible = graphManager.edges.edges.every(edge => {
+        return (!selectedNodes.includes(edge.source) || !selectedNodes.includes(edge.target)) || edge.visible;
+    });
 
     // Si todas las flechas están visibles, mostrar la ventana de fin del juego
     if (allEdgesVisible) {
-        endGame2();
-        gameOverWindow.style.display = 'block';
         document.getElementById('solutionButton').style.display = 'none'; // Ocultar el botón "Show Solution"
-    } else {
-        document.getElementById('solutionButton').style.display = 'block'; // Mostrar el botón "Show Solution"
-    }
+        document.getElementById('info').style.display = 'none';
+    } 
 }
 
-// function displayScore2(points) {
-//     scoreDisplay.html(`Puntuación: ${points}`); // Mostrar la puntuación en el elemento HTML correspondiente
-//     scoreDisplay.style('display', 'block'); // Asegurarse de que el elemento sea visible
-//     document.getElementById('solutionButton').style.display = 'block'; // Mostrar el botón "Show Solution"
-// }
+function displayScore2(points) {
+    scoreDisplay.html(`Puntuación: ${points}`); // Mostrar la puntuación en el elemento HTML correspondiente
+    scoreDisplay.style('display', 'block'); // Asegurarse de que el elemento sea visible
+    document.getElementById('solutionButton').style.display = 'block'; // Mostrar el botón "Show Solution"
+}
 
 // Función para mostrar la solución
 function showSolution() {
