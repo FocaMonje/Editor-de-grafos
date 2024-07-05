@@ -14,7 +14,5 @@ https://p5js.org/reference/#/p5/select
 https://esdocu.dev/javascript/funciones-orden-superior#sort
 
 Cosas hechas:
-1. Animation Mode funciona y se le ha añadido los botones stop y restart.
-2. Implementación de las funcionalidades de Selected Mode a Draw Mode.
-3. Eliminación de Selected Mode.
-4. Se han añadido los años de los inventos al grafo.
+1. Game Mode 2 implementado correctamente.
+2. Show Solution se muestra siempre y no debería ser así.
