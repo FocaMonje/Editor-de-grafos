@@ -15,4 +15,3 @@ https://esdocu.dev/javascript/funciones-orden-superior#sort
 
 Cosas hechas:
 1. Game Mode 2 implementado correctamente.
-2. Show Solution se muestra siempre y no debería ser así.
