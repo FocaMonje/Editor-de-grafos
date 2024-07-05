@@ -39,6 +39,36 @@ function mousePressed() {
                 break;
             }
 
+            case 'gameMode2': {
+                let node = nodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
+                if (node) {
+                    if (nodes.nodeSelected !== null && nodes.nodeSelected !== node) {
+                        let correctDirection = graphManager.edges.edges.some(edge => {
+                            return edge.source === nodes.nodeSelected && edge.target === node;
+                        });
+                        if (correctDirection) {
+                            graphManager.edges.edges.forEach(edge => {
+                                if (edge.source === nodes.nodeSelected && edge.target === node) {
+                                    edge.visible = true;
+                                }
+                            });
+                            score_points += 1;
+                            addEdgeToFinalPath(nodes.nodeSelected, node); // Añadir arista propuesta
+                        } else {
+                            score_points -= 1;
+                        }
+                        nodes.unSelectNodes();
+                        console.log(score_points);
+                    } else if (nodes.nodeSelected === null && node.selected === false) {
+                        nodes.selectNode(node);
+                        labelInput.value(node.label);
+                    }
+                } else if (nodes.nodeSelected != null) {
+                    nodes.unSelectNodes();
+                }
+                break;
+            }
+
             case 'drawMode': {
                 // Verificar si se ha hecho clic en una flecha
                 let edge = graphManager.edges.findEdge(mouseXAdj, mouseYAdj);

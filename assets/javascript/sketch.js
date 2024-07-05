@@ -23,7 +23,22 @@ let countdown = 30; // Tiempo inicial del cronómetro en segundos
 let countdownInterval; // Intervalo para la cuenta atrás
 let edgeInput;
 let currentYearIndex = 0;
-var colors = ['#008080', '#ADD8E6', '#61B2CB', '#2EA2D1'];
+let colors = ['#008080', '#ADD8E6', '#61B2CB', '#2EA2D1'];
+let gameMode2Button;
+let gameMode2Active = false;
+let solutionButton;
+let selectedNodes = [];
+
+// const timeIntervals = [
+//     { start: 1600, end: 1649 },
+//     { start: 1650, end: 1699 },
+//     { start: 1700, end: 1749 },
+//     { start: 1750, end: 1799 },
+//     { start: 1800, end: 1850 },
+//     { start: 1851, end: 1900 },
+//     { start: 1901, end: 1950 },
+//     { start: 1951, end: 2000 }
+// ];
 
 
 // The Nature of Code
@@ -168,6 +183,21 @@ function setup() {
 
   timer = select('#timer'); // Seleccionar el elemento del cronómetro
 
+  gameMode2Button = select('#gameMode2Button');
+    gameMode2Button.mousePressed(() => {
+        resetButtonStyles();
+        gameMode2Active = !gameMode2Active;
+        if (gameMode2Active) {
+            enterGameMode2();
+        } else {
+            exitGameMode2();
+        }
+    });
+
+    solutionButton = select('#solutionButton');
+    solutionButton.mousePressed(showSolution);
+    solutionButton.hide(); // Ocultar el botón de solución inicialmente
+
   // Botones de navegación
   let moveUpButton = select('#moveUp');
   let moveLeftButton = select('#moveLeft');
@@ -214,4 +244,9 @@ function draw() {
     if (gameModeActive) {
         checkGameCompletion();
     }
+
+    if (gameMode2Active) {
+        checkGameCompletion2();
+    }
+    
 }

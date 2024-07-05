@@ -96,3 +96,7 @@ button {
     line-height: 40px;
     border-radius: 5px;
 }
+
+#solutionButton {
+    display: none;
+}
