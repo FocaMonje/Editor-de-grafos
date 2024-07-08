@@ -1,24 +1,4 @@
-// Función para seleccionar un intervalo de tiempo al azar
-// function getRandomTimeInterval() {
-//     const randomIndex = Math.floor(Math.random() * timeIntervals.length);
-//     return timeIntervals[randomIndex];
-// }
 
-// Función para seleccionar 5 inventos al azar dentro de un intervalo de tiempo
-// function getRandomInventos(interval, nodes) {
-//     const inventosInInterval = nodes.filter(node => node.year >= interval.start && node.year <= interval.end);
-//     if (inventosInInterval.length <= 5) return inventosInInterval;
-    
-//     const selectedInventos = [];
-//     while (selectedInventos.length < 5) {
-//         const randomIndex = Math.floor(Math.random() * inventosInInterval.length);
-//         const selected = inventosInInterval.splice(randomIndex, 1)[0];
-//         selectedInventos.push(selected);
-//     }
-//     return selectedInventos;
-// }
-
-// Función para entrar en Game Mode 2
 function enterGameMode2() {
     workMode = "gameMode2";
     const button = document.getElementById('gameMode2Button');
@@ -49,42 +29,35 @@ function enterGameMode2() {
         }
     }, 1000);
 
-    // Seleccionar un intervalo de tiempo aleatorio
-    const intervals = [
-        { start: 1600, end: 1700 },
-        { start: 1701, end: 1800 },
-        { start: 1801, end: 1900 },
-        { start: 1901, end: 2000 }
-    ];
-    const randomInterval = intervals[Math.floor(Math.random() * intervals.length)];
+    // Nodos más conectados
+    const highlyConnectedNodes = ["La imprenta", "La pila", "El sistema métrico", "El cañon", "La goma elástica"];
+    
+    // Seleccionar un nodo aleatorio entre los más conectados
+    const selectedMainNode = highlyConnectedNodes[Math.floor(Math.random() * highlyConnectedNodes.length)];
+    const mainNode = nodes.nodes.find(node => node.label === selectedMainNode);
 
-    // Filtrar nodos dentro del intervalo de tiempo seleccionado
-    const nodesInInterval = nodes.nodes.filter(node => node.year >= randomInterval.start && node.year <= randomInterval.end);
+    // Encontrar nodos conectados al nodo seleccionado
+    const connectedNodes = graphManager.edges.edges
+        .filter(edge => edge.source === mainNode || edge.target === mainNode)
+        .map(edge => edge.source === mainNode ? edge.target : edge.source);
 
-    // Seleccionar cinco nodos aleatorios
-    selectedNodes = [];
-    while (selectedNodes.length < 20 && nodesInInterval.length > 0) {
-        const randomIndex = Math.floor(Math.random() * nodesInInterval.length);
-        selectedNodes.push(nodesInInterval.splice(randomIndex, 1)[0]);
+    // Seleccionar nodos aleatorios conectados al nodo principal
+    selectedNodes = [mainNode];
+    while (selectedNodes.length < 20 && connectedNodes.length > 0) {
+        const randomIndex = Math.floor(Math.random() * connectedNodes.length);
+        selectedNodes.push(connectedNodes.splice(randomIndex, 1)[0]);
     }
 
-    // Mostrar solo los nodos seleccionados y sus aristas correspondientes
+    // Mostrar solo los nodos seleccionados
     nodes.nodes.forEach(node => {
-        node.visible = selectedNodes.includes(node);
+        node.setVisible(selectedNodes.includes(node));
+        console.log(`Nodo ${node.label} visible: ${node.visible}`);
     });
 
-    // Ocultar las flechas (edges)
+    // Ocultar todas las aristas
     graphManager.edges.edges.forEach(edge => {
         edge.visible = false;
     });
-
-    // Ocultar la ventana de fin del juego si está visible
-    // gameOverWindow.style.display = 'none';
-
-    // Evento para verificar la finalización del juego cuando se cambia la visibilidad de un edge
-    // graphManager.edges.edges.forEach(edge => {
-    //     edge.onVisibilityChange = checkGameCompletion2;
-    // });
 }
 
 function exitGameMode2() {
@@ -105,15 +78,12 @@ function exitGameMode2() {
 
     // Restaurar la visibilidad de los nodos y las aristas
     nodes.nodes.forEach(node => {
-        node.visible = true;
+        node.setVisible(true);
     });
 
     graphManager.edges.edges.forEach(edge => {
         edge.visible = true; // Implementar la lógica de visibilidad
     });
-
-    // Ocultar la ventana de fin del juego si está visible
-    // gameOverWindow.style('display', 'none');
 
     // Detener el cronómetro
     clearInterval(countdownInterval);
@@ -126,12 +96,12 @@ function endGame2() {
     let points = evaluateScorePoints();
     displayScore2(points);
 
-     // Verificar si se encontraron todas las flechas
-     let allEdgesVisible = graphManager.edges.edges.every(edge => edge.visible);
+    // Verificar si se encontraron todas las flechas
+    let allEdgesVisible = graphManager.edges.edges.every(edge => edge.visible);
 
-     if (!allEdgesVisible) {
-         document.getElementById('solutionButton').style.display = 'block'; // Mostrar el botón "Show Solution" si no se encontraron todas las flechas
-     }
+    if (!allEdgesVisible) {
+        document.getElementById('solutionButton').style.display = 'block'; // Mostrar el botón "Show Solution" si no se encontraron todas las flechas
+    }
 }
 
 function checkGameCompletion2() {
@@ -162,6 +132,6 @@ function showSolution() {
         }
     });
     selectedNodes.forEach(node => {
-        node.visible = true; // Mostrar todos los nodos seleccionados
+        node.setVisible(true); // Mostrar todos los nodos seleccionados
     });
 }
