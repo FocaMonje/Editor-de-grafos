@@ -1,7 +1,7 @@
 let nodes;
 let graphManager;
 let draggingNode = null;
-let saveButton, loadButton, drawModeButton, deleteModeButton, animationModeButton, startButton, stopButton, restartButton;
+let saveButton, loadButton, drawModeButton, deleteModeButton, animationModeButton, startButton, stopButton, restartButton, timeLineButton;
 let zoomSettings = { zoom: 35 };
 let centerX, centerY;
 let nodeCounter = 1;
@@ -28,6 +28,7 @@ let gameMode2Button;
 let gameMode2Active = false;
 let solutionButton;
 let selectedNodes = [];
+let timeLineActive = false;
 
 // const timeIntervals = [
 //     { start: 1600, end: 1649 },
@@ -201,6 +202,17 @@ function setup() {
     info = select('#info');
     info.hide();
 
+    timeLineButton = select('#timeLineButton');
+    timeLineButton.mousePressed(() => {
+        resetButtonStyles();
+        timeLineActive = !timeLineActive;
+        if (timeLineActive) {
+            enterTimeLineMode();
+        } else {
+            exitTimeLineMode();
+        }
+    });
+
   // Botones de navegación
   let moveUpButton = select('#moveUp');
   let moveLeftButton = select('#moveLeft');
@@ -250,6 +262,11 @@ function draw() {
 
     if (gameMode2Active) {
         checkGameCompletion2();
+    }
+
+    
+    if (timeLineActive) {
+        checkGameCompletion();
     }
     
 }

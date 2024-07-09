@@ -14,6 +14,30 @@ function hideScore() {
     scoreDisplay.style('display', 'none');
 }
 
+function checkGameCompletion() {
+    // Verificar si todas las flechas están visibles
+    let allEdgesVisible = graphManager.edges.edges.every(edge => edge.visible);
+
+    // Si todas las flechas están visibles, mostrar la ventana de fin del juego
+    if (allEdgesVisible) {
+        endGame();
+        gameOverWindow.style('display', 'block');
+    }
+}
+
+// Función para terminar el juego y evaluar la puntuación
+function endGame() {
+    clearInterval(countdownInterval); // Detener el cronómetro
+    let points = evaluateScorePoints();
+    displayScore(points);
+}
+
+// Función para mostrar la puntuación
+function displayScore(points) {
+    scoreDisplay.html(`Puntuación: ${points}`); // Mostrar la puntuación en el elemento HTML correspondiente
+    scoreDisplay.style('display', 'block'); // Asegurarse de que el elemento sea visible
+}
+
 // Función para obtener las flechas reales
 function getRealEdges() {
     let edgesList = [];

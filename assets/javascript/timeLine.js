@@ -1,17 +1,15 @@
 
-function enterGameMode() {
-    workMode = "gameMode";
-    const button = document.getElementById('gameModeButton');
-    button.textContent = 'Exit Game Mode'; // Cambiar texto del botón
-    // Ocultar los controles y deshabilitar la creación de nodos
-    slider_node_size.attribute('disabled', true);
-    labelInput.attribute('disabled', true);
+function enterTimeLineMode() {
+    workMode = "timeLineMode";
+    const button = document.getElementById('timeLineButton');
+    button.textContent = 'Exit Time Line Mode'; // Cambiar texto del botón
 
-    // Ocultar las flechas (edges)
+    // Ocultar las flechas (edges) y asegurar que los nodos sean visibles
     graphManager.edges.edges.forEach(edge => {
-        edge.visible = false;
+        edge.visible = false; // Ocultar todas las flechas
     });
-    // Ocultar la ventana de fin del juego si está visible
+
+    // Mostrar la ventana de fin del juego si está visible
     gameOverWindow.style('display', 'none');
     // Iniciar el cronómetro
     countdown = 30; // Reiniciar el tiempo del cronómetro
@@ -27,24 +25,29 @@ function enterGameMode() {
     }, 1000);
 }
 
-function exitGameMode() {
+function exitTimeLineMode() {
     workMode = "drawMode";
-    const button = document.getElementById('gameModeButton');
-    button.textContent = 'Game Mode'; // Restaurar texto original del botón
+    const button = document.getElementById('timeLineButton');
+    button.textContent = 'Time Line'; // Restaurar texto original del botón
+
     hideScore();
+    
     // Mostrar los controles y habilitar la creación de nodos
     slider_node_size.removeAttribute('disabled');
     labelInput.removeAttribute('disabled');
 
-    // Restaurar la visibilidad de las flechas (edges) según la lógica del juego
+    // Restaurar la visibilidad de las flechas y los nodos
     graphManager.edges.edges.forEach(edge => {
         edge.visible = true; // Implementar la lógica de visibilidad según el juego
     });
+    nodes.setAllNodesVisible(); // Mostrar todos los nodos
+    graphManager.updateGraph(); // Actualizar el gráfico
 
     // Ocultar la ventana de fin del juego si está visible
     gameOverWindow.style('display', 'none');
-   // Detener el cronómetro
-   clearInterval(countdownInterval); // Detener el cronómetro
-   timer.html('Tiempo: 30'); // Resetear el tiempo mostrado
+
+    // Detener el cronómetro
+    clearInterval(countdownInterval); // Detener el cronómetro
+    timer.html('Tiempo: 30'); // Resetear el tiempo mostrado
     timer.style('display', 'none'); // Ocultar el temporizador
 }

@@ -5,7 +5,7 @@ function mousePressed() {
         let mouseXAdj = (mouseX - centerX - controls.view.x) / zoomFactor + centerX;
         let mouseYAdj = (mouseY - centerY - controls.view.y) / zoomFactor + centerY;
 
-      switch (workMode) {
+        switch (workMode) {
         
             case 'gameMode':{
 
@@ -107,26 +107,53 @@ function mousePressed() {
                 }
                 break;
             }
-          case 'deleteMode': {
-              let edge = graphManager.edges.findEdge(mouseXAdj, mouseYAdj);
-              if (edge) {
-                  graphManager.edges.removeEdge(edge);
-                  return;
-              }
+            case 'deleteMode': {
+                let edge = graphManager.edges.findEdge(mouseXAdj, mouseYAdj);
+                if (edge) {
+                    graphManager.edges.removeEdge(edge);
+                    return;
+                }
 
-              let node = nodes.findNode(mouseXAdj, mouseYAdj);
-              if (node) {
-                  nodes.removeNode(node);
-                  graphManager.removeEdgesConnectedToNode(node);
-              }
-              break;
-          }
-          case 'animationMode': {
-            startAnimation();
-            break;
+                let node = nodes.findNode(mouseXAdj, mouseYAdj);
+                if (node) {
+                    nodes.removeNode(node);
+                    graphManager.removeEdgesConnectedToNode(node);
+                }
+                break;
             }
+            case 'animationMode': {
+                startAnimation();
+                break;
+            }
+
+            case 'timeLineMode': {
+                let node = nodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
+                if (node) {
+                    if (nodes.nodeSelected !== null && nodes.nodeSelected !== node) {
+                        // Verificar si la dirección es correcta según el año
+                        let correctDirection = node.year > nodes.nodeSelected.year;
+                        if (correctDirection) {
+                            // Agregar la arista y hacerla visible
+                            graphManager.edges.addEdge(nodes.nodeSelected, node);
+                            score_points += 1;
+                            addEdgeToFinalPath(nodes.nodeSelected, node); // Añadir arista propuesta
+                        } else {
+                            score_points -= 1;
+                        }
+                        nodes.unSelectNodes();
+                        console.log(score_points);
+                    } else if (nodes.nodeSelected === null && node.selected === false) {
+                        nodes.selectNode(node);
+                        labelInput.value(node.label);
+                    }
+                } else if (nodes.nodeSelected != null) {
+                    nodes.unSelectNodes();
+                }
+                break;
+            }
+            
+        }
     }
-  }
 }
 
 function mouseDragged() {
