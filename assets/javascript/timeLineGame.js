@@ -9,8 +9,9 @@ function enterTimeLineMode() {
         edge.visible = false; // Ocultar todas las flechas
     });
 
-    // Mostrar la ventana de fin del juego si está visible
+    // Ocultar la ventana de fin del juego si está visible
     gameOverWindow.style('display', 'none');
+    
     // Iniciar el cronómetro
     countdown = 30; // Reiniciar el tiempo del cronómetro
     timer.html('Tiempo: ' + countdown); // Mostrar el tiempo inicial
