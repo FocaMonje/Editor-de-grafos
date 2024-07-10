@@ -235,8 +235,13 @@ function setup() {
     
 
 function draw() {
-    // Update the physics world
-    physics.update();
+    
+    // Update the physics world 
+    if(!timeLineActive){
+        physics.update();
+        nodes.applyRepulsion();
+    } 
+    
 
     background(220);
 
@@ -249,7 +254,6 @@ function draw() {
     scale(zoomFactor);
     translate(-centerX, -centerY);
 
-    nodes.applyRepulsion();
 
     stroke(0);
     graphManager.drawEdges();
