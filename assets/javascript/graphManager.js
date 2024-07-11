@@ -3,12 +3,13 @@ class GraphManager {
   constructor(nodes,physics) {
     this.nodes = nodes;
     this.edges = new Edges();
-    this.updateGraph();
     this.physics = physics;
+    this.graphJSONObject = {};
+    this.prepareJSONObject();
   }
 
-  updateGraph() {
-    this.graph = {
+  prepareJSONObject() {
+    this.graphJSONObject = {
       directed: true,
       graph: {},
       nodes: this.nodes.nodesList.map(node => ({ id: node.label, year: node.year })),    // Guardar el año en el nodo
@@ -24,21 +25,21 @@ class GraphManager {
   addEdge(node1, node2, explicacion = '') {
     this.edges.addEdge(node1, node2, explicacion);
     this.physics.addSpring(new VerletSpring2D(node1, node2, 100, 0.01));
-    this.updateGraph();
+    this.prepareJSONObject();
   }
 
   removeEdgesConnectedToNode(node) {
     this.edges.removeEdgesConnectedToNode(node);
-    this.updateGraph();
+    this.prepareJSONObject();
   }
 
   removeEdge(edge) {
     this.edges.edgesList = this.edges.edgesList.filter(e => e !== edge);
-    this.updateGraph();
+    this.prepareJSONObject();
   }
 
   saveGraph() {
-    this.updateGraph();
+    this.prepareJSONObject();
     saveJSON(this.graph, 'graph.json');
   }
 
@@ -82,7 +83,7 @@ class GraphManager {
       }
     });
 
-    this.updateGraph();
+    this.prepareJSONObject();
   }
 
   drawEdges() {
@@ -101,7 +102,7 @@ class GraphManager {
     } else {
         this.nodes.setAllNodesVisible();
     }
-    this.updateGraph();
+    this.prepareJSONObject();
   }
 
   getUniqueSortedYears() {
