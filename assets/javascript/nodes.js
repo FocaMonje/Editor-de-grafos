@@ -7,7 +7,7 @@ class Nodes {
   }
 
   addNode(x, y, size) {
-    let newNode = new Nodo(x, y, (this.nodeCounter + 1).toString(), size);
+    let newNode = new Node(x, y, (this.nodeCounter + 1).toString(), size);
     this.nodesList.push(newNode);
     this.nodeCounter++;
     return newNode;

@@ -228,21 +228,21 @@ function setup() {
         console.log(graphManager.nodes.nodesList);
         console.log(graphManager.edges.edges);
 
-        for (let nodo of graphManager.nodes.nodesList){
-            console.log(nodo.label);
+        for (let node of graphManager.nodes.nodesList){
+            console.log(node.label);
         }
 
         let grafoFemeninonodes = graphManager.nodes.nodesList.filter(
-            (nodo) => nodo.label.startsWith('L'));
+            (node) => node.label.startsWith('L'));
 
         console.log(grafoFemeninonodes);
 
         let grafoFemeninoArcos = ""
 
-        for (nodo of grafoFemeninonodes){
+        for (node of grafoFemeninonodes){
 
             grafoFemeninoArcos = graphManager.edges.edgesList.filter(
-                (arco) => { nodo.label === arco.source.label});
+                (arco) => { node.label === arco.source.label});
 
             }
 

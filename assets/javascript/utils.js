@@ -212,7 +212,7 @@ function moveView(deltaX, deltaY) {
     controls.view.x += deltaX;
     controls.view.y += deltaY;
     // Ajustar las coordenadas de los nodos y aristas según el movimiento
-    nodes.nodes.forEach(node => {
+    nodes.nodesList.forEach(node => {
         node.x += deltaX;
         node.y += deltaY;
     });
