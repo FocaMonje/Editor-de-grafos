@@ -241,7 +241,7 @@ function setup() {
 
         for (nodo of grafoFemeninoNodos){
 
-            grafoFemeninoArcos = graphManager.edges.edges.filter(
+            grafoFemeninoArcos = graphManager.edges.edgesList.filter(
                 (arco) => { nodo.label === arco.source.label});
 
             }

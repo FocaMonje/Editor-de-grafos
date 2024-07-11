@@ -12,7 +12,7 @@ class GraphManager {
       directed: true,
       graph: {},
       nodes: this.nodos.nodes.map(node => ({ id: node.label, year: node.year })),    // Guardar el año en el nodo
-      links: this.edges.edges.map(edge => ({
+      links: this.edges.edgesList.map(edge => ({
         source: edge.source.label,
         target: edge.target.label,
         explicacion: edge.explicacion  // Información asociada a la flecha
@@ -33,7 +33,7 @@ class GraphManager {
   }
 
   removeEdge(edge) {
-    this.edges.edges = this.edges.edges.filter(e => e !== edge);
+    this.edges.edgesList = this.edges.edgesList.filter(e => e !== edge);
     this.updateGraph();
   }
 
@@ -86,7 +86,7 @@ class GraphManager {
   }
 
   drawEdges() {
-    this.edges.edges.forEach(edge => {
+    this.edges.edgesList.forEach(edge => {
       if (edge.visible) {
           edge.draw();
       }
