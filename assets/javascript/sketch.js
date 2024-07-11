@@ -85,7 +85,7 @@ function setup() {
 
     edgeInput.value(''); // limpiar Edge info
 
-    nodes = new Nodos();
+    nodes = new Nodes();
     graphManager = new GraphManager(nodes, physics);
 
     saveButton = select('#saveButton');
@@ -113,7 +113,7 @@ function setup() {
     deleteModeButton = select('#deleteModeButton');
     deleteModeButton.mousePressed(() => {
         workMode = 'deleteMode';
-        nodes.unSelectNodes();
+        nodesList.unSelectNodes();
         graphManager.edges.unselectEdges();
         resetButtonStyles();
         deleteModeButton.style('background-color', '#ddd');
@@ -225,21 +225,21 @@ function setup() {
          
         // -------------------------------------- Filtrado de Grafos -------------------------------------
 
-        console.log(graphManager.nodos.nodes);
+        console.log(graphManager.nodes.nodesList);
         console.log(graphManager.edges.edges);
 
-        for (let nodo of graphManager.nodos.nodes){
+        for (let nodo of graphManager.nodes.nodesList){
             console.log(nodo.label);
         }
 
-        let grafoFemeninoNodos = graphManager.nodos.nodes.filter(
+        let grafoFemeninonodes = graphManager.nodes.nodesList.filter(
             (nodo) => nodo.label.startsWith('L'));
 
-        console.log(grafoFemeninoNodos);
+        console.log(grafoFemeninonodes);
 
         let grafoFemeninoArcos = ""
 
-        for (nodo of grafoFemeninoNodos){
+        for (nodo of grafoFemeninonodes){
 
             grafoFemeninoArcos = graphManager.edges.edgesList.filter(
                 (arco) => { nodo.label === arco.source.label});

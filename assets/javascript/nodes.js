@@ -1,6 +1,6 @@
-class Nodos {
+class Nodes {
   constructor(size) {
-    this.nodes = [];
+    this.nodesList = [];
     this.nodeCounter = 0;
     this.nodeSelected = null;
     this.size = size;
@@ -8,13 +8,13 @@ class Nodos {
 
   addNode(x, y, size) {
     let newNode = new Nodo(x, y, (this.nodeCounter + 1).toString(), size);
-    this.nodes.push(newNode);
+    this.nodesList.push(newNode);
     this.nodeCounter++;
     return newNode;
   }
 
   clear() {
-    this.nodes = [];
+    this.nodesList = [];
     this.nodeCounter = 0;
     this.nodeSelected = null;
   }
@@ -26,30 +26,30 @@ class Nodos {
   }
 
   unSelectNodes() {
-    this.nodes.forEach(node => node.deselect());
+    this.nodesList.forEach(node => node.deselect());
     this.nodeSelected = null;
   }
 
   removeNode(node) {
-    this.nodes = this.nodes.filter(n => n !== node);
+    this.nodesList = this.nodesList.filter(n => n !== node);
   }
 
   draw(size) {
-    for (let node of this.nodes) {
+    for (let node of this.nodesList) {
       node.draw(size);
     }
   }
 
   setAllNodesInvisible() {
-      this.nodes.forEach(node => node.setVisible(false));
+      this.nodesList.forEach(node => node.setVisible(false));
   }
 
   setAllNodesVisible() {
-    this.nodes.forEach(node => node.setVisible(true));
+    this.nodesList.forEach(node => node.setVisible(true));
   }
 
   findNode(x, y, nodeSize = 20, zoomFactor = 1) {
-    for (let node of this.nodes) {
+    for (let node of this.nodesList) {
         // Ajuste dinámico de la distancia de detección
         let detectionRadius = (nodeSize / 2) / zoomFactor;
         let d = dist(x, y, node.x, node.y);
@@ -63,7 +63,7 @@ class Nodos {
   }
 
   updateNodes(currentTime) {
-    for (let node of this.nodes) {
+    for (let node of this.nodesList) {
         node.updateState(currentTime);
     }
   }
@@ -72,10 +72,10 @@ class Nodos {
     let repulsionForce = 0.1;
     let minDistance = 150;
 
-    for (let i = 0; i < this.nodes.length; i++) {
-      for (let j = i + 1; j < this.nodes.length; j++) {
-        let nodeA = this.nodes[i];
-        let nodeB = this.nodes[j];
+    for (let i = 0; i < this.nodesList.length; i++) {
+      for (let j = i + 1; j < this.nodesList.length; j++) {
+        let nodeA = this.nodesList[i];
+        let nodeB = this.nodesList[j];
         let dx = nodeB.x - nodeA.x;
         let dy = nodeB.y - nodeA.y;
         let distance = dist(nodeA.x, nodeA.y, nodeB.x, nodeB.y);

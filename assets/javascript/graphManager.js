@@ -1,7 +1,7 @@
 
 class GraphManager {
-  constructor(nodos,physics) {
-    this.nodos = nodos;
+  constructor(nodes,physics) {
+    this.nodes = nodes;
     this.edges = new Edges();
     this.updateGraph();
     this.physics = physics;
@@ -11,7 +11,7 @@ class GraphManager {
     this.graph = {
       directed: true,
       graph: {},
-      nodes: this.nodos.nodes.map(node => ({ id: node.label, year: node.year })),    // Guardar el año en el nodo
+      nodes: this.nodes.nodesList.map(node => ({ id: node.label, year: node.year })),    // Guardar el año en el nodo
       links: this.edges.edgesList.map(edge => ({
         source: edge.source.label,
         target: edge.target.label,
@@ -64,10 +64,10 @@ class GraphManager {
   }
 
   rebuildGraph(graph) {
-    this.nodos.clear(); // Limpia los nodos existentes
+    this.nodes.clear(); // Limpia los nodos existentes
     let nodeMap = {};
     for (let node of graph.nodes) {
-      let newNode = this.nodos.addNode(random(width), random(height));
+      let newNode = this.nodes.addNode(random(width), random(height));
       newNode.label = node.id;
       newNode.year = node.year; // Asignar el año al nodo 
       nodeMap[node.id] = newNode;
@@ -97,16 +97,16 @@ class GraphManager {
     this.animationMode = mode;
     this.currentYear = year;
     if (mode) {
-        this.nodos.setAllNodesInvisible();
+        this.nodes.setAllNodesInvisible();
     } else {
-        this.nodos.setAllNodesVisible();
+        this.nodes.setAllNodesVisible();
     }
     this.updateGraph();
   }
 
   getUniqueSortedYears() {
     // Recopilar todos los años de los nodos
-    let years = this.nodos.nodes.map(node => node.year);
+    let years = this.nodes.nodesList.map(node => node.year);
     // Eliminar duplicados y ordenar de menor a mayor
     let uniqueYears = [...new Set(years)].sort((a, b) => a - b);
     return uniqueYears;
