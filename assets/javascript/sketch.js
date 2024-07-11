@@ -102,6 +102,7 @@ function setup() {
         });
     });
 
+
     drawModeButton = select('#drawModeButton');
     drawModeButton.mousePressed(() => {
         workMode = 'drawMode';
@@ -221,6 +222,32 @@ function setup() {
   
     moveUpButton.mousePressed(() => {
         moveView(0, -20);
+         
+        // -------------------------------------- Filtrado de Grafos -------------------------------------
+
+        console.log(graphManager.nodos.nodes);
+        console.log(graphManager.edges.edges);
+
+        for (let nodo of graphManager.nodos.nodes){
+            console.log(nodo.label);
+        }
+
+        let grafoFemeninoNodos = graphManager.nodos.nodes.filter(
+            (nodo) => nodo.label.startsWith('L'));
+
+        console.log(grafoFemeninoNodos);
+
+        let grafoFemeninoArcos = ""
+
+        for (nodo of grafoFemeninoNodos){
+
+            grafoFemeninoArcos = graphManager.edges.edges.filter(
+                (arco) => { nodo.label === arco.source.label});
+
+            }
+
+        console.log(grafoFemeninoArcos);
+
     });
     moveLeftButton.mousePressed(() => {
         moveView(-20, 0);

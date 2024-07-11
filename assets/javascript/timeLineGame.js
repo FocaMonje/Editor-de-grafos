@@ -13,7 +13,7 @@ function enterTimeLineMode() {
     gameOverWindow.style('display', 'none');
     
     // Iniciar el cronómetro
-    countdown = 30; // Reiniciar el tiempo del cronómetro
+    countdown = 1; // Reiniciar el tiempo del cronómetro
     timer.html('Tiempo: ' + countdown); // Mostrar el tiempo inicial
     timer.style('display', 'block');
     countdownInterval = setInterval(() => {
@@ -26,7 +26,9 @@ function enterTimeLineMode() {
     }, 1000);
 }
 
+
 function exitTimeLineMode() {
+    
     workMode = "drawMode";
     const button = document.getElementById('timeLineButton');
     button.textContent = 'Time Line'; // Restaurar texto original del botón
