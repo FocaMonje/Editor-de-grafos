@@ -1,5 +1,5 @@
 
-class Nodo extends toxi.physics2d.VerletParticle2D {
+class Node extends toxi.physics2d.VerletParticle2D {
   constructor(x, y, label, size, year) {
     super(x, y);
     this.x = x;
