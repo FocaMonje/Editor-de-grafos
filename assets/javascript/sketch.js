@@ -235,6 +235,9 @@ function setup() {
     moveUpButton.mousePressed(() => {
         moveView(0, -20);
          
+
+
+
         // -------------------------------------- Filtrado de Grafos -------------------------------------
 
         console.log(activeGraph.nodes.nodesList);
@@ -289,11 +292,13 @@ function setup() {
 
 function draw() {
     
+    /*
     // Update the physics world 
     if(!timeLineActive){
         physics.update();
         activeNodes.applyRepulsion();
     } 
+    */
     
 
     background(220);

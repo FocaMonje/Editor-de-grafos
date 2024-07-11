@@ -23,7 +23,7 @@ class GraphManager {
   }
 
   addNode(node){
-    let newNode = this.nodes.addNode(random(width), random(height), 10);
+    let newNode = this.nodes.addNode(node.x,node.y, 10);
     newNode.label = node.label;
     newNode.year = node.year; // Asignar el año al nodo  
     this.prepareJSONObject();
