@@ -86,6 +86,27 @@ class GraphManager {
     this.prepareJSONObject();
   }
 
+  updateGraph(nodes, edges){
+
+    let nodeMap = {};
+    for (let node of nodes) {
+      let newNode = this.nodes.addNode(random(width), random(height));
+      newNode.label = node.id;
+      newNode.year = node.year; // Asignar el año al nodo 
+      nodeMap[node.id] = newNode;
+    }
+
+    edges.forEach(link => {
+      let source = nodeMap[link.source];
+      let target = nodeMap[link.target];
+      if (source && target) {
+        this.addEdge(source, target, link.explicacion);
+      }
+    });
+
+    this.prepareJSONObject();
+  }
+
   drawEdges() {
     this.edges.edgesList.forEach(edge => {
       if (edge.visible) {

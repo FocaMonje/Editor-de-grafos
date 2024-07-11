@@ -13,11 +13,11 @@ function mousePressed() {
                  let node = nodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
                  if (node) {
                      if (nodes.nodeSelected !== null && nodes.nodeSelected !== node) {
-                         let correctDirection = graphManager.edges.edges.some(edge => {
+                         let correctDirection = masterGraph.edges.edges.some(edge => {
                              return edge.source === nodes.nodeSelected && edge.target === node;
                          });
                          if (correctDirection) {
-                             graphManager.edges.edges.forEach(edge => {
+                             masterGraph.edges.edges.forEach(edge => {
                                  if (edge.source === nodes.nodeSelected && edge.target === node) {
                                      edge.visible = true;
                                  }
@@ -43,11 +43,11 @@ function mousePressed() {
                 let node = nodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
                 if (node) {
                     if (nodes.nodeSelected !== null && nodes.nodeSelected !== node) {
-                        let correctDirection = graphManager.edges.edges.some(edge => {
+                        let correctDirection = masterGraph.edges.edges.some(edge => {
                             return edge.source === nodes.nodeSelected && edge.target === node;
                         });
                         if (correctDirection) {
-                            graphManager.edges.edges.forEach(edge => {
+                            masterGraph.edges.edges.forEach(edge => {
                                 if (edge.source === nodes.nodeSelected && edge.target === node) {
                                     edge.visible = true;
                                 }
@@ -71,15 +71,15 @@ function mousePressed() {
 
             case 'drawMode': {
                 // Verificar si se ha hecho clic en una flecha
-                let edge = graphManager.edges.findEdge(mouseXAdj, mouseYAdj);
+                let edge = masterGraph.edges.findEdge(mouseXAdj, mouseYAdj);
                 if (edge) {
                     // Si la flecha ya está seleccionada, se deselecciona
-                    if (graphManager.edges.selectedEdge === edge) {
-                        graphManager.edges.unselectEdges();
+                    if (masterGraph.edges.selectedEdge === edge) {
+                        masterGraph.edges.unselectEdges();
                         edgeInput.value('');
                     } else {
                         // Si se ha hecho clic en una flecha, se maneja como en 'selectedMode'
-                        graphManager.edges.selectEdge(edge);
+                        masterGraph.edges.selectEdge(edge);
                         edgeInput.value(edge.explicacion);
                     }
                     break;
@@ -89,7 +89,7 @@ function mousePressed() {
                 let node = nodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
                 if (node) {
                     if (nodes.nodeSelected !== null && nodes.nodeSelected !== node) {
-                        graphManager.addEdge(nodes.nodeSelected, node);
+                        masterGraph.addEdge(nodes.nodeSelected, node);
                         nodes.unSelectNodes();
                     } else if (nodes.nodeSelected === null && node.selected === false) {
                         nodes.selectNode(node);
@@ -98,7 +98,7 @@ function mousePressed() {
                 } else if (nodes.nodeSelected != null) {
                     nodes.unSelectNodes();
                 } else {
-                    let edge = graphManager.edges.findEdge(mouseXAdj, mouseYAdj);
+                    let edge = masterGraph.edges.findEdge(mouseXAdj, mouseYAdj);
                     if (!edge) {
                         let newNode = nodes.addNode(mouseXAdj, mouseYAdj);
                         newNode.label = nodeCounter.toString();
@@ -108,16 +108,16 @@ function mousePressed() {
                 break;
             }
             case 'deleteMode': {
-                let edge = graphManager.edges.findEdge(mouseXAdj, mouseYAdj);
+                let edge = masterGraph.edges.findEdge(mouseXAdj, mouseYAdj);
                 if (edge) {
-                    graphManager.edges.removeEdge(edge);
+                    masterGraph.edges.removeEdge(edge);
                     return;
                 }
 
                 let node = nodes.findNode(mouseXAdj, mouseYAdj);
                 if (node) {
                     nodes.removeNode(node);
-                    graphManager.removeEdgesConnectedToNode(node);
+                    masterGraph.removeEdgesConnectedToNode(node);
                 }
                 break;
             }
@@ -134,7 +134,7 @@ function mousePressed() {
                         let correctDirection = node.year > nodes.nodeSelected.year;
                         if (correctDirection) {
                             // Agregar la arista y hacerla visible
-                            graphManager.edges.addEdge(nodes.nodeSelected, node);
+                            masterGraph.edges.addEdge(nodes.nodeSelected, node);
                             score_points += 1;
                             addEdgeToFinalPath(nodes.nodeSelected, node); // Añadir arista propuesta
                         } else {
@@ -164,7 +164,7 @@ function mouseDragged() {
   if (draggingNode) {
       draggingNode.x = mouseXAdj;
       draggingNode.y = mouseYAdj;
-      graphManager.updateGraph();
+      masterGraph.prepareJSONObject();
   } else {
       draggingNode = nodes.findNode(mouseXAdj, mouseYAdj);
   }
@@ -216,11 +216,11 @@ function moveView(deltaX, deltaY) {
         node.x += deltaX;
         node.y += deltaY;
     });
-    graphManager.updateGraph(); // Actualizar el grafo
+    masterGraph.prepareJSONObject(); // Actualizar el grafo
 }
 
 function modifyEdgeInfo(){
-    let edge = graphManager.edges.selectedEdge;
+    let edge = masterGraph.edges.selectedEdge;
     if (edge) {
         edge.explicacion = edgeInput.value();
     }
