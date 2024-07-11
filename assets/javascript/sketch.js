@@ -1,4 +1,6 @@
-let nodes;
+let activeNodes;
+let activeGraph;
+let masterNodes;
 let masterGraph;
 let gameNodes;
 let gameGraph;
@@ -87,8 +89,12 @@ function setup() {
 
     edgeInput.value(''); // limpiar Edge info
 
-    nodes = new Nodes();
-    masterGraph = new GraphManager(nodes, physics);
+  
+    masterNodes = new Nodes();
+    masterGraph = new GraphManager(masterNodes, physics);
+
+    activeNodes = new Nodes();
+    activeGraph = new GraphManager(activeNodes, physics);
 
     gameNodes = new Nodes();
     gameGraph = new GraphManager(gameNodes, physics);
@@ -104,6 +110,7 @@ function setup() {
             masterGraph.rebuildGraph(graph);
             nodeCounter = Math.max(...graph.nodes.map(node => parseInt(node.id))) + 1;
             setupYearSliders(graph);
+            activeGraph = masterGraph;
         });
     });
 
@@ -119,7 +126,7 @@ function setup() {
     deleteModeButton.mousePressed(() => {
         workMode = 'deleteMode';
         nodesList.unSelectNodes();
-        masterGraph.edges.unselectEdges();
+        activeGraph.edges.unselectEdges();
         resetButtonStyles();
         deleteModeButton.style('background-color', '#ddd');
     });
@@ -130,11 +137,11 @@ function setup() {
         resetButtonStyles();
         animationModeButton.style('background-color', '#ddd');
         showAnimationControls();
-        masterGraph.edges.edgesList.forEach(edge => edge.visible = false); // Ocultar todas las aristas
+        activeGraph.edges.edgesList.forEach(edge => edge.visible = false); // Ocultar todas las aristas
          // Ocultar todos los nodos
-        nodes.setAllNodesInvisible();
+        activeNodes.setAllNodesInvisible();
         // Actualizar el gráfico para reflejar los cambios
-        masterGraph.prepareJSONObject();
+        activeGraph.prepareJSONObject();
     });
     
 
@@ -230,16 +237,11 @@ function setup() {
          
         // -------------------------------------- Filtrado de Grafos -------------------------------------
 
-        console.log(masterGraph.nodes.nodesList);
-        console.log(masterGraph.edges.edgesList);
+        console.log(activeGraph.nodes.nodesList);
+        console.log(activeGraph.edges.edgesList);
 
-        let grafoFemeninonodes = masterGraph.nodes.nodesList.filter(
+        let grafoFemeninonodes = activeGraph.nodes.nodesList.filter(
             (node) => node.label.startsWith('L'));
-
-  
-        for (let node of grafoFemeninonodes){
-            console.log(node.label);
-        }
 
         let grafoFemeninoArcos = [];
 
@@ -248,7 +250,7 @@ function setup() {
         });
 
 
-        masterGraph.edges.edgesList.forEach( function(arco){
+        activeGraph.edges.edgesList.forEach( function(arco){
 
             for (nombre of nombresNodosFem){
                 if (arco.source.label === nombre){
@@ -257,9 +259,18 @@ function setup() {
             }
         });
 
-        gameGraph.updateGraph(grafoFemeninonodes, grafoFemeninoArcos);    
+        for (node of grafoFemeninonodes ){
+            gameGraph.addNode(node);
+        }
         
+        for (edge of grafoFemeninoArcos ){
+        
+            gameGraph.addEdge(edge.source, edge.target, edge.explicacion); 
+        }
+ 
         console.log(gameGraph);
+
+        activeGraph = gameGraph;
 
     });
 
@@ -281,7 +292,7 @@ function draw() {
     // Update the physics world 
     if(!timeLineActive){
         physics.update();
-        nodes.applyRepulsion();
+        activeNodes.applyRepulsion();
     } 
     
 
@@ -298,9 +309,9 @@ function draw() {
 
 
     stroke(0);
-    masterGraph.drawEdges();
+    activeGraph.drawEdges();
 
-    nodes.draw(slider_node_size.value()); // Aquí se usa el valor del deslizador para el tamaño de los nodos
+    activeGraph.drawNodes(slider_node_size.value()); // Aquí se usa el valor del deslizador para el tamaño de los nodos
 
     if (gameModeActive) {
         checkGameCompletion();

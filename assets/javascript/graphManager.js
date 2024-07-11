@@ -22,6 +22,13 @@ class GraphManager {
     };
   }
 
+  addNode(node){
+    let newNode = this.nodes.addNode(random(width), random(height), 10);
+    newNode.label = node.label;
+    newNode.year = node.year; // Asignar el año al nodo  
+    this.prepareJSONObject();
+  }
+
   addEdge(node1, node2, explicacion = '') {
     this.edges.addEdge(node1, node2, explicacion);
     this.physics.addSpring(new VerletSpring2D(node1, node2, 100, 0.01));
@@ -86,33 +93,21 @@ class GraphManager {
     this.prepareJSONObject();
   }
 
-  updateGraph(nodes, edges){
-
-    let nodeMap = {};
-    for (let node of nodes) {
-      let newNode = this.nodes.addNode(random(width), random(height));
-      newNode.label = node.id;
-      newNode.year = node.year; // Asignar el año al nodo 
-      nodeMap[node.id] = newNode;
-    }
-
-    edges.forEach(link => {
-      let source = nodeMap[link.source];
-      let target = nodeMap[link.target];
-      if (source && target) {
-        this.addEdge(source, target, link.explicacion);
-      }
-    });
-
-    this.prepareJSONObject();
-  }
-
   drawEdges() {
     this.edges.edgesList.forEach(edge => {
       if (edge.visible) {
           edge.draw();
       }
     });
+  }
+
+  drawNodes(size){
+    this.nodes.nodesList.forEach(node => {
+      if (node.visible) {
+          node.draw(size);
+      }
+    });
+
   }
 
   setAnimationMode(mode, year) {

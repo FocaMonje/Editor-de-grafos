@@ -10,97 +10,97 @@ function mousePressed() {
             case 'gameMode':{
 
                  // Lógica para verificar si el jugador acierta
-                 let node = nodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
+                 let node = activeNodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
                  if (node) {
-                     if (nodes.nodeSelected !== null && nodes.nodeSelected !== node) {
-                         let correctDirection = masterGraph.edges.edges.some(edge => {
-                             return edge.source === nodes.nodeSelected && edge.target === node;
+                     if (activeNodes.nodeSelected !== null && activeNodes.nodeSelected !== node) {
+                         let correctDirection = activeGraph.edges.edges.some(edge => {
+                             return edge.source === activeNodes.nodeSelected && edge.target === node;
                          });
                          if (correctDirection) {
-                             masterGraph.edges.edges.forEach(edge => {
-                                 if (edge.source === nodes.nodeSelected && edge.target === node) {
+                             activeGraph.edges.edges.forEach(edge => {
+                                 if (edge.source === activeNodes.nodeSelected && edge.target === node) {
                                      edge.visible = true;
                                  }
                              });
                              score_points += 1 ;
-                             addEdgeToFinalPath(nodes.nodeSelected, node); // Añadir arista propuesta
+                             addEdgeToFinalPath(activeNodes.nodeSelected, node); // Añadir arista propuesta
                          }
                          else {
                             score_points -= 1 ;
                          }
-                         nodes.unSelectNodes();
+                         activeNodes.unSelectNodes();
                          console.log(score_points);
-                     } else if (nodes.nodeSelected === null && node.selected === false) {
-                         nodes.selectNode(node);
+                     } else if (activeNodes.nodeSelected === null && node.selected === false) {
+                         activeNodes.selectNode(node);
                          labelInput.value(node.label);
-                     } } else if (nodes.nodeSelected != null) {
-                        nodes.unSelectNodes();
+                     } } else if (activeNodes.nodeSelected != null) {
+                        activeNodes.unSelectNodes();
                     }
                 break;
             }
 
             case 'gameMode2': {
-                let node = nodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
+                let node = activeNodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
                 if (node) {
-                    if (nodes.nodeSelected !== null && nodes.nodeSelected !== node) {
-                        let correctDirection = masterGraph.edges.edges.some(edge => {
-                            return edge.source === nodes.nodeSelected && edge.target === node;
+                    if (activeNodes.nodeSelected !== null && activeNodes.nodeSelected !== node) {
+                        let correctDirection = activeGraph.edges.edges.some(edge => {
+                            return edge.source === activeNodes.nodeSelected && edge.target === node;
                         });
                         if (correctDirection) {
-                            masterGraph.edges.edges.forEach(edge => {
-                                if (edge.source === nodes.nodeSelected && edge.target === node) {
+                            activeGraph.edges.edges.forEach(edge => {
+                                if (edge.source === activeNodes.nodeSelected && edge.target === node) {
                                     edge.visible = true;
                                 }
                             });
                             score_points += 1;
-                            addEdgeToFinalPath(nodes.nodeSelected, node); // Añadir arista propuesta
+                            addEdgeToFinalPath(activeNodes.nodeSelected, node); // Añadir arista propuesta
                         } else {
                             score_points -= 1;
                         }
-                        nodes.unSelectNodes();
+                        activeNodes.unSelectNodes();
                         console.log(score_points);
-                    } else if (nodes.nodeSelected === null && node.selected === false) {
-                        nodes.selectNode(node);
+                    } else if (activeNodes.nodeSelected === null && node.selected === false) {
+                        activeNodes.selectNode(node);
                         labelInput.value(node.label);
                     }
-                } else if (nodes.nodeSelected != null) {
-                    nodes.unSelectNodes();
+                } else if (activeNodes.nodeSelected != null) {
+                    activeNodes.unSelectNodes();
                 }
                 break;
             }
 
             case 'drawMode': {
                 // Verificar si se ha hecho clic en una flecha
-                let edge = masterGraph.edges.findEdge(mouseXAdj, mouseYAdj);
+                let edge = activeGraph.edges.findEdge(mouseXAdj, mouseYAdj);
                 if (edge) {
                     // Si la flecha ya está seleccionada, se deselecciona
-                    if (masterGraph.edges.selectedEdge === edge) {
-                        masterGraph.edges.unselectEdges();
+                    if (activeGraph.edges.selectedEdge === edge) {
+                        activeGraph.edges.unselectEdges();
                         edgeInput.value('');
                     } else {
                         // Si se ha hecho clic en una flecha, se maneja como en 'selectedMode'
-                        masterGraph.edges.selectEdge(edge);
+                        activeGraph.edges.selectEdge(edge);
                         edgeInput.value(edge.explicacion);
                     }
                     break;
                 }
 
                 // Lógica normal de creación de flechas
-                let node = nodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
+                let node = activeNodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
                 if (node) {
-                    if (nodes.nodeSelected !== null && nodes.nodeSelected !== node) {
-                        masterGraph.addEdge(nodes.nodeSelected, node);
-                        nodes.unSelectNodes();
-                    } else if (nodes.nodeSelected === null && node.selected === false) {
-                        nodes.selectNode(node);
+                    if (activeNodes.nodeSelected !== null && activeNodes.nodeSelected !== node) {
+                        activeGraph.addEdge(activeNodes.nodeSelected, node);
+                        activeNodes.unSelectNodes();
+                    } else if (activeNodes.nodeSelected === null && node.selected === false) {
+                        activeNodes.selectNode(node);
                         labelInput.value(node.label);
                     }
-                } else if (nodes.nodeSelected != null) {
-                    nodes.unSelectNodes();
+                } else if (activeNodes.nodeSelected != null) {
+                    activeNodes.unSelectNodes();
                 } else {
-                    let edge = masterGraph.edges.findEdge(mouseXAdj, mouseYAdj);
+                    let edge = activeGraph.edges.findEdge(mouseXAdj, mouseYAdj);
                     if (!edge) {
-                        let newNode = nodes.addNode(mouseXAdj, mouseYAdj);
+                        let newNode = activeNodes.addNode(mouseXAdj, mouseYAdj);
                         newNode.label = nodeCounter.toString();
                         nodeCounter++;
                     }
@@ -108,16 +108,16 @@ function mousePressed() {
                 break;
             }
             case 'deleteMode': {
-                let edge = masterGraph.edges.findEdge(mouseXAdj, mouseYAdj);
+                let edge = activeGraph.edges.findEdge(mouseXAdj, mouseYAdj);
                 if (edge) {
-                    masterGraph.edges.removeEdge(edge);
+                    activeGraph.edges.removeEdge(edge);
                     return;
                 }
 
-                let node = nodes.findNode(mouseXAdj, mouseYAdj);
+                let node = activeNodes.findNode(mouseXAdj, mouseYAdj);
                 if (node) {
-                    nodes.removeNode(node);
-                    masterGraph.removeEdgesConnectedToNode(node);
+                    activeNodes.removeNode(node);
+                    activeGraph.removeEdgesConnectedToNode(node);
                 }
                 break;
             }
@@ -127,27 +127,27 @@ function mousePressed() {
             }
 
             case 'timeLineMode': {
-                let node = nodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
+                let node = activeNodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
                 if (node) {
-                    if (nodes.nodeSelected !== null && nodes.nodeSelected !== node) {
+                    if (activeNodes.masterNodeselected !== null && activeNodes.nodeSelected !== node) {
                         // Verificar si la dirección es correcta según el año
-                        let correctDirection = node.year > nodes.nodeSelected.year;
+                        let correctDirection = node.year > activeNodes.nodeSelected.year;
                         if (correctDirection) {
                             // Agregar la arista y hacerla visible
-                            masterGraph.edges.addEdge(nodes.nodeSelected, node);
+                            activeGraph.edges.addEdge(activeNodes.nodeSelected, node);
                             score_points += 1;
-                            addEdgeToFinalPath(nodes.nodeSelected, node); // Añadir arista propuesta
+                            addEdgeToFinalPath(activeNodes.nodeSelected, node); // Añadir arista propuesta
                         } else {
                             score_points -= 1;
                         }
-                        nodes.unSelectNodes();
+                        activeNodes.unSelectNodes();
                         console.log(score_points);
-                    } else if (nodes.nodeSelected === null && node.selected === false) {
-                        nodes.selectNode(node);
+                    } else if (activeNodes.nodeSelected === null && node.selected === false) {
+                        activeNodes.selectNode(node);
                         labelInput.value(node.label);
                     }
-                } else if (nodes.nodeSelected != null) {
-                    nodes.unSelectNodes();
+                } else if (activeNodes.activeNodeselected != null) {
+                    activeNodes.unSelectactiveNodes();
                 }
                 break;
             }
@@ -164,9 +164,9 @@ function mouseDragged() {
   if (draggingNode) {
       draggingNode.x = mouseXAdj;
       draggingNode.y = mouseYAdj;
-      masterGraph.prepareJSONObject();
+      activeGraph.prepareJSONObject();
   } else {
-      draggingNode = nodes.findNode(mouseXAdj, mouseYAdj);
+      draggingNode = activeNodes.findNode(mouseXAdj, mouseYAdj);
   }
 }
 
@@ -175,7 +175,7 @@ function mouseReleased() {
 }
 
 function modifyNodeName() {
-  let node = nodes.nodeSelected;
+  let node = activeNodes.nodeSelected;
   if (node) {
       node.label = labelInput.value();
   }
@@ -212,15 +212,15 @@ function moveView(deltaX, deltaY) {
     controls.view.x += deltaX;
     controls.view.y += deltaY;
     // Ajustar las coordenadas de los nodos y aristas según el movimiento
-    nodes.nodesList.forEach(node => {
+    activeNodes.nodesList.forEach(node => {
         node.x += deltaX;
         node.y += deltaY;
     });
-    masterGraph.prepareJSONObject(); // Actualizar el grafo
+    activeGraph.prepareJSONObject(); // Actualizar el grafo
 }
 
 function modifyEdgeInfo(){
-    let edge = masterGraph.edges.selectedEdge;
+    let edge = activeGraph.edges.selectedEdge;
     if (edge) {
         edge.explicacion = edgeInput.value();
     }
