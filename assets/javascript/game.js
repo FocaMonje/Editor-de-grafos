@@ -7,6 +7,9 @@ function enterGameMode() {
     slider_node_size.attribute('disabled', true);
     labelInput.attribute('disabled', true);
 
+    // Mostrar contador de aciertos y errores
+    document.getElementById('statsContainer').style.display = 'block';
+
     // Ocultar las flechas (edges)
     graphManager.edges.edges.forEach(edge => {
         edge.visible = false;
@@ -25,6 +28,11 @@ function enterGameMode() {
             endGame();
         }
     }, 1000);
+
+     // Inicializar contadores de aciertos y errores
+     hits = 0;
+     misses = 0;
+     updateHitsAndMisses(hits, misses);
 }
 
 function exitGameMode() {
@@ -35,6 +43,9 @@ function exitGameMode() {
     // Mostrar los controles y habilitar la creación de nodos
     slider_node_size.removeAttribute('disabled');
     labelInput.removeAttribute('disabled');
+
+    // Ocultar contador de aciertos y errores
+    document.getElementById('statsContainer').style.display = 'none';
 
     // Restaurar la visibilidad de las flechas (edges) según la lógica del juego
     graphManager.edges.edges.forEach(edge => {
@@ -74,7 +85,7 @@ function evaluateScorePoints(){
         score_points = 0;
     }
 
-    console.log("Final Score:", score_points);
+    // console.log("Final Score:", score_points);
     return score_points;
 }
 
@@ -136,7 +147,7 @@ function getRealEdges() {
             });
         }
     }
-    console.log('Real Edges:', JSON.stringify(edgesList, null, 2));
+    // console.log('Real Edges:', JSON.stringify(edgesList, null, 2));
     return edgesList;
 }
 
@@ -149,7 +160,7 @@ function getPlayerEdges() {
             to: { x: finalPath[i + 1].x, y: finalPath[i + 1].y }
         });
     }
-    console.log('Player Edges:', JSON.stringify(playerEdgesList, null, 2));
+    // console.log('Player Edges:', JSON.stringify(playerEdgesList, null, 2));
     return playerEdgesList;
 }
 
@@ -159,7 +170,7 @@ function areEdgesEqual(edge1, edge2, delta = 110.1) {
         return Math.abs(point1.x - point2.x) < delta && Math.abs(point1.y - point2.y) < delta;
     }
     
-    console.log(`Comparing edges with tolerance: ${JSON.stringify(edge1)} === ${JSON.stringify(edge2)}`);
+    // console.log(`Comparing edges with tolerance: ${JSON.stringify(edge1)} === ${JSON.stringify(edge2)}`);
     
     return arePointsEqual(edge1.from, edge2.from, delta) && arePointsEqual(edge1.to, edge2.to, delta);
 }
@@ -176,4 +187,54 @@ function addEdgeToFinalPath(fromNode, toNode) {
         edges[fromKey] = [];
     }
     edges[fromKey].push(toNode);
+
+    // Evaluar la arista creada por el jugador
+    evaluateEdge({ from: fromNode, to: toNode });
+}
+
+function updateHitsAndMisses(hits, misses) {
+    console.log(`Updating hits and misses: ${hits} ${misses}`);
+
+    const hitsContainer = document.getElementById('hitsContainer');
+    const missesContainer = document.getElementById('missesContainer');
+
+    // Limpiar los contenedores
+    hitsContainer.innerHTML = '';
+    missesContainer.innerHTML = '';
+
+    // Añadir iconos de aciertos
+    for (let i = 0; i < hits; i++) {
+        const hitIcon = document.createElement('div');
+        hitIcon.classList.add('hit-icon');
+        hitsContainer.appendChild(hitIcon);
+    }
+
+    // Añadir iconos de errores
+    for (let i = 0; i < misses; i++) {
+        const missIcon = document.createElement('div');
+        missIcon.classList.add('miss-icon');
+        missesContainer.appendChild(missIcon);
+    }
+}
+
+function evaluateEdge(playerEdge) {
+    let realEdges = getRealEdges();  // Obtener flechas reales del grafo
+
+    console.log("Evaluating edge:", playerEdge);  // Registro para depuración
+
+    let foundMatch = realEdges.some(realEdge => areEdgesEqual(realEdge, playerEdge));
+    
+    if (foundMatch) {
+        hits += 1;  // Acierto: sumar 1 acierto
+        console.log("Hit detected:", playerEdge);
+    } else {
+        misses += 1;  // Error: sumar 1 error
+        console.log("Error detected:", playerEdge);
+    }
+
+    // Asegúrate de que el número de errores no sea negativo
+    misses = Math.max(misses, 0);
+
+    updateHitsAndMisses(hits, misses);
+    console.log("Updated Hits and Misses:", hits, misses);
 }

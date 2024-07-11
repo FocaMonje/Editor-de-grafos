@@ -22,6 +22,8 @@ let timer;
 let countdown = 30; // Tiempo inicial del cronómetro en segundos
 let countdownInterval; // Intervalo para la cuenta atrás
 let edgeInput;
+let hits = 0;
+let misses = 0;
 
 
 // The Nature of Code

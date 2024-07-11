@@ -106,3 +106,32 @@ button {
     line-height: 40px;
     border-radius: 5px;
 }
+
+.score-section {
+    margin-top: 20px;
+}
+
+#hitsContainer, #missesContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.hit-icon {
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    background-color: green;
+    border-radius: 50%;
+}
+
+.miss-icon {
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+#statsContainer {
+    display: none;
+}
