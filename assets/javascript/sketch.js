@@ -274,7 +274,11 @@ function setup() {
         }
         
                 
-        gameGraph = filterGraph(masterGraph,  (node) => node.label.startsWith('L'));
+        gameGraph = filterGraph(masterGraph,  (node) => node.label.includes("pila"));
+        //(node) => node.label.includes("pila")
+        //(node) => node.label.starsWith("L")
+        // (node) => node.label.length < 8
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes
         console.log(gameGraph);
 
         activeGraph = gameGraph;
