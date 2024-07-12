@@ -243,45 +243,38 @@ function setup() {
         // console.log(activeGraph.nodes.nodesList);
         // console.log(activeGraph.edges.edgesList);
 
-        let grafoFemeninonodes = activeGraph.nodes.nodesList.filter(
-            (node) => node.label.startsWith('L'));
-
-        let grafoFemeninoArcos = [];
-
-        let nombresNodosFem = grafoFemeninonodes.map(function(element){
-            return element.label;
-        });
-
-        // Con este código solo se verifica si el nodo origen de la arista está en nombresNodosFem, 
-        // pero no verifica si el nodo destino también está en la lista. Por eso las flechas "sueltas". 
-        
-        // activeGraph.edges.edgesList.forEach( function(arco){
-
-        //     for (nombre of nombresNodosFem){
-        //         if (arco.source.label === nombre){
-        //             grafoFemeninoArcos.push(arco);
-        //         }
-        //     }
-        // });
-
-        // Aquí se verifica que ambos nodos "origen" y "destino" están en nombresNodosFem.
-        // Al usar includes no se necesita el for
-        activeGraph.edges.edgesList.forEach(function(arco) {
-            // Verificar que ambos extremos de la arista estén en la lista de nodos filtrados
-            if (nombresNodosFem.includes(arco.source.label) && nombresNodosFem.includes(arco.target.label)) {
-                grafoFemeninoArcos.push(arco);
+        function filterGraph(graphMaster, filterFunction) {
+            outputNodes = new Nodes();
+            outputGraph = new GraphManager(outputNodes, physics);
+            let outputGraphNodes = graphMaster.nodes.nodesList.filter(filterFunction);
+    
+            let outputGraphEdges = [];
+    
+            let filterAttribute = outputGraphNodes.map(function(element){
+                return element.label;
+            });
+            
+            graphMaster.edges.edgesList.forEach(function(arco) {
+                // Verificar que ambos extremos de la arista estén en la lista de nodos filtrados
+                if (filterAttribute.includes(arco.source.label) && filterAttribute.includes(arco.target.label)) {
+                    outputGraphEdges.push(arco);
+                }
+            });
+    
+            for (node of outputGraphNodes ){
+                outputGraph.addNode(node);
             }
-        });
+            
+            for (edge of outputGraphEdges ){
+            
+                outputGraph.addEdge(edge.source, edge.target, edge.explicacion); 
+            }
 
-        for (node of grafoFemeninonodes ){
-            gameGraph.addNode(node);
+            return outputGraph;
         }
         
-        for (edge of grafoFemeninoArcos ){
-        
-            gameGraph.addEdge(edge.source, edge.target, edge.explicacion); 
-        }
- 
+                
+        gameGraph = filterGraph(masterGraph,  (node) => node.label.startsWith('L'));
         console.log(gameGraph);
 
         activeGraph = gameGraph;
