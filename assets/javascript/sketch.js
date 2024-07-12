@@ -240,8 +240,8 @@ function setup() {
 
         // -------------------------------------- Filtrado de Grafos -------------------------------------
 
-        console.log(activeGraph.nodes.nodesList);
-        console.log(activeGraph.edges.edgesList);
+        // console.log(activeGraph.nodes.nodesList);
+        // console.log(activeGraph.edges.edgesList);
 
         let grafoFemeninonodes = activeGraph.nodes.nodesList.filter(
             (node) => node.label.startsWith('L'));
@@ -252,13 +252,24 @@ function setup() {
             return element.label;
         });
 
+        // Con este código solo se verifica si el nodo origen de la arista está en nombresNodosFem, 
+        // pero no verifica si el nodo destino también está en la lista. Por eso las flechas "sueltas". 
+        
+        // activeGraph.edges.edgesList.forEach( function(arco){
 
-        activeGraph.edges.edgesList.forEach( function(arco){
+        //     for (nombre of nombresNodosFem){
+        //         if (arco.source.label === nombre){
+        //             grafoFemeninoArcos.push(arco);
+        //         }
+        //     }
+        // });
 
-            for (nombre of nombresNodosFem){
-                if (arco.source.label === nombre){
-                    grafoFemeninoArcos.push(arco);
-                }
+        // Aquí se verifica que ambos nodos "origen" y "destino" están en nombresNodosFem.
+        // Al usar includes no se necesita el for
+        activeGraph.edges.edgesList.forEach(function(arco) {
+            // Verificar que ambos extremos de la arista estén en la lista de nodos filtrados
+            if (nombresNodosFem.includes(arco.source.label) && nombresNodosFem.includes(arco.target.label)) {
+                grafoFemeninoArcos.push(arco);
             }
         });
 
@@ -292,13 +303,13 @@ function setup() {
 
 function draw() {
     
-    /*
+    
     // Update the physics world 
-    if(!timeLineActive){
-        physics.update();
-        activeNodes.applyRepulsion();
-    } 
-    */
+    // if(!timeLineActive){
+    //     physics.update();
+    //     activeNodes.applyRepulsion();
+    // } 
+
     
 
     background(220);
