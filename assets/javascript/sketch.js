@@ -1,69 +1,3 @@
-let activeNodes;
-let activeGraph;
-let masterNodes;
-let masterGraph;
-let gameNodes;
-let gameGraph;
-let draggingNode = null;
-let saveButton, loadButton, drawModeButton, deleteModeButton, animationModeButton, startButton, stopButton, restartButton, timeLineButton;
-let zoomSettings = { zoom: 35 };
-let centerX, centerY;
-let nodeCounter = 1;
-let workMode = 'drawMode';
-let labelInput;
-let selectedEdge = null;
-let slider_node_size, slider_start_year, slider_end_year;
-let animationSettings = { startYear: 0, endYear: 0 };
-let isAnimating = false;
-let animationInterval;
-let gameModeButton;
-let gameModeActive = false;
-let gameOverWindow;
-let score_points = 0; 
-let edges = [];
-let finalPath = [];
-let timer; 
-let countdown = 30; // Tiempo inicial del cronómetro en segundos
-let countdownInterval; // Intervalo para la cuenta atrás
-let edgeInput;
-let currentYearIndex = 0;
-let colors = ['#008080', '#ADD8E6', '#61B2CB', '#2EA2D1'];
-let gameMode2Button;
-let gameMode2Active = false;
-let solutionButton;
-let selectedNodes = [];
-let timeLineActive = false;
-
-// const timeIntervals = [
-//     { start: 1600, end: 1649 },
-//     { start: 1650, end: 1699 },
-//     { start: 1700, end: 1749 },
-//     { start: 1750, end: 1799 },
-//     { start: 1800, end: 1850 },
-//     { start: 1851, end: 1900 },
-//     { start: 1901, end: 1950 },
-//     { start: 1951, end: 2000 }
-// ];
-
-
-// The Nature of Code
-// Daniel Shiffman
-// http://natureofcode.com
-
-let {
-    VerletPhysics2D,
-    VerletParticle2D,
-    VerletSpring2D,
-    VerletMinDistanceSpring2D,
-  } = toxi.physics2d;
-  
-  // Reference to physics world
-  let physics;
-
-  const controls = {
-    view: { x: 0, y: 0, zoom: 1 },
-    viewPos: { prevX: null, prevY: null, isDragging: false },
-  };
 
 function setup() {
     canvas = createCanvas(800, 600);
@@ -226,6 +160,12 @@ function setup() {
         }
     });
 
+    filterGraphButton = select('#filterGraphButton');
+    filterGraphButton.mousePressed(() => {
+        activeGraph = filterGraph(masterGraph, (node) => (node.year > 1800 && node.year < 1900));
+        console.log(activeGraph);
+    });
+
   // Botones de navegación
   let moveUpButton = select('#moveUp');
   let moveLeftButton = select('#moveLeft');
@@ -234,55 +174,6 @@ function setup() {
   
     moveUpButton.mousePressed(() => {
         moveView(0, -20);
-         
-
-
-
-        // -------------------------------------- Filtrado de Grafos -------------------------------------
-
-        // console.log(activeGraph.nodes.nodesList);
-        // console.log(activeGraph.edges.edgesList);
-
-        function filterGraph(graphMaster, filterFunction) {
-            outputNodes = new Nodes();
-            outputGraph = new GraphManager(outputNodes, physics);
-            let outputGraphNodes = graphMaster.nodes.nodesList.filter(filterFunction);
-    
-            let outputGraphEdges = [];
-    
-            let filterAttribute = outputGraphNodes.map(function(element){
-                return element.label;
-            });
-            
-            graphMaster.edges.edgesList.forEach(function(arco) {
-                // Verificar que ambos extremos de la arista estén en la lista de nodos filtrados
-                if (filterAttribute.includes(arco.source.label) && filterAttribute.includes(arco.target.label)) {
-                    outputGraphEdges.push(arco);
-                }
-            });
-    
-            for (node of outputGraphNodes ){
-                outputGraph.addNode(node);
-            }
-            
-            for (edge of outputGraphEdges ){
-            
-                outputGraph.addEdge(edge.source, edge.target, edge.explicacion); 
-            }
-
-            return outputGraph;
-        }
-        
-                
-        gameGraph = filterGraph(masterGraph,  (node) => node.label.includes("pila"));
-        //(node) => node.label.includes("pila")
-        //(node) => node.label.starsWith("L")
-        // (node) => node.label.length < 8
-        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes
-        console.log(gameGraph);
-
-        activeGraph = gameGraph;
-
     });
 
 
