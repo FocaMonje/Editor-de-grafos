@@ -47,7 +47,7 @@ class GraphManager {
 
   saveGraph() {
     this.prepareJSONObject();
-    saveJSON(this.graph, 'graph.json');
+    saveJSON(this.graphJSONObject, 'graph.json');
   }
 
   loadGraph(callback) {

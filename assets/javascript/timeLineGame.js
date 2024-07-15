@@ -5,7 +5,7 @@ function enterTimeLineMode() {
     button.textContent = 'Exit Time Line Mode'; // Cambiar texto del botón
 
     // Ocultar las flechas (edges) y asegurar que los nodos sean visibles
-    graphManager.edges.edges.forEach(edge => {
+    masterGraph.edges.edgesList.forEach(edge => {
         edge.visible = false; // Ocultar todas las flechas
     });
 
@@ -40,11 +40,11 @@ function exitTimeLineMode() {
     labelInput.removeAttribute('disabled');
 
     // Restaurar la visibilidad de las flechas y los nodos
-    graphManager.edges.edges.forEach(edge => {
+    masterGraph.edges.edgesList.forEach(edge => {
         edge.visible = true; // Implementar la lógica de visibilidad según el juego
     });
-    nodes.setAllNodesVisible(); // Mostrar todos los nodos
-    graphManager.updateGraph(); // Actualizar el gráfico
+    masterNodes.setAllNodesVisible(); // Mostrar todos los nodos
+    masterGraph. prepareJSONObject(); // Actualizar el gráfico
 
     // Ocultar la ventana de fin del juego si está visible
     gameOverWindow.style('display', 'none');

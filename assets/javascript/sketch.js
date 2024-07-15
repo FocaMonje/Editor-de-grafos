@@ -1,6 +1,7 @@
 
 function setup() {
     canvas = createCanvas(800, 600);
+    centerCanvas(canvas);
 
     // Initialize the physics
     physics = new VerletPhysics2D();
@@ -32,6 +33,31 @@ function setup() {
 
     gameNodes = new Nodes();
     gameGraph = new GraphManager(gameNodes, physics);
+
+    inventos = masterGraph.nodes.nodesList.sort((a, b) => a.year - b.year);
+  
+  for(let i = 0; i < inventos.length; i++){
+      inventos[i].valencia = 0;
+      inventos[i].flechas = [];
+  }
+  
+  enlaces = masterGraph.edges.edgesList;
+  
+  for(let i = 0; i < enlaces.length; i++){
+    
+      inv_padre_id = enlaces[i].source;
+      inv_hijo_id = enlaces[i].target;
+    
+      for(let j = 0; j < inventos.length; j++){
+        
+        if (inventos[j].id === inv_padre_id){
+          inventos[j].valencia += 1;
+          inventos[j].flechas.push(inv_hijo_id);
+        }
+      }
+  }  
+  
+  console.log(inventos); 
 
     saveButton = select('#saveButton');
     saveButton.mousePressed(() => {
@@ -112,7 +138,7 @@ function setup() {
     centerY = height / 2;
 
     // Aplicar zoom con la rueda del ratón
-    canvas.mouseWheel(e => doZoom(e));
+    // canvas.mouseWheel(e => doZoom(e));
 
     // Botón del modo de juego
   gameModeButton = select('#gameModeButton');
@@ -202,9 +228,71 @@ function draw() {
 
     background(220);
 
+    const alturaDibujo = height - 100;
+
+    push();
+    translate(scrollX , scrollY);
+    scale(zoomX,zoomY);
+  
+    draw_grid(width, height);
+  
+    let alturaInicial = height - 50;
+  
+    for(let i = 0; i < inventos.length; i++){
+      fill(0);
+      noStroke();
+      let r = 15;
+      if (inventos[i].year == undefined)
+        continue;
+        
+      let intevaloVal = Math.floor(alturaDibujo / maxVal);
+      let x = inventos[i].year;
+      let y = alturaDibujo - inventos[i].valencia * intevaloVal;
+      ellipse(x, y , r * (r/(r * zoomX) ), r * (r/(r * zoomY)));
+      
+      
+      for(let j = 0; j < inventos[i].flechas.length; j++){
+        let k = indiceDeInvento(inventos[i].flechas[j], inventos)
+        let x_d = inventos[k].year;
+        let y_d = alturaDibujo - inventos[k].valencia * intevaloVal;
+        Edge.drawArrow(x, y, x_d, y_d, 5);
+        //console.log(inventos[i].id + " -> " + inventos[k].id);
+      }
+      
+      
+    }
+    
+    pop();
+
+    
+    push();
+    translate(width/2, height/2);
+    fill(150);
+    noStroke();
+    ellipse(0, 0, 10, 10);
+    pop();
+
+
+    // logic scroll
+    // if(moveLeftButton){
+    //     scrollX -= 5;
+    // }
+    
+    // if(moveRightButton){
+    //     scrollX += 5;
+    // }
+    
+    // if(moveUpButton){
+    //     scrollY += 5;
+    // }
+    
+    // if(moveDownButton){
+    //     scrollY -= 5;
+    // }
+
     // Se aplica para mouseWheel
-    translate(controls.view.x, controls.view.y);
-    scale(controls.view.zoom);
+    // translate(controls.view.x, controls.view.y);
+    // scale(controls.view.zoom);
 
     let zoomFactor = map(zoomSettings.zoom, 15, 50, 0.5, 2);
     translate(centerX, centerY);
