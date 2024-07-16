@@ -34,10 +34,10 @@ function enterGameMode2() {
     
     // Seleccionar un nodo aleatorio entre los más conectados
     const selectedMainNode = highlyConnectedNodes[Math.floor(Math.random() * highlyConnectedNodes.length)];
-    const mainNode = nodes.nodes.find(node => node.label === selectedMainNode);
+    const mainNode = masterNodes.nodesList.find(node => node.label === selectedMainNode);
 
     // Encontrar nodos conectados al nodo seleccionado
-    const connectedNodes = graphManager.edges.edges
+    const connectedNodes = masterGraph.edges.edgesList
         .filter(edge => edge.source === mainNode || edge.target === mainNode)
         .map(edge => edge.source === mainNode ? edge.target : edge.source);
 
@@ -49,13 +49,13 @@ function enterGameMode2() {
     }
 
     // Mostrar solo los nodos seleccionados
-    nodes.nodes.forEach(node => {
+    masterNodes.nodesList.forEach(node => {
         node.setVisible(selectedNodes.includes(node));
         console.log(`Nodo ${node.label} visible: ${node.visible}`);
     });
 
     // Ocultar todas las flechas
-    graphManager.edges.edges.forEach(edge => {
+    activeGraph.edges.edgesList.forEach(edge => {
         edge.visible = false;
     });
 }
@@ -77,11 +77,11 @@ function exitGameMode2() {
     labelInput.removeAttribute('disabled');
 
     // Restaurar la visibilidad de los nodos y las flechas
-    nodes.nodes.forEach(node => {
+    nodes.nodesList.forEach(node => {
         node.setVisible(true);
     });
 
-    graphManager.edges.edges.forEach(edge => {
+    activeGraph.edges.edgesList.forEach(edge => {
         edge.visible = true; // Implementar la lógica de visibilidad
     });
 
@@ -97,7 +97,7 @@ function endGame2() {
     displayScore2(points);
 
     // Verificar si se encontraron todas las flechas
-    let allEdgesVisible = graphManager.edges.edges.every(edge => edge.visible);
+    let allEdgesVisible = activeGraph.edges.edgesList.every(edge => edge.visible);
 
     if (!allEdgesVisible) {
         document.getElementById('solutionButton').style.display = 'block'; // Mostrar el botón "Show Solution" si no se encontraron todas las flechas
@@ -106,7 +106,7 @@ function endGame2() {
 
 function checkGameCompletion2() {
     // Verificar si todas las flechas correspondientes a los nodos seleccionados están visibles
-    let allEdgesVisible = graphManager.edges.edges.every(edge => {
+    let allEdgesVisible = activeGraph.edges.edgesList.every(edge => {
         return (!selectedNodes.includes(edge.source) || !selectedNodes.includes(edge.target)) || edge.visible;
     });
 
@@ -126,7 +126,7 @@ function displayScore2(points) {
 // Función para mostrar la solución
 function showSolution() {
     // Mostrar todas las flechas correspondientes a los nodos seleccionados
-    graphManager.edges.edges.forEach(edge => {
+    activeGraph.edges.edgesList.forEach(edge => {
         if (selectedNodes.includes(edge.source) && selectedNodes.includes(edge.target)) {
             edge.visible = true; // Mostrar la flecha si ambos nodos están seleccionados
         }

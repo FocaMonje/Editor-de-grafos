@@ -54,7 +54,7 @@ function startAnimation() {
         if (animationInterval) clearInterval(animationInterval);
 
         // Obtén los años únicos y ordenados
-        let uniqueYears = graphManager.getUniqueSortedYears();
+        let uniqueYears = activeGraph.getUniqueSortedYears();
 
         // Filtra los años dentro del rango seleccionado
         uniqueYears = uniqueYears.filter(year => year >= animationSettings.startYear && year <= animationSettings.endYear);
@@ -64,7 +64,7 @@ function startAnimation() {
 
         // Inicialmente ocultar todos los nodos y aristas
         nodes.setAllNodesInvisible();
-        graphManager.edges.edges.forEach(edge => edge.visible = false);
+        activeGraph.edges.edgesList.forEach(edge => edge.visible = false);
 
         // Ocultar el botón de inicio y mostrar el botón de detener
         startButton.hide();
@@ -89,7 +89,7 @@ function startAnimation() {
                     }
                 });
 
-                graphManager.updateGraph(); // Actualiza el grafo con los cambios en la visibilidad
+                activeGraph. prepareJSONObject(); // Actualiza el grafo con los cambios en la visibilidad
                 currentYearIndex++;
             } else {
                 stopAnimationEndInterval(); // Llama a stopAnimationEndInterval cuando termine la animación

@@ -8,7 +8,7 @@ function enterGameMode() {
     labelInput.attribute('disabled', true);
 
     // Ocultar las flechas (edges)
-    graphManager.edges.edges.forEach(edge => {
+    activeGraph.edges.edgesList.forEach(edge => {
         edge.visible = false;
     });
     // Ocultar la ventana de fin del juego si está visible
@@ -37,7 +37,7 @@ function exitGameMode() {
     labelInput.removeAttribute('disabled');
 
     // Restaurar la visibilidad de las flechas (edges) según la lógica del juego
-    graphManager.edges.edges.forEach(edge => {
+    activeGraph.edges.edgesList.forEach(edge => {
         edge.visible = true; // Implementar la lógica de visibilidad según el juego
     });
 

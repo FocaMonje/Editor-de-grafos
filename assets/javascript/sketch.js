@@ -1,6 +1,13 @@
 
+
+function preload() {
+    //grafo = loadJSON('assets/data/initGraph.json');
+    //inventos = prepareDataForGraphics(grafo);
+  }
+
 function setup() {
-    canvas = createCanvas(800, 600);
+    canvas = createCanvas(canvas_width, canvas_height);
+    centerCanvas(canvas);
 
     // Initialize the physics
     physics = new VerletPhysics2D();
@@ -112,7 +119,7 @@ function setup() {
     centerY = height / 2;
 
     // Aplicar zoom con la rueda del ratón
-    canvas.mouseWheel(e => doZoom(e));
+    // canvas.mouseWheel(e => doZoom(e));
 
     // Botón del modo de juego
   gameModeButton = select('#gameModeButton');
@@ -191,32 +198,20 @@ function setup() {
 
 function draw() {
     
-    
-    // Update the physics world 
-    // if(!timeLineActive){
-    //     physics.update();
-    //     activeNodes.applyRepulsion();
-    // } 
-
-    
-
     background(220);
 
-    // Se aplica para mouseWheel
-    translate(controls.view.x, controls.view.y);
-    scale(controls.view.zoom);
-
-    let zoomFactor = map(zoomSettings.zoom, 15, 50, 0.5, 2);
-    translate(centerX, centerY);
-    scale(zoomFactor);
-    translate(-centerX, -centerY);
-
-
-    stroke(0);
-    activeGraph.drawEdges();
+    push();
+    translate(scrollX , scrollY);
+    scale(zoomX,zoomY);
+  
+    
 
     activeGraph.drawNodes(slider_node_size.value()); // Aquí se usa el valor del deslizador para el tamaño de los nodos
 
+    activeGraph.drawEdges();
+
+    draw_grid(width, height);
+    
     if (gameModeActive) {
         checkGameCompletion();
     }
@@ -229,5 +224,7 @@ function draw() {
     if (timeLineActive) {
         checkGameCompletion();
     }
+
+
     
 }

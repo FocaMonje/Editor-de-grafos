@@ -48,7 +48,10 @@ class Edge {
   draw() {
     if (this.visible) { // Dibuja solo si es visible
       strokeWeight(this.selected ? 4 : 1);
-      this.drawArrow(this.source.x, this.source.y, this.target.x, this.target.y, this.source.size/3);
+      let intevaloVal = Math.floor(alturaDibujo / maxVal);
+      let source_y = alturaDibujo - this.source.valencia * intevaloVal;
+      let target_y = alturaDibujo - this.target.valencia * intevaloVal;
+      this.drawArrow(this.source.year, source_y, this.target.year, target_y, this.source.size/3);
     }
   }
 

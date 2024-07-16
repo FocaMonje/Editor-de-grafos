@@ -34,6 +34,23 @@ let gameMode2Active = false;
 let solutionButton;
 let selectedNodes = [];
 let timeLineActive = false;
+let moveRightButton, moveUpButton, moveLeftButton, moveDownButton;
+
+// Variables para el control grafico
+let canvas_height = 500;
+let canvas_width = 900;
+let grafo ;
+let inventos;
+let initYear = 1000;
+let lastYear = 2100;
+let maxVal = 30;
+let scrollX = -1 * initYear;
+let scrollY = 10;
+let zoomX = 1;
+let zoomY = 1;
+const alturaDibujo = canvas_height - 40;
+
+
 
 // const timeIntervals = [
 //     { start: 1600, end: 1649 },
