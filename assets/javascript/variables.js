@@ -52,7 +52,7 @@ let zoomY = 1;
 
 let slider_zoom_x, slider_zoom_y;
 
-const alturaDibujo = canvas_height - 40;
+const alturaDibujo = canvas_height - 60;
 
 
 

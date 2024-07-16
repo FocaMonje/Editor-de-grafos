@@ -204,10 +204,10 @@ function draw() {
     scale(zoomX,zoomY);
   
     
-
+    activeGraph.drawEdges();
     activeGraph.drawNodes(slider_node_size.value()); // Aquí se usa el valor del deslizador para el tamaño de los nodos
 
-    activeGraph.drawEdges();
+    
 
     draw_grid(width, height);
     

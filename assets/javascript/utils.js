@@ -296,10 +296,10 @@ function draw_grid(w, h){
     for (let i = alturaDibujo; i > 0; i -= Math.floor(alturaDibujo / maxVal)){
       colorGrid.setAlpha(75);
       stroke(colorGrid);
-      line(initYear +  50 ,i, initYear + lastYear, i);
+      line(initYear +  35 ,i, initYear + lastYear, i);
       fill(colorGrid);
       textSize(12);
-      text(str(maxVal - cont), initYear+ 30, alturaDibujo - i -1 );
+      text(str(maxVal - cont + 1), initYear+ 20, alturaDibujo - i  + 15);
       cont += 1;
     }
     
@@ -319,13 +319,11 @@ function indiceDeInvento(invento_id, arrayInventos){
 
   
 function coordCanvasReales(canvasX, canvasY){
-  
-    const alturaDibujo = height - 100;
     
     const realX = (canvasX - scrollX) * 1/zoomX ;
     let realY = (canvasY - scrollY) * 1/zoomY;
     
-    realY = 2 * (alturaDibujo - realY) / maxVal;
+    realY = (2 * (alturaDibujo - realY) / maxVal) + 1;
     
     return {x:realX, y:realY};
     
