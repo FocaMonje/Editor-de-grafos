@@ -38,7 +38,7 @@ let moveRightButton, moveUpButton, moveLeftButton, moveDownButton;
 
 // Variables para el control grafico
 let canvas_height = 500;
-let canvas_width = 1000;
+let canvas_width = 900;
 let grafo ;
 let inventos;
 let initYear = 1000;
@@ -48,8 +48,14 @@ let scrollX = -1 * initYear;
 let scrollY = 10;
 let zoomX = 1;
 let zoomY = 1;
-const alturaDibujo = canvas_height - 100;
+
+
 let slider_zoom_x, slider_zoom_y;
+
+const alturaDibujo = canvas_height - 40;
+
+
+
 
 // const timeIntervals = [
 //     { start: 1600, end: 1649 },
