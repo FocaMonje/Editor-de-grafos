@@ -2,6 +2,8 @@
 
 function preload() {
     grafo = loadJSON('assets/data/initGraph.json');
+    
+    inventos = prepareDataForGraphics(grafo)
   }
 
 function setup() {
@@ -38,8 +40,6 @@ function setup() {
 
     gameNodes = new Nodes();
     gameGraph = new GraphManager(gameNodes, physics);
-
-    graphic(grafo);
 
     saveButton = select('#saveButton');
     saveButton.mousePressed(() => {

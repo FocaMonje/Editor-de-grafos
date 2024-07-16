@@ -1,5 +1,5 @@
 
-  function graphic(grafo) {
+  function prepareDataForGraphics(grafo) {
    
     let inventos = grafo.nodes.sort((a, b) => a.year - b.year);
     
