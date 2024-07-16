@@ -283,22 +283,28 @@ function centerCanvas(cnv) {
 }
 
 function draw_grid(w, h){
-    const alturaDibujo = height - 100;
-    
+
+    let colorGrid = color(0,150,150);
+  
     push();
     for (let i = initYear; i < lastYear; i += 100){
-      stroke(0,150,150);
+      colorGrid.setAlpha(75);
+      stroke(colorGrid);
       line(i, 0, i, h);
-      textSize(22);
-      text(str(i), i + 5, h);
+      fill(colorGrid);
+      textSize(16);
+      if (i == initYear) continue;
+      text(str(i), i + 20, h - 20);
     }
     
     let cont = 0;
     for (let i = alturaDibujo; i > 0; i -= Math.floor(alturaDibujo / maxVal)){
-      stroke(0,150,150);
-      line(initYear,i, initYear + lastYear, i);
-      textSize(22);
-      text(str(maxVal - cont), initYear+ 30, alturaDibujo - i);
+      colorGrid.setAlpha(75);
+      stroke(colorGrid);
+      line(initYear +  50 ,i, initYear + lastYear, i);
+      fill(colorGrid);
+      textSize(12);
+      text(str(maxVal - cont), initYear+ 30, alturaDibujo - i -1 );
       cont += 1;
     }
     
