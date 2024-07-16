@@ -1,10 +1,4 @@
 
-
-function preload() {
-    //grafo = loadJSON('assets/data/initGraph.json');
-    //inventos = prepareDataForGraphics(grafo);
-  }
-
 function setup() {
     canvas = createCanvas(canvas_width, canvas_height);
     centerCanvas(canvas);
@@ -17,8 +11,13 @@ function setup() {
     // Creación del slider para el tamaño de los nodos
     slider_node_size = select('#slider_node_size');
 
-    let slider_zoom = select('#slider_zoom');
-    slider_zoom.input(updateZoom);
+    let slider_zoom_x = select('#slider_zoom_x');
+    slider_zoom_x.input(updateZoomX);
+    // zoomX = slider_zoom_x.value();
+
+    let slider_zoom_y = select('#slider_zoom_y');
+    slider_zoom_y.input(updateZoomY);
+    // zoomY = slider_zoom_y.value();
 
     labelInput = select('#node_label');
     labelInput.input(modifyNodeName);

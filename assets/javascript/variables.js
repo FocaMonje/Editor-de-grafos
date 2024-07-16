@@ -49,6 +49,7 @@ let scrollY = 10;
 let zoomX = 1;
 let zoomY = 1;
 const alturaDibujo = canvas_height - 100;
+let slider_zoom_x, slider_zoom_y;
 
 // const timeIntervals = [
 //     { start: 1600, end: 1649 },
