@@ -211,11 +211,6 @@ function modifyNodeName() {
   }
 }
 
-function updateZoom() {
-  let slider_zoom = select('#slider_zoom');
-  zoomSettings.zoom = slider_zoom.value();
-}
-
 function doZoom(event) {
     const direction = event.deltaY > 0 ? -1 : 1;
     const factor = 0.05;
@@ -336,6 +331,17 @@ function coordCanvasReales(canvasX, canvasY){
     
 }
 
+function updateZoomX() {
+    let slider_zoom_x = select('#slider_zoom_x');
+    zoomX = slider_zoom_x.value();
+    redraw();
+}
+
+function updateZoomY() {
+    let slider_zoom_y = select('#slider_zoom_y');
+    zoomY = slider_zoom_y.value();
+    redraw();
+}
 
 // Función para manejar las teclas presionadas
 function keyPressed() {
@@ -361,5 +367,9 @@ function keyPressed() {
         zoomY -= 0.05;
         break;
     }
+     // Actualizar los valores de los sliders para reflejar el cambio
+     select('#slider_zoom_x').value(zoomX);
+     select('#slider_zoom_y').value(zoomY);
+     redraw();
 }
   

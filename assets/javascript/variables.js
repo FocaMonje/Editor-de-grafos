@@ -48,7 +48,12 @@ let scrollX = -1 * initYear;
 let scrollY = 10;
 let zoomX = 1;
 let zoomY = 1;
+
+
+let slider_zoom_x, slider_zoom_y;
+
 const alturaDibujo = canvas_height - 40;
+
 
 
 
