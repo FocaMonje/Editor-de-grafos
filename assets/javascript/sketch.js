@@ -1,6 +1,11 @@
 
+
+function preload() {
+    grafo = loadJSON('assets/data/initGraph.json');
+  }
+
 function setup() {
-    canvas = createCanvas(800, 600);
+    canvas = createCanvas(1000, 500);
     centerCanvas(canvas);
 
     // Initialize the physics
@@ -34,14 +39,14 @@ function setup() {
     gameNodes = new Nodes();
     gameGraph = new GraphManager(gameNodes, physics);
 
-    inventos = masterGraph.nodes.nodesList.sort((a, b) => a.year - b.year);
+    inventos = grafo.nodes.sort((a, b) => a.year - b.year);
   
   for(let i = 0; i < inventos.length; i++){
       inventos[i].valencia = 0;
       inventos[i].flechas = [];
   }
   
-  enlaces = masterGraph.edges.edgesList;
+  enlaces = grafo.links;
   
   for(let i = 0; i < enlaces.length; i++){
     
@@ -255,7 +260,8 @@ function draw() {
         let k = indiceDeInvento(inventos[i].flechas[j], inventos)
         let x_d = inventos[k].year;
         let y_d = alturaDibujo - inventos[k].valencia * intevaloVal;
-        Edge.drawArrow(x, y, x_d, y_d, 5);
+        let arrow = new Edge(inventos[i],inventos[k] , "");   
+        arrow.drawArrow(x, y, x_d, y_d, 5);
         //console.log(inventos[i].id + " -> " + inventos[k].id);
       }
       
@@ -294,6 +300,7 @@ function draw() {
     // translate(controls.view.x, controls.view.y);
     // scale(controls.view.zoom);
 
+    /*
     let zoomFactor = map(zoomSettings.zoom, 15, 50, 0.5, 2);
     translate(centerX, centerY);
     scale(zoomFactor);
@@ -317,5 +324,7 @@ function draw() {
     if (timeLineActive) {
         checkGameCompletion();
     }
+
+    */
     
 }

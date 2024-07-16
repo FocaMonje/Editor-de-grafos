@@ -35,8 +35,10 @@ let solutionButton;
 let selectedNodes = [];
 let timeLineActive = false;
 let moveRightButton, moveUpButton, moveLeftButton, moveDownButton;
-let scroll = 0;
-// let zoom = 1;
+
+// Variables para el control grafico
+let grafo ;
+let inventos;
 let initYear = 1000;
 let lastYear = 2100;
 let maxVal = 30;
@@ -44,7 +46,7 @@ let scrollX = -1 * initYear;
 let scrollY = 10;
 let zoomX = 1;
 let zoomY = 1;
-let inventos;
+
 // const timeIntervals = [
 //     { start: 1600, end: 1649 },
 //     { start: 1650, end: 1699 },
