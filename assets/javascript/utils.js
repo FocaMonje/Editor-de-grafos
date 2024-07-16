@@ -5,7 +5,7 @@ function mousePressed() {
     const toleranciaX = 10;
     const toleranciaY = 0.7;
     
-    const inv_filtrados = inventos.filter(
+    const inv_filtrados = activeGraph.nodes.nodesList.filter(
       (invento) => (abs(invento.year - coordsReales.x)  < toleranciaX)  &&
                     (abs(invento.valencia - coordsReales.y)  < toleranciaY) )
     
@@ -13,7 +13,7 @@ function mousePressed() {
       
       for (let invento of inv_filtrados ){
         console.log();
-        console.log(invento.id);
+        console.log(invento.label);
         console.log(invento.year);
         console.log(invento.valencia);
         console.log();

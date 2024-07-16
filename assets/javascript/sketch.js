@@ -198,15 +198,6 @@ function setup() {
 
 function draw() {
     
-    
-    // Update the physics world 
-    // if(!timeLineActive){
-    //     physics.update();
-    //     activeNodes.applyRepulsion();
-    // } 
-
-    
-
     background(220);
 
     push();
@@ -214,72 +205,6 @@ function draw() {
     scale(zoomX,zoomY);
   
     draw_grid(width, height);
-  
-   // let alturaInicial = height - 50;
-/*
-   inventos = prepareDataForGraphics(grafo);
-
-    for(let i = 0; i < inventos.length; i++){
-      fill(0);
-      noStroke();
-      let r = 15;
-      if (inventos[i].year == undefined)
-        continue;
-        
-      let intevaloVal = Math.floor(alturaDibujo / maxVal);
-      let x = inventos[i].year;
-      let y = alturaDibujo - inventos[i].valencia * intevaloVal;
-      ellipse(x, y , r * (r/(r * zoomX) ), r * (r/(r * zoomY)));
-      
-      
-      for(let j = 0; j < inventos[i].flechas.length; j++){
-        let k = indiceDeInvento(inventos[i].flechas[j], inventos)
-        let x_d = inventos[k].year;
-        let y_d = alturaDibujo - inventos[k].valencia * intevaloVal;
-        let arrow = new Edge(inventos[i],inventos[k] , "");   
-        arrow.drawArrow(x, y, x_d, y_d, 5);
-        //console.log(inventos[i].id + " -> " + inventos[k].id);
-      }
-      
-      
-    }
-    
-    pop();
-
-    
-    push();
-    translate(width/2, height/2);
-    fill(150);
-    noStroke();
-    ellipse(0, 0, 10, 10);
-    pop();
-
-*/
-
-
-    // logic scroll
-    // if(moveLeftButton){
-    //     scrollX -= 5;
-    // }
-    
-    // if(moveRightButton){
-    //     scrollX += 5;
-    // }
-    
-    // if(moveUpButton){
-    //     scrollY += 5;
-    // }
-    
-    // if(moveDownButton){
-    //     scrollY -= 5;
-    // }
-
-    // Se aplica para mouseWheel
-    // translate(controls.view.x, controls.view.y);
-    // scale(controls.view.zoom);
-
-
-
 
     stroke(0);
     activeGraph.drawNodes(slider_node_size.value()); // Aquí se usa el valor del deslizador para el tamaño de los nodos
