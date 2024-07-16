@@ -21,8 +21,6 @@
         }
       }
     }
-    
-    console.log(inventos);
    
     return inventos;
   }

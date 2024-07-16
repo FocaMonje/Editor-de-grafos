@@ -78,6 +78,7 @@ class GraphManager {
       let newNode = this.nodes.addNode(random(width), random(height));
       newNode.label = node.id;
       newNode.year = node.year; // Asignar el año al nodo 
+      newNode.valencia = 0;
       nodeMap[node.id] = newNode;
     }
 
@@ -87,6 +88,8 @@ class GraphManager {
       let target = nodeMap[link.target];
       if (source && target) {
         this.addEdge(source, target, link.explicacion);
+        source.valencia++;
+        target.valencia++;
       }
     });
 

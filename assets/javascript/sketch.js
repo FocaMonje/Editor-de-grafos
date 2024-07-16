@@ -1,13 +1,12 @@
 
 
 function preload() {
-    grafo = loadJSON('assets/data/initGraph.json');
-    console.log(grafo);
-    inventos = prepareDataForGraphics(grafo);
+    //grafo = loadJSON('assets/data/initGraph.json');
+    //inventos = prepareDataForGraphics(grafo);
   }
 
 function setup() {
-    canvas = createCanvas(1000, 500);
+    canvas = createCanvas(canvas_width, canvas_height);
     centerCanvas(canvas);
 
     // Initialize the physics
@@ -210,17 +209,16 @@ function draw() {
 
     background(220);
 
-    const alturaDibujo = height - 100;
-
     push();
     translate(scrollX , scrollY);
     scale(zoomX,zoomY);
   
     draw_grid(width, height);
   
-    let alturaInicial = height - 50;
-    
+   // let alturaInicial = height - 50;
+/*
    inventos = prepareDataForGraphics(grafo);
+
     for(let i = 0; i < inventos.length; i++){
       fill(0);
       noStroke();
@@ -256,6 +254,8 @@ function draw() {
     ellipse(0, 0, 10, 10);
     pop();
 
+*/
+
 
     // logic scroll
     // if(moveLeftButton){
@@ -278,18 +278,15 @@ function draw() {
     // translate(controls.view.x, controls.view.y);
     // scale(controls.view.zoom);
 
-    /*
-    let zoomFactor = map(zoomSettings.zoom, 15, 50, 0.5, 2);
-    translate(centerX, centerY);
-    scale(zoomFactor);
-    translate(-centerX, -centerY);
+
 
 
     stroke(0);
-    activeGraph.drawEdges();
-
     activeGraph.drawNodes(slider_node_size.value()); // Aquí se usa el valor del deslizador para el tamaño de los nodos
 
+    activeGraph.drawEdges();
+
+    
     if (gameModeActive) {
         checkGameCompletion();
     }
@@ -303,6 +300,6 @@ function draw() {
         checkGameCompletion();
     }
 
-    */
+
     
 }
