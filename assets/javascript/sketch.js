@@ -2,8 +2,8 @@
 
 function preload() {
     grafo = loadJSON('assets/data/initGraph.json');
-    
-    inventos = prepareDataForGraphics(grafo)
+    console.log(grafo);
+    inventos = prepareDataForGraphics(grafo);
   }
 
 function setup() {
@@ -219,7 +219,8 @@ function draw() {
     draw_grid(width, height);
   
     let alturaInicial = height - 50;
-  
+    
+   inventos = prepareDataForGraphics(grafo);
     for(let i = 0; i < inventos.length; i++){
       fill(0);
       noStroke();
