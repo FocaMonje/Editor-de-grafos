@@ -43,9 +43,11 @@ class Node  {           //extends toxi.physics2d.VerletParticle2D
           stroke(51);
       }
       
+
+
       let intevaloVal = Math.floor(canvas_height / maxVal);
       let x = this.year;
-      let y = canvas_height - this.valencia * intevaloVal;
+      let y = alturaDibujo - this.valencia * intevaloVal;
       let r = this.size;
       ellipse(x, y , r * (r/(r * zoomX) ), r * (r/(r * zoomY)));
 
