@@ -42,10 +42,8 @@ class Node  {           //extends toxi.physics2d.VerletParticle2D
           strokeWeight(4);
           stroke(51);
       }
-      
 
-
-      let intevaloVal = Math.floor(canvas_height / maxVal);
+      let intevaloVal = Math.floor(alturaDibujo / maxVal);
       let x = this.year;
       let y = alturaDibujo - this.valencia * intevaloVal;
       let r = this.size;

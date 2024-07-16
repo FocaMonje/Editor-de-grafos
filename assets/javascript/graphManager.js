@@ -89,7 +89,6 @@ class GraphManager {
       if (source && target) {
         this.addEdge(source, target, link.explicacion);
         source.valencia++;
-        target.valencia++;
       }
     });
 
