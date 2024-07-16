@@ -5,9 +5,12 @@ class Nodes {
     this.nodeSelected = null;
     this.size = size;
   }
-
-  addNode(x, y, size) {
-    let newNode = new Node(x, y, (this.nodeCounter + 1).toString(), size);
+  
+  addNode(label, size, year) {
+    let newNode = new Node(label, size, year);
+    
+    
+    
     this.nodesList.push(newNode);
     this.nodeCounter++;
     return newNode;

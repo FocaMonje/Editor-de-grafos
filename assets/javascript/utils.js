@@ -31,16 +31,17 @@ function mousePressed() {
     }
 
     if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
-        let zoomFactor = map(zoomSettings.zoom, 15, 50, 0.5, 2);
-        let mouseXAdj = (mouseX - centerX - controls.view.x) / zoomFactor + centerX;
-        let mouseYAdj = (mouseY - centerY - controls.view.y) / zoomFactor + centerY;
+       
+        let coordenadas = coordCanvasReales(mouseX, mouseY);
+        let mouseXAdj = coordenadas.x;
+        let mouseYAdj = coordenadas.y;
 
         switch (workMode) {
         
             case 'gameMode':{
 
                  // Lógica para verificar si el jugador acierta
-                 let node = activeNodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
+                 //let node = activeNodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
                  if (node) {
                      if (activeNodes.nodeSelected !== null && activeNodes.nodeSelected !== node) {
                          let correctDirection = activeGraph.edges.edgesList.some(edge => {
@@ -70,7 +71,7 @@ function mousePressed() {
             }
 
             case 'gameMode2': {
-                let node = activeNodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
+                //let node = activeNodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
                 if (node) {
                     if (activeNodes.nodeSelected !== null && activeNodes.nodeSelected !== node) {
                         let correctDirection = activeGraph.edges.edgesList.some(edge => {
@@ -101,6 +102,7 @@ function mousePressed() {
 
             case 'drawMode': {
                 // Verificar si se ha hecho clic en una flecha
+                console.log("Soy Draw Mode");
                 let edge = activeGraph.edges.findEdge(mouseXAdj, mouseYAdj);
                 if (edge) {
                     // Si la flecha ya está seleccionada, se deselecciona
@@ -116,7 +118,7 @@ function mousePressed() {
                 }
 
                 // Lógica normal de creación de flechas
-                let node = activeNodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
+                let node = activeNodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomX);
                 if (node) {
                     if (activeNodes.nodeSelected !== null && activeNodes.nodeSelected !== node) {
                         activeGraph.addEdge(activeNodes.nodeSelected, node);
@@ -130,9 +132,14 @@ function mousePressed() {
                 } else {
                     let edge = activeGraph.edges.findEdge(mouseXAdj, mouseYAdj);
                     if (!edge) {
-                        let newNode = activeNodes.addNode(mouseXAdj, mouseYAdj);
-                        newNode.label = nodeCounter.toString();
+                        let label = nodeCounter.toString();
+                        let size = slider_node_size.value();
+                        let year = coordenadas.x;
+                        console.log(year);
+                        let newNode = activeNodes.addNode(label, size, year);
+                        
                         nodeCounter++;
+                        console.log("Soy un nodo");
                     }
                 }
                 break;
@@ -157,7 +164,7 @@ function mousePressed() {
             }
 
             case 'timeLineMode': {
-                let node = activeNodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
+                //let node = activeNodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
                 if (node) {
                     if (activeNodes.masterNodeselected !== null && activeNodes.nodeSelected !== node) {
                         // Verificar si la dirección es correcta según el año
@@ -186,19 +193,19 @@ function mousePressed() {
     }
 }
 
-function mouseDragged() {
-  let zoomFactor = map(zoomSettings.zoom, 15, 50, 0.5, 2);
-  let mouseXAdj = (mouseX - centerX - controls.view.x) / zoomFactor + centerX;
-  let mouseYAdj = (mouseY - centerY - controls.view.y) / zoomFactor + centerY;
+// function mouseDragged() {
+//   let zoomFactor = map(zoomSettings.zoom, 15, 50, 0.5, 2);
+//   let mouseXAdj = (mouseX - centerX - controls.view.x) / zoomFactor + centerX;
+//   let mouseYAdj = (mouseY - centerY - controls.view.y) / zoomFactor + centerY;
 
-  if (draggingNode) {
-      draggingNode.x = mouseXAdj;
-      draggingNode.y = mouseYAdj;
-      activeGraph.prepareJSONObject();
-  } else {
-      draggingNode = activeNodes.findNode(mouseXAdj, mouseYAdj);
-  }
-}
+//   if (draggingNode) {
+//       draggingNode.x = mouseXAdj;
+//       draggingNode.y = mouseYAdj;
+//       activeGraph.prepareJSONObject();
+//   } else {
+//       draggingNode = activeNodes.findNode(mouseXAdj, mouseYAdj);
+//   }
+// }
 
 function mouseReleased() {
   draggingNode = null;
@@ -320,12 +327,12 @@ function indiceDeInvento(invento_id, arrayInventos){
   
 function coordCanvasReales(canvasX, canvasY){
   
-    const alturaDibujo = height - 100;
+   
     
     const realX = (canvasX - scrollX) * 1/zoomX ;
     let realY = (canvasY - scrollY) * 1/zoomY;
     
-    realY = 2 * (alturaDibujo - realY) / maxVal;
+    realY = (2 * (alturaDibujo - realY) / maxVal)+1;
     
     return {x:realX, y:realY};
     
