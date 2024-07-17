@@ -75,9 +75,10 @@ class GraphManager {
     this.nodes.clear(); // Limpia los nodos existentes
     let nodeMap = {};
     for (let node of graph.nodes) {
-      let newNode = this.nodes.addNode(random(width), random(height));
-      newNode.label = node.id;
-      newNode.year = node.year; // Asignar el año al nodo 
+      let label = node.id;
+      let year = node.year; // Asignar el año al nodo 
+      let size = slider_node_size.value();
+      let newNode = this.nodes.addNode(label, size, year);
       newNode.valencia = 0;
       nodeMap[node.id] = newNode;
     }

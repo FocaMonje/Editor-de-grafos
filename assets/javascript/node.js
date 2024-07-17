@@ -1,39 +1,17 @@
 
-class Node  {           //extends toxi.physics2d.VerletParticle2D
+class Node  {          
   constructor(label, size, year) {
-    //super(x, y);
     this.label = label;
     this.selected = false;
     this.size = size;
     this.year = year;
     this.visible = true;
     this.valencia = 0;
+    let coordenadas = coordRealesCanvas(this.year, this.valencia);
+    this.x = coordenadas.x;
+    this.y = coordenadas.y;
   }
 
-  display() {
-    if (this.visible) {
-      noStroke();
-      fill(255, 0, 0);
-
-      let intevaloVal = Math.floor(canvas_height / maxVal);
-      let x = this.year;
-      let y = canvas_height - this.valencia * intevaloVal;
-      let r = this.size;
-      ellipse(x, y , r * (r/(r * zoomX) ), r * (r/(r * zoomY)));
-      fill(0);
-      textSize(12);
-      textAlign(CENTER, CENTER);
-      text(this.label, x, y);
-    }
-  }
-
-  select() {
-    this.selected = true;
-  }
-
-  deselect() {
-    this.selected = false;
-  }
 
   draw(size) {
     if (this.visible) { // Solo dibuja si el nodo es visible
@@ -42,12 +20,8 @@ class Node  {           //extends toxi.physics2d.VerletParticle2D
           strokeWeight(4);
           stroke(51);
       }
-
-      let intevaloVal = Math.floor(alturaDibujo / maxVal);
-      let x = this.year;
-      let y = alturaDibujo - this.valencia * intevaloVal;
       let r = this.size;
-      ellipse(x, y , r * (r/(r * zoomX) ), r * (r/(r * zoomY)));
+      ellipse(this.x, this.y , r * (r/(r * zoomX) ), r * (r/(r * zoomY)));
 
       fill(0);
       strokeWeight(1);
@@ -57,6 +31,17 @@ class Node  {           //extends toxi.physics2d.VerletParticle2D
       fill(255);
     }
   }
+
+
+  select() {
+    this.selected = true;
+  }
+
+  deselect() {
+    this.selected = false;
+  }
+
+  
 
   setVisible(visible) {
     this.visible = visible;
@@ -73,5 +58,20 @@ class Node  {           //extends toxi.physics2d.VerletParticle2D
   move(fx, fy) {
     this.x -= fx / 2;
     this.y -= fy / 2;
+  }
+
+
+  display() {
+    if (this.visible) {
+      noStroke();
+      fill(255, 0, 0);
+      let intevaloVal = Math.floor(canvas_height / maxVal);
+      let r = this.size;
+      ellipse(this.x, this.y , r * (r/(r * zoomX) ), r * (r/(r * zoomY)));
+      fill(0);
+      textSize(12);
+      textAlign(CENTER, CENTER);
+      text(this.label, x, y);
+    }
   }
 }

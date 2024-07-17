@@ -100,8 +100,7 @@ function executeByMode() {
             }
 
             case 'drawMode': {
-                // Verificar si se ha hecho clic en una flecha
-                console.log("Soy Draw Mode");
+                // Verificar si se ha hecho clic en una flecha     
                 let edge = activeGraph.edges.findEdge(mouseXAdj, mouseYAdj);
                 if (edge) {
                     // Si la flecha ya está seleccionada, se deselecciona

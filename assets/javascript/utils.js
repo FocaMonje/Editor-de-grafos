@@ -123,17 +123,25 @@ function indiceDeInvento(invento_id, arrayInventos){
 }
 
   
-function coordCanvasReales(canvasX, canvasY){
+function coordCanvasReales(xCanvas, yCanvas){
 
-    
-    const realX = (canvasX - scrollX) * 1/zoomX ;
-    let realY = (canvasY - scrollY) * 1/zoomY;
+    const realX = (xCanvas - scrollX) * 1/zoomX ;
+    let realY = (yCanvas - scrollY) * 1/zoomY;
     
     realY = (2 * (alturaDibujo - realY) / maxVal) + 1;
 
-    
     return {x:realX, y:realY};
-    
+
+}
+
+function coordRealesCanvas(year, valencia){
+
+  let xCanvas = year;
+  let intevaloVal = Math.floor(alturaDibujo / maxVal);
+  let yCanvas = alturaDibujo - valencia * intevaloVal;
+
+  return {x:xCanvas, y:yCanvas};
+
 }
 
 function updateIncreaseX() {
