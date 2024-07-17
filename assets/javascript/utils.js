@@ -234,20 +234,12 @@ function doZoom(event) {
 function resetButtonStyles() {
     drawModeButton.style('background-color', '');
     deleteModeButton.style('background-color', '');
-    // selectedModeButton.style('background-color', '');
     animationModeButton.style('background-color', '');
     gameModeButton.style('background-color', '');
     hideAnimationControls();
 }
 
 function moveView(deltaX, deltaY) {
-    // controls.view.x += deltaX;
-    // controls.view.y += deltaY;
-    // Ajustar las coordenadas de los nodos y aristas según el movimiento
-    // activeNodes.nodesList.forEach(node => {
-    //     node.x += deltaX;
-    //     node.y += deltaY;
-    // });
     // Actualizar el desplazamiento para el canvas
     scrollX -= deltaX;
     scrollY -= deltaY;
@@ -338,15 +330,23 @@ function coordCanvasReales(canvasX, canvasY){
     
 }
 
-function updateZoomX() {
-    let slider_zoom_x = select('#slider_zoom_x');
-    zoomX = slider_zoom_x.value();
+function updateIncreaseX() {
+    zoomX += 0.05;
     redraw();
 }
 
-function updateZoomY() {
-    let slider_zoom_y = select('#slider_zoom_y');
-    zoomY = slider_zoom_y.value();
+function updateDecreaseX() {
+    zoomX  -= 0.05;
+    redraw();
+}
+
+function updateIncreaseY() {
+    zoomY += 0.05;
+    redraw();
+}
+
+function updateDecreaseY() {
+    zoomY  -= 0.05;
     redraw();
 }
 
@@ -374,9 +374,6 @@ function keyPressed() {
         zoomY -= 0.05;
         break;
     }
-     // Actualizar los valores de los sliders para reflejar el cambio
-     select('#slider_zoom_x').value(zoomX);
-     select('#slider_zoom_y').value(zoomY);
-     redraw();
+
 }
   
