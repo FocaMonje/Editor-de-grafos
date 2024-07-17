@@ -11,13 +11,23 @@ function setup() {
     // Creación del slider para el tamaño de los nodos
     slider_node_size = select('#slider_node_size');
 
-    let slider_zoom_x = select('#slider_zoom_x');
-    slider_zoom_x.input(updateZoomX);
-    // zoomX = slider_zoom_x.value();
+    let increaseX = select('#increaseX');
+    let decreaseX = select('#decreaseX');
+    let increaseY = select('#increaseY');
+    let decreaseY = select('#decreaseY');
 
-    let slider_zoom_y = select('#slider_zoom_y');
-    slider_zoom_y.input(updateZoomY);
-    // zoomY = slider_zoom_y.value();
+    increaseX.mousePressed(() => {
+        updateIncreaseX();
+    });
+    decreaseX.mousePressed(() => {
+        updateDecreaseX();
+    });
+    increaseY.mousePressed(() => {
+        updateIncreaseY();
+    });
+    decreaseY.mousePressed(() => {
+        updateDecreaseY();
+    });
 
     labelInput = select('#node_label');
     labelInput.input(modifyNodeName);
@@ -116,9 +126,6 @@ function setup() {
 
     centerX = width / 2;
     centerY = height / 2;
-
-    // Aplicar zoom con la rueda del ratón
-    // canvas.mouseWheel(e => doZoom(e));
 
     // Botón del modo de juego
   gameModeButton = select('#gameModeButton');
