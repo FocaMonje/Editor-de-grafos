@@ -1,4 +1,4 @@
-function selectMode() {
+function executeByMode() {
     const coordsReales = coordCanvasReales(mouseX, mouseY);
   
     const toleranciaX = 10;

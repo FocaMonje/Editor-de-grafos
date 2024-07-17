@@ -47,5 +47,5 @@ function draw() {
 }
 
 function mousePressed(){
-    selectMode();
+    executeByMode();
 }
