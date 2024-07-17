@@ -1,5 +1,6 @@
 
 function setup() {
+
     canvas = createCanvas(canvas_width, canvas_height);
     centerCanvas(canvas);
 
@@ -29,7 +30,6 @@ function draw() {
     activeGraph.drawEdges();
     activeGraph.drawNodes(slider_node_size.value()); // Aquí se usa el valor del deslizador para el tamaño de los nodos
 
-    
 
     draw_grid(width, height);
     
@@ -41,11 +41,11 @@ function draw() {
         checkGameCompletion2();
     }
 
-    
     if (timeLineActive) {
         checkGameCompletion();
     }
+}
 
-
-    
+function mousePressed(){
+    selectMode();
 }
