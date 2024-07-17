@@ -1,9 +1,9 @@
 
 class GraphManager {
-  constructor(nodes,physics) {
+  constructor(nodes) {
     this.nodes = nodes;
     this.edges = new Edges();
-    this.physics = physics;
+  
     this.graphJSONObject = {};
     this.prepareJSONObject();
   }
@@ -31,7 +31,7 @@ class GraphManager {
 
   addEdge(node1, node2, explicacion = '') {
     this.edges.addEdge(node1, node2, explicacion);
-    this.physics.addSpring(new VerletSpring2D(node1, node2, 100, 0.01));
+   
     this.prepareJSONObject();
   }
 
