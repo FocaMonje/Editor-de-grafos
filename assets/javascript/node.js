@@ -7,9 +7,6 @@ class Node  {
     this.year = year;
     this.visible = true;
     this.valencia = 0;
-    let coordenadas = coordRealesCanvas(this.year, this.valencia);
-    this.x = coordenadas.x;
-    this.y = coordenadas.y;
   }
 
 
@@ -21,13 +18,16 @@ class Node  {
           stroke(51);
       }
       let r = this.size;
-      ellipse(this.x, this.y , r * (r/(r * zoomX) ), r * (r/(r * zoomY)));
+      let coordenadas = coordRealesCanvas(this.year, this.valencia);
+      let x = coordenadas.x;
+      let y = coordenadas.y;
+      ellipse(x, y , r * (r/(r * zoomX) ), r * (r/(r * zoomY)));
 
       fill(0);
       strokeWeight(1);
       textAlign(CENTER, CENTER);
       textSize(this.size);
-      text(this.label, this.x, this.y);
+      text(this.label, x, y);
       fill(255);
     }
   }
