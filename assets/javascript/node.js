@@ -9,6 +9,15 @@ class Node  {
     this.valencia = 0;
   }
 
+  get x(){
+      let coordenadas = coordRealesCanvas(this.year, this.valencia);
+      return coordenadas.x;
+  }
+
+  get y(){
+    let coordenadas = coordRealesCanvas(this.year, this.valencia);
+    return coordenadas.y;
+  }
 
   draw(size) {
     if (this.visible) { // Solo dibuja si el nodo es visible
@@ -17,17 +26,15 @@ class Node  {
           strokeWeight(4);
           stroke(51);
       }
+ 
       let r = this.size;
-      let coordenadas = coordRealesCanvas(this.year, this.valencia);
-      let x = coordenadas.x;
-      let y = coordenadas.y;
-      ellipse(x, y , r * (r/(r * zoomX) ), r * (r/(r * zoomY)));
+      ellipse(this.x, this.y , r * (r/(r * zoomX) ), r * (r/(r * zoomY)));
 
       fill(0);
       strokeWeight(1);
       textAlign(CENTER, CENTER);
       textSize(this.size);
-      text(this.label, x, y);
+      text(this.label, this.x, this.y);
       fill(255);
     }
   }

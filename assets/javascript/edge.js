@@ -22,7 +22,7 @@ class Edge {
   }
 
   isMouseOver(x, y) {
-    const margin = 5; // margen para ampliar la zona de selección
+    const margin = 75; // margen para ampliar la zona de selección
 
     let x1 = this.source.x;
     let y1 = this.source.y;

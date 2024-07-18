@@ -190,4 +190,10 @@ function keyPressed() {
     }
 
 }
+
+function deepCopy(object){
+  // https://developer.mozilla.org/en-US/docs/Glossary/Deep_copy
+
+  return JSON.parse(JSON.stringify(object));
+}
   
