@@ -1,33 +1,20 @@
 function executeByMode() {
-    const coordsReales = coordCanvasReales(mouseX, mouseY);
-  
-    const toleranciaX = 10;
-    const toleranciaY = 0.7;
     
-    const inv_filtrados = activeGraph.nodes.nodesList.filter(
-      (invento) => (abs(invento.year - coordsReales.x)  < toleranciaX)  &&
-                    (abs(invento.valencia - coordsReales.y)  < toleranciaY) )
-    
-    if (inv_filtrados.length > 0){
-      
-      for (let invento of inv_filtrados ){
-        console.log();
-        console.log(invento.label);
-        console.log(invento.year);
-        console.log(invento.valencia);
-        console.log();
-      }
-    } else {
-      
-    console.log();
-    console.log("ScrollX:", scrollX);
-    console.log("ScrollY:", scrollY);
-    console.log("ZoomX:", zoomX);
-    console.log("ZoomY:", zoomY);
-    console.log("Coord en el Canvas: ", mouseX, mouseY);
-    console.log("Coord Reales: ", coordsReales.x,coordsReales.y  );
-       
+    let listaDeNodos = activeGraph.findNodesUnderMouse();
+
+    if(listaDeNodos == null) {
+        // Deseleccionar cualquier nodo seleccionado
+        activeGraph.nodes.unSelectNodes();
+        document.getElementById('node_label').value = '';
     }
+
+    if(listaDeNodos.length>0){
+        // Seleccionar el nodo
+
+        let invento = listaDeNodos[0];
+        activeGraph.nodes.selectNode(invento); //Seleccionamos el primer nodo de la lista (nodo 0)
+        document.getElementById('node_label').value = invento.label;
+    } 
 
     if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
        
@@ -100,48 +87,47 @@ function executeByMode() {
             }
 
             case 'drawMode': {
-                // Verificar si se ha hecho clic en una flecha     
+                // Verificar si se ha hecho clic en una arista
                 let edge = activeGraph.edges.findEdge(mouseXAdj, mouseYAdj);
-                if (edge) {
-                    // Si la flecha ya está seleccionada, se deselecciona
-                    if (activeGraph.edges.selectedEdge === edge) {
-                        activeGraph.edges.unselectEdges();
-                        edgeInput.value('');
-                    } else {
-                        // Si se ha hecho clic en una flecha, se maneja como en 'selectedMode'
-                        activeGraph.edges.selectEdge(edge);
-                        edgeInput.value(edge.explicacion);
-                    }
-                    break;
-                }
+                // if (edge) {
+                //     // Si la arista ya está seleccionada, deseleccionarla
+                //     if (activeGraph.edges.selectedEdge === edge) {
+                //         activeGraph.edges.unselectEdges();
+                //         edgeInput.value('');
+                //     } else {
+                //         // Seleccionar la arista y actualizar el campo de entrada de la arista
+                //         activeGraph.edges.selectEdge(edge);
+                //         edgeInput.value(edge.explicacion); // Actualizar con la explicación de la arista
+                //     }
+                //     break;
+                // }
 
-                // Lógica normal de creación de flechas
-                let node = activeNodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomX);
+                // Verificar si se ha hecho clic en un nodo
+                let node = activeNodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomX, zoomY);
                 if (node) {
                     if (activeNodes.nodeSelected !== null && activeNodes.nodeSelected !== node) {
+                        // Crear una arista entre el nodo previamente seleccionado y el nodo actual
                         activeGraph.addEdge(activeNodes.nodeSelected, node);
-                        activeNodes.unSelectNodes();
-                    } else if (activeNodes.nodeSelected === null && node.selected === false) {
+                        activeNodes.unSelectNodes(); // Deseleccionar todos los nodos
+                    } else if (activeNodes.nodeSelected === null && !node.selected) {
+                        // Seleccionar el nodo si no hay ninguno seleccionado
                         activeNodes.selectNode(node);
-                        labelInput.value(node.label);
+                        labelInput.value(node.label); // Actualizar con el nombre del nodo
                     }
-                } else if (activeNodes.nodeSelected != null) {
-                    activeNodes.unSelectNodes();
                 } else {
-                    let edge = activeGraph.edges.findEdge(mouseXAdj, mouseYAdj);
+                    // Si no se hizo clic en ningún nodo existente, considerar agregar un nuevo nodo
                     if (!edge) {
                         let label = nodeCounter.toString();
                         let size = slider_node_size.value();
-                        let year = coordenadas.x;
-                        console.log(year);
-                        let newNode = activeNodes.addNode(label, size, year);
+                        let year = coordenadas.x; // Asegúrate de obtener las coordenadas correctas
+                        let newNode = activeNodes.addNode(label, size, year); // Añadir un nuevo nodo al grafo
                         
-                        nodeCounter++;
-                        console.log("Soy un nodo");
+                        nodeCounter++; // Incrementar el contador de nodos
                     }
                 }
                 break;
             }
+
             case 'deleteMode': {
                 let edge = activeGraph.edges.findEdge(mouseXAdj, mouseYAdj);
                 if (edge) {

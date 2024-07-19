@@ -131,4 +131,39 @@ class GraphManager {
     let uniqueYears = [...new Set(years)].sort((a, b) => a - b);
     return uniqueYears;
   }
+
+  findNodesUnderMouse(){
+    const coordsReales = coordCanvasReales(mouseX, mouseY);
+  
+    const toleranciaX = 10;
+    const toleranciaY = 0.7;
+    
+    const inv_filtrados = this.nodes.nodesList.filter(
+      (invento) => (abs(invento.year - coordsReales.x)  < toleranciaX)  &&
+                    (abs(invento.valencia - coordsReales.y)  < toleranciaY) )
+    
+    if (inv_filtrados.length > 0){
+      
+      for (let invento of inv_filtrados ){
+        console.log();
+        console.log(invento.label);
+        console.log(invento.year);
+        console.log(invento.valencia);
+        console.log();
+
+        return inv_filtrados;
+      }
+    } else {
+      
+      console.log();
+      console.log("ScrollX:", scrollX);
+      console.log("ScrollY:", scrollY);
+      console.log("ZoomX:", zoomX);
+      console.log("ZoomY:", zoomY);
+      console.log("Coord en el Canvas: ", mouseX, mouseY);
+      console.log("Coord Reales: ", coordsReales.x,coordsReales.y  );
+
+      return null;
+    }
+  }
 }
