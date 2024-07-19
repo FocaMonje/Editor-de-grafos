@@ -163,7 +163,7 @@ class GraphManager {
       console.log("Coord en el Canvas: ", mouseX, mouseY);
       console.log("Coord Reales: ", coordsReales.x,coordsReales.y  );
 
-      return null;
+      return [];
     }
   }
 }

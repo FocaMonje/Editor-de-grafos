@@ -1,22 +1,23 @@
 function executeByMode() {
     
-    let listaDeNodos = activeGraph.findNodesUnderMouse();
-
-    if(listaDeNodos == null) {
-        // Deseleccionar cualquier nodo seleccionado
-        activeGraph.nodes.unSelectNodes();
-        document.getElementById('node_label').value = '';
-    }
-
-    if(listaDeNodos.length>0){
-        // Seleccionar el nodo
-
-        let invento = listaDeNodos[0];
-        activeGraph.nodes.selectNode(invento); //Seleccionamos el primer nodo de la lista (nodo 0)
-        document.getElementById('node_label').value = invento.label;
-    } 
+    
 
     if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
+
+        let listaDeNodos = activeGraph.findNodesUnderMouse();
+
+        if(listaDeNodos == []) {
+            // Deseleccionar cualquier nodo seleccionado
+            activeGraph.nodes.unSelectNodes();
+            document.getElementById('node_label').value = '';
+        } else {
+            // Seleccionar el nodo
+
+            let invento = listaDeNodos[0];
+            activeGraph.nodes.selectNode(invento); //Seleccionamos el primer nodo de la lista (nodo 0)
+            document.getElementById('node_label').value = invento.label;
+            listaDeNodos = [];
+        } 
        
         let coordenadas = coordCanvasReales(mouseX, mouseY);
         let mouseXAdj = coordenadas.x;
