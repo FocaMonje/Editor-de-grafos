@@ -1,7 +1,5 @@
 function executeByMode() {
     
-    
-
     if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
 
         let listaDeNodos = activeGraph.findNodesUnderMouse();
@@ -10,9 +8,10 @@ function executeByMode() {
             // Deseleccionar cualquier nodo seleccionado
             activeGraph.nodes.unSelectNodes();
             document.getElementById('node_label').value = '';
-        } else {
+        } 
+        if(listaDeNodos.lenght > 0)
+        {
             // Seleccionar el nodo
-
             let invento = listaDeNodos[0];
             activeGraph.nodes.selectNode(invento); //Seleccionamos el primer nodo de la lista (nodo 0)
             document.getElementById('node_label').value = invento.label;
@@ -22,6 +21,8 @@ function executeByMode() {
         let coordenadas = coordCanvasReales(mouseX, mouseY);
         let mouseXAdj = coordenadas.x;
         let mouseYAdj = coordenadas.y;
+
+        
 
         switch (workMode) {
         
@@ -90,18 +91,18 @@ function executeByMode() {
             case 'drawMode': {
                 // Verificar si se ha hecho clic en una arista
                 let edge = activeGraph.edges.findEdge(mouseXAdj, mouseYAdj);
-                // if (edge) {
-                //     // Si la arista ya está seleccionada, deseleccionarla
-                //     if (activeGraph.edges.selectedEdge === edge) {
-                //         activeGraph.edges.unselectEdges();
-                //         edgeInput.value('');
-                //     } else {
-                //         // Seleccionar la arista y actualizar el campo de entrada de la arista
-                //         activeGraph.edges.selectEdge(edge);
-                //         edgeInput.value(edge.explicacion); // Actualizar con la explicación de la arista
-                //     }
-                //     break;
-                // }
+                if (edge) {
+                    // Si la arista ya está seleccionada, deseleccionarla
+                    if (activeGraph.edges.selectedEdge === edge) {
+                        activeGraph.edges.unselectEdges();
+                        edgeInput.value('');
+                    } else {
+                        // Seleccionar la arista y actualizar el campo de entrada de la arista
+                        activeGraph.edges.selectEdge(edge);
+                        edgeInput.value(edge.explicacion); // Actualizar con la explicación de la arista
+                    }
+                    break;
+                }
 
                 // Verificar si se ha hecho clic en un nodo
                 let node = activeNodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomX, zoomY);

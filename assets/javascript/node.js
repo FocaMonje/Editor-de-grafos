@@ -34,7 +34,7 @@ class Node  {
       strokeWeight(1);
       textAlign(CENTER, CENTER);
       textSize(this.size);
-      text(this.label, this.x, this.y);
+      //text(this.label, this.x, this.y);
       fill(255);
     }
   }

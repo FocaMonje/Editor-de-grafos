@@ -25,9 +25,9 @@ class Edge {
     const margin = 75; // margen para ampliar la zona de selección
 
     let x1 = this.source.x;
-    let y1 = this.source.y;
+    let y1 = this.source.valencia;
     let x2 = this.target.x;
-    let y2 = this.target.y;
+    let y2 = this.target.valencia;
 
     // Verificar si el punto está dentro del nodo de origen o destino
     if (this.isPointInsideNode(x, y, this.source) || this.isPointInsideNode(x, y, this.target)) {
