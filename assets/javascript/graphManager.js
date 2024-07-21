@@ -75,9 +75,10 @@ class GraphManager {
     this.nodes.clear(); // Limpia los nodos existentes
     let nodeMap = {};
     for (let node of graph.nodes) {
-      let newNode = this.nodes.addNode(random(width), random(height));
-      newNode.label = node.id;
-      newNode.year = node.year; // Asignar el año al nodo 
+      let label = node.id;
+      let year = node.year; // Asignar el año al nodo 
+      let size = slider_node_size.value();
+      let newNode = this.nodes.addNode(label, size, year);
       newNode.valencia = 0;
       nodeMap[node.id] = newNode;
     }
@@ -129,5 +130,40 @@ class GraphManager {
     // Eliminar duplicados y ordenar de menor a mayor
     let uniqueYears = [...new Set(years)].sort((a, b) => a - b);
     return uniqueYears;
+  }
+
+  findNodesUnderMouse(){
+    const coordsReales = coordCanvasReales(mouseX, mouseY);
+  
+    const toleranciaX = 10;
+    const toleranciaY = 0.7;
+    
+    const inv_filtrados = this.nodes.nodesList.filter(
+      (invento) => (abs(invento.year - coordsReales.x)  < toleranciaX)  &&
+                    (abs(invento.valencia - coordsReales.y)  < toleranciaY) )
+    
+    if (inv_filtrados.length > 0){
+      
+      for (let invento of inv_filtrados ){
+        console.log();
+        console.log(invento.label);
+        console.log(invento.year);
+        console.log(invento.valencia);
+        console.log();
+
+        return inv_filtrados;
+      }
+    } else {
+      
+      console.log();
+      console.log("ScrollX:", scrollX);
+      console.log("ScrollY:", scrollY);
+      console.log("ZoomX:", zoomX);
+      console.log("ZoomY:", zoomY);
+      console.log("Coord en el Canvas: ", mouseX, mouseY);
+      console.log("Coord Reales: ", coordsReales.x,coordsReales.y  );
+
+      return [];
+    }
   }
 }

@@ -3,22 +3,22 @@ function initHtml(){
     // Creación del slider para el tamaño de los nodos
     slider_node_size = select('#slider_node_size');
 
-    let increaseX = select('#increaseX');
-    let decreaseX = select('#decreaseX');
-    let increaseY = select('#increaseY');
-    let decreaseY = select('#decreaseY');
+    let increaseXZoom = select('#increaseXZoom');
+    let decreaseXZoom = select('#decreaseXZoom');
+    let increaseYZoom = select('#increaseYZoom');
+    let decreaseYZoom = select('#decreaseYZoom');
 
-    increaseX.mousePressed(() => {
-        updateIncreaseX();
+    increaseXZoom.mousePressed(() => {
+        updateIncreaseXZoom();
     });
-    decreaseX.mousePressed(() => {
-        updateDecreaseX();
+    decreaseXZoom.mousePressed(() => {
+        updateDecreaseXZoom();
     });
-    increaseY.mousePressed(() => {
-        updateIncreaseY();
+    increaseYZoom.mousePressed(() => {
+        updateIncreaseYZoom();
     });
-    decreaseY.mousePressed(() => {
-        updateDecreaseY();
+    decreaseYZoom.mousePressed(() => {
+        updateDecreaseYZoom();
     });
 
     labelInput = select('#node_label');

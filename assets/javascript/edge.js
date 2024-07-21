@@ -22,12 +22,12 @@ class Edge {
   }
 
   isMouseOver(x, y) {
-    const margin = 5; // margen para ampliar la zona de selección
+    const margin = 0.4; // margen para ampliar la zona de selección
 
     let x1 = this.source.x;
-    let y1 = this.source.y;
+    let y1 = this.source.valencia;
     let x2 = this.target.x;
-    let y2 = this.target.y;
+    let y2 = this.target.valencia;
 
     // Verificar si el punto está dentro del nodo de origen o destino
     if (this.isPointInsideNode(x, y, this.source) || this.isPointInsideNode(x, y, this.target)) {
@@ -48,12 +48,14 @@ class Edge {
   draw() {
     if (this.visible) { // Dibuja solo si es visible
       strokeWeight(this.selected ? 4 : 1);
-      let intevaloVal = Math.floor(alturaDibujo / maxVal);
-      let source_y = alturaDibujo - this.source.valencia * intevaloVal;
-      let target_y = alturaDibujo - this.target.valencia * intevaloVal;
-      this.drawArrow(this.source.year, source_y, this.target.year, target_y, this.source.size/3);
+  
+      let coordsSource = coordRealesCanvas(this.source.year, this.source.valencia);
+      let coordsTarget = coordRealesCanvas(this.target.year, this.target.valencia);
+
+      this.drawArrow(coordsSource.x, coordsSource.y, coordsTarget.x, coordsTarget.y, this.source.size/3);
     }
   }
+
 
   drawArrow(x1, y1, x2, y2,arrowSize) {
 

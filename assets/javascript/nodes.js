@@ -8,9 +8,6 @@ class Nodes {
   
   addNode(label, size, year) {
     let newNode = new Node(label, size, year);
-    
-    
-    
     this.nodesList.push(newNode);
     this.nodeCounter++;
     return newNode;
@@ -51,19 +48,26 @@ class Nodes {
     this.nodesList.forEach(node => node.setVisible(true));
   }
 
-  findNode(x, y, nodeSize = 20, zoomFactor = 1) {
+  findNode(x, y, nodeSize = 20, zoomX = 1, zoomY = 1) {
     for (let node of this.nodesList) {
         // Ajuste dinámico de la distancia de detección
-        let detectionRadius = (nodeSize / 2) / zoomFactor;
-        let d = dist(x, y, node.x, node.y);
+        let detectionRadius = (nodeSize / 2) / Math.max(zoomX, zoomY); // Utiliza el máximo de zoomX y zoomY
+
+        // Calcula las coordenadas del nodo ajustadas por el zoom
+        let adjustedNodeX = node.x * zoomX;
+        let adjustedNodeY = node.y * zoomY;
+
+        // Calcula la distancia ajustada con el zoom
+        let d = dist(x, y, adjustedNodeX, adjustedNodeY);
         
         // Si la distancia es menor que el radio de detección ajustado
         if (d < detectionRadius) {
             return node;
         }
     }
-    return null;
+    return null; // Devuelve null si no se encuentra ningún nodo dentro del radio de detección
   }
+
 
   updateNodes(currentTime) {
     for (let node of this.nodesList) {

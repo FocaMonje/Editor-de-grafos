@@ -9,7 +9,11 @@ class Edges {
     this.edgesList.push(new Edge(source, target, explicacion));
   }
 
-  findEdge(x, y) {
+  findEdgeUnderMouse() {
+    let coordenadas = coordCanvasReales(mouseX, mouseY);
+    let x = coordenadas.x;
+    let y = coordenadas.y;
+    
     for (let edge of this.edgesList) {
       if (edge.isMouseOver(x, y)) {
         return edge;
