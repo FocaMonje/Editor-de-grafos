@@ -144,23 +144,23 @@ function coordRealesCanvas(year, valencia){
 
 }
 
-function updateIncreaseX() {
-    zoomX += 0.05;
+function updateIncreaseXZoom() {
+    zoomXPlus();
     redraw();
 }
 
-function updateDecreaseX() {
-    zoomX  -= 0.05;
+function updateDecreaseXZoom() {
+    zoomXMinus();
     redraw();
 }
 
-function updateIncreaseY() {
-    zoomY += 0.05;
+function updateIncreaseYZoom() {
+    zoomYPlus();
     redraw();
 }
 
-function updateDecreaseY() {
-    zoomY  -= 0.05;
+function updateDecreaseYZoom() {
+    zoomYMinus();
     redraw();
 }
 
@@ -168,27 +168,48 @@ function updateDecreaseY() {
 function keyPressed() {
     switch (key) {
       case 'q':
-        zoomX = 1;
-        zoomY = 1;
-        scrollX = -1 * initYear;
-        scrollY = 0;
+        resetZoom();
         break;
       case 'z':
-        zoomX -= 0.05;
-        scrollX += 75;
+        zoomXMinus();
         break;
       case 'x':
-        zoomX += 0.05;
-        scrollX -= 75;
+        zoomXPlus();
         break;
       case 'd':
-        zoomY += 0.05;
+        zoomYPlus();
         break;
       case 'c':
-        zoomY -= 0.05;
+        zoomYMinus();
         break;
     }
+}
 
+function resetZoom(){
+  zoomX = 1;
+  zoomY = 1;
+  scrollX = -1 * initYear;
+  scrollY = 0;
+}
+
+function zoomXPlus(){
+  zoomX += 0.05;
+  scrollX -= 75;
+}
+
+function zoomXMinus(){
+  zoomX -= 0.05;
+  scrollX += 75;
+}
+
+function zoomYPlus(){
+  zoomY += 0.05;
+  scrollY -= 24.0;
+}
+
+function zoomYMinus(){
+  zoomY -= 0.05;
+  scrollY += 24.0;
 }
 
 function deepCopy(object){

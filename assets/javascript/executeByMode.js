@@ -2,27 +2,28 @@ function executeByMode() {
     
     if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
 
-        let listaDeNodos = activeGraph.findNodesUnderMouse();
+        let node = null;
 
+        let listaDeNodos = activeGraph.findNodesUnderMouse();
+        let edge = activeGraph.edges.findEdgeUnderMouse();
+        
         if(listaDeNodos == []) {
             // Deseleccionar cualquier nodo seleccionado
             activeGraph.nodes.unSelectNodes();
             document.getElementById('node_label').value = '';
+            node = null;
         } 
-        if(listaDeNodos.lenght > 0)
+        if(listaDeNodos.length > 0)
         {
             // Seleccionar el nodo
-            let invento = listaDeNodos[0];
-            activeGraph.nodes.selectNode(invento); //Seleccionamos el primer nodo de la lista (nodo 0)
-            document.getElementById('node_label').value = invento.label;
+            node = listaDeNodos[0];
+            // Se da preferencia a la seleccion de un nodo respecto a la de un arco
+            edge = null; 
+            activeGraph.nodes.selectNode(node); //Seleccionamos el primer nodo de la lista (nodo 0)
+            document.getElementById('node_label').value = node.label;
             listaDeNodos = [];
         } 
        
-        let coordenadas = coordCanvasReales(mouseX, mouseY);
-        let mouseXAdj = coordenadas.x;
-        let mouseYAdj = coordenadas.y;
-
-        
 
         switch (workMode) {
         
@@ -89,24 +90,8 @@ function executeByMode() {
             }
 
             case 'drawMode': {
-                // Verificar si se ha hecho clic en una arista
-                let edge = activeGraph.edges.findEdge(mouseXAdj, mouseYAdj);
-                if (edge) {
-                    // Si la arista ya está seleccionada, deseleccionarla
-                    if (activeGraph.edges.selectedEdge === edge) {
-                        activeGraph.edges.unselectEdges();
-                        edgeInput.value('');
-                    } else {
-                        // Seleccionar la arista y actualizar el campo de entrada de la arista
-                        activeGraph.edges.selectEdge(edge);
-                        edgeInput.value(edge.explicacion); // Actualizar con la explicación de la arista
-                    }
-                    break;
-                }
-
-                // Verificar si se ha hecho clic en un nodo
-                let node = activeNodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomX, zoomY);
-                if (node) {
+  
+                if (node != null) {
                     if (activeNodes.nodeSelected !== null && activeNodes.nodeSelected !== node) {
                         // Crear una arista entre el nodo previamente seleccionado y el nodo actual
                         activeGraph.addEdge(activeNodes.nodeSelected, node);
@@ -117,13 +102,25 @@ function executeByMode() {
                         labelInput.value(node.label); // Actualizar con el nombre del nodo
                     }
                 } else {
-                    // Si no se hizo clic en ningún nodo existente, considerar agregar un nuevo nodo
-                    if (!edge) {
+                    if (edge != null) {
+                        // Si la arista ya está seleccionada, deseleccionarla
+                        if (activeGraph.edges.selectedEdge === edge) {
+                            activeGraph.edges.unselectEdges();
+                            edgeInput.value('');
+                        } else {
+                            // Seleccionar la arista y actualizar el campo de entrada de la arista
+                            activeGraph.edges.selectEdge(edge);
+                            edgeInput.value(edge.explicacion); // Actualizar con la explicación de la arista
+                        }
+                        break;
+                    }
+                    // Si no se hizo clic en ningún nodo existente ni en ninguna arista, considerar agregar un nuevo nodo
+                    else {
                         let label = nodeCounter.toString();
                         let size = slider_node_size.value();
+                        let coordenadas = coordCanvasReales(mouseX, mouseY);
                         let year = coordenadas.x; // Asegúrate de obtener las coordenadas correctas
-                        let newNode = activeNodes.addNode(label, size, year); // Añadir un nuevo nodo al grafo
-                        
+                        let newNode = activeNodes.addNode(label, size, year); // Añadir un nuevo nodo al grafo      
                         nodeCounter++; // Incrementar el contador de nodos
                     }
                 }
