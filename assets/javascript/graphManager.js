@@ -78,7 +78,7 @@ static createNodesEdgesFromJson(graphJson, graph){
   for (let node of graphJson.nodes) {
     let label = node.id;
     let year = node.year; // Asignar el año al nodo 
-    let size = slider_node_size.value();
+    let size = slider_node_size.value;
     let newNode = graph.nodes.addNode(label, size, year);
     newNode.valencia = 0;
     nodeMap[node.id] = newNode;
