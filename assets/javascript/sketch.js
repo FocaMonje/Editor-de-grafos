@@ -5,13 +5,13 @@ function setup() {
     centerCanvas(canvas);
 
     masterNodes = new Nodes();
-    masterGraph = new GraphManager(masterNodes, physics);
+    masterGraph = new GraphManager(masterNodes);
 
     activeNodes = new Nodes();
-    activeGraph = new GraphManager(activeNodes, physics);
+    activeGraph = new GraphManager(activeNodes);
 
     gameNodes = new Nodes();
-    gameGraph = new GraphManager(gameNodes, physics);
+    gameGraph = new GraphManager(gameNodes);
 
     initHtml();
     

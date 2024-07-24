@@ -71,30 +71,61 @@ class GraphManager {
     }
   }
 
+
+static createNodesEdgesFromJson(graphJson, graph){
+
+  let nodeMap = {};
+  for (let node of graphJson.nodes) {
+    let label = node.id;
+    let year = node.year; // Asignar el año al nodo 
+    let size = slider_node_size.value();
+    let newNode = graph.nodes.addNode(label, size, year);
+    newNode.valencia = 0;
+    nodeMap[node.id] = newNode;
+  }
+
+  graph.edges = new Edges();
+  graphJson.links.forEach(link => {
+    let source = nodeMap[link.source];
+    let target = nodeMap[link.target];
+    if (source && target) {
+      graph.addEdge(source, target, link.explicacion);
+      source.valencia++;
+    }
+  });
+}
+
+
+  static copyGraph(grafo){
+
+    let graph = grafo.graphJSONObject;
+
+    let graphNodes = new Nodes();
+    let copyOfGraph = new GraphManager(graphNodes);
+
+    GraphManager.createNodesEdgesFromJson(graph, copyOfGraph);
+
+    return copyOfGraph;
+  }
+
+
   rebuildGraph(graph) {
     this.nodes.clear(); // Limpia los nodos existentes
-    let nodeMap = {};
-    for (let node of graph.nodes) {
-      let label = node.id;
-      let year = node.year; // Asignar el año al nodo 
-      let size = slider_node_size.value();
-      let newNode = this.nodes.addNode(label, size, year);
-      newNode.valencia = 0;
-      nodeMap[node.id] = newNode;
-    }
-
-    this.edges = new Edges();
-    graph.links.forEach(link => {
-      let source = nodeMap[link.source];
-      let target = nodeMap[link.target];
-      if (source && target) {
-        this.addEdge(source, target, link.explicacion);
-        source.valencia++;
-      }
-    });
+    
+    GraphManager.createNodesEdgesFromJson(graph, this);
 
     this.prepareJSONObject();
+
+    /* Codigo de prueba */
+    let grafoCopiado = GraphManager.copyGraph(this);
+    console.log("Grafo Copiado: ", grafoCopiado.edges.edgesList);
+    grafoCopiado.edges = {};
+    console.log();
+    console.log("Grafo original: " , this.edges.edgesList );
+    console.log("Grafo Copiado tras quitarle edges: ", grafoCopiado.edges.edgesList);
   }
+
+
 
   drawEdges() {
     this.edges.edgesList.forEach(edge => {
@@ -167,3 +198,4 @@ class GraphManager {
     }
   }
 }
+
