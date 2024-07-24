@@ -1,4 +1,37 @@
 
+function createCustomInput(id, type, parent) {
+    let label = document.createElement("label");
+    label.htmlFor = id;
+    label.textContent = id.replace(/_/g, ' ') + ':';
+
+    let input = document.createElement("input");
+    input.type = type;
+    input.id = id;
+
+    parent.appendChild(label);
+    parent.appendChild(input);
+
+    return input;
+}
+
+
+function createCustomTextarea(id, rows, cols, parent) {
+    let label = document.createElement("label");
+    label.htmlFor = id;
+    label.textContent = id.replace(/_/g, ' ') + ':';
+
+    let textarea = document.createElement("textarea");
+    textarea.id = id;
+    textarea.rows = rows;
+    textarea.cols = cols;
+
+    parent.appendChild(label);
+    parent.appendChild(textarea);
+
+    return textarea;
+}
+
+
 function createCustomButton(id, text, parent, onClick) {
     let button = document.createElement("button");
     button.id = id;
@@ -49,6 +82,7 @@ function createDropdown(id, options, parent, onChange) {
 
 function initHtml() {
     let header = document.getElementById('header'); // Obtiene el elemento con ID "header"
+    let divDerecha = document.getElementById('div-derecha');
 
     // Creación de botones Guardar y Cargar
     saveButton = createCustomButton("saveButton", "Guardar Grafo", header, () => {
@@ -182,8 +216,13 @@ function initHtml() {
     // Creación de slider para cambio de tamaño del nodo
     let divIzquierda = document.getElementById('div-izquierda'); 
     slider_node_size = createCustomSlider('slider_node_size', 5, 50, 20, divIzquierda, () => {
-        slider_node_size = select('#slider_node_size');
+        let newSize = parseInt(slider_node_size.value); 
+        nodes.draw(newSize);
     });
+
+    // Creación de inputs, textarea y botones en div-derecha
+    createCustomInput('node_label', 'text', divDerecha);
+    createCustomTextarea('edge_info', 6, 30, divDerecha);
 
     // Creación de botones del modo Animación
     startButton = createCustomButton("startButton", "Start", divIzquierda, startAnimation);
@@ -208,6 +247,10 @@ function initHtml() {
     // Inicializar los valores de las etiquetas con los valores actuales de los deslizadores
     // document.getElementById('start_year_value').textContent = slider_start_year.value;
     // document.getElementById('end_year_value').textContent = slider_end_year.value;
+
+    // createCustomButton("solutionButton", "Show Solution", divDerecha, () => {
+    //     console.log("Mostrar solución");
+    // });
 
     centerX = width / 2;
     centerY = height / 2;
