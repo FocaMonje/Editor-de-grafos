@@ -28,8 +28,8 @@ function draw() {
   
     
     activeGraph.drawEdges();
-    activeGraph.drawNodes(slider_node_size.value()); // Aquí se usa el valor del deslizador para el tamaño de los nodos
-
+    // activeGraph.drawNodes(slider_node_size.value()); // Aquí se usa el valor del deslizador para el tamaño de los nodos
+    activeGraph.drawNodes(slider_node_size.value);
 
     draw_grid(width, height);
     

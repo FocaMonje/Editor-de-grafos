@@ -117,7 +117,7 @@ function executeByMode() {
                     // Si no se hizo clic en ningún nodo existente ni en ninguna arista, considerar agregar un nuevo nodo
                     else {
                         let label = nodeCounter.toString();
-                        let size = slider_node_size.value();
+                        let size = slider_node_size.value;
                         let coordenadas = coordCanvasReales(mouseX, mouseY);
                         let year = coordenadas.x; // Asegúrate de obtener las coordenadas correctas
                         let newNode = activeNodes.addNode(label, size, year); // Añadir un nuevo nodo al grafo      

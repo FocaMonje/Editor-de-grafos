@@ -4,19 +4,19 @@ function setupYearSliders(graph) {
     let minYear = Math.min(...years);
     let maxYear = Math.max(...years);
 
-    minYear = Math.max(minYear, 1000);
-    maxYear = Math.min(maxYear, 2024);
+    // minYear = Math.max(minYear, 1000);
+    // maxYear = Math.min(maxYear, 2024);
 
-    slider_start_year.attribute('min', 1000); 
-    slider_start_year.attribute('max', 2024); 
-    slider_start_year.value(minYear);
+    // slider_start_year.attribute('min', 1000); 
+    // slider_start_year.attribute('max', 2024); 
+    // slider_start_year.value(minYear);
 
-    slider_end_year.attribute('min', 1000); 
-    slider_end_year.attribute('max', 2024); 
-    slider_end_year.value(maxYear);
+    // slider_end_year.attribute('min', 1000); 
+    // slider_end_year.attribute('max', 2024); 
+    // slider_end_year.value(maxYear);
 
-    animationSettings.startYear = minYear;
-    animationSettings.endYear = maxYear;
+    // animationSettings.startYear = minYear;
+    // animationSettings.endYear = maxYear;
 
     select('#start_year_value').html(minYear);
     select('#end_year_value').html(maxYear);
@@ -63,7 +63,7 @@ function startAnimation() {
         let endYearIndex = uniqueYears.length - 1;
 
         // Inicialmente ocultar todos los nodos y aristas
-        nodes.setAllNodesInvisible();
+        nodesslider_node_size.value.setAllNodesInvisible();
         activeGraph.edges.edgesList.forEach(edge => edge.visible = false);
 
         // Ocultar el botón de inicio y mostrar el botón de detener
