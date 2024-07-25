@@ -1,11 +1,12 @@
 
 class GraphManager {
-  constructor(nodes) {
+  constructor(nodes, edges) {
     this.nodes = nodes;
-    this.edges = new Edges();
+    this.edges = edges;
   
     this.graphJSONObject = {};
-    this.prepareJSONObject();
+    //this.prepareJSONObject();
+    
   }
 
   prepareJSONObject() {
@@ -95,13 +96,21 @@ class GraphManager {
 
     this.prepareJSONObject();
 
+
+    /* ------------------------------------ */
+
     /* Codigo de prueba */
+
+
+    /*-------------------------------------- */
   
     console.log("Grafo original: " , this.nodes.nodesList );
     let grafoNuevo = this.addNode(new Node("nuevo", 10, 1700));
     console.log();
     console.log("Grafo Nuevo: ", grafoNuevo.nodes.nodesList);
     console.log("Grafo original: " , this );
+
+    
   
   }
 
@@ -145,6 +154,10 @@ class GraphManager {
     grafoNuevo.edges.edgesList = grafoNuevo.edges.edgesList.filter(e => e !== edge);
     grafoNuevo.prepareJSONObject();
     return grafoNuevo;
+  }
+
+  syncState(state) {
+    this.state = state;
   }
 
 

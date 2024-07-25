@@ -5,13 +5,11 @@ function setup() {
     centerCanvas(canvas);
 
     masterNodes = new Nodes();
-    masterGraph = new GraphManager(masterNodes);
+    masterEdges = new Edges();
+    masterGraph = new GraphManager(masterNodes, masterEdges);
 
-    activeNodes = new Nodes();
-    activeGraph = new GraphManager(activeNodes);
-
-    gameNodes = new Nodes();
-    gameGraph = new GraphManager(gameNodes);
+    activeGraph = masterGraph;
+    //gameGraph = new GraphManager(gameNodes);
 
     initHtml();
     
@@ -28,7 +26,7 @@ function draw() {
   
     
     activeGraph.drawEdges();
-    activeGraph.drawNodes(slider_node_size.value()); // Aquí se usa el valor del deslizador para el tamaño de los nodos
+    activeGraph.drawNodes(10); //slider_node_size.value() Aquí se usa el valor del deslizador para el tamaño de los nodos
 
 
     draw_grid(width, height);

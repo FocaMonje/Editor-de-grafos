@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-
+    <script src="assets/javascript/select.js"></script>
+    <script src="assets/javascript/saveload.js"></script>
+    <script src="assets/javascript/undo.js"></script>
     <script src="assets/javascript/node.js"></script>
     <script src="assets/javascript/nodes.js"></script>
     <script src="assets/javascript/graphManager.js"></script>
@@ -20,6 +22,7 @@
     <script src="assets/javascript/edge.js"></script>
     <script src="assets/javascript/edges.js"></script>
     <script src="assets/javascript/utils.js"></script>
+    <script src="assets/javascript/graphEditor.js" ></script>
     <script src="assets/javascript/animacion.js"></script>
     <script src="assets/javascript/basicGame.js"></script>
     <script src="assets/javascript/relationGame.js"></script>
@@ -28,6 +31,53 @@
     <script src="assets/javascript/initHtml.js"></script>
     <script src="assets/javascript/executeByMode.js"></script>
     <script src="assets/javascript/sketch.js" defer></script>
+    <div></div>
+    <script>
+
+        function elt(type, props, ...children) {
+            let dom = document.createElement(type);
+            if (props) Object.assign(dom, props);
+
+            for (let child of children) {
+                if (typeof child != "string") dom.appendChild(child);
+                else dom.appendChild(document.createTextNode(child));
+            }
+
+            return dom;
+            }
+
+            let startNodes = new Nodes();
+            let startEdges = new Edges();
+
+            const startState = {
+                tool: "draw",
+                scrollX : scrollX,
+                scrollY : scrollY,
+                zoomX : zoomX,
+                zoomY : zoomY,
+                grafo: new GraphManager(startNodes, startNodes),
+                selectedNode : {},
+                selectedEdge:{},
+                done: [],
+                doneAt: 0
+            };
+
+const baseTools = {}; // draw, fill, rectangle, pick
+
+const baseControls = [
+    ToolSelect, ColorSelect, SaveButton, LoadButton, UndoButton
+];
+        
+        let graphEditor = startGraphEditor(startState,
+                                                baseTools,
+                                                baseControls)
+
+        console.log(graphEditor);
+
+        //document.querySelector("div").appendChild(graphEditorDom);
+
+
+    </script>
 
     <div class="wrapper">
         <div id="header">
