@@ -22,29 +22,7 @@ class GraphManager {
     };
   }
 
-  addNode(node){
-    let newNode = this.nodes.addNode(node.x,node.y, 10);
-    newNode.label = node.label;
-    newNode.year = node.year; // Asignar el año al nodo  
-    this.prepareJSONObject();
-  }
-
-  addEdge(node1, node2, explicacion = '') {
-    this.edges.addEdge(node1, node2, explicacion);
-   
-    this.prepareJSONObject();
-  }
-
-  removeEdgesConnectedToNode(node) {
-    this.edges.removeEdgesConnectedToNode(node);
-    this.prepareJSONObject();
-  }
-
-  removeEdge(edge) {
-    this.edges.edgesList = this.edges.edgesList.filter(e => e !== edge);
-    this.prepareJSONObject();
-  }
-
+ 
   saveGraph() {
     this.prepareJSONObject();
     saveJSON(this.graphJSONObject, 'graph.json');
@@ -72,28 +50,28 @@ class GraphManager {
   }
 
 
-static createNodesEdgesFromJson(graphJson, graph){
+  static createNodesEdgesFromJson(graphJson, graph){
 
-  let nodeMap = {};
-  for (let node of graphJson.nodes) {
-    let label = node.id;
-    let year = node.year; // Asignar el año al nodo 
-    let size = slider_node_size.value;
-    let newNode = graph.nodes.addNode(label, size, year);
-    newNode.valencia = 0;
-    nodeMap[node.id] = newNode;
-  }
-
-  graph.edges = new Edges();
-  graphJson.links.forEach(link => {
-    let source = nodeMap[link.source];
-    let target = nodeMap[link.target];
-    if (source && target) {
-      graph.addEdge(source, target, link.explicacion);
-      source.valencia++;
+    let nodeMap = {};
+    for (let node of graphJson.nodes) {
+      let label = node.id;
+      let year = node.year; // Asignar el año al nodo 
+      let size = slider_node_size.value;
+      let newNode = graph.nodes.addNode(label, size, year);
+      newNode.valencia = 0;
+      nodeMap[node.id] = newNode;
     }
-  });
-}
+
+    graph.edges = new Edges();
+    graphJson.links.forEach(link => {
+      let source = nodeMap[link.source];
+      let target = nodeMap[link.target];
+      if (source && target) {
+        graph._addEdge(source, target, link.explicacion);
+        source.valencia++;
+      }
+    });
+  }
 
 
   static copyGraph(grafo){
@@ -104,6 +82,7 @@ static createNodesEdgesFromJson(graphJson, graph){
     let copyOfGraph = new GraphManager(graphNodes);
 
     GraphManager.createNodesEdgesFromJson(graph, copyOfGraph);
+    copyOfGraph.prepareJSONObject();
 
     return copyOfGraph;
   }
@@ -117,12 +96,55 @@ static createNodesEdgesFromJson(graphJson, graph){
     this.prepareJSONObject();
 
     /* Codigo de prueba */
-    let grafoCopiado = GraphManager.copyGraph(this);
-    console.log("Grafo Copiado: ", grafoCopiado.edges.edgesList);
-    grafoCopiado.edges = {};
+  
+    console.log("Grafo original: " , this.nodes.nodesList );
+    let grafoNuevo = this.addNode(new Node("nuevo", 10, 1700));
     console.log();
-    console.log("Grafo original: " , this.edges.edgesList );
-    console.log("Grafo Copiado tras quitarle edges: ", grafoCopiado.edges.edgesList);
+    console.log("Grafo Nuevo: ", grafoNuevo.nodes.nodesList);
+    console.log("Grafo original: " , this );
+  
+  }
+
+  _addNode(node){
+    let newNode = this.nodes.addNode(node.x,node.y, 10);
+    newNode.label = node.label;
+    newNode.year = node.year; // Asignar el año al nodo  
+    this.prepareJSONObject();
+  }
+
+  addNode(node){
+    let grafoNuevo = GraphManager.copyGraph(this);
+    let newNode = grafoNuevo.nodes.addNode(node.x,node.y, 10);
+    newNode.label = node.label;
+    newNode.year = node.year; // Asignar el año al nodo  
+    grafoNuevo.prepareJSONObject();
+    return grafoNuevo;
+  }
+
+  _addEdge(node1, node2, explicacion = '') {
+    this.edges.addEdge(node1, node2, explicacion);
+    this.prepareJSONObject();
+  }
+
+  addEdge(node1, node2, explicacion = '') {
+    let grafoNuevo = GraphManager.copyGraph(this);
+    grafoNuevo.edges.addEdge(node1, node2, explicacion);
+    grafoNuevo.prepareJSONObject();
+    return grafoNuevo;
+  }
+
+  removeEdgesConnectedToNode(node) {
+    let grafoNuevo = GraphManager.copyGraph(this);
+    grafoNuevo.edges.removeEdgesConnectedToNode(node);
+    grafoNuevo.prepareJSONObject();
+    return grafoNuevo;
+  }
+
+  removeEdge(edge) {
+    let grafoNuevo = GraphManager.copyGraph(this);
+    grafoNuevo.edges.edgesList = grafoNuevo.edges.edgesList.filter(e => e !== edge);
+    grafoNuevo.prepareJSONObject();
+    return grafoNuevo;
   }
 
 
