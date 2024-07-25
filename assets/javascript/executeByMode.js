@@ -15,10 +15,6 @@ function executeByMode() {
         let edgeUnderMouse = state.graph.edges.findEdgeUnderMouse();
         
         if(listaDeNodos == []) {
-            // Deseleccionar cualquier nodo seleccionado
-            state.nodoSeleccionado={};
-            nodoPrevioSelec = null;
-            document.getElementById('node_label').value = '';
             nodeUnderMouse = null;
         } 
         if(listaDeNodos.length > 0)
@@ -67,9 +63,9 @@ function executeByMode() {
                         
                                 // Crear una arista entre el nodo previamente seleccionado y el nodo actual
                                 let newGraph = state.graph.addEdge(state.nodoSeleccionado, nodoPrevioSelec);
-                                state.grafo = newGraph;
-                                state.nodoSeleccionado = {}; // Deseleccionar todos los nodos
-                                nodoPrevioSelec = {};
+                                state.graph = newGraph;
+                                //state.nodoSeleccionado = {}; // Deseleccionar todos los nodos
+                                //nodoPrevioSelec = {};
                              
                         } 
                         //else {
