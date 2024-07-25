@@ -1,4 +1,5 @@
-
+let canvas;
+let listOfStates;
 let activeNodes;
 let activeGraph;
 let masterNodes;
@@ -57,35 +58,7 @@ const alturaDibujo = canvas_height - 60;
 
 
 
-// const timeIntervals = [
-//     { start: 1600, end: 1649 },
-//     { start: 1650, end: 1699 },
-//     { start: 1700, end: 1749 },
-//     { start: 1750, end: 1799 },
-//     { start: 1800, end: 1850 },
-//     { start: 1851, end: 1900 },
-//     { start: 1901, end: 1950 },
-//     { start: 1951, end: 2000 }
-// ];
 
 
-// The Nature of Code
-// Daniel Shiffman
-// http://natureofcode.com
-
-let {
-    VerletPhysics2D,
-    VerletParticle2D,
-    VerletSpring2D,
-    VerletMinDistanceSpring2D,
-  } = toxi.physics2d;
-  
-  // Reference to physics world
-  let physics;
-
-  const controls = {
-    view: { x: 0, y: 0, zoom: 1 },
-    viewPos: { prevX: null, prevY: null, isDragging: false },
-  };
 
   

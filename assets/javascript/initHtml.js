@@ -1,3 +1,14 @@
+function elt(type, props, ...children) {
+    let dom = document.createElement(type);
+    if (props) Object.assign(dom, props);
+
+    for (let child of children) {
+        if (typeof child != "string") dom.appendChild(child);
+        else dom.appendChild(document.createTextNode(child));
+    }
+
+    return dom;
+    }
 
 function initHtml(){
     // Creación del slider para el tamaño de los nodos
@@ -39,11 +50,10 @@ function initHtml(){
 
     loadButton = select('#loadButton');
     loadButton.mousePressed(() => {
-        masterGraph.loadGraph(graph => {
-            masterGraph.rebuildGraph(graph);
+        state.graph.loadGraph(graph => {
+            state.graph.rebuildGraph(graph);
             nodeCounter = Math.max(...graph.nodes.map(node => parseInt(node.id))) + 1;
             setupYearSliders(graph);
-            activeGraph = masterGraph;
         });
     });
 
@@ -182,9 +192,5 @@ function initHtml(){
         moveRightButton.mousePressed(() => {
             moveView(20, 0);
         });
-
-
-
-
 
 }
