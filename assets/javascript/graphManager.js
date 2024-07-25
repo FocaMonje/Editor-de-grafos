@@ -110,7 +110,7 @@ class GraphManager {
     console.log("Grafo Nuevo: ", grafoNuevo.nodes.nodesList);
     console.log("Grafo original: " , this );
 
-    
+
   
   }
 
