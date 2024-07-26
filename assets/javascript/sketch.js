@@ -9,6 +9,7 @@ function setup() {
         herramienta: "draw",
         graph: new GraphManager(new Nodes(), new Edges())
     };
+    listOfStates.push(state);
 
     initHtml();
     

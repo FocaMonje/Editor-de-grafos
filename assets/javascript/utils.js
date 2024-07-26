@@ -217,4 +217,11 @@ function deepCopy(object){
 
   return JSON.parse(JSON.stringify(object));
 }
-  
+
+function objetoVacio(objeto){
+  // La función verifica si el objeto está vacio o si no existe
+  if(!objeto){
+    return true;
+  }
+  return Object.keys(objeto).length == 0;
+}

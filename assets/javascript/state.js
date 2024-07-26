@@ -12,6 +12,15 @@ class State {
         this.selectedEdge = {};
     }
 
+    //se crea una copia nueva "nuevoGrafo", se añade un nodo a la copia, 
+    // la copia se añade a la lista de estados y la copia se convierte en el
+    //grafo operativo
+    addNode(nodo){
+        let nuevoGrafo = this.graph.addNode(nodo); 
+        listOfStates.push(nuevoGrafo);
+        this.graph = nuevoGrafo;
+    }
+
     get modo(){
         return this.mode;
     }
@@ -42,6 +51,6 @@ class State {
     set arcoSeleccionado(edge){
         this.selectedEdge = edge;
     }
-
+    
 
 }

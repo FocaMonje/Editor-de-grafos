@@ -1,5 +1,5 @@
 let canvas;
-let listOfStates;
+let listOfStates = [];
 let activeNodes;
 let activeGraph;
 let masterNodes;

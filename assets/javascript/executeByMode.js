@@ -4,30 +4,28 @@ function executeByMode() {
     let nodoPrevioSelec = null;
 
     if (!(mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height)) {
-
+        //Al hacer clic fuera del canvas se deselecciona todo
         nodoPrevioSelec = null;
         state.nodoSeleccionado = {};
         state.arcoSeleccionado = {};
         document.getElementById('node_label').value = '';
     } else {
+        // Si se hace clic dentro del canvas
         let listaDeNodos = state.graph.findNodesUnderMouse();
 
         if (listaDeNodos.length === 0) {
+            //No hay nodo debajo del ratón
             nodeUnderMouse = null;
-            if (state.nodoSeleccionado && Object.keys(state.nodoSeleccionado).length !== 0) {
-                // Si hay un nodo seleccionado y se hace clic fuera de un nodo, deseleccionarlo
-                state.nodoSeleccionado = {};
-                document.getElementById('node_label').value = '';
-            } else {
-                // Crear un nuevo nodo si no hay uno seleccionado
-                let label = "Nodo " + state.graph.nodes.nodeCounter;
-                let size = 20; 
-                let year = coordCanvasReales(mouseX, mouseY).x;
-                let newNode = state.graph.nodes.addNode(label, size, year);
-                state.nodoSeleccionado = newNode;
-                document.getElementById('node_label').value = newNode.label;
-            }
+            // Crear un nuevo nodo 
+            let label = "Nodo " + state.graph.nodes.nodeCounter;
+            let size = 20; 
+            let year = coordCanvasReales(mouseX, mouseY).x;
+            let newNode = new Node(label, size, year);
+            state.addNode(newNode);
+            state.nodoSeleccionado = newNode;
+            document.getElementById('node_label').value = newNode.label;
         } else {
+            // hay un nodo debajo del ratón
             nodeUnderMouse = listaDeNodos[0];
             if (state.nodoSeleccionado && state.nodoSeleccionado !== nodeUnderMouse) {
                 nodoPrevioSelec = state.nodoSeleccionado;
