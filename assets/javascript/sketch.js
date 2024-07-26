@@ -4,7 +4,11 @@ function setup() {
     canvas = createCanvas(canvas_width, canvas_height);
     centerCanvas(canvas);
 
-    state = new State();
+    state = {
+        modo: "editor",
+        herramienta: "draw",
+        graph: new GraphManager(new Nodes(), new Edges())
+    };
 
     initHtml();
     

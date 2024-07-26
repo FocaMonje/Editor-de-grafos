@@ -4,33 +4,71 @@ function executeByMode() {
     let nodoPrevioSelec = null;
 
     if (!(mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height)) {
-       
+
         nodoPrevioSelec = null;
-        state.nodoSeleccionado={};
-        state.arcoSeleccionado={};
+        state.nodoSeleccionado = {};
+        state.arcoSeleccionado = {};
         document.getElementById('node_label').value = '';
     } else {
-        
         let listaDeNodos = state.graph.findNodesUnderMouse();
-        let edgeUnderMouse = state.graph.edges.findEdgeUnderMouse();
-        
-        if(listaDeNodos == []) {
+
+        if (listaDeNodos.length === 0) {
             nodeUnderMouse = null;
-        } 
-        if(listaDeNodos.length > 0)
-        {
-            // Seleccionar el nodo
-            nodeUnderMouse = listaDeNodos[0];
-            // Se da preferencia a la seleccion de un nodo respecto a la de un arco
-            edgeUnderMouse = null; 
-            if(state.nodoSeleccionado && state.nodoSeleccionado != nodeUnderMouse){
-                nodoPrevioSelec = state.nodoSeleccionado;
-                console.log(nodoPrevioSelec);
+            if (state.nodoSeleccionado && Object.keys(state.nodoSeleccionado).length !== 0) {
+                // Si hay un nodo seleccionado y se hace clic fuera de un nodo, deseleccionarlo
+                state.nodoSeleccionado = {};
+                document.getElementById('node_label').value = '';
+            } else {
+                // Crear un nuevo nodo si no hay uno seleccionado
+                let label = "Nodo " + state.graph.nodes.nodeCounter;
+                let size = 20; 
+                let year = coordCanvasReales(mouseX, mouseY).x;
+                let newNode = state.graph.nodes.addNode(label, size, year);
+                state.nodoSeleccionado = newNode;
+                document.getElementById('node_label').value = newNode.label;
             }
-            state.nodoSeleccionado = nodeUnderMouse; //Seleccionamos el primer nodo de la lista (nodo 0)
-            document.getElementById('node_label').value = state.nodoSeleccionado.label;
-            listaDeNodos = [];
-        } 
+        } else {
+            nodeUnderMouse = listaDeNodos[0];
+            if (state.nodoSeleccionado && state.nodoSeleccionado !== nodeUnderMouse) {
+                previousSelectedNode = state.nodoSeleccionado;
+                state.nodoSeleccionado = nodeUnderMouse;
+                document.getElementById('node_label').value = state.nodoSeleccionado.label;
+                // Crear una flecha entre el nodo previamente seleccionado y el nodo actual
+                state.graph.addEdge(previousSelectedNode, state.nodoSeleccionado, "");
+            } else {
+                state.nodoSeleccionado = nodeUnderMouse;
+                document.getElementById('node_label').value = state.nodoSeleccionado.label;
+            }
+        }
+    
+       
+        // nodoPrevioSelec = null;
+        // state.nodoSeleccionado={};
+        // state.arcoSeleccionado={};
+        // document.getElementById('node_label').value = '';
+        // } 
+        // else {
+        
+        // let listaDeNodos = state.graph.findNodesUnderMouse();
+        // let edgeUnderMouse = state.graph.edges.findEdgeUnderMouse();
+        
+        // if(listaDeNodos == []) {
+        //     nodeUnderMouse = null;
+        // } 
+        // if(listaDeNodos.length > 0)
+        // {
+        //     // Seleccionar el nodo
+        //     nodeUnderMouse = listaDeNodos[0];
+        //     // Se da preferencia a la seleccion de un nodo respecto a la de un arco
+        //     edgeUnderMouse = null; 
+        //     if(state.nodoSeleccionado && state.nodoSeleccionado != nodeUnderMouse){
+        //         nodoPrevioSelec = state.nodoSeleccionado;
+        //         console.log(nodoPrevioSelec);
+        //     }
+        //     state.nodoSeleccionado = nodeUnderMouse; //Seleccionamos el primer nodo de la lista (nodo 0)
+        //     document.getElementById('node_label').value = state.nodoSeleccionado.label;
+        //     listaDeNodos = [];
+        // } 
 
 
         /*
@@ -59,15 +97,15 @@ function executeByMode() {
 
                     case("draw"): {
 
-                        if (state.nodoSeleccionado != {} && nodoPrevioSelec != null) {
+                        // if (state.nodoSeleccionado != {} && nodoPrevioSelec != null) {
                         
-                                // Crear una arista entre el nodo previamente seleccionado y el nodo actual
-                                let newGraph = state.graph.addEdge(state.nodoSeleccionado, nodoPrevioSelec);
-                                state.graph = newGraph;
-                                //state.nodoSeleccionado = {}; // Deseleccionar todos los nodos
-                                //nodoPrevioSelec = {};
+                        //         // Crear una arista entre el nodo previamente seleccionado y el nodo actual
+                        //         let newGraph = state.graph.addEdge(state.nodoSeleccionado, nodoPrevioSelec);
+                        //         state.graph = newGraph;
+                        //         //state.nodoSeleccionado = {}; // Deseleccionar todos los nodos
+                        //         //nodoPrevioSelec = {};
                              
-                        } 
+                        // } 
                         //else {
                         //     if (edge != null) {
                         //         // Si la arista ya está seleccionada, deseleccionarla
