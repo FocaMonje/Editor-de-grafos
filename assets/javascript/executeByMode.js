@@ -30,11 +30,11 @@ function executeByMode() {
         } else {
             nodeUnderMouse = listaDeNodos[0];
             if (state.nodoSeleccionado && state.nodoSeleccionado !== nodeUnderMouse) {
-                previousSelectedNode = state.nodoSeleccionado;
+                nodoPrevioSelec = state.nodoSeleccionado;
                 state.nodoSeleccionado = nodeUnderMouse;
                 document.getElementById('node_label').value = state.nodoSeleccionado.label;
                 // Crear una flecha entre el nodo previamente seleccionado y el nodo actual
-                state.graph.addEdge(previousSelectedNode, state.nodoSeleccionado, "");
+                state.graph.addEdge(nodoPrevioSelec, state.nodoSeleccionado, "");
             } else {
                 state.nodoSeleccionado = nodeUnderMouse;
                 document.getElementById('node_label').value = state.nodoSeleccionado.label;
