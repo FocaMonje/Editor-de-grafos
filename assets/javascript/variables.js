@@ -1,3 +1,4 @@
+let state = {};
 let canvas;
 let listOfStates = [];
 let activeNodes;

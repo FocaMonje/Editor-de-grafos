@@ -5,8 +5,7 @@ class GraphManager {
     this.edges = edges;
   
     this.graphJSONObject = {};
-    //this.prepareJSONObject();
-    
+    this.prepareJSONObject();
   }
 
   prepareJSONObject() {
@@ -80,7 +79,8 @@ class GraphManager {
     let graph = grafo.graphJSONObject;
 
     let graphNodes = new Nodes();
-    let copyOfGraph = new GraphManager(graphNodes);
+    let graphEdges = new Edges();
+    let copyOfGraph = new GraphManager(graphNodes, graphEdges);
 
     GraphManager.createNodesEdgesFromJson(graph, copyOfGraph);
     copyOfGraph.prepareJSONObject();

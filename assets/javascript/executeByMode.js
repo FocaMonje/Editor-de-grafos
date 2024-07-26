@@ -21,7 +21,7 @@ function executeByMode() {
             let size = 20; 
             let year = coordCanvasReales(mouseX, mouseY).x;
             let newNode = new Node(label, size, year);
-            state.addNode(newNode);
+            addNode(state, newNode);
             state.nodoSeleccionado = newNode;
             document.getElementById('node_label').value = newNode.label;
         } else {

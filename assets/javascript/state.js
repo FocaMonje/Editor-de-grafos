@@ -12,15 +12,6 @@ class State {
         this.selectedEdge = {};
     }
 
-    //se crea una copia nueva "nuevoGrafo", se añade un nodo a la copia, 
-    // la copia se añade a la lista de estados y la copia se convierte en el
-    //grafo operativo
-    addNode(nodo){
-        let nuevoGrafo = this.graph.addNode(nodo); 
-        listOfStates.push(nuevoGrafo);
-        this.graph = nuevoGrafo;
-    }
-
     get modo(){
         return this.mode;
     }
@@ -54,3 +45,22 @@ class State {
     
 
 }
+
+state = {
+    modo: "editor",
+    herramienta: "draw",
+    graph: new GraphManager(new Nodes(), new Edges())
+};
+
+
+//se crea una copia nueva "nuevoGrafo", se añade un nodo a la copia, 
+// la copia se añade a la lista de estados y la copia se convierte en el
+//grafo operativo
+function addNode(estado, nodo){
+        let nuevoGrafo = estado.graph.addNode(nodo); 
+        listOfStates.push(nuevoGrafo);
+        estado.graph = nuevoGrafo;
+    }
+
+    
+    
