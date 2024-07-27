@@ -1,12 +1,12 @@
 
 class Node  {          
-  constructor(label, size, year) {
+  constructor(label, size, year, valencia) {
     this.label = label;
     this.selected = false;
     this.size = size;
     this.year = year;
     this.visible = true;
-    this.valencia = 0;
+    this.valencia = valencia;
   }
 
   get x(){
@@ -28,8 +28,9 @@ class Node  {
       }
  
       let r = this.size;
+      
       ellipse(this.x, this.y , r * (r/(r * zoomX) ), r * (r/(r * zoomY)));
-
+   
       fill(0);
       strokeWeight(1);
       textAlign(CENTER, CENTER);

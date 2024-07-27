@@ -20,7 +20,8 @@ function executeByMode() {
             let label = "Nodo " + state.graph.nodes.nodeCounter;
             let size = 20; 
             let year = coordCanvasReales(mouseX, mouseY).x;
-            let newNode = new Node(label, size, year);
+            let valencia = coordCanvasReales(mouseX, mouseY).y;
+            let newNode = new Node(label, size, year, valencia);
             addNode(state, newNode);
             state.nodoSeleccionado = newNode;
             document.getElementById('node_label').value = newNode.label;

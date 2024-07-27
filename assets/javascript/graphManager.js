@@ -12,7 +12,7 @@ class GraphManager {
     this.graphJSONObject = {
       directed: true,
       graph: {},
-      nodes: this.nodes.nodesList.map(node => ({ id: node.label, year: node.year })),    // Guardar el año en el nodo
+      nodes: this.nodes.nodesList.map(node => ({ id: node.label, year: node.year , valencia: node.valencia })),    // Guardar el año en el nodo
       links: this.edges.edgesList.map(edge => ({
         source: edge.source.label,
         target: edge.target.label,
@@ -58,7 +58,7 @@ class GraphManager {
       let year = node.year; // Asignar el año al nodo 
       let size = slider_node_size.value;
       let newNode = graph.nodes.addNode(label, size, year);
-      newNode.valencia = 0;
+      newNode.valencia = node.valencia;
       nodeMap[node.id] = newNode;
     }
 
@@ -115,7 +115,7 @@ class GraphManager {
   }
 
   _addNode(node){
-    let newNode = this.nodes.addNode(node.x,node.y, 10);
+    let newNode = this.nodes.addNode(node.x,node.y, 10, node.valencia);
     newNode.label = node.label;
     newNode.year = node.year; // Asignar el año al nodo  
     this.prepareJSONObject();
@@ -123,7 +123,7 @@ class GraphManager {
 
   addNode(node){
     let grafoNuevo = GraphManager.copyGraph(this);
-    let newNode = grafoNuevo.nodes.addNode(node.x,node.y, 10);
+    let newNode = grafoNuevo.nodes.addNode(node.x,node.y, 10, node.valencia);
     newNode.label = node.label;
     newNode.year = node.year; // Asignar el año al nodo  
     grafoNuevo.prepareJSONObject();
@@ -201,8 +201,8 @@ class GraphManager {
   findNodesUnderMouse(){
     const coordsReales = coordCanvasReales(mouseX, mouseY);
   
-    const toleranciaX = 10;
-    const toleranciaY = 0.7;
+    const toleranciaX = 10 ;
+    const toleranciaY = 1 ;
     
     const inv_filtrados = this.nodes.nodesList.filter(
       (invento) => (abs(invento.year - coordsReales.x)  < toleranciaX)  &&

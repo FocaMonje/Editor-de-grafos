@@ -128,7 +128,7 @@ function coordCanvasReales(xCanvas, yCanvas){
     const realX = (xCanvas - scrollX) * 1/zoomX ;
     let realY = (yCanvas - scrollY) * 1/zoomY;
     
-    realY = (2 * (alturaDibujo - realY) / maxVal) + 1;
+    realY = (2 * (alturaDibujo - realY) / maxVal) ;
 
     return {x:realX, y:realY};
 
