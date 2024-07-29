@@ -33,7 +33,7 @@
 
     <div class="wrapper">
         <div id="header">
-            <button id="saveButton" class="header">Guardar Grafo</button>
+            <!-- <button id="saveButton" class="header">Guardar Grafo</button>
             <button id="loadButton" class="header">Cargar Grafo</button>
             <button id="drawModeButton" class="header">Draw Mode</button>
             <button id="deleteModeButton" class="header">Delete Mode</button>
@@ -41,20 +41,23 @@
             <button id="gameModeButton" class="header">Game Mode</button>
             <button id="gameMode2Button" class="header">Game Mode 2</button>
             <button id="timeLineButton" class="header">Time Line</button>
-            <button id="filterGraphButton" class="header">Filter Graph</button>
+            <button id="filterGraphButton" class="header">Filter Graph</button> -->
 
         </div>
         <div id="div-izquierda" class="colum-info">
-            <label for="slider_zoom">Zoom X:</label>
+            <div id="zoom-controls"></div>
+            <!-- <label for="slider_zoom">Zoom X:</label>
             <button id="increaseXZoom" class="nav-button">+</button>
             <button id="decreaseXZoom" class="nav-button">-</button>
             <label for="slider_zoom">Zoom Y:</label>
             <button id="increaseYZoom" class="nav-button">+</button>
             <button id="decreaseYZoom" class="nav-button">-</button>
             <label for="slider_node_size">Node Size:</label>
-            <input type="range" id="slider_node_size" min="5" max="50" value="20">
+            <input type="range" id="slider_node_size" min="5" max="50" value="20"> -->
             <div id="animation-controls"><br><br>
-                <label for="slider_start_year">Start Year:</label>
+                <div id="start_year_value"></div>
+                <div id="end_year_value"></div>
+                <!-- <label for="slider_start_year">Start Year:</label>
                 <input type="range" id="slider_start_year" min="1000" max="2024" value="1000">
                 <span id="start_year_value">1000</span><br>
                 <label for="slider_end_year">End Year:</label>
@@ -62,21 +65,21 @@
                 <span id="end_year_value">2024</span>
                 <button id="startButton" class="header">Start</button>
                 <button id="stopButton" class="header">Stop</button>
-                <button id="restartButton" class="header">Restart</button>
+                <button id="restartButton" class="header">Restart</button> -->
 
             </div>
         </div>
         <div id="div-derecha" class="colum-info">
-            <label for="node_label">Node Label:</label>
+            <!-- <label for="node_label">Node Label:</label>
             <input type="text" id="node_label">
 
             <label for="edge_label">Edge Info:</label>
-            <textarea id="edge_info" rows="6" cols="30"></textarea>
+            <textarea id="edge_info" rows="6" cols="30"></textarea> -->
             
             <div id="timer">Tiempo: 30</div>
 
-            <button id="solutionButton">Show Solution</button>
-            <button id="info">Te faltan flechas por encontrar</button>
+            <!-- <button id="solutionButton">Show Solution</button>
+            <button id="info">Te faltan flechas por encontrar</button> -->
         </div>
         
         <div id="game-over-window">
@@ -84,10 +87,10 @@
         </div>
         <div id="scoreDisplay"></div>
         <div id="navigation-controls">
-            <button id="moveUp" class="nav-button">↑</button>
+            <!-- <button id="moveUp" class="nav-button">↑</button>
             <button id="moveLeft" class="nav-button">←</button>
             <button id="moveDown" class="nav-button">↓</button>
-            <button id="moveRight" class="nav-button">→</button>
+            <button id="moveRight" class="nav-button">→</button> -->
         </div>
     </div>
 </body>
