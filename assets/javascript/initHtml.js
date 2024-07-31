@@ -27,6 +27,19 @@ function createCustomInput(id, type, parent) {
     return input;
 }
 
+function createCustomEvent(id){
+    let obj = document.getElementById(id);
+    obj.addEventListener("blur", event => {
+        edicionLabel = false;
+        state.nodoSeleccionado.label = obj.textContent ;
+      });
+    obj.addEventListener("click", () => {
+        edicionLabel = true ;
+      });
+}
+
+
+
 
 function createCustomTextarea(id, rows, cols, parent) {
     let label = document.createElement("label");
@@ -237,6 +250,7 @@ function initHtml() {
 
     // Creación de inputs, textarea y botones en div-derecha
     createCustomInput('node_label', 'text', divDerecha);
+    createCustomEvent('node_label');
     createCustomTextarea('edge_info', 6, 30, divDerecha);
 
     // Creación de botones del modo Animación

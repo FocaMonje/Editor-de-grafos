@@ -3,27 +3,32 @@ function executeByMode() {
     let nodeUnderMouse = null;
     let nodoPrevioSelec = null;
 
-    // Obtener el campo de entrada 'node_label'
-    const nodeLabelInput = document.getElementById('node_label');
+    // // Obtener el campo de entrada 'node_label'
+    // const nodeLabelInput = document.getElementById('node_label');
 
-    // Verificar si el clic ocurrió en el campo 'node_label'
-    const rect = nodeLabelInput.getBoundingClientRect(); //para verificar si el clic ocurre dentro de los límites de un campo de entrada específico
-    const isMouseOverNodeLabel = (
-         mouseX >= rect.left && mouseX <= rect.right &&
-         mouseY >= rect.top && mouseY <= rect.bottom
-    );
+    // // Verificar si el clic ocurrió en el campo 'node_label'
+    // const rect = nodeLabelInput.getBoundingClientRect(); //para verificar si el clic ocurre dentro de los límites de un campo de entrada específico
+    // const isMouseOverNodeLabel = (
+    //      mouseX >= rect.left && mouseX <= rect.right &&
+    //      mouseY >= rect.top && mouseY <= rect.bottom
+    // );
 
     const isMouseOverCanvas = mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height;
 
-    if (!isMouseOverCanvas && !isMouseOverNodeLabel) {
+    if (!isMouseOverCanvas && !edicionLabel ) {    // && !isMouseOverNodeLabel
         //Al hacer clic fuera del canvas se deselecciona todo
+        console.log("Mouse fuera del canvas");
         nodoPrevioSelec = null;
         state.nodoSeleccionado = {};
         state.arcoSeleccionado = {};
         document.getElementById('node_label').value = '';
-    } else { // no !isMouseOverCanvas o no !isMouseOverNodeLabel 
+    } 
+    // if(isMouseOverNodeLabel){
+    //     console.log("Mouse Sobre node label");
+    // }
+    if(isMouseOverCanvas){ 
         // => Mouse sobre el canvas o mouse está sobre node label
-        console.log("Mouse sobre el canvas o mouse está sobre node label");
+        console.log("Mouse sobre el canvas");
         // Si se hace clic dentro del canvas
         let listaDeNodos = state.graph.findNodesUnderMouse();
 

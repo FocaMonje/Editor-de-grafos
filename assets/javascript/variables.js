@@ -37,6 +37,7 @@ let solutionButton;
 let selectedNodes = [];
 let timeLineActive = false;
 let moveRightButton, moveUpButton, moveLeftButton, moveDownButton;
+let edicionLabel = false;
 
 // Variables para el control grafico
 let canvas_height = 500;
