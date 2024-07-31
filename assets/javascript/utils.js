@@ -38,11 +38,12 @@ function doZoom(event) {
 }
 
 function resetButtonStyles() {
-    drawModeButton.style('background-color', '');
-    deleteModeButton.style('background-color', '');
-    animationModeButton.style('background-color', '');
-    gameModeButton.style('background-color', '');
-    hideAnimationControls();
+  // Restablecer el estilo del menú desplegable
+  const modeDropdown = document.getElementById('modeDropdown');
+  if (modeDropdown) {
+      modeDropdown.style.backgroundColor = '';
+  }
+  hideAnimationControls();
 }
 
 function moveView(deltaX, deltaY) {

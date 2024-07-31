@@ -10,6 +10,8 @@
 //     return dom;
 //     }
 
+
+
 function createCustomInput(id, type, parent) {
     let label = document.createElement("label");
     label.htmlFor = id;
@@ -84,7 +86,7 @@ function createDropdown(id, options, parent, onChange) {
         optionElement.textContent = option;
         select.appendChild(optionElement);
     });
-
+    select.addEventListener("change", event=> console.log(event.target.value));
     select.addEventListener("change", onChange);
 
     parent.appendChild(select);
@@ -97,45 +99,45 @@ function initHtml() {
 
     // Creación de botones Guardar y Cargar
     saveButton = createCustomButton("saveButton", "Guardar Grafo", header, () => {
-        masterGraph.saveGraph();
+        state.graph.saveGraph();
     });
 
     loadButton = createCustomButton("loadButton", "Cargar Grafo", header, () => {
-        masterGraph.loadGraph(graph => {
-            masterGraph.rebuildGraph(graph);
+        state.graph.loadGraph(graph => {
+            state.graph.rebuildGraph(graph);
             nodeCounter = Math.max(...graph.nodes.map(node => parseInt(node.id))) + 1;
             setupYearSliders(graph);
-            activeGraph = masterGraph;
         });
     });
 
     // Creación de la lista con los modos
     let modes = ["Draw Mode", "Delete Mode", "Animation Mode", "Game Mode", "Game Mode 2", "Time Line"];
-    modeDropdown = createDropdown("modeDropdown", modes, header, () => {
-        switch (modeDropdown.value) {
+    modeDropdown = createDropdown("modeDropdown", modes, header, event => {
+        switch (event.target.value) {
             case "Draw Mode":
-                workMode = 'drawMode';
+                state.modo = "editor";
+                state.herramienta = "draw";
                 resetButtonStyles();
                 modeDropdown.style.backgroundColor = '#ddd';
                 break;
             case "Delete Mode":
-                workMode = 'deleteMode';
-                activeNodes.unSelectNodes();
-                activeGraph.edges.unselectEdges();
+                state.modo = "editor";
+                state.herramienta = "deleteMode";
                 resetButtonStyles();
                 modeDropdown.style.backgroundColor = '#ddd';
                 break;
             case "Animation Mode":
-                workMode = 'animationMode';
+                state.modo = "animation";
                 resetButtonStyles();
                 modeDropdown.style.backgroundColor = '#ddd';
                 showAnimationControls();
-                activeGraph.edges.edgesList.forEach(edge => edge.visible = false); 
+                activeGraph.edges.edgesList.forEach(edge => edge.visible = false);
                 activeNodes.setAllNodesInvisible();
                 activeGraph.prepareJSONObject();
                 break;
             case "Game Mode":
                 resetButtonStyles();
+                state.modo = "game";
                 gameModeActive = !gameModeActive;
                 if (gameModeActive) {
                     enterGameMode();
@@ -145,6 +147,7 @@ function initHtml() {
                 break;
             case "Game Mode 2":
                 resetButtonStyles();
+                state.modo = "game2";
                 gameMode2Active = !gameMode2Active;
                 if (gameMode2Active) {
                     enterGameMode2();
@@ -154,6 +157,7 @@ function initHtml() {
                 break;
             case "Time Line":
                 resetButtonStyles();
+                state.modo = "timeLine";
                 timeLineActive = !timeLineActive;
                 if (timeLineActive) {
                     enterTimeLineMode();
@@ -166,7 +170,7 @@ function initHtml() {
 
     // Botón de filtrar gráfico
     filterGraphButton = createCustomButton("filterGraphButton", "Filter Graph", header, () => {
-        activeGraph = filterGraph(masterGraph, (node) => (node.year > 1800 && node.year < 1900));
+        activeGraph = filterGraph(state.graph, (node) => (node.year > 1800 && node.year < 1900));
         console.log(activeGraph);
     });
 

@@ -98,16 +98,17 @@ function executeByMode() {
                         break;
                     }
 
-                    case("delete"): {
+                    case("deleteMode"): {
+                        console.log("Soy delete Mode");
                         let edge = state.graph.edges.findEdge(mouseX, mouseY);
                         if (edge) {
                             state.graph.edges.removeEdge(edge);
                             return;
                         }
 
-                        let node = activeNodes.findNode(mouseX, mouseY);
+                        let node = state.graph.findNodesUnderMouse();
                         if (node) {
-                            activeNodes.removeNode(node);
+                            state.graph.removeNode(node);
                             state.graph.removeEdgesConnectedToNode(node);
                         }
                         break;
