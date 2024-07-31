@@ -15,7 +15,7 @@ function executeByMode() {
 
     const isMouseOverCanvas = mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height;
 
-    if (!isMouseOverCanvas && !edicionLabel ) {    // && !isMouseOverNodeLabel
+    if (!isMouseOverCanvas && edicionLabel ) {    // && !isMouseOverNodeLabel
         //Al hacer clic fuera del canvas se deselecciona todo
         console.log("Mouse fuera del canvas");
         nodoPrevioSelec = null;

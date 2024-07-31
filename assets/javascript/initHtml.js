@@ -33,6 +33,7 @@ function createCustomEvent(id){
     obj.addEventListener("blur", event => {
         edicionLabel = false;
         state.nodoSeleccionado.label = obj.textContent ;
+        console.log(state.nodoSeleccionado.label);
       });
     obj.addEventListener("click", () => {
         edicionLabel = true ;
