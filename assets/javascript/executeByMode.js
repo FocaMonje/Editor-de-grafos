@@ -15,14 +15,14 @@ function executeByMode() {
 
     const isMouseOverCanvas = mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height;
 
-    if (!isMouseOverCanvas && edicionLabel ) {    // && !isMouseOverNodeLabel
-        //Al hacer clic fuera del canvas se deselecciona todo
-        console.log("Mouse fuera del canvas");
-        nodoPrevioSelec = null;
-        state.nodoSeleccionado = {};
-        state.arcoSeleccionado = {};
-        document.getElementById('node_label').value = '';
-    } 
+    // if (!isMouseOverCanvas ) {    // && !isMouseOverNodeLabel
+    //     //Al hacer clic fuera del canvas se deselecciona todo
+    //     console.log("Mouse fuera del canvas");
+    //     nodoPrevioSelec = null;
+    //     state.nodoSeleccionado = {};
+    //     state.arcoSeleccionado = {};
+    //     document.getElementById('node_label').value = '';
+    // } 
     // if(isMouseOverNodeLabel){
     //     console.log("Mouse Sobre node label");
     // }
