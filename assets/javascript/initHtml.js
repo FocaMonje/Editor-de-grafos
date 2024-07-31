@@ -29,6 +29,7 @@ function createCustomInput(id, type, parent) {
 
 function createCustomEvent(id){
     let obj = document.getElementById(id);
+    console.log(obj);
     obj.addEventListener("blur", event => {
         edicionLabel = false;
         state.nodoSeleccionado.label = obj.textContent ;
