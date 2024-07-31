@@ -25,10 +25,10 @@ function createCustomInput(id, type, parent) {
     parent.appendChild(input);
 
     input.addEventListener("blur", event => {
-        state.nodoSeleccionado.label = event.target.value ;
-        console.log(state.nodoSeleccionado.label);
+        let newLabel = event.target.value ;
+        changeNode(state, nodoSeleccionado , newLabel);
       });
-      
+
     input.addEventListener("click", () => {
         edicionLabel = true ;
         console.log("click");

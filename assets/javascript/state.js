@@ -62,5 +62,10 @@ function addNode(estado, nodo){
         estado.graph = nuevoGrafo;
     }
 
-    
+function changeNode(estado, nodo , newLabel){
+    let nuevoGrafo = estado.graph.changeNode(nodo, newLabel); 
+    listOfStates.push(nuevoGrafo);
+    estado.graph = nuevoGrafo;
+}
+
     

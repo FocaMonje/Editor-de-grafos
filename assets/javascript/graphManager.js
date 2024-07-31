@@ -130,6 +130,13 @@ class GraphManager {
     return grafoNuevo;
   }
 
+  changeNode(node, newLabel){
+    let grafoNuevo = GraphManager.copyGraph(this);
+    grafoNuevo.nodes.changeNode(node.label, newLabel);
+    grafoNuevo.prepareJSONObject();
+    return grafoNuevo;
+  }
+
   _addEdge(node1, node2, explicacion = '') {
     this.edges.addEdge(node1, node2, explicacion);
     this.prepareJSONObject();

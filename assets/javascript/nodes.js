@@ -13,6 +13,14 @@ class Nodes {
     return newNode;
   }
 
+  changeNode(oldLabel, newLabel){
+    for (let node in this.nodesList){
+      if(node.label === oldLabel){
+        node.label = newLabel;
+      }
+    }
+  }
+
   clear() {
     this.nodesList = [];
     this.nodeCounter = 0;
