@@ -22,7 +22,7 @@ class Node  {
   draw(size) {
     if (this.visible) { // Solo dibuja si el nodo es visible
       this.size = size;
-      if (this.label==state.nodoSeleccionado.label) {
+      if (this.label==state.selectedNode.label) {
           strokeWeight(4);
           stroke(51);
       }

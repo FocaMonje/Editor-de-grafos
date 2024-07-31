@@ -42,20 +42,20 @@ function executeByMode() {
             let valencia = coordCanvasReales(mouseX, mouseY).y;
             let newNode = new Node(label, size, year, valencia);
             addNode(state, newNode);
-            state.nodoSeleccionado = newNode;
+            state.selectedNode = newNode;
             document.getElementById('node_label').value = newNode.label;
         } else {
             // hay un nodo debajo del ratón
             nodeUnderMouse = listaDeNodos[0];
-            if (state.nodoSeleccionado && state.nodoSeleccionado !== nodeUnderMouse) {
-                nodoPrevioSelec = state.nodoSeleccionado;
-                state.nodoSeleccionado = nodeUnderMouse;
-                document.getElementById('node_label').value = state.nodoSeleccionado.label;
+            if (state.selectedNode && state.selectedNodeselectedNode !== nodeUnderMouse) {
+                nodoPrevioSelec = state.selectedNode;
+                state.selectedNode = nodeUnderMouse;
+                document.getElementById('node_label').value = state.selectedNode.label;
                 // Crear una flecha entre el nodo previamente seleccionado y el nodo actual
-                state.graph.addEdge(nodoPrevioSelec, state.nodoSeleccionado, "");
+                state.graph.addEdge(nodoPrevioSelec, state.selectedNode, "");
             } else {
-                state.nodoSeleccionado = nodeUnderMouse;
-                document.getElementById('node_label').value = state.nodoSeleccionado.label;
+                state.selectedNode = nodeUnderMouse;
+                document.getElementById('node_label').value = state.selectedNode.label;
             }
         }
 
@@ -67,10 +67,10 @@ function executeByMode() {
 
                     case("draw"): {
 
-                        if (state.nodoSeleccionado != {} && nodoPrevioSelec != null) {
+                        if (state.selectedNode != {} && nodoPrevioSelec != null) {
                         
                                 // Crear una arista entre el nodo previamente seleccionado y el nodo actual
-                                let newGraph = state.graph.addEdge(nodoPrevioSelec, state.nodoSeleccionado);
+                                let newGraph = state.graph.addEdge(nodoPrevioSelec, state.selectedNode);
                                 state.graph = newGraph;
                                 //state.nodoSeleccionado = {}; // Deseleccionar todos los nodos
                                 //nodoPrevioSelec = {};

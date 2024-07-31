@@ -14,7 +14,7 @@ class Nodes {
   }
 
   changeNode(oldLabel, newLabel){
-    for (let node in this.nodesList){
+    for (let node of this.nodesList){
       if(node.label === oldLabel){
         node.label = newLabel;
       }
