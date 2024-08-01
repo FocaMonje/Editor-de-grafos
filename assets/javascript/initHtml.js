@@ -195,6 +195,15 @@ function initHtml() {
     createCustomButton("moveDown", "↓", navigationControls, () => moveView(0, 20));
     createCustomButton("moveRight", "→", navigationControls, () => moveView(20, 0));
 
+    // Creación botón para deseleccionar nodo
+    let deselectDiv = document.getElementById('deseleccionar');
+    createCustomButton('deselectButton', 'Deseleccionar', deselectDiv, () => {
+        state.selectedNode = {};
+        document.getElementById('node_label').value = "";
+        // console.log('Deseleccionado');
+    });
+
+
     // Creación de los controles de zoom
     let zoomControls = document.getElementById('zoom-controls');
 
