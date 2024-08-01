@@ -27,37 +27,7 @@ function executeByMode() {
     //     console.log("Mouse Sobre node label");
     // }
     if(isMouseOverCanvas){ 
-        // => Mouse sobre el canvas o mouse está sobre node label
-        console.log("Mouse sobre el canvas");
-        // Si se hace clic dentro del canvas
-        let listaDeNodos = state.graph.findNodesUnderMouse();
-
-        if (listaDeNodos.length === 0) {
-            //No hay nodo debajo del ratón
-            nodeUnderMouse = null;
-            // Crear un nuevo nodo 
-            let label = "Nodo " + state.graph.nodes.nodeCounter;
-            let size = 20; 
-            let year = coordCanvasReales(mouseX, mouseY).x;
-            let valencia = coordCanvasReales(mouseX, mouseY).y;
-            let newNode = new Node(label, size, year, valencia);
-            addNode(state, newNode);
-            state.selectedNode = newNode;
-            document.getElementById('node_label').value = newNode.label;
-        } else {
-            // hay un nodo debajo del ratón
-            nodeUnderMouse = listaDeNodos[0];
-            if (state.selectedNode && state.selectedNodeselectedNode !== nodeUnderMouse) {
-                nodoPrevioSelec = state.selectedNode;
-                state.selectedNode = nodeUnderMouse;
-                document.getElementById('node_label').value = state.selectedNode.label;
-                // Crear una flecha entre el nodo previamente seleccionado y el nodo actual
-                state.graph.addEdge(nodoPrevioSelec, state.selectedNode, "");
-            } else {
-                state.selectedNode = nodeUnderMouse;
-                document.getElementById('node_label').value = state.selectedNode.label;
-            }
-        }
+       
 
         switch (state.modo) {
 
@@ -66,14 +36,45 @@ function executeByMode() {
                 switch (state.herramienta) {
 
                     case("draw"): {
+                        console.log("****" + state.herramienta);
+                         // => Mouse sobre el canvas o mouse está sobre node label
+                        console.log("Mouse sobre el canvas");
+                        // Si se hace clic dentro del canvas
+                        let listaDeNodos = state.graph.findNodesUnderMouse();
 
+                        if (listaDeNodos.length === 0) {
+                            //No hay nodo debajo del ratón
+                            nodeUnderMouse = null;
+                            // Crear un nuevo nodo 
+                            let label = "Nodo " + state.graph.nodes.nodeCounter;
+                            let size = 20; 
+                            let year = coordCanvasReales(mouseX, mouseY).x;
+                            let valencia = coordCanvasReales(mouseX, mouseY).y;
+                            let newNode = new Node(label, size, year, valencia);
+                            addNode(state, newNode);
+                            state.selectedNode = newNode;
+                            document.getElementById('node_label').value = newNode.label;
+                        } else {
+                            // hay un nodo debajo del ratón
+                            nodeUnderMouse = listaDeNodos[0];
+                            if (state.selectedNode && state.selectedNode !== nodeUnderMouse) {
+                                nodoPrevioSelec = state.selectedNode;
+                                state.selectedNode = nodeUnderMouse;
+                                document.getElementById('node_label').value = state.selectedNode.label;
+                                // Crear una flecha entre el nodo previamente seleccionado y el nodo actual
+                                state.graph.addEdge(nodoPrevioSelec, state.selectedNode, "");
+                            } else {
+                                state.selectedNode = nodeUnderMouse;
+                                document.getElementById('node_label').value = state.selectedNode.label;
+                            }
+                        }
                         if (state.selectedNode != {} && nodoPrevioSelec != null) {
                         
                                 // Crear una arista entre el nodo previamente seleccionado y el nodo actual
                                 let newGraph = state.graph.addEdge(nodoPrevioSelec, state.selectedNode);
                                 state.graph = newGraph;
-                                //state.nodoSeleccionado = {}; // Deseleccionar todos los nodos
-                                //nodoPrevioSelec = {};
+                                // state.nodoSeleccionado = {}; // Deseleccionar todos los nodos
+                                // nodoPrevioSelec = {};
                              
                         } 
                         else {
@@ -104,8 +105,9 @@ function executeByMode() {
                     }
 
                     case("deleteMode"): {
+                        console.log("-----" + state.herramienta);
                         console.log("Soy delete Mode");
-                        let edge = state.graph.edges.findEdge(mouseX, mouseY);
+                        let edge = state.edges.findEdge(mouseX, mouseY);
                         if (edge) {
                             state.graph.edges.removeEdge(edge);
                             return;

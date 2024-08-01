@@ -137,6 +137,8 @@ function initHtml() {
                 state.herramienta = "deleteMode";
                 resetButtonStyles();
                 modeDropdown.style.backgroundColor = '#ddd';
+                console.log("Soy initHtml :" + state.herramienta);
+                console.log("Soy initHtml :" + state.modo);
                 break;
             case "Animation Mode":
                 state.modo = "animation";
