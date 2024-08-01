@@ -7,7 +7,7 @@ class Nodes {
   }
   
   addNode(label, size, year, valencia) {
-    let newNode = new Node(label, size, year, valencia);
+    let newNode = new Node( year, valencia, label);
     this.nodesList.push(newNode);
     this.nodeCounter++;
     return newNode;

@@ -46,11 +46,9 @@ function executeByMode() {
                             //No hay nodo debajo del ratón
                             nodeUnderMouse = null;
                             // Crear un nuevo nodo 
-                            let label = "Nodo " + state.graph.nodes.nodeCounter;
-                            let size = 20; 
                             let year = coordCanvasReales(mouseX, mouseY).x;
                             let valencia = coordCanvasReales(mouseX, mouseY).y;
-                            let newNode = new Node(label, size, year, valencia);
+                            let newNode = new Node(year, valencia);
                             addNode(state, newNode);
                             state.selectedNode = newNode;
                             document.getElementById('node_label').value = newNode.label;
@@ -71,10 +69,9 @@ function executeByMode() {
                         if (state.selectedNode != {} && nodoPrevioSelec != null) {
                         
                                 // Crear una arista entre el nodo previamente seleccionado y el nodo actual
-                                let newGraph = state.graph.addEdge(nodoPrevioSelec, state.selectedNode);
-                                state.graph = newGraph;
-                                // state.nodoSeleccionado = {}; // Deseleccionar todos los nodos
-                                // nodoPrevioSelec = {};
+                                state.graph.addEdge(nodoPrevioSelec, state.selectedNode);
+                                
+                                
                              
                         } 
                         else {

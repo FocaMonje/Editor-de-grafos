@@ -1,12 +1,21 @@
 
 class Node  {          
-  constructor(label, size, year, valencia) {
-    this.label = label;
+  constructor(year, valencia, label) {
+    if (typeof year === 'number' && typeof valencia === 'number' && typeof label === 'string'){
+      this.label = label;
+      this.year = year;
+      this.valencia = valencia;
+    } else if (typeof year === 'number' && typeof valencia === 'number') {
+      this.label = "Nodo " + state.graph.nodes.nodeCounter;
+      this.year = year;
+      this.valencia = valencia;
+    } else {
+      console.log("Error en los argumentos del constructor de Node");
+    }
     this.selected = false;
-    this.size = size;
-    this.year = year;
+    this.size = 20;
     this.visible = true;
-    this.valencia = valencia;
+    
   }
 
   get x(){

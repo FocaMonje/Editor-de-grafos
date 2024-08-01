@@ -52,24 +52,18 @@ state = {
     graph: new GraphManager(new Nodes(), new Edges())
 };
 
-// FUNCIONES QUE CAMBIAN EL ESTADO : OPERATIVA:
-//se crea una copia nueva "nuevoGrafo", se añade un nodo a la copia, 
-// la copia se añade a la lista de estados y la copia se convierte en el
-//grafo operativo
+// FUNCIONES QUE CAMBIAN EL ESTADO 
+
 function addNode(estado, nodo){
-        let nuevoGrafo = estado.graph.addNode(nodo); 
-        listOfStates.push(nuevoGrafo);
-        estado.graph = nuevoGrafo;
+    estado.graph.addNode(nodo);
+    state.graph.nodes.nodeCounter += 1;                           
 }
 
 function changeNode(estado, nodo , newLabel){
-    let nuevoGrafo = estado.graph.changeNode(nodo, newLabel); 
-    listOfStates.push(nuevoGrafo);
-    estado.graph = nuevoGrafo;
+    estado.graph.changeNode(nodo, newLabel); 
 }
 
 function deleteNode(estado, nodo){
-    let nuevoGrafo = estado.graph.deleteNode(nodo); 
-    listOfStates.push(nuevoGrafo);
-    estado.graph = nuevoGrafo;
+    estado.graph.deleteNode(nodo); 
+    state.graph.nodes.nodeCounter -= 1;
 }    
