@@ -38,8 +38,11 @@ class Nodes {
     this.nodeSelected = null;
   }
 
-  removeNode(node) {
-    this.nodesList = this.nodesList.filter(n => n !== node);
+  // removeNode(node) {
+  //   this.nodesList = this.nodesList.filter(n => n !== node);
+  // }
+  deleteNode(node) {
+    this.nodesList = grafoNuevo.nodes.nodesList.filter(n => n !== node);
   }
 
   draw(size) {

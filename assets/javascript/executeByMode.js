@@ -107,16 +107,11 @@ function executeByMode() {
                     case("deleteMode"): {
                         console.log("-----" + state.herramienta);
                         console.log("Soy delete Mode");
-                        let edge = state.edges.findEdge(mouseX, mouseY);
-                        if (edge) {
-                            state.graph.edges.removeEdge(edge);
-                            return;
-                        }
-
-                        let node = state.graph.findNodesUnderMouse();
-                        if (node) {
-                            state.graph.removeNode(node);
-                            state.graph.removeEdgesConnectedToNode(node);
+                        
+                        // Miramos si hay nodos debajo del ratón y si hay se borran
+                        let nodes = state.graph.findNodesUnderMouse();
+                        if (nodes.length > 0) {
+                            deleteNode(state, nodes[0]);
                         }
                         break;
                     }

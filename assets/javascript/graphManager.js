@@ -163,6 +163,13 @@ class GraphManager {
     return grafoNuevo;
   }
 
+  deleteNode(node){
+    let grafoNuevo = GraphManager.copyGraph(this);
+    grafoNuevo.nodes.nodesList = grafoNuevo.nodes.nodesList.filter(n => n.label !== node.label);
+    grafoNuevo.prepareJSONObject();
+    return grafoNuevo;
+  }
+
   syncState(state) {
     this.state = state;
   }
