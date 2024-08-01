@@ -6,11 +6,19 @@ class Nodes {
     this.size = size;
   }
   
-  addNode(label, size, year) {
-    let newNode = new Node(label, size, year);
+  addNode(label, size, year, valencia) {
+    let newNode = new Node( year, valencia, label);
     this.nodesList.push(newNode);
     this.nodeCounter++;
     return newNode;
+  }
+
+  changeNode(oldLabel, newLabel){
+    for (let node of this.nodesList){
+      if(node.label === oldLabel){
+        node.label = newLabel;
+      }
+    }
   }
 
   clear() {
@@ -30,8 +38,11 @@ class Nodes {
     this.nodeSelected = null;
   }
 
-  removeNode(node) {
-    this.nodesList = this.nodesList.filter(n => n !== node);
+  // removeNode(node) {
+  //   this.nodesList = this.nodesList.filter(n => n !== node);
+  // }
+  deleteNode(node) {
+    this.nodesList = grafoNuevo.nodes.nodesList.filter(n => n !== node);
   }
 
   draw(size) {

@@ -1,12 +1,21 @@
 
 class Node  {          
-  constructor(label, size, year) {
-    this.label = label;
+  constructor(year, valencia, label) {
+    if (typeof year === 'number' && typeof valencia === 'number' && typeof label === 'string'){
+      this.label = label;
+      this.year = year;
+      this.valencia = valencia;
+    } else if (typeof year === 'number' && typeof valencia === 'number') {
+      this.label = "Nodo " + state.graph.nodes.nodeCounter;
+      this.year = year;
+      this.valencia = valencia;
+    } else {
+      console.log("Error en los argumentos del constructor de Node");
+    }
     this.selected = false;
-    this.size = size;
-    this.year = year;
+    this.size = 20;
     this.visible = true;
-    this.valencia = 0;
+    
   }
 
   get x(){
@@ -22,14 +31,15 @@ class Node  {
   draw(size) {
     if (this.visible) { // Solo dibuja si el nodo es visible
       this.size = size;
-      if (this.selected) {
+      if (this.label==state.selectedNode.label) {
           strokeWeight(4);
           stroke(51);
       }
  
       let r = this.size;
+      
       ellipse(this.x, this.y , r * (r/(r * zoomX) ), r * (r/(r * zoomY)));
-
+   
       fill(0);
       strokeWeight(1);
       textAlign(CENTER, CENTER);

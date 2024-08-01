@@ -3,15 +3,8 @@ function setup() {
 
     canvas = createCanvas(canvas_width, canvas_height);
     centerCanvas(canvas);
-
-    masterNodes = new Nodes();
-    masterGraph = new GraphManager(masterNodes, physics);
-
-    activeNodes = new Nodes();
-    activeGraph = new GraphManager(activeNodes, physics);
-
-    gameNodes = new Nodes();
-    gameGraph = new GraphManager(gameNodes, physics);
+    
+    listOfStates.push(state);
 
     initHtml();
     
@@ -26,10 +19,8 @@ function draw() {
     translate(scrollX , scrollY);
     scale(zoomX,zoomY);
   
-    
-    activeGraph.drawEdges();
-    activeGraph.drawNodes(slider_node_size.value()); // Aquí se usa el valor del deslizador para el tamaño de los nodos
-
+    state.graph.drawEdges();
+    state.graph.drawNodes(10); //slider_node_size.value() Aquí se usa el valor del deslizador para el tamaño de los nodos
 
     draw_grid(width, height);
     

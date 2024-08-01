@@ -38,11 +38,12 @@ function doZoom(event) {
 }
 
 function resetButtonStyles() {
-    drawModeButton.style('background-color', '');
-    deleteModeButton.style('background-color', '');
-    animationModeButton.style('background-color', '');
-    gameModeButton.style('background-color', '');
-    hideAnimationControls();
+  // Restablecer el estilo del menú desplegable
+  const modeDropdown = document.getElementById('modeDropdown');
+  if (modeDropdown) {
+      modeDropdown.style.backgroundColor = '';
+  }
+  hideAnimationControls();
 }
 
 function moveView(deltaX, deltaY) {
@@ -128,7 +129,7 @@ function coordCanvasReales(xCanvas, yCanvas){
     const realX = (xCanvas - scrollX) * 1/zoomX ;
     let realY = (yCanvas - scrollY) * 1/zoomY;
     
-    realY = (2 * (alturaDibujo - realY) / maxVal) + 1;
+    realY = (2 * (alturaDibujo - realY) / maxVal) ;
 
     return {x:realX, y:realY};
 
@@ -217,4 +218,11 @@ function deepCopy(object){
 
   return JSON.parse(JSON.stringify(object));
 }
-  
+
+function objetoVacio(objeto){
+  // La función verifica si el objeto está vacio o si no existe
+  if(!objeto){
+    return true;
+  }
+  return Object.keys(objeto).length == 0;
+}

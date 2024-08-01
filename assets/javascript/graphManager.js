@@ -1,8 +1,8 @@
 
 class GraphManager {
-  constructor(nodes) {
+  constructor(nodes, edges) {
     this.nodes = nodes;
-    this.edges = new Edges();
+    this.edges = edges;
   
     this.graphJSONObject = {};
     this.prepareJSONObject();
@@ -12,7 +12,7 @@ class GraphManager {
     this.graphJSONObject = {
       directed: true,
       graph: {},
-      nodes: this.nodes.nodesList.map(node => ({ id: node.label, year: node.year })),    // Guardar el año en el nodo
+      nodes: this.nodes.nodesList.map(node => ({ id: node.label, year: node.year , valencia: node.valencia })),    // Guardar el año en el nodo
       links: this.edges.edgesList.map(edge => ({
         source: edge.source.label,
         target: edge.target.label,
@@ -22,29 +22,7 @@ class GraphManager {
     };
   }
 
-  addNode(node){
-    let newNode = this.nodes.addNode(node.x,node.y, 10);
-    newNode.label = node.label;
-    newNode.year = node.year; // Asignar el año al nodo  
-    this.prepareJSONObject();
-  }
-
-  addEdge(node1, node2, explicacion = '') {
-    this.edges.addEdge(node1, node2, explicacion);
-   
-    this.prepareJSONObject();
-  }
-
-  removeEdgesConnectedToNode(node) {
-    this.edges.removeEdgesConnectedToNode(node);
-    this.prepareJSONObject();
-  }
-
-  removeEdge(edge) {
-    this.edges.edgesList = this.edges.edgesList.filter(e => e !== edge);
-    this.prepareJSONObject();
-  }
-
+ 
   saveGraph() {
     this.prepareJSONObject();
     saveJSON(this.graphJSONObject, 'graph.json');
@@ -71,30 +49,66 @@ class GraphManager {
     }
   }
 
+
   rebuildGraph(graph) {
     this.nodes.clear(); // Limpia los nodos existentes
-    let nodeMap = {};
-    for (let node of graph.nodes) {
-      let label = node.id;
-      let year = node.year; // Asignar el año al nodo 
-      let size = slider_node_size.value();
-      let newNode = this.nodes.addNode(label, size, year);
-      newNode.valencia = 0;
-      nodeMap[node.id] = newNode;
-    }
-
-    this.edges = new Edges();
-    graph.links.forEach(link => {
-      let source = nodeMap[link.source];
-      let target = nodeMap[link.target];
-      if (source && target) {
-        this.addEdge(source, target, link.explicacion);
-        source.valencia++;
-      }
-    });
+    
+    GraphManager.createNodesEdgesFromJson(graph, this);
 
     this.prepareJSONObject();
+
+
+    /* ------------------------------------ */
+
+    /* Codigo de prueba */
+
+
+    /*-------------------------------------- */
+  
+    console.log("Grafo original: " , this.nodes.nodesList );
+    let grafoNuevo = this.addNode(new Node("nuevo", 10, 1700));
+    console.log();
+    console.log("Grafo Nuevo: ", grafoNuevo.nodes.nodesList);
+    console.log("Grafo original: " , this );
+
+
+  
   }
+
+
+
+  addNode(node){
+    let newNode = this.nodes.addNode(node.x,node.y, 10, node.valencia);
+    newNode.label = node.label;
+    newNode.year = node.year;
+    return newNode;
+  }
+
+  changeNode(node, newLabel){
+    this.nodes.changeNode(node.label, newLabel);
+  }
+
+  addEdge(node1, node2, explicacion = '') {
+    this.edges.addEdge(node1, node2, explicacion);
+  }
+
+  removeEdgesConnectedToNode(node) {
+    this.edges.removeEdgesConnectedToNode(node);
+  }
+
+  removeEdge(edge) {
+    this.edges.edgesList = grafoNuevo.edges.edgesList.filter(e => e !== edge);
+  }
+
+  deleteNode(node){
+    this.nodes.nodesList = grafoNuevo.nodes.nodesList.filter(n => n.label !== node.label);
+  }
+
+  syncState(state) {
+    this.state = state;
+  }
+
+
 
   drawEdges() {
     this.edges.edgesList.forEach(edge => {
@@ -135,8 +149,8 @@ class GraphManager {
   findNodesUnderMouse(){
     const coordsReales = coordCanvasReales(mouseX, mouseY);
   
-    const toleranciaX = 10;
-    const toleranciaY = 0.7;
+    const toleranciaX = 10 ;
+    const toleranciaY = 1 ;
     
     const inv_filtrados = this.nodes.nodesList.filter(
       (invento) => (abs(invento.year - coordsReales.x)  < toleranciaX)  &&
@@ -167,3 +181,4 @@ class GraphManager {
     }
   }
 }
+
