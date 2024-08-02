@@ -9,13 +9,16 @@ class Node  {
       this.label = "Nodo " + state.graph.nodes.nodeCounter;
       this.year = year;
       this.valencia = valencia;
+    } else if (typeof year === 'number' && typeof label === 'string') {
+      this.label = label;
+      this.year = year;
+      this.valencia = 0;
     } else {
       console.log("Error en los argumentos del constructor de Node");
     }
     this.selected = false;
     this.size = 20;
     this.visible = true;
-    
   }
 
   get x(){

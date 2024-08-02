@@ -50,28 +50,36 @@ class GraphManager {
   }
 
 
+  static createNodesEdgesFromJson(graphJson, graph){
+
+    
+  }
+  
   rebuildGraph(graph) {
+    
     this.nodes.clear(); // Limpia los nodos existentes
     
-    GraphManager.createNodesEdgesFromJson(graph, this);
+    let nodeMap = {};
+    for (let node of graphJson.nodes) {
+      let label = node.id;
+      let year = node.year; // Asignar el año al nodo 
+
+      let newNode = graph.nodes.addNode(year, label);
+
+      nodeMap[node.id] = newNode;
+    }
+
+    graph.edges = new Edges();
+    graphJson.links.forEach(link => {
+      let source = nodeMap[link.source];
+      let target = nodeMap[link.target];
+      if (source && target) {
+        graph._addEdge(source, target, link.explicacion);
+        source.valencia++;
+      }
+    });
 
     this.prepareJSONObject();
-
-
-    /* ------------------------------------ */
-
-    /* Codigo de prueba */
-
-
-    /*-------------------------------------- */
-  
-    console.log("Grafo original: " , this.nodes.nodesList );
-    let grafoNuevo = this.addNode(new Node("nuevo", 10, 1700));
-    console.log();
-    console.log("Grafo Nuevo: ", grafoNuevo.nodes.nodesList);
-    console.log("Grafo original: " , this );
-
-
   
   }
 
