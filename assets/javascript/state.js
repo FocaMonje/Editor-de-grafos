@@ -56,7 +56,7 @@ state = {
 
 function addNode(estado, nodo){
     estado.graph.addNode(nodo);
-    state.graph.nodes.nodeCounter += 1;                           
+    // state.graph.nodes.nodeCounter += 1;                           
 }
 
 function changeNode(estado, nodo , newLabel){
