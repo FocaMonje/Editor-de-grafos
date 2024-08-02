@@ -6,6 +6,9 @@ class GraphManager {
   
     this.graphJSONObject = {};
     this.prepareJSONObject();
+    this.nodesUnderMouse = [];
+    this.edgesUnderMouse = [];
+    
   }
 
   prepareJSONObject() {
@@ -136,24 +139,28 @@ class GraphManager {
     if (inv_filtrados.length > 0){
       
       for (let invento of inv_filtrados ){
-        console.log();
-        console.log(invento.label);
-        console.log(invento.year);
-        console.log(invento.valencia);
-        console.log();
+        // console.log();
+        // console.log(invento.label);
+        // console.log(invento.year);
+        // console.log(invento.valencia);
+        // console.log();
 
+        this.nodesUnderMouse = inv_filtrados.map( node => node.label);
+        //console.log("Nodos bajo el raton: " ,this.nodesUnderMouse);
         return inv_filtrados;
       }
     } else {
       
-      console.log();
-      console.log("ScrollX:", scrollX);
-      console.log("ScrollY:", scrollY);
-      console.log("ZoomX:", zoomX);
-      console.log("ZoomY:", zoomY);
-      console.log("Coord en el Canvas: ", mouseX, mouseY);
-      console.log("Coord Reales: ", coordsReales.x,coordsReales.y  );
+      // console.log();
+      // console.log("ScrollX:", scrollX);
+      // console.log("ScrollY:", scrollY);
+      // console.log("ZoomX:", zoomX);
+      // console.log("ZoomY:", zoomY);
+      // console.log("Coord en el Canvas: ", mouseX, mouseY);
+      // console.log("Coord Reales: ", coordsReales.x,coordsReales.y  );
 
+      this.nodesUnderMouse = [];
+      //console.log("Nodos bajo el raton: " ,this.nodesUnderMouse);
       return [];
     }
   }

@@ -32,11 +32,18 @@ class Node  {
     if (this.visible) { // Solo dibuja si el nodo es visible
       this.size = size;
       if (this.label==state.selectedNode.label) {
-          strokeWeight(4);
+          strokeWeight(6);
           stroke(51);
       }
+
+      for (let label of state.graph.nodesUnderMouse){
+        if(this.label == label){
+          strokeWeight(4);
+          stroke(51);
+        }
+       }
  
-      let r = this.size;
+      let r = 20;
       
       ellipse(this.x, this.y , r * (r/(r * zoomX) ), r * (r/(r * zoomY)));
    
