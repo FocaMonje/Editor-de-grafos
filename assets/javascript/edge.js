@@ -51,13 +51,14 @@ class Edge {
 
   draw() {
     if (this.visible) { // Dibuja solo si es visible
-      strokeWeight(this.selected ? 4 : 1);
+      strokeWeight(this.selected ? 6 : 1);
   
       let coordsSource = coordRealesCanvas(this.source.year, this.source.valencia);
       let coordsTarget = coordRealesCanvas(this.target.year, this.target.valencia);
 
       this.drawArrow(coordsSource.x, coordsSource.y, coordsTarget.x, coordsTarget.y, this.source.size/3);
     }
+   
   }
 
 
@@ -73,11 +74,11 @@ class Edge {
     
     var c = 0;
 
-    if(this.explicacion === null){
-      c = 180;
-    }
-    else{
+    if (this.explicacion == state.graph.edgesUnderMouse) {
       c = 80;
+      
+    } else{
+      c = 180;
     }
 
     strokeWeight(this.selected ? 4 : 1);

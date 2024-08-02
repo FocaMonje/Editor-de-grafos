@@ -19,6 +19,8 @@ function draw() {
     translate(scrollX , scrollY);
     scale(zoomX,zoomY);
   
+    state.graph.findNodesUnderMouse();
+    state.graph.findEdgeUnderMouse();
     state.graph.drawEdges();
     state.graph.drawNodes(10); //slider_node_size.value() Aquí se usa el valor del deslizador para el tamaño de los nodos
 
