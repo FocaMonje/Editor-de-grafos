@@ -60,7 +60,7 @@ function executeByMode() {
                                 state.selectedNode = nodeUnderMouse;
                                 document.getElementById('node_label').value = state.selectedNode.label;
                                 // Crear una flecha entre el nodo previamente seleccionado y el nodo actual
-                                state.graph.addEdge(nodoPrevioSelec, state.selectedNode, "");
+                                // state.graph.addEdge(nodoPrevioSelec, state.selectedNode, "");
                             } else {
                                 state.selectedNode = nodeUnderMouse;
                                 document.getElementById('node_label').value = state.selectedNode.label;
