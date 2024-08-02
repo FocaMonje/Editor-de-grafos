@@ -172,9 +172,13 @@ class GraphManager {
     
     for (let edge of this.edges.edgesList) {
       if (edge.isMouseOver(x, y)) {
+        this.edgesUnderMouse = edge.explicacion;
+        // console.log("Flechas bajo el ratón : " + this.edgesUnderMouse);
         return edge;
       }
     }
+    this.edgesUnderMouse = [];
+    // console.log("Flechas vacias bajo el ratón : " + this.edgesUnderMouse);
     return null;
   }
 }
