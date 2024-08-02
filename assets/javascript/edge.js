@@ -1,9 +1,13 @@
 
 class Edge {
   constructor(source, target, explicacion) {
+    if (typeof explicacion === 'string'){
+      this.explicacion = "Edge " + state.graph.edges.edgeCounter;
+    } else {
+      console.log("Error en los argumentos del constructor de Edge");
+    }
     this.source = source;
     this.target = target;
-    this.explicacion = explicacion;
     this.selected = false;
     this.visible = true;
   }

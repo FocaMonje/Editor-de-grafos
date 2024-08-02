@@ -6,7 +6,7 @@ class Nodes {
     this.size = size;
   }
   
-  addNode(label, size, year, valencia) {
+  addNode(year, valencia, label) {
     let newNode = new Node( year, valencia, label);
     this.nodesList.push(newNode);
     this.nodeCounter++;
@@ -42,7 +42,8 @@ class Nodes {
   //   this.nodesList = this.nodesList.filter(n => n !== node);
   // }
   deleteNode(node) {
-    this.nodesList = grafoNuevo.nodes.nodesList.filter(n => n !== node);
+    this.nodesList = this.nodesList.filter(n => n.label !== node.label);
+    this.nodeCounter--;
   }
 
   draw(size) {

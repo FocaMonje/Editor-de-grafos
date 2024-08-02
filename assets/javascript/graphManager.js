@@ -75,19 +75,6 @@ class GraphManager {
   
   }
 
-
-
-  addNode(node){
-    let newNode = this.nodes.addNode(node.x,node.y, 10, node.valencia);
-    newNode.label = node.label;
-    newNode.year = node.year;
-    return newNode;
-  }
-
-  changeNode(node, newLabel){
-    this.nodes.changeNode(node.label, newLabel);
-  }
-
   addEdge(node1, node2, explicacion = '') {
     this.edges.addEdge(node1, node2, explicacion);
   }
@@ -99,16 +86,6 @@ class GraphManager {
   removeEdge(edge) {
     this.edges.edgesList = grafoNuevo.edges.edgesList.filter(e => e !== edge);
   }
-
-  deleteNode(node){
-    this.nodes.nodesList = grafoNuevo.nodes.nodesList.filter(n => n.label !== node.label);
-  }
-
-  syncState(state) {
-    this.state = state;
-  }
-
-
 
   drawEdges() {
     this.edges.edgesList.forEach(edge => {
@@ -179,6 +156,19 @@ class GraphManager {
 
       return [];
     }
+  }
+
+  findEdgeUnderMouse() {
+    let coordenadas = coordCanvasReales(mouseX, mouseY);
+    let x = coordenadas.x;
+    let y = coordenadas.y;
+    
+    for (let edge of this.edges.edgesList) {
+      if (edge.isMouseOver(x, y)) {
+        return edge;
+      }
+    }
+    return null;
   }
 }
 

@@ -41,6 +41,7 @@ function executeByMode() {
                         console.log("Mouse sobre el canvas");
                         // Si se hace clic dentro del canvas
                         let listaDeNodos = state.graph.findNodesUnderMouse();
+                        let edge = state.graph.findEdgeUnderMouse();
 
                         if (listaDeNodos.length === 0) {
                             //No hay nodo debajo del ratón
@@ -60,7 +61,7 @@ function executeByMode() {
                                 state.selectedNode = nodeUnderMouse;
                                 document.getElementById('node_label').value = state.selectedNode.label;
                                 // Crear una flecha entre el nodo previamente seleccionado y el nodo actual
-                                state.graph.addEdge(nodoPrevioSelec, state.selectedNode, "");
+                                // state.graph.addEdge(nodoPrevioSelec, state.selectedNode, "");
                             } else {
                                 state.selectedNode = nodeUnderMouse;
                                 document.getElementById('node_label').value = state.selectedNode.label;
@@ -69,34 +70,33 @@ function executeByMode() {
                         if (state.selectedNode != {} && nodoPrevioSelec != null) {
                         
                                 // Crear una arista entre el nodo previamente seleccionado y el nodo actual
-                                state.graph.addEdge(nodoPrevioSelec, state.selectedNode);
-                                
-                                
-                             
-                        } 
-                        else {
-                            if (edge != null) {
-                                // Si la arista ya está seleccionada, deseleccionarla
-                                if (state.graph.edges.selectedEdge === edge) {
-                                    state.graph.edges.unselectEdges();
-                                    edgeInput.value('');
-                                } else {
-                                    // Seleccionar la arista y actualizar el campo de entrada de la arista
-                                    state.graph.edges.selectEdge(edge);
-                                    edgeInput.value(edge.explicacion); // Actualizar con la explicación de la arista
-                                }
-                                break;
-                            }
-                            // Si no se hizo clic en ningún nodo existente ni en ninguna arista, considerar agregar un nuevo nodo
-                            else {
-                                let label = nodeCounter.toString();
-                                let size = slider_node_size.value();
-                                let coordenadas = coordCanvasReales(mouseX, mouseY);
-                                let year = coordenadas.x; // Asegúrate de obtener las coordenadas correctas
-                                let newNode = state.graph.addNode(label, size, year); // Añadir un nuevo nodo al grafo      
-                                nodeCounter++; // Incrementar el contador de nodos
-                            }
-                        }
+                                // state.graph.addEdge(nodoPrevioSelec, state.selectedNode);
+                                addEdge(state, nodoPrevioSelec, state.selectedNode, explicacion = '');
+    
+                        }  
+                        // else {
+                        //     if (edge != null) {
+                        //         // Si la arista ya está seleccionada, deseleccionarla
+                        //         if (state.graph.edges.selectedEdge === edge) {
+                        //             state.graph.edges.unselectEdges();
+                        //             edgeInput.value('');
+                        //         } else {
+                        //             // Seleccionar la arista y actualizar el campo de entrada de la arista
+                        //             state.graph.edges.selectEdge(edge);
+                        //             edgeInput.value(edge.explicacion); // Actualizar con la explicación de la arista
+                        //         }
+                        //         break;
+                        //     }
+                        //     // Si no se hizo clic en ningún nodo existente ni en ninguna arista, considerar agregar un nuevo nodo
+                        //     else {
+                        //         let label = nodeCounter.toString();
+                        //         let size = slider_node_size.value;
+                        //         let coordenadas = coordCanvasReales(mouseX, mouseY);
+                        //         let year = coordenadas.x; // Asegúrate de obtener las coordenadas correctas
+                        //         let newNode = state.graph.addNode(label, size, year); // Añadir un nuevo nodo al grafo      
+                        //         nodeCounter++; // Incrementar el contador de nodos
+                        //     }
+                        // }
         
                         break;
                     }
