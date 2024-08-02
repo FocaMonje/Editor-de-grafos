@@ -54,16 +54,18 @@ state = {
 
 // FUNCIONES QUE CAMBIAN EL ESTADO 
 
-function addNode(estado, nodo){
-    estado.graph.addNode(nodo);
-    // state.graph.nodes.nodeCounter += 1;                           
+function addNode(estado, node){
+   estado.graph.nodes.addNode(node.year, node.valencia, node.label);                       
 }
 
-function changeNode(estado, nodo , newLabel){
-    estado.graph.changeNode(nodo, newLabel); 
+function changeNode(estado, node , newLabel){
+    estado.graph.nodes.changeNode(node.label, newLabel);
 }
 
-function deleteNode(estado, nodo){
-    estado.graph.deleteNode(nodo); 
-    state.graph.nodes.nodeCounter -= 1;
-}    
+function deleteNode(estado, node){
+   estado.graph.nodes.deleteNode(node);
+} 
+
+function addEdge(estado, node1, node2, explicacion = ''){
+    estado.graph.addEdge(node1, node2, explicacion = '');                       
+}
