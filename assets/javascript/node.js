@@ -5,7 +5,11 @@ class Node  {
       this.label = label;
       this.year = year;
       this.valencia = valencia;
-    } else if (typeof year === 'number' && typeof valencia === 'number') {
+    }else if (typeof year === 'number' && typeof label === 'string') {
+      this.label = label;
+      this.year = year;
+      this.valencia = 0;
+    }else if (typeof year === 'number' && typeof valencia === 'number') {
       this.label = "Nodo " + state.graph.nodes.nodeCounter;
       this.year = year;
       this.valencia = valencia;
