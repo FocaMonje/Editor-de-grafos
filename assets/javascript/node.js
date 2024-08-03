@@ -5,8 +5,8 @@ class Node  {
       this.label = label;
       this.year = year;
       this.valencia = valencia;
-    }else if (typeof year === 'number' && typeof label === 'string') {
-      this.label = label;
+    }else if (typeof year === 'number' && typeof valencia === 'string') {
+      this.label = valencia;
       this.year = year;
       this.valencia = 0;
     }else if (typeof year === 'number' && typeof valencia === 'number') {

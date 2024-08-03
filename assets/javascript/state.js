@@ -46,11 +46,6 @@ class State {
 
 }
 
-state = {
-    modo: "editor",
-    herramienta: "draw",
-    graph: new GraphManager(new Nodes(), new Edges())
-};
 
 // FUNCIONES QUE CAMBIAN EL ESTADO 
 
