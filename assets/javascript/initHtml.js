@@ -118,7 +118,7 @@ function initHtml() {
         state.graph.loadGraph(graph => {
             state.graph.rebuildGraph(graph);
             nodeCounter = Math.max(...graph.nodes.map(node => parseInt(node.id))) + 1;
-            setupYearSliders(graph);
+            //setupYearSliders(graph);
         });
     });
 

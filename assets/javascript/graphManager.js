@@ -52,31 +52,56 @@ class GraphManager {
     }
   }
 
-
   rebuildGraph(graph) {
     this.nodes.clear(); // Limpia los nodos existentes
+    let nodeMap = {};
+    for (let node of graph.nodes) {
+      let label = node.id;
+      let year = node.year; // Asignar el año al nodo 
+      
+      let newNode = this.nodes.addNode(year, label);
+      
+      nodeMap[node.id] = newNode;
+    }
     
-    GraphManager.createNodesEdgesFromJson(graph, this);
-
+    this.edges = new Edges(); // Limpia los arcos existentes
+    graph.links.forEach(link => {
+    let source = nodeMap[link.source];
+    let target = nodeMap[link.target];
+    if (source && target) {
+      this.addEdge(source, target, link.explicacion);
+      source.valencia++;
+    }
+    });
+    
     this.prepareJSONObject();
+    }
 
 
-    /* ------------------------------------ */
+  // rebuildGraph(graph) {
+  //   this.nodes.clear(); // Limpia los nodos existentes
+    
+  //   GraphManager.createNodesEdgesFromJson(graph, this);
 
-    /* Codigo de prueba */
+  //   this.prepareJSONObject();
 
 
-    /*-------------------------------------- */
+  //   /* ------------------------------------ */
+
+  //   /* Codigo de prueba */
+
+
+  //   /*-------------------------------------- */
   
-    console.log("Grafo original: " , this.nodes.nodesList );
-    let grafoNuevo = this.addNode(new Node("nuevo", 10, 1700));
-    console.log();
-    console.log("Grafo Nuevo: ", grafoNuevo.nodes.nodesList);
-    console.log("Grafo original: " , this );
+  //   console.log("Grafo original: " , this.nodes.nodesList );
+  //   let grafoNuevo = this.addNode(new Node("nuevo", 10, 1700));
+  //   console.log();
+  //   console.log("Grafo Nuevo: ", grafoNuevo.nodes.nodesList);
+  //   console.log("Grafo original: " , this );
 
 
   
-  }
+  // }
 
   addEdge(node1, node2, explicacion = '') {
     this.edges.addEdge(node1, node2, explicacion);
