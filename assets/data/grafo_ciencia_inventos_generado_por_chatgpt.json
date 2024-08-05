@@ -2614,69 +2614,9 @@
     ],
     "links": [
         {
-            "explicacion": "The measurement of stellar parallax provided direct evidence that supports the heliocentric model by demonstrating that stars are at varying distances from Earth, contrary to the geocentric model's assumption that stars are fixed on a celestial sphere.",
-            "source": "heliocentric model",
-            "target": "First successful measure of stellar parallax"
-        },
-        {
-            "explicacion": "The understanding and interpretation of radio sources in astronomy are based on the heliocentric model, which allows astronomers to correctly locate and study celestial objects in the universe.",
-            "source": "heliocentric model",
-            "target": "First astronomical radio source"
-        },
-        {
-            "explicacion": "The discovery of Uranus was facilitated by the heliocentric model, which now included the outer planets in the solar system's framework.",
-            "source": "heliocentric model",
-            "target": "Discovery of Uranus"
-        },
-        {
-            "explicacion": "The prediction and subsequent discovery of Neptune relied heavily on perturbations in the orbit of Uranus, which could only be accurately understood using the heliocentric model of our solar system.",
-            "source": "heliocentric model",
-            "target": "Discovery of Neptune"
-        },
-        {
-            "explicacion": "The study and prediction of the properties and locations of white dwarfs are based on our understanding of stellar evolution, which assumes a heliocentric model.",
-            "source": "heliocentric model",
-            "target": "First white dwarf"
-        },
-        {
-            "explicacion": "The observation of redshifts in the spectra of galaxies supports the expanding universe theory, which was built upon a heliocentric understanding of celestial motion and distances.",
-            "source": "heliocentric model",
-            "target": "Galactic redshifts"
-        },
-        {
-            "explicacion": "Understanding the human anatomy, particularly the cardiovascular system, was crucial for William Harvey's discovery of how blood circulates in the body.",
-            "source": "human anatomy",
-            "target": "Blood circulation"
-        },
-        {
-            "explicacion": "Detailed knowledge of human anatomy was essential to safely administer anesthesia and perform surgeries.",
-            "source": "human anatomy",
-            "target": "Develops general anesthesia"
-        },
-        {
-            "explicacion": "A deep understanding of the human anatomy, particularly the chest and the organs within, was necessary for the invention and effective use of the stethoscope.",
-            "source": "human anatomy",
-            "target": "First stethoscope"
-        },
-        {
-            "explicacion": "While not directly dependent, the anatomical studies contributed to safer and more efficient designs in appliances, including those used for cooking and potentially preventing injuries.",
-            "source": "human anatomy",
-            "target": "First practical gas stove"
-        },
-        {
             "explicacion": "Understanding respiratory anatomy was crucial for developing devices that allow humans to breathe in environments where oxygen is limited.",
             "source": "human anatomy",
             "target": "Rebreather"
-        },
-        {
-            "explicacion": "Establishing rules for arithmetic involving complex numbers relies on algebraic manipulation.",
-            "source": "modern notational algebraic manipulation",
-            "target": "Rules for complex arithmetic"
-        },
-        {
-            "explicacion": "Group theory is rooted in the systematic algebraic manipulation of elements within mathematical structures.",
-            "source": "modern notational algebraic manipulation",
-            "target": "Development of group theory"
         },
         {
             "explicacion": "Boolean algebra is a system of algebraic manipulation using modern notation.",
@@ -2714,59 +2654,9 @@
             "target": "Fermat's Last Theorem"
         },
         {
-            "explicacion": "Verifying the speed of light required accurate astronomical observations facilitated by the optical telescope.",
-            "source": "optical telescope",
-            "target": "First measurement of the speed of light"
-        },
-        {
-            "explicacion": "The discovery of this celestial body was made possible using an optical telescope.",
-            "source": "optical telescope",
-            "target": "Discovery of Uranus"
-        },
-        {
-            "explicacion": "This astronomical achievement was attained through observations made by optical telescopes.",
-            "source": "optical telescope",
-            "target": "First successful measure of stellar parallax"
-        },
-        {
-            "explicacion": "The initial identification of cosmic radio sources often involved optical telescopic confirmations.",
-            "source": "optical telescope",
-            "target": "First astronomical radio source"
-        },
-        {
-            "explicacion": "The first identification of a white dwarf star was achieved using an optical telescope.",
-            "source": "optical telescope",
-            "target": "First white dwarf"
-        },
-        {
             "explicacion": "Reflecting telescopes, which utilized mirrors instead of lenses, were developed due to advancements in telescopic observations.",
             "source": "telescopic observations",
             "target": "First functional reflecting telescope"
-        },
-        {
-            "explicacion": "The invention of the first compound microscopes in Europe was pivotal in allowing Robert Hooke to observe and describe cells, a fundamental breakthrough in biology.",
-            "source": "first compound microscopes in Europe",
-            "target": "Discovers the cell"
-        },
-        {
-            "explicacion": "The use of compound microscopes enabled experiments that provided evidence against spontaneous generation.",
-            "source": "first compound microscopes in Europe",
-            "target": "Disproved idea of spontaneous generation"
-        },
-        {
-            "explicacion": "Antonie van Leeuwenhoek's observations were made possible by the advancements in microscopy.",
-            "source": "first compound microscopes in Europe",
-            "target": "Observes microorganisms using a refined simple microscope"
-        },
-        {
-            "explicacion": "The study of insect development required the use of compound microscopes to observe cellular and developmental processes.",
-            "source": "first compound microscopes in Europe",
-            "target": "Epigenesis in insects"
-        },
-        {
-            "explicacion": "This fundamental principle of cell theory relies on observations made possible by compound microscopes.",
-            "source": "first compound microscopes in Europe",
-            "target": "Cells can only arise from pre-existing cells"
         },
         {
             "explicacion": "Reflecting telescopes use mirrors to refract light and form images, and their design depends on the principles outlined by Snell's law.",
@@ -2774,44 +2664,14 @@
             "target": "First functional reflecting telescope"
         },
         {
-            "explicacion": "Measuring the speed of light required precise understanding of light refraction, which is directly connected to Snell's law.",
-            "source": "law of refraction (Snell's law)",
-            "target": "First measurement of the speed of light"
-        },
-        {
             "explicacion": "This advanced microscopy technique depends on the understanding of light refraction and phase shifts, which are governed by Snell's law.",
             "source": "law of refraction (Snell's law)",
             "target": "Phase-contrast microscopy"
         },
         {
-            "explicacion": "This conclusion was directly dependent on the observation of cells using microscopes.",
-            "source": "discovers the cell",
-            "target": "All plants are made of cells"
-        },
-        {
-            "explicacion": "This understanding fundamentally relies on the prior discovery of cells.",
-            "source": "discovers the cell",
-            "target": "Cells can only arise from pre-existing cells"
-        },
-        {
             "explicacion": "The germ theory of disease depended on the study of microorganisms, which could only be observed after the discovery of cells.",
             "source": "discovers the cell",
             "target": "Germ theory"
-        },
-        {
-            "explicacion": "Observing microorganisms was made possible by the discovery and study of cells.",
-            "source": "discovers the cell",
-            "target": "Observes microorganisms using a refined simple microscope"
-        },
-        {
-            "explicacion": "The development of cell lines for research, such as HeLa cells, is directly tied to the discovery of cells.",
-            "source": "discovers the cell",
-            "target": "First cancer cell line, HeLa"
-        },
-        {
-            "explicacion": "While this invention is more related to astronomy, it involves precision and advancements in optical instruments linked to improved microscopy and understanding of cells.",
-            "source": "discovers the cell",
-            "target": "First successful measure of stellar parallax"
         },
         {
             "explicacion": "The disproved idea of spontaneous generation was key to demonstrating the necessity of eliminating microorganisms to prevent spoilage and disease.",
@@ -2839,31 +2699,6 @@
             "target": "Continental drift"
         },
         {
-            "explicacion": "The fundamental understanding of the spectrum of white light was crucial for the development of color photography processes.",
-            "source": "white light is a mixture of distinct colored rays (the spectrum)",
-            "target": "First practical method for color photography"
-        },
-        {
-            "explicacion": "The calculus was crucial for understanding the propagation of light and the refinement of processes to measure its speed.",
-            "source": "infinitesimal calculus",
-            "target": "First measurement of the speed of light"
-        },
-        {
-            "explicacion": "Newton's laws of motion and universal gravitation are deeply rooted in the use of infinitesimal calculus.",
-            "source": "infinitesimal calculus",
-            "target": "Classical mathematical description of gravitation and laws of motion"
-        },
-        {
-            "explicacion": "The experiment required precise measurements and calculations, which heavily relied on calculus.",
-            "source": "infinitesimal calculus",
-            "target": "The charge on an electron"
-        },
-        {
-            "explicacion": "Einstein's work on both topics required the application of calculus for the proper formulation of theories and interpretation of data.",
-            "source": "infinitesimal calculus",
-            "target": "Special relativity and Brownian motion"
-        },
-        {
             "explicacion": "Maxwell’s equations, which describe the fundamentals of electromagnetism, are formulated using calculus.",
             "source": "infinitesimal calculus",
             "target": "Theory of electromagnetism"
@@ -2887,11 +2722,6 @@
             "explicacion": "Requires calculus for the formulation of models that describe the expansion of the universe.",
             "source": "infinitesimal calculus",
             "target": "Theory of the Big Bang"
-        },
-        {
-            "explicacion": "The theory of general relativity fundamentally uses calculus to describe the curvature of spacetime.",
-            "source": "infinitesimal calculus",
-            "target": "Einstein's general relativity"
         },
         {
             "explicacion": "The formulation of quantum mechanics is based on differential equations derived using calculus.",
@@ -2929,34 +2759,14 @@
             "target": "First practical electronic television"
         },
         {
-            "explicacion": "Calculus is essential in the design and understanding of laser systems.",
-            "source": "infinitesimal calculus",
-            "target": "Laser and optical amplifier"
-        },
-        {
-            "explicacion": "Utilizes calculus for computations of positions and navigation data.",
-            "source": "infinitesimal calculus",
-            "target": "GPS"
-        },
-        {
             "explicacion": "The planning of orbital mechanics and station keeping used calculus extensively.",
             "source": "infinitesimal calculus",
             "target": "Salyut 1"
         },
         {
-            "explicacion": "The operational principles and development of transistor technology required extensive use of calculus in semiconductor physics.",
-            "source": "infinitesimal calculus",
-            "target": "First transistor"
-        },
-        {
             "explicacion": "Understanding this phenomenon involved the application of calculus.",
             "source": "infinitesimal calculus",
             "target": "photoconductivity"
-        },
-        {
-            "explicacion": "Einstein’s theory fundamentally uses calculus to describe gravity and the curvature of spacetime.",
-            "source": "infinitesimal calculus",
-            "target": "General relativity"
         },
         {
             "explicacion": "Calculus is fundamental in this area of topological theory.",
@@ -2969,24 +2779,9 @@
             "target": "Hubble's law of the expanding universe"
         },
         {
-            "explicacion": "Observing microorganisms helped disprove the notion that life could spontaneously generate.",
-            "source": "observes microorganisms using a refined simple microscope",
-            "target": "Disproved idea of spontaneous generation"
-        },
-        {
             "explicacion": "The ability to observe microorganisms under a microscope was fundamental in developing germ theory and understanding that microorganisms could cause diseases.",
             "source": "observes microorganisms using a refined simple microscope",
             "target": "Germ theory"
-        },
-        {
-            "explicacion": "The discovery and study of viruses relied on the ability to observe microorganisms using advanced microscopy.",
-            "source": "observes microorganisms using a refined simple microscope",
-            "target": "Viruses"
-        },
-        {
-            "explicacion": "Essential research on cancer cells, including the development of the HeLa cell line, depended on refined microscopy techniques to observe and study these cells.",
-            "source": "observes microorganisms using a refined simple microscope",
-            "target": "First cancer cell line, HeLa"
         },
         {
             "explicacion": "The development of RNA vaccines involved detailed study of microorganisms and viral components, which is facilitated by microscopy.",
@@ -2994,94 +2789,14 @@
             "target": "RNA vaccine"
         },
         {
-            "explicacion": "Efficient operation of steam engines and pumps relies on principles of motion and force.",
-            "source": "classical mathematical description of gravitation and laws of motion",
-            "target": "Steam-powered water pump"
-        },
-        {
-            "explicacion": "The design and mechanics require comprehensive knowledge of motion and energy transformation.",
-            "source": "classical mathematical description of gravitation and laws of motion",
-            "target": "First commercial steam engine"
-        },
-        {
-            "explicacion": "Understanding heat as a form of energy subject to the laws of thermodynamics, closely related to the laws of motion.",
-            "source": "classical mathematical description of gravitation and laws of motion",
-            "target": "First artificial refrigeration machine"
-        },
-        {
-            "explicacion": "Combines principles of motion, force, and energy transformation.",
-            "source": "classical mathematical description of gravitation and laws of motion",
-            "target": "First steam-powered vehicle capable of carrying passengers"
-        },
-        {
-            "explicacion": "Functional efficiency depends on the precise application of motion and force.",
-            "source": "classical mathematical description of gravitation and laws of motion",
-            "target": "First steamboat"
-        },
-        {
-            "explicacion": "Relied on a deeper understanding of thermodynamics and motion.",
-            "source": "classical mathematical description of gravitation and laws of motion",
-            "target": "Improved steam engine"
-        },
-        {
-            "explicacion": "Required principles of mechanics and motion for operation.",
-            "source": "classical mathematical description of gravitation and laws of motion",
-            "target": "First powered printing press"
-        },
-        {
-            "explicacion": "Development required electromagnetic principles, which intersect with classical mechanics.",
-            "source": "classical mathematical description of gravitation and laws of motion",
-            "target": "First practical electric motor"
-        },
-        {
-            "explicacion": "This extensive publication would not have been feasible without the printing press.",
-            "source": "Histoire naturelle",
-            "target": "Printing press"
-        },
-        {
-            "explicacion": "The understanding of latent heat was crucial for the development of refrigeration technology, which relies on the principles of phase changes in refrigerants.",
-            "source": "describes latent heat",
-            "target": "First artificial refrigeration machine"
-        },
-        {
-            "explicacion": "Knowledge of latent heat was fundamental in enhancing the efficiency of steam engines through better management of heat in phase transitions.",
-            "source": "describes latent heat",
-            "target": "Improved steam engine"
-        },
-        {
             "explicacion": "The concept of latent heat is essential for the thermodynamic analysis of heat engines, particularly in understanding phase changes and energy efficiency in the Carnot cycle.",
             "source": "describes latent heat",
             "target": "Carnot cycle"
         },
         {
-            "explicacion": "The discovery that lightning is electrical was fundamental in the development of the lightning rod by Benjamin Franklin, which provided a method to protect buildings and structures by safely directing electrical charges to the ground.",
-            "source": "lightning is electrical",
-            "target": "Lightning rod"
-        },
-        {
             "explicacion": "Requiere baterías para funcionar, especialmente en sus primeras versiones y en dispositivos móviles modernos.",
             "source": "electrochemical series and invents the battery",
             "target": "Telephone"
-        },
-        {
-            "explicacion": "Dependía de baterías para transmitir señales eléctricas.",
-            "source": "electrochemical series and invents the battery",
-            "target": "First working electric telegraph using electrostatic means"
-        },
-        {
-            "explicacion": "Los teléfonos celulares necesitan baterías para su operación portátil.",
-            "source": "electrochemical series and invents the battery",
-            "target": "First commercially available cell phone"
-        },
-        {
-            "explicacion": "Depende de baterías para su portabilidad.",
-            "source": "electrochemical series and invents the battery",
-            "target": "First laptop computer"
-        },
-        {
-            "explicacion": "Necesitan baterías para funcionar en dispositivos móviles.",
-            "source": "electrochemical series and invents the battery",
-            "target": "First mobile app with SIMON"
         },
         {
             "explicacion": "Necesita batería para su funcionamiento.",
@@ -3119,19 +2834,9 @@
             "target": "DNA is the genetic material of the chromosome"
         },
         {
-            "explicacion": "Semiconductor physics heavily relies on principles of atomic theory.",
-            "source": "Atomic Theory in chemistry",
-            "target": "First transistor"
-        },
-        {
             "explicacion": "Investigating the chemical origins of life requires knowledge of atomic and molecular interactions.",
             "source": "Atomic Theory in chemistry",
             "target": "Miller-Urey experiment"
-        },
-        {
-            "explicacion": "Determining the atomic structure of the DNA molecule was critical in elucidating its function.",
-            "source": "Atomic Theory in chemistry",
-            "target": "Helical structure of DNA"
         },
         {
             "explicacion": "Requires an understanding of electron interactions in materials, grounded in atomic theory.",
@@ -3154,49 +2859,9 @@
             "target": "Turbo-jet engine"
         },
         {
-            "explicacion": "The operation of electric motors depends on the understanding of electrical current, voltage, and resistance.",
-            "source": "Ohm's law (Electricity)",
-            "target": "First practical electric motor"
-        },
-        {
-            "explicacion": "Relays require precise control of electrical circuits governed by Ohm's law.",
-            "source": "Ohm's law (Electricity)",
-            "target": "Electromechanical relay"
-        },
-        {
             "explicacion": "The transmission of electrical signals and functioning of telegraph systems rely on the principles set out by Ohm's law.",
             "source": "Ohm's law (Electricity)",
             "target": "Morse code"
-        },
-        {
-            "explicacion": "The efficiency and functioning of fuel cells are influenced by Ohm's law in terms of internal resistance and voltage.",
-            "source": "Ohm's law (Electricity)",
-            "target": "First practical fuel cell"
-        },
-        {
-            "explicacion": "The design and functioning of these machines require understanding the relationship between voltage, current, and resistance.",
-            "source": "Ohm's law (Electricity)",
-            "target": "First commutated rotary electromechanical machine with electromagnets"
-        },
-        {
-            "explicacion": "This process uses electric current to form metal parts and Ohm's law is fundamental in controlling current and voltage.",
-            "source": "Ohm's law (Electricity)",
-            "target": "Electrotyping"
-        },
-        {
-            "explicacion": "Requires understanding of electrical resistance and voltage to send and receive signals.",
-            "source": "Ohm's law (Electricity)",
-            "target": "Printing telegraph"
-        },
-        {
-            "explicacion": "Non-Euclidean geometry was fundamental to Albert Einstein's theory of general relativity, which describes the gravitational force as a curvature of spacetime. ",
-            "source": "Non-Euclidean geometry",
-            "target": "General relativity"
-        },
-        {
-            "explicacion": "The discovery of redshift in galaxies relies on the Doppler effect to establish that galaxies are moving away from us, a key piece of evidence for the expanding universe.",
-            "source": "Doppler effect",
-            "target": "Galactic redshifts"
         },
         {
             "explicacion": "The measurement of the velocity of Cepheid variables depends on the Doppler effect to understand their movement and hence calculate distances in the universe.",
@@ -3209,31 +2874,6 @@
             "target": "Hubble's law of the expanding universe"
         },
         {
-            "explicacion": "The detection and analysis of X-ray sources in space depend on understanding their motion, often determined using the Doppler effect.",
-            "source": "Doppler effect",
-            "target": "First cosmic x-ray source"
-        },
-        {
-            "explicacion": "The study of pulsars, including millisecond pulsars, involves measuring their radial velocities using the Doppler effect to understand their behavior and properties.",
-            "source": "Doppler effect",
-            "target": "First millisecond pulsar"
-        },
-        {
-            "explicacion": "The discovery of planets around pulsars involved measuring variations in the pulsar timing due to Doppler shifts caused by the orbital motion of the planets.",
-            "source": "Doppler effect",
-            "target": "First pulsar planets"
-        },
-        {
-            "explicacion": "One method of detecting gravitational waves involves observing changes in the Doppler shifts of timing signals from pulsars, which can be affected by these waves passing through.",
-            "source": "Doppler effect",
-            "target": "Gravitational waves detection"
-        },
-        {
-            "explicacion": "The internal combustion engine's operation is governed by the First Law of Thermodynamics, as it converts chemical energy into mechanical energy.",
-            "source": "Law of Conservation of energy (First law of thermodynamics)",
-            "target": "Early internal combustion engine capable of doing useful work"
-        },
-        {
             "explicacion": "Gas turbines depend on the principles of thermodynamics and energy conservation in their operation, converting fuel energy into mechanical energy.",
             "source": "Law of Conservation of energy (First law of thermodynamics)",
             "target": "First gas turbine"
@@ -3242,11 +2882,6 @@
             "explicacion": "Turbo-jet engines are designed based on principles from the First Law of Thermodynamics to ensure the efficient conversion of fuel energy into thrust.",
             "source": "Law of Conservation of energy (First law of thermodynamics)",
             "target": "Turbo-jet engine"
-        },
-        {
-            "explicacion": "These devices manipulate thermal energy for cooling, directly applying the principles of energy conservation in thermodynamic processes.",
-            "source": "Law of Conservation of energy (First law of thermodynamics)",
-            "target": "First commercial ice making machine and refrigerator"
         },
         {
             "explicacion": "This method, which is a refined form of steelmaking, is based on decarbonization and requires an understanding of the carbon content control in iron and steel.",
@@ -3279,11 +2914,6 @@
             "target": "Mass production of penicillin"
         },
         {
-            "explicacion": "El desarrollo de vacunas, incluido el de la polio, se basó en la comprensión de que virus específicos causan enfermedades infecciosas, un concepto central de la teoría germinal.",
-            "source": "Germ theory",
-            "target": "First polio vaccine"
-        },
-        {
             "explicacion": "La implementación de mascarillas quirúrgicas está directamente relacionada con la teoría germinal, que mostró que las enfermedades se transmiten por microorganismos en el aire.",
             "source": "Germ theory",
             "target": "Surgical masks made of cloth"
@@ -3292,11 +2922,6 @@
             "explicacion": "El método de pasteurización se basa en eliminar los microorganismos dañinos en alimentos y bebidas, confirmado por la teoría germinal.",
             "source": "Germ theory",
             "target": "Pasteurization process"
-        },
-        {
-            "explicacion": "The development of germ theory relied heavily on the observation of bacteria and other microorganisms using compound microscopes, leading to a revolutionary understanding of disease causation and prevention.",
-            "source": "Germ theory",
-            "target": "Compound microscopes"
         },
         {
             "explicacion": "Understanding of the greenhouse effect and radiant energy would have been crucial for the development of rocket technology, especially in designing efficient fuel systems and predicting the behavior of rockets in varying atmospheric conditions.",
@@ -3332,11 +2957,6 @@
             "explicacion": "This massive effort to map human genetic material was fundamentally based on Mendelian principles of inheritance.",
             "source": "Mendel's laws of inheritance",
             "target": "Human Genome Project"
-        },
-        {
-            "explicacion": "The distribution of Mendel's work was facilitated by the printing press, enabling wide dissemination.",
-            "source": "Mendel's laws of inheritance",
-            "target": "Printing press"
         },
         {
             "explicacion": "This definition elaborated on the concept initially introduced in thermodynamics, establishing its statistical mechanical interpretation mainly due to the work of Ludwig Boltzmann.",
@@ -3454,11 +3074,6 @@
             "target": "Atomic clock"
         },
         {
-            "explicacion": "The development of the thermionic emission was critical for the creation of the vacuum tubes necessary for early radio transmitters and receivers.",
-            "source": "thermionic emission",
-            "target": "First radio broadcast"
-        },
-        {
             "explicacion": "Guglielmo Marconi's wireless communication system relied heavily on vacuum tubes that function due to thermionic emission.",
             "source": "thermionic emission",
             "target": "System of wireless communication"
@@ -3484,19 +3099,9 @@
             "target": "FM radio"
         },
         {
-            "explicacion": "Although different from vacuum tubes, the first transistors were built upon the principles understood through the study of thermionic emission.",
-            "source": "thermionic emission",
-            "target": "First transistor"
-        },
-        {
             "explicacion": "Relying on the statistical definition of entropy to describe absolute entropy values.",
             "source": "Statistical definition of entropy",
             "target": "Third law of thermodynamics"
-        },
-        {
-            "explicacion": "Claude Shannon’s foundational work in information theory uses the statistical definition of entropy directly.",
-            "source": "Statistical definition of entropy",
-            "target": "Information theory"
         },
         {
             "explicacion": "Uses quartz crystal oscillators, which operate based on piezoelectricity to keep time with high accuracy.",
@@ -3524,31 +3129,6 @@
             "target": "Transistor"
         },
         {
-            "explicacion": "Employ piezoelectric crystals for fine-tuning and stabilizing the laser output.",
-            "source": "Piezoelectricity",
-            "target": "Laser and optical amplifier"
-        },
-        {
-            "explicacion": "Certain designs of capacitive touchscreens utilize piezoelectric materials to detect touch inputs more accurately.",
-            "source": "Piezoelectricity",
-            "target": "Capacitive touchscreen"
-        },
-        {
-            "explicacion": "Utilizes piezoelectric elements in the ultrasonic atomizer to convert liquid into vapor.",
-            "source": "Piezoelectricity",
-            "target": "Electronic cigarette"
-        },
-        {
-            "explicacion": "The Michelson–Morley experiment was crucial in demonstrating the constancy of the speed of light in all inertial frames of reference, paving the way for Einstein's theory of special relativity.",
-            "source": "Michelson–Morley experiment",
-            "target": "Special relativity and Brownian motion"
-        },
-        {
-            "explicacion": "The failure to detect the expected movement of the Earth through the aether in the Michelson–Morley experiment supported the necessity for new physics, contributing to the development of general relativity.",
-            "source": "Michelson–Morley experiment",
-            "target": "General relativity"
-        },
-        {
             "explicacion": "This technology was crucial for visualizing viruses, which are too small to be seen with light microscopes.",
             "source": "viruses",
             "target": "Electron microscope"
@@ -3562,11 +3142,6 @@
             "explicacion": "Advanced by Dennis Gabor, holography contributed significantly to the study and visualization of viruses.",
             "source": "viruses",
             "target": "Holography"
-        },
-        {
-            "explicacion": "The principles of nuclear fission and radioactivity are directly essential for the creation of atomic bombs.",
-            "source": "radioactivity",
-            "target": "Atom bomb"
         },
         {
             "explicacion": "This process, which involves splitting the nucleus of an atom, relies fundamentally on the concept of radioactivity.",
@@ -3584,11 +3159,6 @@
             "target": "Nuclear magnetic resonance"
         },
         {
-            "explicacion": "The isolation of these radioactive elements by Marie Curie is a direct consequence of the discovery of radioactivity.",
-            "source": "radioactivity",
-            "target": "Radium and polonium"
-        },
-        {
             "explicacion": "While not directly dependent on radioactivity, advancements in understanding atomic and subatomic structures, influenced by radioactivity, were crucial for its development.",
             "source": "radioactivity",
             "target": "Electron microscope"
@@ -3604,11 +3174,6 @@
             "target": "Nuclear fission of heavy nuclei"
         },
         {
-            "explicacion": "While primarily a medical and biological breakthrough, the use of radioactive isotopes was critical in early cancer research and treatments.",
-            "source": "radioactivity",
-            "target": "First cancer cell line, HeLa"
-        },
-        {
             "explicacion": "The discovery of viruses led to the understanding of various infectious agents, which in turn propelled research into antibiotics and the subsequent discovery of penicillin as a treatment.",
             "source": "virus",
             "target": "Penicillin"
@@ -3617,11 +3182,6 @@
             "explicacion": "Directly relates to the discovery and understanding of how viruses function, enabling the development of vaccines that target viral infections without causing disease.",
             "source": "virus",
             "target": "Non-infectious viral vaccine"
-        },
-        {
-            "explicacion": "Without the fundamental understanding of viruses, the development of vaccines against viral diseases such as polio would not have been possible.",
-            "source": "virus",
-            "target": "First polio vaccine"
         },
         {
             "explicacion": "The modern development of RNA vaccines is based on extensive research into viral genetics and replication mechanisms, crucial for producing effective vaccines against viral pathogens, including the COVID-19 virus.",
@@ -3659,16 +3219,6 @@
             "target": "Nuclear fission by neutron irradiation"
         },
         {
-            "explicacion": "Telescopic observations and spectroscopy were key to discovering that the Sun is primarily composed of hydrogen and helium.",
-            "source": "Discovery of the composition of the Sun",
-            "target": "Telescope"
-        },
-        {
-            "explicacion": "Observations made with telescopes were fundamental to formulate Hubble's Law and understand the expanding universe.",
-            "source": "Hubble's law of the expanding universe",
-            "target": "Telescope"
-        },
-        {
             "explicacion": "The discovery of the neutron made it possible to understand and utilize nuclear fission, which was a cornerstone for advancements in nuclear power and weaponry.",
             "source": "Discovery of the neutron",
             "target": "Nuclear fission by neutron irradiation"
@@ -3704,16 +3254,6 @@
             "target": "High-temperature superconductivity"
         },
         {
-            "explicacion": "Techniques and technologies developed to detect neutrons form a foundation for subsequent advancements in nuclear physics and various applied sciences.",
-            "source": "Discovery of the neutron",
-            "target": "Neutron detection"
-        },
-        {
-            "explicacion": "While quantum computing as we know it is based on a broader set of quantum mechanics principles, many foundational experiments involved the study of neutron behavior.",
-            "source": "Discovery of the neutron",
-            "target": "Quantum computing"
-        },
-        {
             "explicacion": "Isotope of plutonium which is a byproduct of nuclear fission used in nuclear reactors and weapons.",
             "source": "Nuclear fission of heavy nuclei",
             "target": "Pu-239 isotope"
@@ -3729,24 +3269,9 @@
             "target": "First thermonuclear weapon"
         },
         {
-            "explicacion": "Utilizes Nuclear Magnetic Resonance to produce detailed images of organs and tissues.",
-            "source": "Nuclear magnetic resonance",
-            "target": "First MRI scanner"
-        },
-        {
-            "explicacion": "This imaging technology relies on electromagnetic induction to produce high-resolution images of the inside of the body.",
-            "source": "Nuclear magnetic resonance",
-            "target": "method of electromagnetic induction"
-        },
-        {
             "explicacion": "The understanding that DNA is the genetic material of the chromosome was essential for mapping the human genome.",
             "source": "DNA is the genetic material of the chromosome",
             "target": "Human Genome Project"
-        },
-        {
-            "explicacion": "Required knowledge that DNA is the genetic material to understand what was being sequenced.",
-            "source": "DNA is the genetic material of the chromosome",
-            "target": "First DNA genome sequencing"
         },
         {
             "explicacion": "Relies on the knowledge that DNA carries genetic information to identify individuals.",
@@ -3754,49 +3279,14 @@
             "target": "DNA profiling"
         },
         {
-            "explicacion": "Understanding the role of DNA was crucial for characterizing and maintaining cell lines.",
-            "source": "DNA is the genetic material of the chromosome",
-            "target": "First cancer cell line, HeLa"
-        },
-        {
             "explicacion": "Involves direct modifications to DNA, which would be impossible without understanding its role as genetic material.",
             "source": "DNA is the genetic material of the chromosome",
             "target": "CRISPR genome-editing method"
         },
         {
-            "explicacion": "The discovery of DNA's structure directly builds on the knowledge of DNA as the genetic material.",
-            "source": "DNA is the genetic material of the chromosome",
-            "target": "Helical structure of DNA"
-        },
-        {
-            "explicacion": "Understanding genetic coding in DNA was key to deciphering protein sequences.",
-            "source": "DNA is the genetic material of the chromosome",
-            "target": "Proteins are sequences of amino acids"
-        },
-        {
-            "explicacion": "Efficient encryption and decryption schemes rely heavily on information theory principles.",
-            "source": "A mathematical theory of communication",
-            "target": "Public-key cryptography"
-        },
-        {
-            "explicacion": "Mobile communication technologies leverage concepts from information theory.",
-            "source": "A mathematical theory of communication",
-            "target": "First mobile app with SIMON"
-        },
-        {
             "explicacion": "Uses principles from information theory to manage and optimize communication.",
             "source": "A mathematical theory of communication",
             "target": "Bluetooth"
-        },
-        {
-            "explicacion": "Uses information theory to transmit multiple signals on the same channel.",
-            "source": "A mathematical theory of communication",
-            "target": "Wave division multiplexing system"
-        },
-        {
-            "explicacion": "Effective digital audio compression techniques derive from information theory.",
-            "source": "A mathematical theory of communication",
-            "target": "First podcast"
         },
         {
             "explicacion": "Streaming and compressing video data heavily leverage information and coding theory principles.",
@@ -3819,26 +3309,6 @@
             "target": "SoundCloud"
         },
         {
-            "explicacion": "While this might seem unrelated, the computational biology approaches used in its discovery can be connected to methods in information theory.",
-            "source": "A mathematical theory of communication",
-            "target": "First COVID pill"
-        },
-        {
-            "explicacion": "Detailed understanding of proteins was necessary for developing the vaccine.",
-            "source": "proteins are sequences of amino acids",
-            "target": "First polio vaccine"
-        },
-        {
-            "explicacion": "CRISPR involves protein sequences called Cas proteins.",
-            "source": "proteins are sequences of amino acids",
-            "target": "Development and use of CRISPR genome-editing method"
-        },
-        {
-            "explicacion": "Building on the understanding of protein sequences.",
-            "source": "proteins are sequences of amino acids",
-            "target": "Helical structure of DNA"
-        },
-        {
             "explicacion": "Essential knowledge of proteins is involved in designing and producing these vaccines.",
             "source": "proteins are sequences of amino acids",
             "target": "RNA vaccine"
@@ -3849,16 +3319,6 @@
             "target": "Bitcoin"
         },
         {
-            "explicacion": "Relies directly on public-key cryptography for verifying the authenticity and integrity of digital messages or documents.",
-            "source": "public-key cryptography",
-            "target": "Digital signature"
-        },
-        {
-            "explicacion": "Essential for secure web browsing, relies on public-key cryptography to encrypt data transmitted over the internet.",
-            "source": "public-key cryptography",
-            "target": "SSL/TLS protocols"
-        },
-        {
             "explicacion": "The first DNA genome sequencing was fundamental for mapping and understanding the entirety of human DNA.",
             "source": "first DNA genome sequencing",
             "target": "Human Genome Project"
@@ -3866,11 +3326,6 @@
         {
             "explicacion": "This technique of identifying individuals based on their genetic makeup relies on DNA sequencing.",
             "source": "first DNA genome sequencing",
-            "target": "DNA profiling"
-        },
-        {
-            "explicacion": "Employed DNA profiling to verify the genetic identity of the cloned sheep.",
-            "source": "Dolly the sheep was cloned",
             "target": "DNA profiling"
         },
         {
@@ -3887,26 +3342,6 @@
             "explicacion": "Las vacunas de ARN fueron desarrolladas utilizando la información genética y las secuencias de ADN reveladas por el Proyecto del Genoma Humano.",
             "source": "Human Genome Project",
             "target": "RNA vaccine"
-        },
-        {
-            "explicacion": "This project relied heavily on advanced DNA sequencing methods to map the entire human genome.",
-            "source": "Human Genome Project",
-            "target": "new DNA sequencing method"
-        },
-        {
-            "explicacion": "Relied on DNA profiling to map the entire human genome.",
-            "source": "Human Genome Project",
-            "target": "DNA profiling"
-        },
-        {
-            "explicacion": "DNA profiling was essential in confirming the synthetic creation and functionality of these cells.",
-            "source": "self-replicating, synthetic bacterial cells",
-            "target": "DNA profiling"
-        },
-        {
-            "explicacion": "Used DNA profiling methods to sequence the Neanderthal genome.",
-            "source": "Neanderthal Genome Project",
-            "target": "DNA profiling"
         },
         {
             "explicacion": "The fire lance, an early form of gunpowder weapon, laid the foundational technology for explosive bombs.",
@@ -3929,24 +3364,9 @@
             "target": "Revolver"
         },
         {
-            "explicacion": "While different in application, the use of gunpowder propellants in metal-cylinder rockets can be traced back to inventions like the fire lance.",
-            "source": "Fire lance",
-            "target": "First metal-cylinder rockets"
-        },
-        {
             "explicacion": "Required the availability of strong, reliable steel for the barrel and cylinder.",
             "source": "Bessemer process",
             "target": "Revolver"
-        },
-        {
-            "explicacion": "Dependence on durable steel for reliable operation.",
-            "source": "Bessemer process",
-            "target": "First repeating rifle to use metallic cartridges"
-        },
-        {
-            "explicacion": "Required steel for construction of durable and efficient motors.",
-            "source": "Bessemer process",
-            "target": "First practical electric motor"
         },
         {
             "explicacion": "Steel was critical for creating durable components for receivers and transmission devices.",
@@ -3959,29 +3379,9 @@
             "target": "High efficiency transformer"
         },
         {
-            "explicacion": "Dependió del uso de la **Endless power-transmitting chain drive (1832)** en maquinaria para la precisión en fabricación.",
-            "source": "Endless power-transmitting chain drive",
-            "target": "First modern pin tumbler lock"
-        },
-        {
-            "explicacion": "Desarrollos en mayores aplicaciones y innovaciones manufacturados que aprovecharon los inventos de mediana época como la **Endless power-transmitting chain drive (1832)**.",
-            "source": "Endless power-transmitting chain drive",
-            "target": "Endless power-transmitting chain drive"
-        },
-        {
-            "explicacion": "Requisito para mejorar los sistemas de producción en los que los **Endless power-transmitting chain drive (1832)** jugaron un papel crucial.",
-            "source": "Endless power-transmitting chain drive",
-            "target": "First practical method for color photography"
-        },
-        {
             "explicacion": "Dependió directamente del uso de cadenas infinitas de transmisión de potencia.",
             "source": "Endless power-transmitting chain drive",
             "target": "Bessemer process for making steel"
-        },
-        {
-            "explicacion": "Mejoró sus aplicaciones gracias a los avances en sistemas de transmisión de potencia altamente eficientes como la **Endless power-transmitting chain drive (1832)**.",
-            "source": "Endless power-transmitting chain drive",
-            "target": "Hydraulic press"
         },
         {
             "explicacion": "Experimentación inicial en vehículos que más tarde aprovecharían la transmisión eficiente de **Endless power-transmitting chain drive (1832)**.",
@@ -3989,28 +3389,9 @@
             "target": "Modern safety bicycle"
         },
         {
-            "explicacion": "Producción y diseño mejorados con el uso de **Endless power-transmitting chain drive (1832)** en maquinaria textil.",
-            "source": "Endless power-transmitting chain drive",
-            "target": "First gasoline-powered car"
-        },
-        {
-            "explicacion": "La producción y experimentación con metales precisos facilitada por cadenas de transmisión de potencia infinitas.",
-            "source": "Endless power-transmitting chain drive",
-            "target": "First practical electric motor"
-        },
-        {
             "explicacion": "Aspectos de manufactura y producción precisas mejoradas con las tecnologías avanzadas de la época.",
             "source": "Endless power-transmitting chain drive",
             "target": "Telephone"
-        },
-        {
-            "explicacion": "Utilización de sistemas avanzados de manufactura apoyados en tecnologías de cadenas de transmisión.",
-            "source": "Endless power-transmitting chain drive",
-            "target": "First automobile powered by an internal combustion engine fueled by hydrogen"
-        },
-        {
-            "source": "Endless power-transmitting chain drive",
-            "target": "Sewing machine"
         },
         {
             "explicacion": "The mechanical escapement was crucial for the regulation of pendulum clocks, as it converted the pendulum's motion into minute time increments, ensuring accurate timekeeping.",
@@ -4028,16 +3409,6 @@
             "target": "Pendulum clock"
         },
         {
-            "explicacion": "Coil springs were used in the piano mechanism for key action and to return hammers to their resting positions.",
-            "source": "Coil spring",
-            "target": "First piano"
-        },
-        {
-            "explicacion": "Coil springs are an essential part of the safety mechanisms in elevators.",
-            "source": "Coil spring",
-            "target": "Safety brake elevator"
-        },
-        {
             "explicacion": "Ball screws use coil springs for recirculation and preloading purposes.",
             "source": "Coil spring",
             "target": "Ball screw"
@@ -4048,74 +3419,9 @@
             "target": "Pendulum clock"
         },
         {
-            "explicacion": "The mass production and distribution of newspapers were made possible by the printing press.",
-            "source": "Printing press",
-            "target": "Newspaper"
-        },
-        {
-            "explicacion": "The dissemination of scientific research relied on the ability to mass-produce documents.",
-            "source": "Printing press",
-            "target": "First peer-reviewed scientific journal"
-        },
-        {
-            "explicacion": "The telescope was essential for the accurate astronomical observations needed to measure the speed of light.",
-            "source": "Telescope",
-            "target": "First measurement of the speed of light"
-        },
-        {
-            "explicacion": "Telescopes are necessary to observe stars and measure their parallax, providing evidence of Earth's movement through space.",
-            "source": "Telescope",
-            "target": "First successful measure of stellar parallax"
-        },
-        {
-            "explicacion": "The development and use of compound microscopes enabled the discovery and observation of cells, which was not possible with the naked eye or earlier magnifying tools.",
-            "source": "Compound microscopes",
-            "target": "Discovers the cell"
-        },
-        {
-            "explicacion": "The use of compound microscopes was crucial in the experiments that disproved spontaneous generation, as they allowed scientists to observe microorganisms directly and understand their behavior and life cycles.",
-            "source": "Compound microscopes",
-            "target": "Disproved idea of spontaneous generation"
-        },
-        {
-            "explicacion": "The study of epigenesis in insects required detailed observations of embryonic development, which was facilitated by compound microscopes.",
-            "source": "Compound microscopes",
-            "target": "Epigenesis in insects"
-        },
-        {
-            "explicacion": "The discovery and study of viruses were made possible through the advancements in microscopy provided by compound microscopes, although electron microscopes later provided even more detailed observations.",
-            "source": "Compound microscopes",
-            "target": "Viruses"
-        },
-        {
-            "explicacion": "While this refers to a simple microscope, the earlier development and advancements made in compound microscopes paved the way for more refined designs and observations.",
-            "source": "Compound microscopes",
-            "target": "Observes microorganisms using a refined simple microscope"
-        },
-        {
-            "explicacion": "This fundamental biological principle was established through detailed observations of cell division using compound microscopes.",
-            "source": "Compound microscopes",
-            "target": "Cells can only arise from pre-existing cells"
-        },
-        {
-            "explicacion": "Requiere de la bomba de vacío para expulsar el aire y luego comprimirlo.",
-            "source": "Vacuum pump",
-            "target": "Mechanical air compressor"
-        },
-        {
             "explicacion": "Su desarrollo necesitó de la bomba de vacío para eliminar el aire de los espejos para evitar distorsiones ópticas.",
             "source": "Vacuum pump",
             "target": "First functional reflecting telescope"
-        },
-        {
-            "explicacion": "Advances in telescope technology, including reflecting telescopes, facilitated more precise astronomical measurements, including those related to the speed of light.",
-            "source": "First functional reflecting telescope",
-            "target": "First measurement of the speed of light"
-        },
-        {
-            "explicacion": "This invention directly relies on a piston engine for its operation. ",
-            "source": "piston engine",
-            "target": "First automobile powered by an internal combustion engine fuelled by hydrogen"
         },
         {
             "explicacion": "This engine type, a variant of an internal combustion engine, fundamentally depends on the piston mechanism for converting fuel into mechanical work. ",
@@ -4138,104 +3444,9 @@
             "target": "First practical pneumatic tire"
         },
         {
-            "explicacion": "Directly relies on the piston engine to convert gasoline into motion.",
-            "source": "piston engine",
-            "target": "First gasoline-powered car"
-        },
-        {
-            "explicacion": "James Watt’s improvements on the steam engine were directly influenced by the need for more efficient versions of the early commercial steam engines.",
-            "source": "first commercial steam engine",
-            "target": "Improved steam engine"
-        },
-        {
-            "explicacion": "This development was an application of the steam engine technology to create transportation methods.",
-            "source": "first commercial steam engine",
-            "target": "First steam-powered vehicle capable of carrying passengers"
-        },
-        {
-            "explicacion": "The development of the steam engine was essential for harnessing rail transportation.",
-            "source": "first commercial steam engine",
-            "target": "Steam locomotive"
-        },
-        {
-            "explicacion": "Robert Fulton’s steamboat relied on steam engine technology for river and maritime transportation.",
-            "source": "first commercial steam engine",
-            "target": "Workable steamboat"
-        },
-        {
-            "explicacion": "The flying shuttle enabled weavers to produce cloth more quickly, which created a bottleneck in the spinning process. This led to the invention of the first mechanized cotton spinning machine to keep up with the increased demand for spun cotton.",
-            "source": "flying shuttle",
-            "target": "First mechanized cotton spinning machine"
-        },
-        {
-            "explicacion": "The flying shuttle increased weaving speeds, revealing the need for more thread production. The spinning jenny was invented to meet this increased demand for thread.",
-            "source": "flying shuttle",
-            "target": "Spinning jenny"
-        },
-        {
-            "explicacion": "The flying shuttle's efficiency in weaving was a precursor to the development of automated weaving machines like the power loom, which further revolutionized the textile industry.",
-            "source": "flying shuttle",
-            "target": "Power loom"
-        },
-        {
-            "explicacion": "Though developed almost concurrently, its efficiency was subsequently enhanced by the mechanized cotton spinning machine, which provided more consistent and plentiful yarn.",
-            "source": "first mechanized cotton spinning machine",
-            "target": "Spinning jenny"
-        },
-        {
-            "explicacion": "The mechanized spinning machine provided the necessary bulk cotton yarn for power looms, making large-scale fabric production feasible.",
-            "source": "first mechanized cotton spinning machine",
-            "target": "Power loom"
-        },
-        {
-            "explicacion": "While the cotton gin separated seeds from cotton fibers, the mechanized spinning machine was crucial for efficiently spinning the processed cotton into yarn or thread.",
-            "source": "first mechanized cotton spinning machine",
-            "target": "Modern cotton gin"
-        },
-        {
-            "explicacion": "Early experiments and demonstrations often involved the use of Leyden jars for producing high-voltage discharges.",
-            "source": "Leyden jar",
-            "target": "Electromagnet"
-        },
-        {
-            "explicacion": "The Leyden jar was instrumental in generating and storing the high-voltage charges necessary for early telegraphy experiments.",
-            "source": "Leyden jar",
-            "target": "First working electric telegraph using electrostatic means"
-        },
-        {
             "explicacion": "Research on Leyden jars contributed to understanding high-voltage electricity and storage, essential for later developments in microwave and radio technologies.",
             "source": "Leyden jar",
             "target": "High power, microwave generating, cavity magnetron"
-        },
-        {
-            "explicacion": "The improved steam engine provided the necessary power and efficiency for early steam-powered vehicles.",
-            "source": "improved steam engine",
-            "target": "First steam-powered vehicle capable of carrying passengers"
-        },
-        {
-            "explicacion": "The advancements in steam engine technology were critical for the success of the first steamboat.",
-            "source": "improved steam engine",
-            "target": "First steamboat"
-        },
-        {
-            "explicacion": "The improved steam engine was fundamental for the development of steam locomotives.",
-            "source": "improved steam engine",
-            "target": "Steam locomotive"
-        },
-        {
-            "explicacion": "This invention relied on the principles of the improved steam engine for its operation.",
-            "source": "improved steam engine",
-            "target": "Steam shovel"
-        },
-        {
-            "explicacion": "The improved steam engine technology was essential for the operation of steam hammers.",
-            "source": "improved steam engine",
-            "target": "Steam hammer"
-        },
-        {
-            "explicacion": "The improved steam engine laid the groundwork for the development of more advanced steam-powered machinery like the steam turbine.",
-            "source": "improved steam engine",
-            "target": "Steam turbine"
         },
         {
             "explicacion": "Modern rocketry, which is heavily influenced by the development of metal-cylinder rockets, reached a significant milestone with the first liquid-fueled rocket.",
@@ -4251,31 +3462,6 @@
             "explicacion": "The launch of Sputnik 1, the first artificial Earth satellite, relied on advancements in rocketry, rooted in early metal-cylinder rocket technology.",
             "source": "first metal-cylinder rockets",
             "target": "Sputnik 1"
-        },
-        {
-            "explicacion": "While the machine itself was mechanical, the widespread availability of paper was essential for documentation and development of computational theory and design.",
-            "source": "first paper machine",
-            "target": "First programmable mechanical computer"
-        },
-        {
-            "explicacion": "The increased availability of paper was necessary for the efficiency of powered printing presses.",
-            "source": "first paper machine",
-            "target": "First powered printing press"
-        },
-        {
-            "explicacion": "Paper was essential for the plans, blueprints, and documentation necessary to develop and innovate mechanical devices.",
-            "source": "first paper machine",
-            "target": "First lever tumbler lock"
-        },
-        {
-            "explicacion": "This development is indirectly influenced as the availability of paper products like toilet paper became more widespread, aligning with the adoption of public flush toilets.",
-            "source": "first paper machine",
-            "target": "First public flush toilets"
-        },
-        {
-            "explicacion": "The use of paper for blueprints was essential in architecture and engineering for planning and design.",
-            "source": "first paper machine",
-            "target": "Blueprint"
         },
         {
             "explicacion": "This invention also directly relies on the internal combustion engine for its operation.",
@@ -4298,11 +3484,6 @@
             "target": "Turbo-jet engine"
         },
         {
-            "explicacion": "The development of artificial refrigeration significantly enhanced the canning process by enabling long-term storage of perishable food items before and after canning.",
-            "source": "canning process for food",
-            "target": "First artificial refrigeration machine"
-        },
-        {
             "explicacion": "The dandy horse is considered the precursor to the modern bicycle, influencing its development and design.",
             "source": "dandy horse",
             "target": "Modern safety bicycle"
@@ -4313,39 +3494,9 @@
             "target": "First practical pneumatic tire"
         },
         {
-            "explicacion": "The use of tunnelling shields was crucial for the construction of large-scale tunnels such as the Channel Tunnel, which is a direct application of the technology for creating long underwater tunnels.",
-            "source": "tunnelling shield",
-            "target": "Channel Tunnel"
-        },
-        {
-            "explicacion": "Utilized electromagnets as a fundamental component.",
-            "source": "electromagnet",
-            "target": "First commutated rotary electromechanical machine with electromagnets"
-        },
-        {
-            "explicacion": "Required electromagnets to convert electrical energy into mechanical energy.",
-            "source": "electromagnet",
-            "target": "First practical electric motor"
-        },
-        {
-            "explicacion": "Relied on electromagnets to control switches in electrical circuits.",
-            "source": "electromagnet",
-            "target": "Electromechanical relay"
-        },
-        {
             "explicacion": "Employed electromagnets in the construction of the telegraph system for sending coded messages.",
             "source": "electromagnet",
             "target": "Morse code"
-        },
-        {
-            "explicacion": "The method of electromagnetic induction is essential for the operation of electric motors.",
-            "source": "method of electromagnetic induction",
-            "target": "First practical electric motor"
-        },
-        {
-            "explicacion": "Relays use the principle of electromagnetic induction to create a temporary magnetic field that moves contacts to open or close electrical circuits.",
-            "source": "method of electromagnetic induction",
-            "target": "Electromechanical relay"
         },
         {
             "explicacion": "The telegraph systems that transmitted Morse code signals relied on electromagnetic induction for the generation and detection of the electrical pulses.",
@@ -4368,11 +3519,6 @@
             "target": "First practical electronic television"
         },
         {
-            "explicacion": "Communication systems like radio transmitters and receivers utilize electromagnetic induction for broadcasting and receiving signals.",
-            "source": "method of electromagnetic induction",
-            "target": "Radio"
-        },
-        {
             "explicacion": "Although primarily a chemical device, the charging process of batteries can involve principles of electromagnetic induction.",
             "source": "method of electromagnetic induction",
             "target": "Lead acid battery"
@@ -4383,49 +3529,9 @@
             "target": "Morse code"
         },
         {
-            "explicacion": "While the process primarily involves forming a metal object on a mold using electroplating, the precision control of electricity required benefits greatly from relay technology.",
-            "source": "electromechanical relay",
-            "target": "Electrotyping"
-        },
-        {
-            "explicacion": "This invention also relied on Morse code to transmit printed messages over distances.",
-            "source": "Morse code",
-            "target": "Printing telegraph"
-        },
-        {
-            "explicacion": "While not directly related to Morse code, the widespread infrastructure improvements such as telegraphy had an indirect influence on urban planning and public utilities including public flush toilets.",
-            "source": "Morse code",
-            "target": "First public flush toilets"
-        },
-        {
-            "explicacion": "The electrotyping process was used to create daguerreotype plates, which were fundamental for early photographic processes.",
-            "source": "electrotyping",
-            "target": "Daguerreotype photography"
-        },
-        {
-            "explicacion": "Electrotyping was critical in producing metal plates for making blueprints, which were essential for accurate architectural and engineering drawings.",
-            "source": "electrotyping",
-            "target": "Blueprint"
-        },
-        {
-            "explicacion": "El propio \"blueprint\" es un descubrimiento e invento fundamental en sí mismo, proporcionando una técnica revolucionaria para reproducir y duplicar planos técnicos y diseños. Esto tuvo un impacto crucial en diversas innovaciones y en la ingeniería debido a la posibilidad de transmitir diseños precisos de manera accesible y confiable.",
-            "source": "blueprint",
-            "target": "Blueprint"
-        },
-        {
             "explicacion": "Dinamite se elabora mezclando nitroglicerina con tierra de diatomeas, convirtiéndose en un explosivo seguro para manejo.",
             "source": "Nitroglycerin",
             "target": "Dynamite"
-        },
-        {
-            "explicacion": "The improved quality and production of steel from the Bessemer process were crucial in the mass manufacturing of reliable disk drives.",
-            "source": "Bessemer process for making steel",
-            "target": "Floppy disk and disk drive"
-        },
-        {
-            "explicacion": "1. **Parkesine (1862)**: Considerado el primer plástico, se desarrolló original e independientemente de Mauveine. posteriormente se descubrió que los colorantes sintéticos como Mauveine se podian usar para pigmentar un material que general como el Parkesine, aunque no fue un componente fundamental para su existencia. señalando que si bien tal colorante no fue fundamental, se menciona su uso.",
-            "source": "Parkesine",
-            "target": "Mauveine"
         },
         {
             "explicacion": "Early televisions required dependable and rechargeable power sources, like the lead-acid battery, to function efficiently.",
@@ -4478,11 +3584,6 @@
             "target": "Modern steam turbine"
         },
         {
-            "explicacion": "The Gramme machine was essential in providing consistent and reliable electric power for the processes involved in early color photography techniques.",
-            "source": "Gramme machine",
-            "target": "First practical method for color photography"
-        },
-        {
             "explicacion": "The efficiency and practicality of the internal combustion engine in gasoline-powered cars were significantly enhanced by the Four-stroke cycle.",
             "source": "Four-stroke cycle",
             "target": "First gasoline powered car"
@@ -4496,11 +3597,6 @@
             "explicacion": "This engine relies on the principles of the Four-stroke cycle for its operational efficiency.",
             "source": "Four-stroke cycle",
             "target": "Turbo-jet engine"
-        },
-        {
-            "explicacion": "The Hall–Héroult process is essential for supplying aluminum used in the aviation industry for constructing aircraft components.",
-            "source": "Hall–Héroult process",
-            "target": "First airplane made from Bessemer process steel"
         },
         {
             "explicacion": "Aluminum, produced efficiently using the Hall–Héroult process, was a critical material in the framework of the Zeppelin airships.",
@@ -4523,29 +3619,9 @@
             "target": "High power, microwave generating, cavity magnetron"
         },
         {
-            "explicacion": "The Hall–Héroult process is essential for producing the aluminum used in transistor manufacturing.",
-            "source": "Hall–Héroult process",
-            "target": "First practically useful transistor"
-        },
-        {
             "explicacion": "One of the first computers used aluminum, essential for its construction and components, derived from the Hall–Héroult process.",
             "source": "Hall–Héroult process",
             "target": "Bertie the Brain"
-        },
-        {
-            "explicacion": "The production of integrated circuits relies on aluminum, which is obtained using the Hall–Héroult process, for interconnects and other structural components.",
-            "source": "Hall–Héroult process",
-            "target": "Integrated circuit"
-        },
-        {
-            "explicacion": "The Hall–Héroult process is directly responsible for the mass production of aluminum used in beverage cans.",
-            "source": "Hall–Héroult process",
-            "target": "First practical aluminum beverage can"
-        },
-        {
-            "explicacion": "Modern cell phones incorporate aluminum in various components, including casings and internal structures, made possible by the Hall–Héroult process.",
-            "source": "Hall–Héroult process",
-            "target": "First commercially available cell phone"
         },
         {
             "explicacion": "The production of iPhones and similar smartphones relies on aluminum, which is obtained through the Hall–Héroult process, for the device’s casing and other integral components.",
@@ -4578,29 +3654,9 @@
             "target": "YouTube"
         },
         {
-            "explicacion": "Relies on electromagnetic wave propagation.",
-            "source": "Proof of Maxwell's electromagnetic theory",
-            "target": "Radio"
-        },
-        {
             "explicacion": "Uses electron beams, a concept arising from wave theory and electromagnetic theory.",
             "source": "Proof of Maxwell's electromagnetic theory",
             "target": "Electron microscope"
-        },
-        {
-            "explicacion": "Employs radio waves to detect objects and determine their range, speed, and other characteristics.",
-            "source": "Proof of Maxwell's electromagnetic theory",
-            "target": "Radar"
-        },
-        {
-            "explicacion": "Transmits moving images and sound through electromagnetic waves.",
-            "source": "Proof of Maxwell's electromagnetic theory",
-            "target": "Television"
-        },
-        {
-            "explicacion": "Operates based on the principles of electromagnetic emission.",
-            "source": "Proof of Maxwell's electromagnetic theory",
-            "target": "Laser"
         },
         {
             "explicacion": "La televisión evolucionó a partir de tecnologías de proyección de imágenes en movimiento, originalmente desarrolladas a partir de inventos como el Cinematograph.",
@@ -4626,11 +3682,6 @@
             "explicacion": "Utilizes x-ray technology to detect and measure the ratio of carbon isotopes for dating organic materials.",
             "source": "First radiograph (xrays)",
             "target": "Radiocarbon dating"
-        },
-        {
-            "explicacion": "Discovering the electron required the technology of x-rays and cathode rays that led to the ability to observe and demonstrate their existence.",
-            "source": "First radiograph (xrays)",
-            "target": "Electron in cathode rays"
         },
         {
             "explicacion": "Polyethylene is used in the manufacturing of the tracks and some components of the cars.",
@@ -4711,11 +3762,6 @@
             "explicacion": "The cavity magnetron technology was fundamental for the development of the microwave oven, which relies on the generation of microwaves to heat food.",
             "source": "High power, microwave generating, cavity magnetron",
             "target": "Magnetron based microwave oven"
-        },
-        {
-            "explicacion": "Utilized non-infectious viral vaccines to provide immunity against poliovirus.",
-            "source": "Non-infectious viral vaccine",
-            "target": "First polio vaccine"
         },
         {
             "explicacion": "Uses the concept of non-infectious viral components to elicit an immune response without causing disease.",
@@ -4838,16 +3884,6 @@
             "target": "first portable MP3 player"
         },
         {
-            "explicacion": "The functioning laser is critical for transmitting data through optical fibers.",
-            "source": "functioning laser",
-            "target": "First optical fiber communication systems"
-        },
-        {
-            "explicacion": "In this case, the invention of the laser is implicitly contained within the development context.",
-            "source": "functioning laser",
-            "target": "Commercial laser and optical amplifier"
-        },
-        {
             "explicacion": "Laptops inherently rely on a commercial graphical user interface for accessibility and user interaction.",
             "source": "commercial graphical user interface",
             "target": "first laptop computer"
@@ -4856,11 +3892,6 @@
             "explicacion": "Modern cell phones require a graphical user interface to function.",
             "source": "commercial graphical user interface",
             "target": "first commercially available cell phone"
-        },
-        {
-            "explicacion": "Although not on your list, Windows was the key example of a commercial graphical user interface and is essential for modern computing devices.",
-            "source": "commercial graphical user interface",
-            "target": "Windows 1.0"
         },
         {
             "explicacion": "The first smartphone that combined a cell phone and PDA, utilizing a touchscreen graphical user interface.",
@@ -4906,11 +3937,6 @@
             "explicacion": "Los teléfonos inteligentes como el iPhone dependen de baterías de ion de litio para un uso prolongado y funcionalidad avanzada.",
             "source": "lithium-ion battery",
             "target": "iPhone"
-        },
-        {
-            "explicacion": "Los vehículos eléctricos Tesla utilizan baterías de ion de litio como fuente de energía principal.",
-            "source": "lithium-ion battery",
-            "target": "Tesla electric car"
         },
         {
             "explicacion": "Los vehículos autónomos requieren baterías de alto rendimiento para alimentar sus sistemas avanzados de computación y motores eléctricos.",
@@ -4966,11 +3992,6 @@
             "explicacion": "Solid-state drives rely on flash memory to store data in a more efficient and faster manner compared to traditional hard disk drives.",
             "source": "flash memory",
             "target": "solid-state drive"
-        },
-        {
-            "explicacion": "SIM cards use flash memory to store subscriber information and other necessary data for mobile network authentication.",
-            "source": "flash memory",
-            "target": "SIM card"
         },
         {
             "explicacion": "This device, often considered the first smartphone, required flash memory to support its various mobile applications.",
@@ -5078,24 +4099,9 @@
             "target": "Geocaching"
         },
         {
-            "explicacion": "The significance here lies in the ability to download music via the World Wide Web.",
-            "source": "World Wide Web",
-            "target": "First Portable MP3 Player"
-        },
-        {
-            "explicacion": "A form of digital media distributed via the World Wide Web.",
-            "source": "World Wide Web",
-            "target": "First podcast"
-        },
-        {
             "explicacion": "Although a biological invention, accessing data and collaboration for such complex projects heavily relies on the World Wide Web.",
             "source": "World Wide Web",
             "target": "Mycoplasma laboratorium"
-        },
-        {
-            "explicacion": "A precursor to blogging, which is content published primarily on the World Wide Web.",
-            "source": "World Wide Web",
-            "target": "First weblog"
         },
         {
             "explicacion": "Requirió de la SIM card para funcionar de manera óptima en redes móviles.",
@@ -5111,11 +4117,6 @@
             "explicacion": "Desarrollado inicialmente para dispositivos móviles que usan SIM cards para acceso a redes móviles.",
             "source": "sim card",
             "target": "first mobile game"
-        },
-        {
-            "explicacion": "Necesita SIM cards para proporcionar conectividad a Internet móvil.",
-            "source": "sim card",
-            "target": "First mobile web"
         },
         {
             "explicacion": "Algunos modelos posteriores requerían SIM cards para conexión a redes móviles.",
