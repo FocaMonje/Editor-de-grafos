@@ -4,7 +4,7 @@ function setup() {
     canvas = createCanvas(canvas_width, canvas_height);
     centerCanvas(canvas);
     
-    listOfStates.push(state);
+    state = new State();
 
     initHtml();
     

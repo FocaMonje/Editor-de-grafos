@@ -38,9 +38,6 @@ class Nodes {
     this.nodeSelected = null;
   }
 
-  // removeNode(node) {
-  //   this.nodesList = this.nodesList.filter(n => n !== node);
-  // }
   deleteNode(node) {
     this.nodesList = this.nodesList.filter(n => n.label !== node.label);
     this.nodeCounter--;

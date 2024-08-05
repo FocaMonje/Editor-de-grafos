@@ -105,3 +105,8 @@ button {
     background-color: rgb(5, 241, 245);
     display: none;
 }
+
+#deseleccionar, #deseleccionarFlecha {
+    padding: 6px;
+    cursor: pointer;
+}

@@ -6,26 +6,22 @@ class Edges {
     this.edgeCounter = 0;
   }
 
-  addEdge(source, target, explicacion = null) {
+  addEdge(source, target, explicacion = '') {
     this.edgesList.push(new Edge(source, target, explicacion));
     this.edgeCounter++;
   }
 
-  // findEdgeUnderMouse() {
-  //   let coordenadas = coordCanvasReales(mouseX, mouseY);
-  //   let x = coordenadas.x;
-  //   let y = coordenadas.y;
-    
-  //   for (let edge of this.edgesList) {
-  //     if (edge.isMouseOver(x, y)) {
-  //       return edge;
-  //     }
-  //   }
-  //   return null;
-  // }
+  changeEdge(oldExplicacion, newExplicacion){
+    for (let edge of this.edgesList){
+      if(edge.explicacion === oldExplicacion){
+        edge.explicacion = newExplicacion;
+      }
+    }
+  }
 
   removeEdge(edge) {
-    this.edgesList = this.edgesList.filter(e => e !== edge);
+    this.edgesList = this.edgesList.filter(e => e.explicacion !== edge.explicacion);
+    this.edgeCounter--;
   }
 
   draw() {
