@@ -46,7 +46,6 @@ class State {
 
 }
 
-
 // FUNCIONES QUE CAMBIAN EL ESTADO 
 
 function addNode(estado, node){
@@ -64,3 +63,11 @@ function deleteNode(estado, node){
 function addEdge(estado, node1, node2, explicacion = ''){
     estado.graph.addEdge(node1, node2, explicacion = '');                       
 }
+
+function changeEdge(estado, edge , newExplicacion){
+    estado.graph.edges.changeEdge(edge.explicacion, newExplicacion);
+}
+
+function removeEdge(estado, edge){
+    estado.graph.edges.removeEdge(edge);
+} 

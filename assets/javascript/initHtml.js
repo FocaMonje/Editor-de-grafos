@@ -34,6 +34,7 @@ function createCustomInput(id, type, parent) {
         console.log("click");
         masterGraph = "holi";
         console.log(masterGraph);
+       
       });
 
     return input;
@@ -52,6 +53,16 @@ function createCustomTextarea(id, rows, cols, parent) {
 
     parent.appendChild(label);
     parent.appendChild(textarea);
+
+    textarea.addEventListener("blur", event => {
+        let newExplicacion = event.target.value ;
+        changeEdge(state, state.selectedEdge , newExplicacion);
+      });
+
+    textarea.addEventListener("click", () => {
+        edicionExplicacion = true ;
+       
+      });
 
     return textarea;
 }
@@ -197,11 +208,20 @@ function initHtml() {
 
     // Creación botón para deseleccionar nodo
     let deselectDiv = document.getElementById('deseleccionar');
-    createCustomButton('deselectButton', 'Deseleccionar', deselectDiv, () => {
+    createCustomButton('deselectButton', 'Deseleccionar Nodo', deselectDiv, () => {
         state.selectedNode = {};
         document.getElementById('node_label').value = "";
         // console.log('Deseleccionado');
     });
+
+     // Creación botón para deseleccionar flecha
+     let deselectDivFlecha = document.getElementById('deseleccionarFlecha');
+     createCustomButton('deselectButtonFlecha', 'Deseleccionar Flecha', deselectDivFlecha, () => {
+         state.selectedEdge = {};
+         state.graph.edges.unselectEdges(); 
+         document.getElementById('edge_info').value = "";
+         // console.log('Deseleccionada');
+     });
 
 
     // Creación de los controles de zoom
@@ -255,7 +275,7 @@ function initHtml() {
     let divIzquierda = document.getElementById('div-izquierda'); 
     slider_node_size = createCustomSlider('slider_node_size', 5, 50, 20, divIzquierda, () => {
         let newSize = parseInt(slider_node_size.value); 
-        nodes.draw(newSize);
+        state.graph.nodes.draw(newSize);
     });
 
     // Creación de inputs, textarea y botones en div-derecha

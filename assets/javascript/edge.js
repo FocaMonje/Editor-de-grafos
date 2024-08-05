@@ -1,8 +1,10 @@
 
 class Edge {
-  constructor(source, target, explicacion) {
-    if (typeof explicacion === 'string'){
+  constructor(source, target, explicacion = '') {
+    if (typeof explicacion === 'string' && explicacion.length <= 0){
       this.explicacion = "Edge " + state.graph.edges.edgeCounter;
+    } else if((typeof explicacion === 'string' && explicacion.length > 0)){
+      this.explicacion = explicacion;
     } else {
       console.log("Error en los argumentos del constructor de Edge");
     }
@@ -51,7 +53,7 @@ class Edge {
 
   draw() {
     if (this.visible) { // Dibuja solo si es visible
-      strokeWeight(this.selected ? 6 : 1);
+      strokeWeight(this.selected ? 4 : 1);
   
       let coordsSource = coordRealesCanvas(this.source.year, this.source.valencia);
       let coordsTarget = coordRealesCanvas(this.target.year, this.target.valencia);

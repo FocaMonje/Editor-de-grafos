@@ -3,29 +3,8 @@ function executeByMode() {
     let nodeUnderMouse = null;
     let nodoPrevioSelec = null;
 
-    // // Obtener el campo de entrada 'node_label'
-    // const nodeLabelInput = document.getElementById('node_label');
-
-    // // Verificar si el clic ocurrió en el campo 'node_label'
-    // const rect = nodeLabelInput.getBoundingClientRect(); //para verificar si el clic ocurre dentro de los límites de un campo de entrada específico
-    // const isMouseOverNodeLabel = (
-    //      mouseX >= rect.left && mouseX <= rect.right &&
-    //      mouseY >= rect.top && mouseY <= rect.bottom
-    // );
-
     const isMouseOverCanvas = mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height;
 
-    // if (!isMouseOverCanvas ) {    // && !isMouseOverNodeLabel
-    //     //Al hacer clic fuera del canvas se deselecciona todo
-    //     console.log("Mouse fuera del canvas");
-    //     nodoPrevioSelec = null;
-    //     state.nodoSeleccionado = {};
-    //     state.arcoSeleccionado = {};
-    //     document.getElementById('node_label').value = '';
-    // } 
-    // if(isMouseOverNodeLabel){
-    //     console.log("Mouse Sobre node label");
-    // }
     if(isMouseOverCanvas){ 
        
 
@@ -40,63 +19,47 @@ function executeByMode() {
                          // => Mouse sobre el canvas o mouse está sobre node label
                         console.log("Mouse sobre el canvas");
                         // Si se hace clic dentro del canvas
-                        let listaDeNodos = state.graph.findNodesUnderMouse();
+                        
                         let edge = state.graph.findEdgeUnderMouse();
 
-                        if (listaDeNodos.length === 0) {
-                            //No hay nodo debajo del ratón
-                            nodeUnderMouse = null;
-                            // Crear un nuevo nodo 
-                            let year = coordCanvasReales(mouseX, mouseY).x;
-                            let valencia = coordCanvasReales(mouseX, mouseY).y;
-                            let newNode = new Node(year, valencia);
-                            addNode(state, newNode);
-                            state.selectedNode = newNode;
-                            document.getElementById('node_label').value = newNode.label;
+                        if (edge) {
+                            // Si se hace clic en una flecha, seleccionarla
+                            state.graph.edges.selectEdge(edge);
+                            state.selectedEdge = edge;
+                            document.getElementById('edge_info').value = edge.explicacion;
                         } else {
-                            // hay un nodo debajo del ratón
-                            nodeUnderMouse = listaDeNodos[0];
-                            if (state.selectedNode && state.selectedNode !== nodeUnderMouse) {
-                                nodoPrevioSelec = state.selectedNode;
-                                state.selectedNode = nodeUnderMouse;
-                                document.getElementById('node_label').value = state.selectedNode.label;
-                                // Crear una flecha entre el nodo previamente seleccionado y el nodo actual
-                                // state.graph.addEdge(nodoPrevioSelec, state.selectedNode, "");
+                             // Si no hay una flecha bajo el ratón
+                            let listaDeNodos = state.graph.findNodesUnderMouse();
+
+                            if (listaDeNodos.length === 0) {
+                                //No hay nodo debajo del ratón
+                                nodeUnderMouse = null;
+                                // Crear un nuevo nodo 
+                                let year = coordCanvasReales(mouseX, mouseY).x;
+                                let valencia = coordCanvasReales(mouseX, mouseY).y;
+                                let newNode = new Node(year, valencia);
+                                addNode(state, newNode);
+                                state.selectedNode = newNode;
+                                document.getElementById('node_label').value = newNode.label;
                             } else {
-                                state.selectedNode = nodeUnderMouse;
-                                document.getElementById('node_label').value = state.selectedNode.label;
+                                // hay un nodo debajo del ratón
+                                nodeUnderMouse = listaDeNodos[0];
+                                if (state.selectedNode && state.selectedNode !== nodeUnderMouse) {
+                                    nodoPrevioSelec = state.selectedNode;
+                                    state.selectedNode = nodeUnderMouse;
+                                    document.getElementById('node_label').value = state.selectedNode.label;
+                                   
+                                } else {
+                                    state.selectedNode = nodeUnderMouse;
+                                    document.getElementById('node_label').value = state.selectedNode.label;
+                                }
+                            }
+                            if (state.selectedNode != {} && nodoPrevioSelec != null) {
+                    
+                                    addEdge(state, nodoPrevioSelec, state.selectedNode, explicacion = '');
+        
                             }
                         }
-                        if (state.selectedNode != {} && nodoPrevioSelec != null) {
-                        
-                                // Crear una arista entre el nodo previamente seleccionado y el nodo actual
-                                // state.graph.addEdge(nodoPrevioSelec, state.selectedNode);
-                                addEdge(state, nodoPrevioSelec, state.selectedNode, explicacion = '');
-    
-                        }  
-                        // else {
-                        //     if (edge != null) {
-                        //         // Si la arista ya está seleccionada, deseleccionarla
-                        //         if (state.graph.edges.selectedEdge === edge) {
-                        //             state.graph.edges.unselectEdges();
-                        //             edgeInput.value('');
-                        //         } else {
-                        //             // Seleccionar la arista y actualizar el campo de entrada de la arista
-                        //             state.graph.edges.selectEdge(edge);
-                        //             edgeInput.value(edge.explicacion); // Actualizar con la explicación de la arista
-                        //         }
-                        //         break;
-                        //     }
-                        //     // Si no se hizo clic en ningún nodo existente ni en ninguna arista, considerar agregar un nuevo nodo
-                        //     else {
-                        //         let label = nodeCounter.toString();
-                        //         let size = slider_node_size.value;
-                        //         let coordenadas = coordCanvasReales(mouseX, mouseY);
-                        //         let year = coordenadas.x; // Asegúrate de obtener las coordenadas correctas
-                        //         let newNode = state.graph.addNode(label, size, year); // Añadir un nuevo nodo al grafo      
-                        //         nodeCounter++; // Incrementar el contador de nodos
-                        //     }
-                        // }
         
                         break;
                     }
@@ -109,6 +72,13 @@ function executeByMode() {
                         let nodes = state.graph.findNodesUnderMouse();
                         if (nodes.length > 0) {
                             deleteNode(state, nodes[0]);
+                        }
+
+                        // Buscar si hay una flecha debajo del ratón y eliminarla
+                        let edge = state.graph.findEdgeUnderMouse();
+                        if (edge) {
+                            state.graph.edges.removeEdge(edge);
+                            document.getElementById('edge_info').value = "";
                         }
                         break;
                     }
