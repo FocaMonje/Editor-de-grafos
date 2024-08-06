@@ -19,9 +19,9 @@ class Node  {
     this.selected = false;
     this.size = 20;
     this.visible = true;
-    
+
     this.x_temp = random(canvas_width);
-    this.y_temp = random(canvas_height);
+    this.y_temp = random(canvas_height - 100);
   }
 
   get x(){
