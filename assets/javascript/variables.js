@@ -52,6 +52,12 @@ let scrollY = 10;
 let zoomX = 1;
 let zoomY = 1;
 
+let animationStart = 0;
+let animationDuration = 1000; // Duración en milisegundos
+let startPositions = [];
+let endPositions = [];
+let animating = false;
+
 
 let increaseX, increaseY, decreaseX, decreaseY;
 

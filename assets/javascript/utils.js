@@ -226,3 +226,52 @@ function objetoVacio(objeto){
   }
   return Object.keys(objeto).length == 0;
 }
+
+function adjustGraphAnimation() {
+  if (animating) return;
+
+  if (!state.graph.nodes || !state.graph.nodes.nodesList) {
+      console.error("Error: state.graph.nodes.nodesList is undefined");
+      return;
+  }
+
+  // Verificar el estado de los nodos
+  console.log("Nodos antes de ajustar:");
+  state.graph.nodes.nodesList.forEach(node => {
+      console.log(`Nodo ${node.label}: (${node.x}, ${node.y})`);
+  });
+
+  animating = true;
+  animationStart = millis();
+
+  startPositions = state.graph.nodes.nodesList.map(node => ({
+      x: node.x,
+      y: node.y
+  }));
+
+  endPositions = state.graph.nodes.nodesList.map(node => {
+      let coords = coordCanvasReales(node.year, node.valencia);
+      return {
+          x: node.x,
+          y: coords.y
+      };
+  });
+
+  // Verificar las posiciones de inicio y fin
+  console.log("Posiciones de inicio:", startPositions);
+  console.log("Posiciones de fin:", endPositions);
+
+  loop(); // Inicia el bucle de animación
+}
+
+function animate(y, y1, y2, interval){
+
+  if (y <= y2) {
+	return y;
+	}
+  // map our keyframe time https://p5js.org/reference/p5/map/
+  t = map(millis(), animationStart, animationStart + interval, 0.0, 1.0);
+  // use the time to average our two points
+  y = y1 * (1 - t) + y2 * t;
+  return y;
+}

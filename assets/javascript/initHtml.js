@@ -214,15 +214,20 @@ function initHtml() {
         // console.log('Deseleccionado');
     });
 
-     // Creación botón para deseleccionar flecha
-     let deselectDivFlecha = document.getElementById('deseleccionarFlecha');
-     createCustomButton('deselectButtonFlecha', 'Deseleccionar Flecha', deselectDivFlecha, () => {
-         state.selectedEdge = {};
-         state.graph.edges.unselectEdges(); 
-         document.getElementById('edge_info').value = "";
-         // console.log('Deseleccionada');
-     });
+    // Creación botón para deseleccionar flecha
+    let deselectDivFlecha = document.getElementById('deseleccionarFlecha');
+    createCustomButton('deselectButtonFlecha', 'Deseleccionar Flecha', deselectDivFlecha, () => {
+        state.selectedEdge = {};
+        state.graph.edges.unselectEdges(); 
+        document.getElementById('edge_info').value = "";
+        // console.log('Deseleccionada');
+    });
 
+    // Crear botón "Ajustar Grafo"
+    let adjustGraphButton = document.getElementById('adjustGraphButton');
+    createCustomButton("adjustGraphButton", "Ajustar Grafo", adjustGraphButton, () => {
+        adjustGraphAnimation();
+    });
 
     // Creación de los controles de zoom
     let zoomControls = document.getElementById('zoom-controls');
