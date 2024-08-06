@@ -48,8 +48,15 @@ class Node  {
        }
  
       let r = 20;
+      //let y = canvas_height;
+       if (animating ){
+        y = animate(y, canvas_height, this.y,animationDuration);
+       } else{
+        y = this.y;
+       }
       
-      ellipse(this.x, this.y , r * (r/(r * zoomX) ), r * (r/(r * zoomY)));
+      
+      ellipse(this.x, y , r * (r/(r * zoomX) ), r * (r/(r * zoomY)));
    
       fill(0);
       strokeWeight(1);
