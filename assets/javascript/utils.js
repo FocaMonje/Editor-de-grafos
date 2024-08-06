@@ -243,7 +243,7 @@ function adjustValencia(){
   }
 }
 
-function adjustGraphAnimation() {
+function graphAnimation() {
   if (animating) return;
 
   if (!state.graph.nodes || !state.graph.nodes.nodesList) {
@@ -281,9 +281,12 @@ function adjustGraphAnimation() {
 }
 
 function animate(y, y1, y2, interval){
-
+  
   if (y <= y2) {
-	return y;
+    console.log("Soy el if que para la animación")
+    animating = false;
+
+	  return y;
 	}
   // map our keyframe time https://p5js.org/reference/p5/map/
   t = map(millis(), animationStart, animationStart + interval, 0.0, 1.0);

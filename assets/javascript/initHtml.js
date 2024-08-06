@@ -227,7 +227,9 @@ function initHtml() {
     let adjustGraphButton = document.getElementById('adjustGraphButton');
     createCustomButton("adjustGraphButton", "Ajustar Grafo", adjustGraphButton, () => {
         adjustValencia();
-        //adjustGraphAnimation();
+        animationStart = millis();
+        animating = true;
+        //graphAnimation();
     });
 
     // Creación de los controles de zoom

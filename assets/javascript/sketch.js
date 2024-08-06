@@ -26,9 +26,6 @@ function draw() {
             startPositions[i] = canvas_height;
             endPositions[i] = node.y;
         }
-
-        console.log(startPositions);
-        console.log(endPositions);
         
     }
   

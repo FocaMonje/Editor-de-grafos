@@ -53,10 +53,11 @@ let zoomX = 1;
 let zoomY = 1;
 
 let animationStart = 0;
-let animationDuration = 1000; // Duración en milisegundos
+let animationDuration = 2000; // Duración en milisegundos
 let startPositions = [];
 let endPositions = [];
 let animating = false;
+let y = canvas_height;
 
 
 let increaseX, increaseY, decreaseX, decreaseY;
