@@ -20,6 +20,8 @@ class Node  {
     this.size = 20;
     this.visible = true;
     
+    this.x_temp = random(canvas_width);
+    this.y_temp = random(canvas_height);
   }
 
   get x(){
@@ -49,11 +51,12 @@ class Node  {
  
       let r = 20;
       //let y = canvas_height;
-       if (animating ){
-        y = animate(y, canvas_height, this.y,animationDuration);
-       } else{
-        y = this.y;
-       }
+      
+      if (animating == true){
+        y = animate(this.y_temp, this.y , animationDuration);
+      }else{
+        y = this.y_temp;
+      }
       
       
       ellipse(this.x, y , r * (r/(r * zoomX) ), r * (r/(r * zoomY)));
