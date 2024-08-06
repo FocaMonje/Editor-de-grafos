@@ -227,6 +227,25 @@ function objetoVacio(objeto){
   return Object.keys(objeto).length == 0;
 }
 
+function adjustValencia(){
+
+  console.log(state.graph.edges.edgesList);
+
+  for (let i = 0; i < state.graph.nodes.nodesList.length; i++) {
+    let node = state.graph.nodes.nodesList[i];
+    let valencia = 0;
+    for (let j = 0; j < state.graph.edges.edgesList.length; j++) {
+      let edge = state.graph.edges.edgesList[j];
+      if(edge.source.label == node.label ){
+        valencia += 1
+      }
+    }
+    node.valencia = valencia;
+  }
+
+  console.log(state.graph.edges.edgesList);
+}
+
 function adjustGraphAnimation() {
   if (animating) return;
 

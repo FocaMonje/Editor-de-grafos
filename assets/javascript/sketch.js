@@ -20,22 +20,16 @@ function draw() {
     scale(zoomX,zoomY);
 
     if (animating) {
-        let elapsed = millis() - animationStart;
-        let progress = min(elapsed / animationDuration, 1);
-        
+       
         for (let i = 0; i < state.graph.nodes.nodesList.length; i++) {
             let node = state.graph.nodes.nodesList[i];
-            let startPos = startPositions[i];
-            let endPos = endPositions[i];
-            
-            node.x = lerp(startPos.x, endPos.x, progress);
-            node.y = lerp(startPos.y, endPos.y, progress);
+            startPositions[i] = canvas_height;
+            endPositions[i] = node.y;
         }
+
+        console.log(startPositions);
+        console.log(endPositions);
         
-        if (progress === 1) {
-            animating = false;
-            //noLoop(); // Detiene el bucle de animación cuando se completa
-          }
     }
   
     state.graph.findNodesUnderMouse();
