@@ -12,7 +12,6 @@ let saveButton, loadButton, drawModeButton, deleteModeButton, animationModeButto
 let zoomSettings = { zoom: 35 };
 let centerX, centerY;
 let nodeCounter = 1;
-let workMode = 'drawMode';
 let labelInput;
 let selectedEdge = null;
 let slider_node_size, slider_start_year, slider_end_year;

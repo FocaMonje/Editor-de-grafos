@@ -1,6 +1,6 @@
 
 function enterTimeLineMode() {
-    workMode = "Time Line";
+    
     // const button = document.getElementById('modeDropdown');
     // button.textContent = 'Exit Time Line Mode'; // Cambiar texto del botón
 
@@ -36,18 +36,21 @@ function enterTimeLineMode() {
 
     // Seleccionar 6 nodos al azar y mostrarlos
     const allNodes = [...state.graph.nodes.nodesList];
-    const selectedNodes = [];
-    while (selectedNodes.length < 7 && allNodes.length > 0) {
+
+    //Creo espacio en el estado para los nodos del juego
+    state.gameNodes = new Nodes();
+    
+    while (state.gameNodes.length < 7 && allNodes.length > 0) {
         const randomIndex = Math.floor(Math.random() * allNodes.length);
         const [selectedNode] = allNodes.splice(randomIndex, 1);
-        selectedNodes.push(selectedNode);
+        state.gameNodes.addNode(selectedNode.year, selectedNode.valencia, selectedNode.label);           
     }
 
     // Ocultar todos los nodos y mostrar solo los seleccionados
     state.graph.nodes.nodesList.forEach(node => {
         node.visible = false;
     });
-    selectedNodes.forEach(node => {
+    state.gameNodes.forEach(node => {
         node.visible = true;
     });
 
@@ -57,7 +60,7 @@ function enterTimeLineMode() {
 
 
 function exitTimeLineMode() {
-    workMode = "drawMode";
+    state.mode = "editorMode";
     // const button = document.getElementById('modeDropdown');
     // button.textContent = 'Time Line'; // Restaurar texto original del botón
 

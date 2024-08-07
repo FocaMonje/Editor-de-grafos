@@ -180,9 +180,9 @@ function initHtml() {
                     exitGameMode2();
                 }
                 break;
-            case "timeLine":
+            case "timeLineMode":
                 resetButtonStyles();
-                state.modo = "timeLine";
+                state.modo = "timeLineMode";
                 timeLineActive = !timeLineActive;
                 if (timeLineActive) {
                     enterTimeLineMode();
