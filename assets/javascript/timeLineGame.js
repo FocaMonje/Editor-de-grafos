@@ -34,25 +34,24 @@ function enterTimeLineMode() {
         }
     }, 1000);
 
+
+     // Ocultar todos los nodos y mostrar solo los seleccionados para el juego
+     state.graph.nodes.setAllNodesInvisible();
+
     // Seleccionar 6 nodos al azar y mostrarlos
     const allNodes = [...state.graph.nodes.nodesList];
 
-    //Creo espacio en el estado para los nodos del juego
-    state.gameNodes = new Nodes();
-    
-    while (state.gameNodes.length < 7 && allNodes.length > 0) {
+    let contador = 0;
+    while (contador < 5) {
+        contador += 1;
         const randomIndex = Math.floor(Math.random() * allNodes.length);
-        const [selectedNode] = allNodes.splice(randomIndex, 1);
-        state.gameNodes.addNode(selectedNode.year, selectedNode.valencia, selectedNode.label);           
+        const selectedNode = allNodes.splice(randomIndex, 1)[0];
+        for ( node of state.graph.nodes.nodesList){
+            if(node.label == selectedNode.label){
+                node.visible = true;
+            }
+        }
     }
-
-    // Ocultar todos los nodos y mostrar solo los seleccionados
-    state.graph.nodes.nodesList.forEach(node => {
-        node.visible = false;
-    });
-    state.gameNodes.forEach(node => {
-        node.visible = true;
-    });
 
     state.graph.prepareJSONObject(); // Actualizar el gráfico
 }
