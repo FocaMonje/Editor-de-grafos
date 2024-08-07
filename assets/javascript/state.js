@@ -5,8 +5,6 @@ class State {
         let startNodes = new Nodes();
         let startEdges = new Edges();
 
-        let gameNodes = new Nodes();
-
         this.mode = "editorMode";     // Modos : "editorMode", "gameMode" , etc
         this.tool = "draw";       // Herramientas: "draw" , "delete"  
         this.graph = new GraphManager(startNodes, startEdges);
