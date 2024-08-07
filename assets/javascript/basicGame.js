@@ -16,7 +16,7 @@ function hideScore() {
 
 function checkGameCompletion() {
     // Verificar si todas las flechas están visibles
-    let allEdgesVisible = activeGraph.edges.edgesList.every(edge => edge.visible);
+    let allEdgesVisible = state.graph.edges.edgesList.every(edge => edge.visible);
 
     // Si todas las flechas están visibles, mostrar la ventana de fin del juego
     if (allEdgesVisible) {

@@ -294,3 +294,18 @@ function animate(y, y1, y2, interval){
   y = y1 * (1 - t) + y2 * t;
   return y;
 }
+
+// function timeLine(y, y1, y2, interval){
+  
+//   if (y <= y2) {
+//     console.log("Soy el if que para la animación")
+//     timeLineActive = false;
+
+// 	  return y;
+// 	}
+//   // map our keyframe time https://p5js.org/reference/p5/map/
+//   t = map(millis(), animationStart, animationStart + interval, 0.0, 1.0);
+//   // use the time to average our two points
+//   y = y1 * (1 - t) + y2 * t;
+//   return y;
+// }
