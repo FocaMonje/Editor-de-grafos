@@ -10,7 +10,7 @@ function executeByMode() {
 
         switch (state.modo) {
 
-            case("editor"): {
+            case("editorMode"): {
 
                 switch (state.herramienta) {
 
@@ -64,7 +64,7 @@ function executeByMode() {
                         break;
                     }
 
-                    case("deleteMode"): {
+                    case("delete"): {
                         console.log("-----" + state.herramienta);
                         console.log("Soy delete Mode");
                         
