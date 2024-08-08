@@ -5,6 +5,10 @@ class Nodes {
     this.nodeSelected = null;
     this.size = size;
   }
+
+  length(){
+    return nodesList.length;
+  }
   
   addNode(year, valencia, label) {
     let newNode = new Node( year, valencia, label);

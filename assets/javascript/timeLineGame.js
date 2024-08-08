@@ -1,37 +1,67 @@
 
 function enterTimeLineMode() {
-    workMode = "timeLineMode";
-    const button = document.getElementById('timeLineButton');
-    button.textContent = 'Exit Time Line Mode'; // Cambiar texto del botón
+    
+    // const button = document.getElementById('modeDropdown');
+    // button.textContent = 'Exit Time Line Mode'; // Cambiar texto del botón
 
     // Ocultar las flechas (edges) y asegurar que los nodos sean visibles
-    masterGraph.edges.edgesList.forEach(edge => {
+    state.graph.edges.edgesList.forEach(edge => {
         edge.visible = false; // Ocultar todas las flechas
     });
 
     // Ocultar la ventana de fin del juego si está visible
-    gameOverWindow.style('display', 'none');
-    
+    const gameOverWindow = document.getElementById("game-over-window");
+    if (gameOverWindow) {
+        gameOverWindow.style.display = 'none'; // Asegúrate de que esta línea está correcta
+    }
+
     // Iniciar el cronómetro
-    countdown = 1; // Reiniciar el tiempo del cronómetro
-    timer.html('Tiempo: ' + countdown); // Mostrar el tiempo inicial
-    timer.style('display', 'block');
-    countdownInterval = setInterval(() => {
-        countdown--;
-        timer.html('Tiempo: ' + countdown);
-        if (countdown <= 0) {
-            clearInterval(countdownInterval);
-            endGame();
+    // countdown = 30; // Reiniciar el tiempo del cronómetro
+    // const timerElement = document.getElementById('timer'); // Asegúrate de que el ID es correcto
+    // if (timerElement) {
+    //     timerElement.textContent = 'Tiempo: ' + countdown; // Mostrar el tiempo inicial
+    //     timerElement.style.display = 'block'; // Asegúrate de que el temporizador esté visible
+    // }
+
+    // countdownInterval = setInterval(() => {
+    //     countdown--;
+    //     if (timerElement) {
+    //         timerElement.textContent = 'Tiempo: ' + countdown;
+    //     }
+    //     if (countdown <= 0) {
+    //         clearInterval(countdownInterval);
+    //         endGame();
+    //     }
+    // }, 1000);
+
+
+     // Ocultar todos los nodos y mostrar solo los seleccionados para el juego
+     state.graph.nodes.setAllNodesInvisible();
+
+    // Seleccionar 6 nodos al azar y mostrarlos
+    const allNodes = [...state.graph.nodes.nodesList];
+
+    let contador = 0;
+    while (contador < 10) {
+        contador += 1;
+        const randomIndex = Math.floor(randomIntFromInterval(0,allNodes.length));
+        const selectedNode = allNodes.splice(randomIndex, 1)[0];
+        for ( node of state.graph.nodes.nodesList){
+            if(node.label == selectedNode.label){
+                node.visible = true;
+            }
         }
-    }, 1000);
+    }
+
+    state.graph.prepareJSONObject(); // Actualizar el gráfico
 }
 
 
+
 function exitTimeLineMode() {
-    
-    workMode = "drawMode";
-    const button = document.getElementById('timeLineButton');
-    button.textContent = 'Time Line'; // Restaurar texto original del botón
+    state.mode = "editorMode";
+    // const button = document.getElementById('modeDropdown');
+    // button.textContent = 'Time Line'; // Restaurar texto original del botón
 
     hideScore();
     
@@ -39,18 +69,27 @@ function exitTimeLineMode() {
     slider_node_size.removeAttribute('disabled');
     labelInput.removeAttribute('disabled');
 
-    // Restaurar la visibilidad de las flechas y los nodos
-    masterGraph.edges.edgesList.forEach(edge => {
-        edge.visible = true; // Implementar la lógica de visibilidad según el juego
+      // Restaurar la visibilidad de las flechas y los nodos
+      state.graph.edges.edgesList.forEach(edge => {
+        edge.visible = true; 
     });
-    masterNodes.setAllNodesVisible(); // Mostrar todos los nodos
-    masterGraph. prepareJSONObject(); // Actualizar el gráfico
+    state.graph.nodes.nodesList.forEach(node => {
+        node.visible = true;
+    });
+    state.graph.prepareJSONObject(); // Actualizar el gráfico
 
-    // Ocultar la ventana de fin del juego si está visible
-    gameOverWindow.style('display', 'none');
+    // Mostrar la ventana de fin del juego si está visible
+    const gameOverWindow = document.getElementById("game-over-window");
+    if (gameOverWindow) {
+        gameOverWindow.style.display = 'block'; // Restaurar visibilidad si es necesario
+    }
 
     // Detener el cronómetro
     clearInterval(countdownInterval); // Detener el cronómetro
-    timer.html('Tiempo: 30'); // Resetear el tiempo mostrado
-    timer.style('display', 'none'); // Ocultar el temporizador
+    const timerElement = document.getElementById('timer'); // Asegúrate de que el ID es correcto
+    if (timerElement) {
+        timerElement.textContent = 'Tiempo: 30'; // Resetear el tiempo mostrado
+        timerElement.style.display = 'none'; // Ocultar el temporizador
+    }
 }
+

@@ -134,25 +134,25 @@ function initHtml() {
     });
 
     // Creación de la lista con los modos
-    let modes = ["Draw Mode", "Delete Mode", "Animation Mode", "Game Mode", "Game Mode 2", "Time Line"];
+    let modes = ["drawMode", "deleteMode", "animationMode", "gameMode", "gameMode2", "timeLineMode"];
     modeDropdown = createDropdown("modeDropdown", modes, header, event => {
         switch (event.target.value) {
-            case "Draw Mode":
-                state.modo = "editor";
+            case "drawMode":
+                state.modo = "editorMode";
                 state.herramienta = "draw";
                 resetButtonStyles();
                 modeDropdown.style.backgroundColor = '#ddd';
                 break;
-            case "Delete Mode":
-                state.modo = "editor";
-                state.herramienta = "deleteMode";
+            case "deleteMode":
+                state.modo = "editorMode";
+                state.herramienta = "delete";
                 resetButtonStyles();
                 modeDropdown.style.backgroundColor = '#ddd';
                 console.log("Soy initHtml :" + state.herramienta);
                 console.log("Soy initHtml :" + state.modo);
                 break;
-            case "Animation Mode":
-                state.modo = "animation";
+            case "animationMode":
+                state.modo = "animationMode";
                 resetButtonStyles();
                 modeDropdown.style.backgroundColor = '#ddd';
                 showAnimationControls();
@@ -160,9 +160,9 @@ function initHtml() {
                 activeNodes.setAllNodesInvisible();
                 activeGraph.prepareJSONObject();
                 break;
-            case "Game Mode":
+            case "gameMode":
                 resetButtonStyles();
-                state.modo = "game";
+                state.modo = "gameMode";
                 gameModeActive = !gameModeActive;
                 if (gameModeActive) {
                     enterGameMode();
@@ -170,9 +170,9 @@ function initHtml() {
                     exitGameMode();
                 }
                 break;
-            case "Game Mode 2":
+            case "gameMode2":
                 resetButtonStyles();
-                state.modo = "game2";
+                state.modo = "gameMode2";
                 gameMode2Active = !gameMode2Active;
                 if (gameMode2Active) {
                     enterGameMode2();
@@ -180,9 +180,9 @@ function initHtml() {
                     exitGameMode2();
                 }
                 break;
-            case "Time Line":
+            case "timeLineMode":
                 resetButtonStyles();
-                state.modo = "timeLine";
+                state.modo = "timeLineMode";
                 timeLineActive = !timeLineActive;
                 if (timeLineActive) {
                     enterTimeLineMode();

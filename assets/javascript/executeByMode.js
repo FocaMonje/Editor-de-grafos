@@ -10,7 +10,7 @@ function executeByMode() {
 
         switch (state.modo) {
 
-            case("editor"): {
+            case("editorMode"): {
 
                 switch (state.herramienta) {
 
@@ -64,7 +64,7 @@ function executeByMode() {
                         break;
                     }
 
-                    case("deleteMode"): {
+                    case("delete"): {
                         console.log("-----" + state.herramienta);
                         console.log("Soy delete Mode");
                         
@@ -87,8 +87,36 @@ function executeByMode() {
                 break;
             }
 
-            case("game"): {
+            case 'timeLineMode': {
+                let listaDeNodos = state.graph.findNodesUnderMouse();
+                console.log(listaDeNodos);
 
+                 // hay un nodo debajo del ratón
+                 if(listaDeNodos.length > 0){
+                    nodeUnderMouse = listaDeNodos[0];
+                    if (state.selectedNode && state.selectedNode !== nodeUnderMouse) {
+                        nodoPrevioSelec = state.selectedNode;
+                        state.selectedNode = nodeUnderMouse;
+                        document.getElementById('node_label').value = state.selectedNode.label;
+
+                
+                            if (state.selectedNode.year > nodoPrevioSelec.year) {
+                                // Agregar la arista y hacerla visible
+                                addEdge(state, nodoPrevioSelec, state.selectedNode, explicacion = 'arco correcto juego');
+                                score_points += 1;
+                                addEdgeToFinalPath(state.selectedNode, node);
+                                state.graph.nodes.unSelectNodes();
+        
+                            } else {
+                                score_points -= 1;
+                            }
+                            console.log(score_points);
+                        
+                    } else {
+                        state.selectedNode = nodeUnderMouse;
+                        document.getElementById('node_label').value = state.selectedNode.label;
+                    }
+                 }
                 break;
             }
 

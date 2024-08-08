@@ -152,6 +152,7 @@ class GraphManager {
   }
 
   findNodesUnderMouse(){
+    // Devuelve los inventos visibles debajo del Ratón
     const coordsReales = coordCanvasReales(mouseX, mouseY);
   
     const toleranciaX = 10 ;
@@ -159,7 +160,8 @@ class GraphManager {
     
     const inv_filtrados = this.nodes.nodesList.filter(
       (invento) => (abs(invento.year - coordsReales.x)  < toleranciaX)  &&
-                    (abs(invento.valencia - coordsReales.y)  < toleranciaY) )
+                    (abs(invento.valencia - coordsReales.y)  < toleranciaY) &&
+                    invento.visible == true )
     
     if (inv_filtrados.length > 0){
       
