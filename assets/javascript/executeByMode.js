@@ -29,7 +29,7 @@ function executeByMode() {
                             document.getElementById('edge_info').value = edge.explicacion;
                         } else {
                              // Si no hay una flecha bajo el ratón
-                            let listaDeNodos = state.graph.findNodesUnderMouse();
+                            let listaDeNodos = findNodesUnderMouse(state.graph.nodes.nodesList);
 
                             if (listaDeNodos.length === 0) {
                                 //No hay nodo debajo del ratón
@@ -69,7 +69,7 @@ function executeByMode() {
                         console.log("Soy delete Mode");
                         
                         // Miramos si hay nodos debajo del ratón y si hay se borran
-                        let nodes = state.graph.findNodesUnderMouse();
+                        let nodes = findNodesUnderMouse(state.graph.nodes.nodesList);
                         if (nodes.length > 0) {
                             deleteNode(state, nodes[0]);
                         }
@@ -88,7 +88,7 @@ function executeByMode() {
             }
 
             case 'timeLineMode': {
-                let listaDeNodos = state.graph.findNodesUnderMouse();
+                let listaDeNodos = findNodesUnderMouse(state.graph.nodes.nodesList);
                 console.log(listaDeNodos);
 
                  // hay un nodo debajo del ratón

@@ -29,14 +29,17 @@ function draw() {
         
     }
     
-    if (state.modo = "editorMode"){
-        state.graph.findNodesUnderMouse();
-        state.graph.findEdgeUnderMouse();
-    }
-    if (state.modo = "timeLineMode"){
-        //findNodesUnderMouse(state.gameNodes);
-        //findEdgeUnderMouse(state.gameNodes);
-    }
+    state.graph.nodesUnderMouse = findNodesUnderMouse(state.graph.nodes.nodesList);
+    //state.graph.findEdgeUnderMouse();
+
+    // if (state.modo = "editorMode"){
+    //     state.graph.nodesUnderMouse = findNodesUnderMouse(state.graph.nodes.nodesList);
+    //     .... edges ....
+    // }
+    // if (state.modo = "timeLineMode"){
+    //     findNodesUnderMouse(state.gameNodes);
+    //     findEdgeUnderMouse(state.gameNodes);
+    // }
     
 
    
