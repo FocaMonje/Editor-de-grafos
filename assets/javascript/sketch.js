@@ -29,20 +29,12 @@ function draw() {
         
     }
     
-    state.graph.nodesUnderMouse = findNodesUnderMouse(state.graph.nodes.nodesList);
+    
     //state.graph.findEdgeUnderMouse();
 
-    // if (state.modo = "editorMode"){
-    //     state.graph.nodesUnderMouse = findNodesUnderMouse(state.graph.nodes.nodesList);
-    //     .... edges ....
-    // }
-    // if (state.modo = "timeLineMode"){
-    //     findNodesUnderMouse(state.gameNodes);
-    //     findEdgeUnderMouse(state.gameNodes);
-    // }
-    
-
+    findNodesUnderMouse();
    
+    
     state.graph.drawEdges();
     state.graph.drawNodes(10); //slider_node_size.value() Aquí se usa el valor del deslizador para el tamaño
 

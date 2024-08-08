@@ -43,8 +43,8 @@ class Node  {
           stroke(51);
       }
 
-      for (let label of state.graph.nodesUnderMouse){
-        if(this.label == label){
+      for (let node of state.nodesUnderMouse){
+        if(this.label == node.label){
           strokeWeight(4);
           stroke(51);
         }

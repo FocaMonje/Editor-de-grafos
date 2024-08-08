@@ -43,7 +43,7 @@ function enterTimeLineMode() {
     console.log("allNodes: ", allNodes);
 
     let contador = 0;
-    while (contador < 10) {
+    while (contador < 3) {
         const randomIndex = Math.floor(randomIntFromInterval(0,allNodes.length - 1));
         const selectedNode = allNodes.slice(randomIndex, randomIndex + 1)[0];  //allNodes.splice(randomIndex,  1);
 
@@ -71,7 +71,7 @@ function enterTimeLineMode() {
             }
         }
     }
-
+    state.selectedNode = {};
     state.graph.prepareJSONObject(); // Actualizar el gráfico
 }
 

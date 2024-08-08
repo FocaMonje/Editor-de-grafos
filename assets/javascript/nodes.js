@@ -118,3 +118,36 @@ class Nodes {
     }
   }
 }
+
+function  findNodesUnderMouse(){
+  // Devuelve los inventos visibles debajo del Ratón
+
+  let inv_filtrados = [];
+
+  if (state.modo == "editorMode"){
+    const coordsReales = coordCanvasReales(mouseX, mouseY);
+    const toleranciaX = 10 ;
+    const toleranciaY = 1 ;
+
+    inv_filtrados = state.graph.nodes.nodesList.filter(
+      (invento) => (abs(invento.year - coordsReales.x)  < toleranciaX)  &&
+                    (abs(invento.valencia - coordsReales.y)  < toleranciaY) &&
+                    invento.visible == true );
+  }
+
+  if (state.modo == "timeLineMode"){
+    const toleranciaX = 15 ;
+    const toleranciaY = 15 ;
+
+    inv_filtrados = state.gameNodes.filter(
+      (invento) => (abs(invento.xGame - (mouseX + abs(scrollX) ))  < toleranciaX)  &&
+                    (abs(invento.yGame - (mouseY + scrollY))  < toleranciaY) &&
+                    invento.visible == true );
+  }
+  
+  if (inv_filtrados.length > 0){
+    state.nodesUnderMouse = inv_filtrados;
+  } else {
+    state.nodesUnderMouse = [];
+  }
+}

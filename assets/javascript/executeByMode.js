@@ -29,9 +29,8 @@ function executeByMode() {
                             document.getElementById('edge_info').value = edge.explicacion;
                         } else {
                              // Si no hay una flecha bajo el ratón
-                            let listaDeNodos = findNodesUnderMouse(state.graph.nodes.nodesList);
-
-                            if (listaDeNodos.length === 0) {
+             
+                            if (state.nodesUnderMouse.length === 0) {
                                 //No hay nodo debajo del ratón
                                 nodeUnderMouse = null;
                                 // Crear un nuevo nodo 
@@ -43,7 +42,7 @@ function executeByMode() {
                                 document.getElementById('node_label').value = newNode.label;
                             } else {
                                 // hay un nodo debajo del ratón
-                                nodeUnderMouse = listaDeNodos[0];
+                                nodeUnderMouse = state.nodesUnderMouse[0];
                                 if (state.selectedNode && state.selectedNode !== nodeUnderMouse) {
                                     nodoPrevioSelec = state.selectedNode;
                                     state.selectedNode = nodeUnderMouse;
@@ -69,9 +68,9 @@ function executeByMode() {
                         console.log("Soy delete Mode");
                         
                         // Miramos si hay nodos debajo del ratón y si hay se borran
-                        let nodes = findNodesUnderMouse(state.graph.nodes.nodesList);
-                        if (nodes.length > 0) {
-                            deleteNode(state, nodes[0]);
+                      
+                        if (state.nodesUnderMouse.length > 0) {
+                            deleteNode(state, state.nodesUnderMouse[0]);
                         }
 
                         // Buscar si hay una flecha debajo del ratón y eliminarla
@@ -88,17 +87,19 @@ function executeByMode() {
             }
 
             case 'timeLineMode': {
-                let listaDeNodos = findNodesUnderMouse(state.graph.nodes.nodesList);
-                console.log(listaDeNodos);
+                
+                console.log("mouseX: " , mouseX + abs(scrollX));
+                console.log("mouseY: ", mouseY + scrollY)
+                console.log(state.nodesUnderMouse);
 
                  // hay un nodo debajo del ratón
-                 if(listaDeNodos.length > 0){
-                    nodeUnderMouse = listaDeNodos[0];
-                    if (state.selectedNode && state.selectedNode !== nodeUnderMouse) {
+                 if(state.nodesUnderMouse.length > 0){
+                    nodeUnderMouse = state.nodesUnderMouse[0];
+                    
+                    if (state.selectedNode.label != undefined && state.selectedNode.label !== nodeUnderMouse.label) {
                         nodoPrevioSelec = state.selectedNode;
                         state.selectedNode = nodeUnderMouse;
                         document.getElementById('node_label').value = state.selectedNode.label;
-
                 
                             if (state.selectedNode.year > nodoPrevioSelec.year) {
                                 // Agregar la arista y hacerla visible
@@ -112,7 +113,8 @@ function executeByMode() {
                             }
                             console.log(score_points);
                         
-                    } else {
+                    } 
+                    if (state.selectedNode.label == undefined){
                         state.selectedNode = nodeUnderMouse;
                         document.getElementById('node_label').value = state.selectedNode.label;
                     }
