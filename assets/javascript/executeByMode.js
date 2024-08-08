@@ -89,36 +89,55 @@ function executeByMode() {
 
             case 'timeLineMode': {
                 let listaDeNodos = state.graph.findNodesUnderMouse();
+                console.log(listaDeNodos);
 
-                if (listaDeNodos.length > 0) {
-                    let node = listaDeNodos[0];
-                    if (state.selectedNode) {
-                        // Si hay un nodo previamente seleccionado y el nodo actual es diferente, intentar agregar una flecha
-                        if (state.selectedNode !== node) {
-                            // Verificar si la dirección es correcta según el año
-                            let correctDirection = node.year > state.selectedNode.year;
-                            if (correctDirection) {
-                                // Agregar la arista y hacerla visible
-                                addEdge(state, state.selectedNode, node, explicacion = '');
-                                score_points += 1;
-                                addEdgeToFinalPath(state.selectedNode, node);
-                                state.graph.nodes.nodesList.unSelectNodes();
-                                state.selectedNode = null; // Desseleccionar el nodo después de agregar la arista
-                            } else {
-                                score_points -= 1;
-                            }
-                            console.log(score_points);
-                        }
+                 // hay un nodo debajo del ratón
+                 if(listaDeNodos.length > 0){
+                    nodeUnderMouse = listaDeNodos[0];
+                    if (state.selectedNode && state.selectedNode !== nodeUnderMouse) {
+                        nodoPrevioSelec = state.selectedNode;
+                        state.selectedNode = nodeUnderMouse;
+                        document.getElementById('node_label').value = state.selectedNode.label;
+                        
                     } else {
-                        // Seleccionar el nodo actual si no hay nodo seleccionado previamente
-                        state.selectedNode = node;
+                        state.selectedNode = nodeUnderMouse;
                         document.getElementById('node_label').value = state.selectedNode.label;
                     }
-                } else if (state.selectedNode != null) {
-                    // Si no hay nodos bajo el ratón, deseleccionar el nodo actual
-                    state.graph.nodes.nodesList.unSelectNodes();
-                    state.selectedNode = null;
-                }
+                 }
+                 
+
+
+
+
+                // if (listaDeNodos.length > 0) {
+                //     let node = listaDeNodos[0];
+                //     if (state.selectedNode) {
+                //         // Si hay un nodo previamente seleccionado y el nodo actual es diferente, intentar agregar una flecha
+                //         if (state.selectedNode !== node) {
+                //             // Verificar si la dirección es correcta según el año
+                //             let correctDirection = node.year > state.selectedNode.year;
+                //             if (correctDirection) {
+                //                 // Agregar la arista y hacerla visible
+                //                 addEdge(state, state.selectedNode, node, explicacion = '');
+                //                 score_points += 1;
+                //                 addEdgeToFinalPath(state.selectedNode, node);
+                //                 state.graph.nodes.nodesList.unSelectNodes();
+                //                 state.selectedNode = null; // Desseleccionar el nodo después de agregar la arista
+                //             } else {
+                //                 score_points -= 1;
+                //             }
+                //             console.log(score_points);
+                //         }
+                //     } else {
+                //         // Seleccionar el nodo actual si no hay nodo seleccionado previamente
+                //         state.selectedNode = node;
+                //         document.getElementById('node_label').value = state.selectedNode.label;
+                //     }
+                // } else if (state.selectedNode != null) {
+                //     // Si no hay nodos bajo el ratón, deseleccionar el nodo actual
+                //     state.graph.nodes.nodesList.unSelectNodes();
+                //     state.selectedNode = null;
+                // }
                 break;
             }
 

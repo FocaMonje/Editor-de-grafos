@@ -16,23 +16,23 @@ function enterTimeLineMode() {
     }
 
     // Iniciar el cronómetro
-    countdown = 30; // Reiniciar el tiempo del cronómetro
-    const timerElement = document.getElementById('timer'); // Asegúrate de que el ID es correcto
-    if (timerElement) {
-        timerElement.textContent = 'Tiempo: ' + countdown; // Mostrar el tiempo inicial
-        timerElement.style.display = 'block'; // Asegúrate de que el temporizador esté visible
-    }
+    // countdown = 30; // Reiniciar el tiempo del cronómetro
+    // const timerElement = document.getElementById('timer'); // Asegúrate de que el ID es correcto
+    // if (timerElement) {
+    //     timerElement.textContent = 'Tiempo: ' + countdown; // Mostrar el tiempo inicial
+    //     timerElement.style.display = 'block'; // Asegúrate de que el temporizador esté visible
+    // }
 
-    countdownInterval = setInterval(() => {
-        countdown--;
-        if (timerElement) {
-            timerElement.textContent = 'Tiempo: ' + countdown;
-        }
-        if (countdown <= 0) {
-            clearInterval(countdownInterval);
-            endGame();
-        }
-    }, 1000);
+    // countdownInterval = setInterval(() => {
+    //     countdown--;
+    //     if (timerElement) {
+    //         timerElement.textContent = 'Tiempo: ' + countdown;
+    //     }
+    //     if (countdown <= 0) {
+    //         clearInterval(countdownInterval);
+    //         endGame();
+    //     }
+    // }, 1000);
 
 
      // Ocultar todos los nodos y mostrar solo los seleccionados para el juego
@@ -42,9 +42,9 @@ function enterTimeLineMode() {
     const allNodes = [...state.graph.nodes.nodesList];
 
     let contador = 0;
-    while (contador < 5) {
+    while (contador < 10) {
         contador += 1;
-        const randomIndex = Math.floor(Math.random() * allNodes.length);
+        const randomIndex = randomIntFromInterval(0,allNodes.length);
         const selectedNode = allNodes.splice(randomIndex, 1)[0];
         for ( node of state.graph.nodes.nodesList){
             if(node.label == selectedNode.label){
