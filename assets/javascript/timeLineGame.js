@@ -44,7 +44,7 @@ function enterTimeLineMode() {
     let contador = 0;
     while (contador < 10) {
         contador += 1;
-        const randomIndex = randomIntFromInterval(0,allNodes.length);
+        const randomIndex = Math.floor(randomIntFromInterval(0,allNodes.length));
         const selectedNode = allNodes.splice(randomIndex, 1)[0];
         for ( node of state.graph.nodes.nodesList){
             if(node.label == selectedNode.label){
