@@ -55,6 +55,15 @@ class Node  {
         y = this.y;
        }
       
+       if(timeLineActive == true){
+        ellipse(this.x, y , r * (r/(r * zoomX) ), r * (r/(r * zoomY)));
+        fill(0);
+        strokeWeight(1);
+        textAlign(CENTER, CENTER);
+        textSize(this.size);
+        text(this.label, this.x, this.y + r / 2 + this.size / 2);  // para desplazar el texto hacia abajo
+        fill(255);
+       }
       
       ellipse(this.x, y , r * (r/(r * zoomX) ), r * (r/(r * zoomY)));
    
