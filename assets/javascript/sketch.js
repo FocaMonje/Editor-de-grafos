@@ -28,9 +28,16 @@ function draw() {
         }
         
     }
-  
-    state.graph.findNodesUnderMouse();
-    state.graph.findEdgeUnderMouse();
+    
+    if (state.modo = "editorMode"){
+        state.graph.findNodesUnderMouse();
+        state.graph.findEdgeUnderMouse();
+    }
+    if (state.modo = "timeLineMode"){
+        //findNodesUnderMouse(state.gameNodes);
+        //findEdgeUnderMouse(state.gameNodes);
+    }
+    
 
    
     state.graph.drawEdges();

@@ -20,8 +20,8 @@ class Node  {
     this.size = 20;
     this.visible = true;
 
-    this.xGame = random(canvas_width);
-    this.yGame = random(canvas_height - 100);
+    this.xGame = abs(scrollX) + random(canvas_width);
+    this.yGame = scrollY + random(canvas_height - 100);
     
   }
 

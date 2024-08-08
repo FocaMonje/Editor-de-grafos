@@ -56,6 +56,9 @@ class GraphManager {
     this.nodes.clear(); // Limpia los nodos existentes
     let nodeMap = {};
     for (let node of graph.nodes) {
+      if(node.id === undefined || node.year === undefined){
+        continue;
+      }
       let label = node.id;
       let year = node.year; // Asignar el año al nodo 
       

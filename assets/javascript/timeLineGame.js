@@ -39,16 +39,35 @@ function enterTimeLineMode() {
      state.graph.nodes.setAllNodesInvisible();
 
     // Seleccionar 6 nodos al azar y mostrarlos
-    const allNodes = [...state.graph.nodes.nodesList];
+    let allNodes = state.graph.nodes.nodesList;
+    console.log("allNodes: ", allNodes);
 
     let contador = 0;
     while (contador < 10) {
-        contador += 1;
-        const randomIndex = Math.floor(randomIntFromInterval(0,allNodes.length));
-        const selectedNode = allNodes.splice(randomIndex, 1)[0];
+        const randomIndex = Math.floor(randomIntFromInterval(0,allNodes.length - 1));
+        const selectedNode = allNodes.slice(randomIndex, randomIndex + 1)[0];  //allNodes.splice(randomIndex,  1);
+
+        // Mira de no seleccionar dos veces el mismo nodo
+        let nodoYaSeleccionado = false;
+        for ( node_ of state.gameNodes){
+            if(node_.label == selectedNode.label ){
+                nodoYaSeleccionado = true;
+            }
+        }
+        if (nodoYaSeleccionado == true){
+            nodoYaSeleccionado = false;
+            continue;
+        }
+        // Marca el nodo como seleccionado , lo hace visible y lo guarda en state.gameNodes 
         for ( node of state.graph.nodes.nodesList){
-            if(node.label == selectedNode.label){
+            if(node.label == selectedNode.label && node.visible == false){
+                
+                contador += 1;
+                if(contador > 10){
+                    break;
+                }
                 node.visible = true;
+                state.gameNodes.push(node);
             }
         }
     }

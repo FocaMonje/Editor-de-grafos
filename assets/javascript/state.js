@@ -10,6 +10,8 @@ class State {
         this.graph = new GraphManager(startNodes, startEdges);
         this.selectedNode = {};
         this.selectedEdge = {};
+
+        this.gameNodes = [];
     }
 
     get modo(){
