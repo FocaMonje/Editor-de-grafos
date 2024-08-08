@@ -95,4 +95,6 @@ function addEdgeToFinalPath(fromNode, toNode) {
         edges[fromKey] = [];
     }
     edges[fromKey].push(toNode);
+    console.log("addEdgeToFinalPath finalPath: ",finalPath);
+    console.log("addEdgeToFinalPath edges: ", edges);
 }
