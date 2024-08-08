@@ -19,6 +19,9 @@ class Node  {
     this.selected = false;
     this.size = 20;
     this.visible = true;
+
+    this.xGame = random(canvas_width);
+    this.yGame = random(canvas_height - 100);
     
   }
 
@@ -48,15 +51,24 @@ class Node  {
        }
  
       let r = 20;
-      //let y = canvas_height;
-       if (animating ){
-        y = animate(y, canvas_height, this.y,animationDuration);
-       } else{
+
+      let x = 0;
+      let y = 0;
+
+      if (state.mode == "timeLineMode"){
+        x = this.xGame;
+        y = this.yGame;
+      }
+      if (state.mode == "editorMode"){
+        x = this.x;
         y = this.y;
-       }
-      
-      
-      ellipse(this.x, y , r * (r/(r * zoomX) ), r * (r/(r * zoomY)));
+      }
+      if (state.mode == "animationMode"){
+        x = animate(x, this.xGame, this.x, animationDuration);
+        y = animate(y, this.yGame, this.y, animationDuration);
+      }
+        
+      ellipse(x, y , r * (r/(r * zoomX) ), r * (r/(r * zoomY)));
    
       fill(0);
       strokeWeight(1);
