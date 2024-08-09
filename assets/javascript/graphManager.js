@@ -119,7 +119,20 @@ class GraphManager {
   }
 
   drawEdges() {
-    this.edges.edgesList.forEach(edge => {
+
+    let listaArcos = [];
+
+    if (state.mode == "timeLineMode"){
+     listaArcos = state.gameEdges;
+    }
+    if (state.mode == "editorMode"){
+      listaArcos = this.edges.edgesList;
+    }
+    if (state.mode == "animationMode"){
+      listaArcos = [];
+    }
+
+    listaArcos.forEach(edge => {
       if (edge.visible) {
           edge.draw();
       }

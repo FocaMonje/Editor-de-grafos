@@ -103,7 +103,7 @@ function executeByMode() {
                 
                             if (state.selectedNode.year > nodoPrevioSelec.year) {
                                 // Agregar la arista y hacerla visible
-                                addEdge(state, nodoPrevioSelec, state.selectedNode, explicacion = 'arco correcto juego');
+                                addGameEdge(nodoPrevioSelec, state.selectedNode, explicacion = 'arco correcto juego');
                                 score_points += 1;
                                 addEdgeToFinalPath(state.selectedNode, node);
                                 state.graph.nodes.unSelectNodes();
