@@ -68,6 +68,8 @@ function enterTimeLineMode() {
                 }
                 node.visible = true;
                 state.gameNodes.push(node);
+                state.gameNodes.sort((a, b) => a.year - b.year);
+                console.log (state.gameNodes);
             }
         }
     }

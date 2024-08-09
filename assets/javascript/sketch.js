@@ -30,7 +30,7 @@ function draw() {
     }
     
     
-    //state.graph.findEdgeUnderMouse();
+    state.graph.findEdgeUnderMouse();
 
     findNodesUnderMouse();
    

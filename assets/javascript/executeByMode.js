@@ -101,16 +101,19 @@ function executeByMode() {
                         state.selectedNode = nodeUnderMouse;
                         document.getElementById('node_label').value = state.selectedNode.label;
                 
-                            if (state.selectedNode.year > nodoPrevioSelec.year) {
-                                // Agregar la arista y hacerla visible
-                                addGameEdge(nodoPrevioSelec, state.selectedNode, explicacion = 'arco correcto juego');
-                                score_points += 1;
-                                addEdgeToFinalPath(state.selectedNode, node);
-                                state.graph.nodes.unSelectNodes();
-        
-                            } else {
-                                score_points -= 1;
-                            }
+                        // Verificar si el nodo bajo el ratón es el siguiente nodo más moderno en la lista
+                        let indexPrevioSelec = state.gameNodes.findIndex(node => node.label === nodoPrevioSelec.label);
+                        let indexActual = state.gameNodes.findIndex(node => node.label === state.selectedNode.label);
+
+                        if (indexActual === indexPrevioSelec + 1) {
+                            // Agregar la arista y hacerla visible
+                            addGameEdge(nodoPrevioSelec, state.selectedNode, 'arco correcto juego');
+                            score_points += 1;
+                            addEdgeToFinalPath(state.selectedNode, nodoPrevioSelec);
+                            state.graph.nodes.unSelectNodes();
+                        } else {
+                            score_points -= 1;
+                        }
                             console.log(score_points);
                         
                     } 
