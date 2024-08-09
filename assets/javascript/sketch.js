@@ -18,17 +18,6 @@ function draw() {
     push();
     translate(scrollX , scrollY);
     scale(zoomX,zoomY);
-
-    if (animating) {
-       
-        for (let i = 0; i < state.graph.nodes.nodesList.length; i++) {
-            let node = state.graph.nodes.nodesList[i];
-            startPositions[i] = canvas_height;
-            endPositions[i] = node.y;
-        }
-        
-    }
-    
     
     state.graph.findEdgeUnderMouse();
 
