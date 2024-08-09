@@ -58,6 +58,14 @@ class Node  {
       if (state.mode == "timeLineMode"){
         x = this.xGame;
         y = this.yGame;
+
+        ellipse(x, y , r * (r/(r * zoomX) ), r * (r/(r * zoomY)));
+        fill(0);
+        strokeWeight(1);
+        textAlign(CENTER, CENTER);
+        textSize(this.size);
+        text(this.label, this.xGame, this.yGame + r / 2 + this.size / 2);  // para desplazar el texto hacia abajo
+        fill(255);
       }
       if (state.mode == "editorMode"){
         x = this.x;
