@@ -25,7 +25,20 @@ class Edges {
   }
 
   draw() {
-    for (let edge of this.edgesList) {
+
+    let listaArcos = [];
+
+    if (state.mode == "timeLineMode"){
+     listaArcos = state.gameEdges;
+    }
+    if (state.mode == "editorMode"){
+      listaArcos = this.edgesList;
+    }
+    if (state.mode == "animationMode"){
+      listaArcos = [];
+    }
+    
+    for (let edge of listaArcos) {
       edge.draw();
     }
   }
@@ -42,4 +55,8 @@ class Edges {
       edge.selected = false;
     }
   }
+}
+
+function addGameEdge(source, target, explicacion = '') {
+  state.gameEdges.push(new Edge(source, target, explicacion));
 }

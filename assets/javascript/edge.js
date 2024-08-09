@@ -54,10 +54,24 @@ class Edge {
   draw() {
     if (this.visible) { // Dibuja solo si es visible
       strokeWeight(this.selected ? 4 : 1);
-  
-      let coordsSource = coordRealesCanvas(this.source.year, this.source.valencia);
-      let coordsTarget = coordRealesCanvas(this.target.year, this.target.valencia);
 
+      let coordsSource = 0;
+      let coordsTarget = 0;
+
+      if (state.mode == "timeLineMode"){
+        coordsSource = {x: this.source.xGame, y: this.source.yGame};
+        coordsTarget = {x: this.target.xGame, y: this.target.yGame};
+        
+       }
+       if (state.mode == "editorMode"){
+        coordsSource = coordRealesCanvas(this.source.year, this.source.valencia);
+        coordsTarget = coordRealesCanvas(this.target.year, this.target.valencia);
+         
+       }
+       if (state.mode == "animationMode"){
+         
+       }
+       
       this.drawArrow(coordsSource.x, coordsSource.y, coordsTarget.x, coordsTarget.y, this.source.size/3);
     }
    
