@@ -83,13 +83,13 @@ function centerCanvas(cnv) {
     cnv.position(x, y);
 }
 
-function draw_grid(w, h){
+function draw_grid(w, h, alpha_val){
 
     let colorGrid = color(0,150,150);
   
     push();
     for (let i = initYear; i < lastYear; i += 100){
-      colorGrid.setAlpha(75);
+      colorGrid.setAlpha(alpha_val);
       stroke(colorGrid);
       line(i, 0, i, h);
       fill(colorGrid);
@@ -100,7 +100,7 @@ function draw_grid(w, h){
     
     let cont = 0;
     for (let i = alturaDibujo; i > 0; i -= Math.floor(alturaDibujo / maxVal)){
-      colorGrid.setAlpha(75);
+      colorGrid.setAlpha(alpha_val);
       stroke(colorGrid);
       line(initYear +  35 ,i, initYear + lastYear, i);
       fill(colorGrid);
@@ -243,42 +243,7 @@ function adjustValencia(){
   }
 }
 
-function graphAnimation() {
-  if (animating) return;
 
-  if (!state.graph.nodes || !state.graph.nodes.nodesList) {
-      console.error("Error: state.graph.nodes.nodesList is undefined");
-      return;
-  }
-
-  // Verificar el estado de los nodos
-  console.log("Nodos antes de ajustar:");
-  state.graph.nodes.nodesList.forEach(node => {
-      console.log(`Nodo ${node.label}: (${node.x}, ${node.y})`);
-  });
-
-  animating = true;
-  animationStart = millis();
-
-  startPositions = state.graph.nodes.nodesList.map(node => ({
-      x: node.x,
-      y: node.y
-  }));
-
-  endPositions = state.graph.nodes.nodesList.map(node => {
-      let coords = coordCanvasReales(node.year, node.valencia);
-      return {
-          x: node.x,
-          y: coords.y
-      };
-  });
-
-  // Verificar las posiciones de inicio y fin
-  console.log("Posiciones de inicio:", startPositions);
-  console.log("Posiciones de fin:", endPositions);
-
-  loop(); // Inicia el bucle de animación
-}
 
 function initAnimation(){
   animationStart = millis();
@@ -299,17 +264,14 @@ function randomIntFromInterval(min, max) { // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-// function timeLine(y, y1, y2, interval){
-  
-//   if (y <= y2) {
-//     console.log("Soy el if que para la animación")
-//     timeLineActive = false;
+function* alphaMaker() {
+  let alpha = 0;
+  while (alpha < 255) {
+    if(alpha == 254 ){
+      alpha = 0;
+    }
+    yield alpha++;
+  }
+}
 
-// 	  return y;
-// 	}
-//   // map our keyframe time https://p5js.org/reference/p5/map/
-//   t = map(millis(), animationStart, animationStart + interval, 0.0, 1.0);
-//   // use the time to average our two points
-//   y = y1 * (1 - t) + y2 * t;
-//   return y;
-// }
+const genAlpha = alphaMaker();

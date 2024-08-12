@@ -46,7 +46,7 @@ let inventos;
 let initYear = 1000;
 let lastYear = 2100;
 let maxVal = 30;
-let scrollX = -1 * initYear;
+let scrollX = -1140;
 let scrollY = 10;
 let zoomX = 1;
 let zoomY = 1;

@@ -81,31 +81,6 @@ class GraphManager {
     }
 
 
-  // rebuildGraph(graph) {
-  //   this.nodes.clear(); // Limpia los nodos existentes
-    
-  //   GraphManager.createNodesEdgesFromJson(graph, this);
-
-  //   this.prepareJSONObject();
-
-
-  //   /* ------------------------------------ */
-
-  //   /* Codigo de prueba */
-
-
-  //   /*-------------------------------------- */
-  
-  //   console.log("Grafo original: " , this.nodes.nodesList );
-  //   let grafoNuevo = this.addNode(new Node("nuevo", 10, 1700));
-  //   console.log();
-  //   console.log("Grafo Nuevo: ", grafoNuevo.nodes.nodesList);
-  //   console.log("Grafo original: " , this );
-
-
-  
-  // }
-
   addEdge(node1, node2, explicacion = '') {
     this.edges.addEdge(node1, node2, explicacion);
   }
@@ -116,6 +91,20 @@ class GraphManager {
 
   removeEdge(edge) {
     this.edges.edgesList = grafoNuevo.edges.edgesList.filter(e => e !== edge);
+  }
+
+  drawGraph(){
+    this.drawEdges();
+    this.drawNodes();
+
+    if (state.mode == "editorMode"){
+      draw_grid(width, height, 75);
+    }
+
+    if (state.mode == "animationMode"){
+      draw_grid(width, height, genAlpha.next().value);
+    }
+    
   }
 
   drawEdges() {
@@ -139,7 +128,7 @@ class GraphManager {
     });
   }
 
-  drawNodes(size){
+  drawNodes(size=10){
     this.nodes.nodesList.forEach(node => {
       if (node.visible) {
           node.draw(size);

@@ -23,23 +23,7 @@ function draw() {
 
     findNodesUnderMouse();
    
-    
-    state.graph.drawEdges();
-    state.graph.drawNodes(10); //slider_node_size.value() Aquí se usa el valor del deslizador para el tamaño
-
-    draw_grid(width, height);
-    
-    if (gameModeActive) {
-        checkGameCompletion();
-    }
-
-    if (gameMode2Active) {
-        checkGameCompletion2();
-    }
-
-    if (timeLineActive) {
-        checkGameCompletion();
-    }
+    state.graph.drawGraph();
 }
 
 function mousePressed(){
