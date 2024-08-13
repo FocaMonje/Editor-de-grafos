@@ -11,7 +11,7 @@ class State {
         this.selectedNode = {};
         this.selectedEdge = {};
 
-        this.numNodesGame = 10;
+        this.numNodesGame = 4;
         this.gameNodes = [];
         this.gameEdges = [];
         this.nodesUnderMouse = []

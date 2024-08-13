@@ -111,7 +111,7 @@ function executeByMode() {
                             score_points += 1;
                             addEdgeToFinalPath(state.selectedNode, nodoPrevioSelec);
                             state.graph.nodes.unSelectNodes();
-                            if (state.gameEdges.length == 2){
+                            if (state.gameEdges.length == state.numNodesGame - 1){
                                initAnimation();
                             }
                         } else {
