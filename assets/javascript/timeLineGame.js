@@ -43,7 +43,7 @@ function enterTimeLineMode() {
     console.log("allNodes: ", allNodes);
 
     let contador = 0;
-    while (contador < 3) {
+    while (contador < state.numNodesGame) {
         const randomIndex = Math.floor(randomIntFromInterval(0,allNodes.length - 1));
         const selectedNode = allNodes.slice(randomIndex, randomIndex + 1)[0];  //allNodes.splice(randomIndex,  1);
 
@@ -73,6 +73,32 @@ function enterTimeLineMode() {
             }
         }
     }
+    // Distribuye los nodos en pantalla sin que se toquen
+    const espaciado = 150;
+    var nodosEspaciados = [];
+    var ind = 0;
+
+    while( nodosEspaciados.length < state.gameNodes.length){
+        var nodo = state.gameNodes[ind];
+        nodo.xGame = randomIntFromInterval(1200, 1900);
+        nodo.yGame = randomIntFromInterval(40, 400);
+
+        // ¿Se superpone a otro nodo?
+        var overlapping = false;
+        for ( var i = 0; i < nodosEspaciados.length; i++  ){
+            var otroNodo = nodosEspaciados[i];
+            var d = dist(nodo.xGame, nodo.yGame, otroNodo.xGame, otroNodo.yGame);
+            if (d < espaciado) {
+                overlapping = true;
+              }
+        }
+         // If not keep it!
+    if (!overlapping) {
+        nodosEspaciados.push(nodo);
+        ind += 1;
+      }
+    }
+    
     state.selectedNode = {};
     state.graph.prepareJSONObject(); // Actualizar el gráfico
 }
