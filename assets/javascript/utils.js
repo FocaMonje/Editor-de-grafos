@@ -248,7 +248,7 @@ function adjustValencia(){
 function initAnimation(){
   animationStart = millis();
   state.mode = "animationMode";
-  setTimeout( function() { state.mode = "editorMode"; }, animationDuration);
+  setTimeout( function() { state.mode = "solutionMode"; }, animationDuration);
 }
 
 function animate(y, y1, y2, interval){

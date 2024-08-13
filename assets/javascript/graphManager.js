@@ -97,7 +97,7 @@ class GraphManager {
     this.drawEdges();
     this.drawNodes();
 
-    if (state.mode == "editorMode"){
+    if (state.mode == "editorMode" || state.mode == "solutionMode"){
       draw_grid(width, height, 75);
     }
 

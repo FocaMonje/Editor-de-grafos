@@ -17,7 +17,7 @@ class Node  {
       console.log("Error en los argumentos del constructor de Node");
     }
     this.selected = false;
-    this.size = 20;
+    this.size = 50;
     this.visible = true;
 
     this.xGame = abs(scrollX) + random(canvas_width);
@@ -38,17 +38,6 @@ class Node  {
   draw(size) {
     if (this.visible) { // Solo dibuja si el nodo es visible
       this.size = size;
-      if (this.label==state.selectedNode.label) {
-          strokeWeight(6);
-          stroke(51);
-      }
-
-      for (let node of state.nodesUnderMouse){
-        if(this.label == node.label){
-          strokeWeight(4);
-          stroke(51);
-        }
-       }
  
       let r = 20;
 
@@ -58,14 +47,12 @@ class Node  {
       if (state.mode == "timeLineMode"){
         x = this.xGame;
         y = this.yGame;
-
-        ellipse(x, y , r * (r/(r * zoomX) ), r * (r/(r * zoomY)));
-        fill(0);
-        strokeWeight(1);
         textAlign(CENTER, CENTER);
         textSize(this.size);
+        fill(0);
         text(this.label, this.xGame, this.yGame + r / 2 + this.size / 2);  // para desplazar el texto hacia abajo
-        fill(255);
+        stroke(0);
+        
       }
       if (state.mode == "editorMode"){
         x = this.x;
@@ -74,15 +61,40 @@ class Node  {
       if (state.mode == "animationMode"){
         x = animate(x, this.xGame, this.x, animationDuration);
         y = animate(y, this.yGame, this.y, animationDuration);
+        textAlign(CENTER, CENTER);
+        textSize(this.size);
+        fill(0);
+        text(this.label, x, y + r / 2 + this.size / 2);
+        stroke(0);
+        
+      }
+      if (state.mode == "solutionMode"){
+        x = this.x;
+        y = this.y;
+        textAlign(CENTER, CENTER);
+        textSize(this.size);
+        fill(0);
+        text(this.label, x, y + r / 2 + this.size / 2);
+        stroke(0);
+      }
+
+      if (this.label==state.selectedNode.label) {
+        strokeWeight(6);
+        stroke(51);
+      }
+
+      for (let node of state.nodesUnderMouse){
+        if(this.label == node.label){
+          strokeWeight(4);
+          stroke(51);
+        }
       }
         
+      fill(255);
       ellipse(x, y , r * (r/(r * zoomX) ), r * (r/(r * zoomY)));
    
       fill(0);
       strokeWeight(1);
-      textAlign(CENTER, CENTER);
-      textSize(this.size);
-      //text(this.label, this.x, this.y);
       fill(255);
     }
   }
