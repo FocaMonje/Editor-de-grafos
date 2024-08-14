@@ -1,8 +1,5 @@
 
 function enterTimeLineMode() {
-    
-    // const button = document.getElementById('modeDropdown');
-    // button.textContent = 'Exit Time Line Mode'; // Cambiar texto del botón
 
     // Ocultar las flechas (edges) y asegurar que los nodos sean visibles
     state.graph.edges.edgesList.forEach(edge => {
@@ -38,7 +35,8 @@ function enterTimeLineMode() {
      // Ocultar todos los nodos y mostrar solo los seleccionados para el juego
      state.graph.nodes.setAllNodesInvisible();
 
-    // Seleccionar 6 nodos al azar y mostrarlos
+    // Seleccionar state.numNodesGame nodos al azar y guardarlos en state.gameNodes = [];
+    state.gameNodes = [];
     let allNodes = state.graph.nodes.nodesList;
     console.log("allNodes: ", allNodes);
 
@@ -141,16 +139,6 @@ function exitTimeLineMode() {
 }
 
 
-
-function hideScore() {
-    const scoreElement = document.getElementById('score'); // Asegúrate de que el ID es correcto
-    if (scoreElement){
-        scoreElement.style('display', 'none');
-     }   
-}
-
-
-
 // Función para terminar el juego y evaluar la puntuación
 function endGame() {
     clearInterval(countdownInterval); // Detener el cronómetro
@@ -158,11 +146,7 @@ function endGame() {
     displayScore(points);
 }
 
-// Función para mostrar la puntuación
-function displayScore(points) {
-    scoreDisplay.html(`Puntuación: ${points}`); // Mostrar la puntuación en el elemento HTML correspondiente
-    scoreDisplay.style('display', 'block'); // Asegurarse de que el elemento sea visible
-}
+
 
 function updateScore(points = 1){
 

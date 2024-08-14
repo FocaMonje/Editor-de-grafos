@@ -112,7 +112,14 @@ function executeByMode() {
                             addEdgeToFinalPath(state.selectedNode, nodoPrevioSelec);
                             state.graph.nodes.unSelectNodes();
                             if (state.gameEdges.length == state.numNodesGame - 1){
-                               setTimeout(initAnimation, 2000);
+                                //  initAnimation --> animationMode --> solutionMode --> (numNodesGame += 1) --> timeLineMode
+                                setTimeout(initAnimation, 2000);
+                                setTimeout(function() { state.mode = "timeLineMode";
+                                                        state.numNodesGame += 1;
+                                                        state.gameNodes = [];
+                                                        state.gameEdges = [];
+                                                        enterTimeLineMode(); }
+                                                        , 6000);
                             }
                         } else {
                             updateScore(-1);

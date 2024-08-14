@@ -245,21 +245,6 @@ function adjustValencia(){
 
 
 
-function initAnimation(){
-  animationStart = millis();
-  state.mode = "animationMode";
-  setTimeout( function() { state.mode = "solutionMode"; }, animationDuration);
-}
-
-function animate(y, y1, y2, interval){
-
-  // map our keyframe time https://p5js.org/reference/p5/map/
-  t = map(millis(), animationStart, animationStart + interval, 0.0, 1.0);
-  // use the time to average our two points
-  y = y1 * (1 - t) + y2 * t;
-  return y;
-}
-
 function randomIntFromInterval(min, max) { // min and max included 
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
