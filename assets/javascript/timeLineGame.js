@@ -16,23 +16,23 @@ function enterTimeLineMode() {
     }
 
     // Iniciar el cronómetro
-    // countdown = 30; // Reiniciar el tiempo del cronómetro
-    // const timerElement = document.getElementById('timer'); // Asegúrate de que el ID es correcto
-    // if (timerElement) {
-    //     timerElement.textContent = 'Tiempo: ' + countdown; // Mostrar el tiempo inicial
-    //     timerElement.style.display = 'block'; // Asegúrate de que el temporizador esté visible
-    // }
+    countdown = 30; // Reiniciar el tiempo del cronómetro
+    const timerElement = document.getElementById('timer'); // Asegúrate de que el ID es correcto
+    if (timerElement) {
+        timerElement.textContent = 'Time: ' + countdown; // Mostrar el tiempo inicial
+        timerElement.style.display = 'block'; // Asegúrate de que el temporizador esté visible
+    }
 
-    // countdownInterval = setInterval(() => {
-    //     countdown--;
-    //     if (timerElement) {
-    //         timerElement.textContent = 'Tiempo: ' + countdown;
-    //     }
-    //     if (countdown <= 0) {
-    //         clearInterval(countdownInterval);
-    //         endGame();
-    //     }
-    // }, 1000);
+    countdownInterval = setInterval(() => {
+        countdown--;
+        if (timerElement) {
+            timerElement.textContent = 'Tiempo: ' + countdown;
+        }
+        if (countdown <= 0) {
+            clearInterval(countdownInterval);
+            endGame();
+        }
+    }, 1000);
 
 
      // Ocultar todos los nodos y mostrar solo los seleccionados para el juego
@@ -140,3 +140,42 @@ function exitTimeLineMode() {
     }
 }
 
+
+
+function hideScore() {
+    const scoreElement = document.getElementById('score'); // Asegúrate de que el ID es correcto
+    if (scoreElement){
+        scoreElement.style('display', 'none');
+     }   
+}
+
+
+
+// Función para terminar el juego y evaluar la puntuación
+function endGame() {
+    clearInterval(countdownInterval); // Detener el cronómetro
+    let points = evaluateScorePoints();
+    displayScore(points);
+}
+
+// Función para mostrar la puntuación
+function displayScore(points) {
+    scoreDisplay.html(`Puntuación: ${points}`); // Mostrar la puntuación en el elemento HTML correspondiente
+    scoreDisplay.style('display', 'block'); // Asegurarse de que el elemento sea visible
+}
+
+function updateScore(points = 1){
+
+    state.score += points ;
+    const scoreElement = document.getElementById('score'); // Asegúrate de que el ID es correcto
+    if (scoreElement) {
+        scoreElement.textContent = 'Score: ' + state.score; // Mostrar el tiempo inicial
+        scoreElement.style.display = 'block'; // Asegúrate de que el temporizador esté visible
+    }
+    if(points > 0){
+        scoreElement.style.color = "green";
+    } else {
+        scoreElement.style.color = "red";
+    }
+
+}

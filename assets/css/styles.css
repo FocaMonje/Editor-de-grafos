@@ -48,7 +48,7 @@ button {
     display: none;
 }
 #game-over-window {
-    display: none; 
+    /* display: none;  */
     position: absolute; 
     top: 50%; 
     left: 50%; 
@@ -58,22 +58,18 @@ button {
     border: 2px solid black;
 }
 
-#scoreDisplay {
-    display:none;
-    position: absolute; 
-    top: 30%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
-    padding: 20px; 
-    background: white; 
-    border: 2px solid black;
+#score {
+    /* display:none; */
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
 }
 
 #timer {
     font-size: 20px;
     font-weight: bold;
     margin-top: 10px;
-    display: none;
+    /* display: none;  */
 }
 
 #navigation-controls {

@@ -14,6 +14,7 @@ class State {
         this.numNodesGame = 4;
         this.gameNodes = [];
         this.gameEdges = [];
+        this.score = 0;
         this.nodesUnderMouse = []
     }
 

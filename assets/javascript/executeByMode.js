@@ -108,16 +108,16 @@ function executeByMode() {
                         if (indexActual === indexPrevioSelec + 1) {
                             // Agregar la arista y hacerla visible
                             addGameEdge(nodoPrevioSelec, state.selectedNode, 'arco correcto juego');
-                            score_points += 1;
+                            updateScore(1);
                             addEdgeToFinalPath(state.selectedNode, nodoPrevioSelec);
                             state.graph.nodes.unSelectNodes();
                             if (state.gameEdges.length == state.numNodesGame - 1){
-                               initAnimation();
+                               setTimeout(initAnimation, 2000);
                             }
                         } else {
-                            score_points -= 1;
+                            updateScore(-1);
                         }
-                            console.log(score_points);
+                            console.log(state.score);
                         
                     } 
                     if (state.selectedNode.label == undefined){
@@ -133,156 +133,3 @@ function executeByMode() {
     }
 }
        
-
-        /*
-        switch (workMode) {
-        
-            case 'gameMode':{
-
-                 // Lógica para verificar si el jugador acierta
-                 //let node = activeNodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
-                 if (node) {
-                     if (activeNodes.nodeSelected !== null && activeNodes.nodeSelected !== node) {
-                         let correctDirection = state.graph.edges.edgesList.some(edge => {
-                             return edge.source === activeNodes.nodeSelected && edge.target === node;
-                         });
-                         if (correctDirection) {
-                             state.graph.edges.edgesList.forEach(edge => {
-                                 if (edge.source === activeNodes.nodeSelected && edge.target === node) {
-                                     edge.visible = true;
-                                 }
-                             });
-                             score_points += 1 ;
-                             addEdgeToFinalPath(activeNodes.nodeSelected, node); // Añadir arista propuesta
-                         }
-                         else {
-                            score_points -= 1 ;
-                         }
-                         activeNodes.unSelectNodes();
-                         console.log(score_points);
-                     } else if (activeNodes.nodeSelected === null && node.selected === false) {
-                         activeNodes.selectNode(node);
-                         labelInput.value(node.label);
-                     } } else if (activeNodes.nodeSelected != null) {
-                        activeNodes.unSelectNodes();
-                    }
-                break;
-            }
-
-            case 'gameMode2': {
-                //let node = activeNodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
-                if (node) {
-                    if (activeNodes.nodeSelected !== null && activeNodes.nodeSelected !== node) {
-                        let correctDirection = state.graph.edges.edgesList.some(edge => {
-                            return edge.source === activeNodes.nodeSelected && edge.target === node;
-                        });
-                        if (correctDirection) {
-                            state.graph.edges.edgesList.forEach(edge => {
-                                if (edge.source === activeNodes.nodeSelected && edge.target === node) {
-                                    edge.visible = true;
-                                }
-                            });
-                            score_points += 1;
-                            addEdgeToFinalPath(activeNodes.nodeSelected, node); // Añadir arista propuesta
-                        } else {
-                            score_points -= 1;
-                        }
-                        activeNodes.unSelectNodes();
-                        console.log(score_points);
-                    } else if (activeNodes.nodeSelected === null && node.selected === false) {
-                        activeNodes.selectNode(node);
-                        labelInput.value(node.label);
-                    }
-                } else if (activeNodes.nodeSelected != null) {
-                    activeNodes.unSelectNodes();
-                }
-                break;
-            }
-
-            case 'drawMode': {
-  
-                if (node != null) {
-                    if (activeNodes.nodeSelected !== null && activeNodes.nodeSelected !== node) {
-                        // Crear una arista entre el nodo previamente seleccionado y el nodo actual
-                        state.graph.addEdge(activeNodes.nodeSelected, node);
-                        activeNodes.unSelectNodes(); // Deseleccionar todos los nodos
-                    } else if (activeNodes.nodeSelected === null && !node.selected) {
-                        // Seleccionar el nodo si no hay ninguno seleccionado
-                        activeNodes.selectNode(node);
-                        labelInput.value(node.label); // Actualizar con el nombre del nodo
-                    }
-                } else {
-                    if (edge != null) {
-                        // Si la arista ya está seleccionada, deseleccionarla
-                        if (state.graph.edges.selectedEdge === edge) {
-                            state.graph.edges.unselectEdges();
-                            edgeInput.value('');
-                        } else {
-                            // Seleccionar la arista y actualizar el campo de entrada de la arista
-                            state.graph.edges.selectEdge(edge);
-                            edgeInput.value(edge.explicacion); // Actualizar con la explicación de la arista
-                        }
-                        break;
-                    }
-                    // Si no se hizo clic en ningún nodo existente ni en ninguna arista, considerar agregar un nuevo nodo
-                    else {
-                        let label = nodeCounter.toString();
-                        let size = slider_node_size.value();
-                        let coordenadas = coordCanvasReales(mouseX, mouseY);
-                        let year = coordenadas.x; // Asegúrate de obtener las coordenadas correctas
-                        let newNode = activeNodes.addNode(label, size, year); // Añadir un nuevo nodo al grafo      
-                        nodeCounter++; // Incrementar el contador de nodos
-                    }
-                }
-                break;
-            }
-
-            case 'deleteMode': {
-                let edge = state.graph.edges.findEdge(mouseXAdj, mouseYAdj);
-                if (edge) {
-                    state.graph.edges.removeEdge(edge);
-                    return;
-                }
-
-                let node = activeNodes.findNode(mouseXAdj, mouseYAdj);
-                if (node) {
-                    activeNodes.removeNode(node);
-                    state.graph.removeEdgesConnectedToNode(node);
-                }
-                break;
-            }
-            case 'animationMode': {
-                startAnimation();
-                break;
-            }
-
-            case 'timeLineMode': {
-                //let node = activeNodes.findNode(mouseXAdj, mouseYAdj, slider_node_size.value(), zoomFactor);
-                if (node) {
-                    if (activeNodes.masterNodeselected !== null && activeNodes.nodeSelected !== node) {
-                        // Verificar si la dirección es correcta según el año
-                        let correctDirection = node.year > activeNodes.nodeSelected.year;
-                        if (correctDirection) {
-                            // Agregar la arista y hacerla visible
-                            state.graph.edges.addEdge(activeNodes.nodeSelected, node);
-                            score_points += 1;
-                            addEdgeToFinalPath(activeNodes.nodeSelected, node); // Añadir arista propuesta
-                        } else {
-                            score_points -= 1;
-                        }
-                        activeNodes.unSelectNodes();
-                        console.log(score_points);
-                    } else if (activeNodes.nodeSelected === null && node.selected === false) {
-                        activeNodes.selectNode(node);
-                        labelInput.value(node.label);
-                    }
-                } else if (activeNodes.activeNodeselected != null) {
-                    activeNodes.unSelectactiveNodes();
-                }
-                break;
-            }
-            
-        }
-    }
-}
-*/
