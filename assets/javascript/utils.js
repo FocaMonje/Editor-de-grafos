@@ -249,14 +249,4 @@ function randomIntFromInterval(min, max) { // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function* alphaMaker() {
-  let alpha = 0;
-  while (alpha < 255) {
-    if(alpha == 254 ){
-      alpha = 0;
-    }
-    yield alpha++;
-  }
-}
 
-const genAlpha = alphaMaker();

@@ -12,6 +12,7 @@ class State {
         this.selectedEdge = {};
 
         this.numNodesGame = 2;
+        this.countdown = 120; // Cronometro del Juego
         this.gameNodes = [];
         this.gameEdges = [];
         this.score = 0;

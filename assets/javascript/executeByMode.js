@@ -98,22 +98,26 @@ function executeByMode() {
                     
                     if (state.selectedNode.label != undefined && state.selectedNode.label !== nodeUnderMouse.label) {
                         nodoPrevioSelec = state.selectedNode;
-                        state.selectedNode = nodeUnderMouse;
+                        
                         document.getElementById('node_label').value = state.selectedNode.label;
                 
                         // Verificar si el nodo bajo el ratón es el siguiente nodo más moderno en la lista
                         let indexPrevioSelec = state.gameNodes.findIndex(node => node.label === nodoPrevioSelec.label);
-                        let indexActual = state.gameNodes.findIndex(node => node.label === state.selectedNode.label);
+                        let indexActual = state.gameNodes.findIndex(node => node.label === nodeUnderMouse.label);
 
                         if (indexActual === indexPrevioSelec + 1) {
                             // Agregar la arista y hacerla visible
+                            state.selectedNode = nodeUnderMouse;
                             addGameEdge(nodoPrevioSelec, state.selectedNode, 'arco correcto juego');
                             updateScore(1);
-                            addEdgeToFinalPath(state.selectedNode, nodoPrevioSelec);
+                            
                             state.graph.nodes.unSelectNodes();
                             if (state.gameEdges.length == state.numNodesGame - 1){
                                 //  initAnimation --> animationMode --> solutionMode --> (numNodesGame += 1) --> timeLineMode
-                                setTimeout(initAnimation, 2000);
+                                setTimeout(function(){initNodeAnimation();
+                                                        initGridAnimation();}
+                                                        , 2000);
+                                
                                 setTimeout(function() { state.mode = "timeLineMode";
                                                         state.numNodesGame += 1;
                                                         state.gameNodes = [];

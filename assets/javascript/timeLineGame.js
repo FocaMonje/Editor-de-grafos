@@ -1,3 +1,29 @@
+function initTimeLineMode(){
+
+    const timerElement = document.getElementById('timer'); // Asegúrate de que el ID es correcto
+    if (timerElement) {
+        timerElement.textContent = 'Time: ' + state.countdown; // Mostrar el tiempo inicial
+        timerElement.style.display = 'block'; // Asegúrate de que el temporizador esté visible
+    }
+
+    countdownInterval = setInterval(() => {
+        state.countdown--;
+        if (timerElement) {
+            timerElement.textContent = 'Tiempo: ' + state.countdown;
+        }
+        if (state.countdown <= 0) {
+            clearInterval(countdownInterval);
+            endGame();
+        }
+    }, 1000);
+
+    checkTimeLineModeInterval = setInterval(() => {
+        if(state.countdown <= 0){
+            endTimeLineMode();
+        }
+    },500);
+
+}
 
 function enterTimeLineMode() {
 
@@ -12,26 +38,6 @@ function enterTimeLineMode() {
         gameOverWindow.style.display = 'none'; // Asegúrate de que esta línea está correcta
     }
 
-    // Iniciar el cronómetro
-    countdown = 30; // Reiniciar el tiempo del cronómetro
-    const timerElement = document.getElementById('timer'); // Asegúrate de que el ID es correcto
-    if (timerElement) {
-        timerElement.textContent = 'Time: ' + countdown; // Mostrar el tiempo inicial
-        timerElement.style.display = 'block'; // Asegúrate de que el temporizador esté visible
-    }
-
-    countdownInterval = setInterval(() => {
-        countdown--;
-        if (timerElement) {
-            timerElement.textContent = 'Tiempo: ' + countdown;
-        }
-        if (countdown <= 0) {
-            clearInterval(countdownInterval);
-            endGame();
-        }
-    }, 1000);
-
-
      // Ocultar todos los nodos y mostrar solo los seleccionados para el juego
      state.graph.nodes.setAllNodesInvisible();
 
@@ -43,7 +49,7 @@ function enterTimeLineMode() {
     let contador = 0;
     while (contador < state.numNodesGame) {
         const randomIndex = Math.floor(randomIntFromInterval(0,allNodes.length - 1));
-        const selectedNode = allNodes.slice(randomIndex, randomIndex + 1)[0];  //allNodes.splice(randomIndex,  1);
+        const selectedNode = allNodes.slice(randomIndex, randomIndex + 1)[0];  
 
         // Mira de no seleccionar dos veces el mismo nodo
         let nodoYaSeleccionado = false;
@@ -97,55 +103,9 @@ function enterTimeLineMode() {
       }
     }
     
-    state.selectedNode = {};
+    state.selectedNode = state.gameNodes[0];
     state.graph.prepareJSONObject(); // Actualizar el gráfico
 }
-
-
-
-function exitTimeLineMode() {
-    state.mode = "editorMode";
-    // const button = document.getElementById('modeDropdown');
-    // button.textContent = 'Time Line'; // Restaurar texto original del botón
-
-    hideScore();
-    
-    // Mostrar los controles y habilitar la creación de nodos
-    slider_node_size.removeAttribute('disabled');
-    labelInput.removeAttribute('disabled');
-
-      // Restaurar la visibilidad de las flechas y los nodos
-      state.graph.edges.edgesList.forEach(edge => {
-        edge.visible = true; 
-    });
-    state.graph.nodes.nodesList.forEach(node => {
-        node.visible = true;
-    });
-    state.graph.prepareJSONObject(); // Actualizar el gráfico
-
-    // Mostrar la ventana de fin del juego si está visible
-    const gameOverWindow = document.getElementById("game-over-window");
-    if (gameOverWindow) {
-        gameOverWindow.style.display = 'block'; // Restaurar visibilidad si es necesario
-    }
-
-    // Detener el cronómetro
-    clearInterval(countdownInterval); // Detener el cronómetro
-    const timerElement = document.getElementById('timer'); // Asegúrate de que el ID es correcto
-    if (timerElement) {
-        timerElement.textContent = 'Tiempo: 30'; // Resetear el tiempo mostrado
-        timerElement.style.display = 'none'; // Ocultar el temporizador
-    }
-}
-
-
-// Función para terminar el juego y evaluar la puntuación
-function endGame() {
-    clearInterval(countdownInterval); // Detener el cronómetro
-    let points = evaluateScorePoints();
-    displayScore(points);
-}
-
 
 
 function updateScore(points = 1){
@@ -161,5 +121,18 @@ function updateScore(points = 1){
     } else {
         scoreElement.style.color = "red";
     }
-
 }
+
+
+function endTimeLineMode(){
+
+    state.mode = "endGameMode";
+    let finalScoreElement = document.getElementById('finalScore') ;
+    finalScoreElement.textContent = 'Final Score: ' + state.score; // Mostrar el tiempo inicial
+    finalScoreElement.style.color = 'red'; // Asegúrate de que el temporizador esté visible
+    
+}
+
+
+
+

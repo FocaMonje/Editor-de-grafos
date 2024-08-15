@@ -53,15 +53,15 @@ let zoomY = 1;
 
 let animationStart = 0;
 let animationDuration = 2000; // Duración en milisegundos
-let startPositions = [];
-let endPositions = [];
-let animating = false;
+const alturaDibujo = canvas_height - 60;
+let genAlpha = {};
+
 let y = canvas_height;
 
 
 let increaseX, increaseY, decreaseX, decreaseY;
 
-const alturaDibujo = canvas_height - 60;
+
 
 
 

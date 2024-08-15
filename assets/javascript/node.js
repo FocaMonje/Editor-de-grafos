@@ -17,7 +17,7 @@ class Node  {
       console.log("Error en los argumentos del constructor de Node");
     }
     this.selected = false;
-    this.size = 50;
+    this.textSize = 16;
     this.visible = true;
 
     this.xGame = abs(scrollX) + random(canvas_width);
@@ -48,9 +48,9 @@ class Node  {
         x = this.xGame;
         y = this.yGame;
         textAlign(CENTER, CENTER);
-        textSize(this.size);
+        textSize(this.textSize);
         fill(0);
-        text(this.label, this.xGame, this.yGame + r / 2 + this.size / 2);  // para desplazar el texto hacia abajo
+        text(this.label, this.xGame, this.yGame + 20);  // para desplazar el texto hacia abajo
         stroke(0);
         
       }
@@ -62,9 +62,9 @@ class Node  {
         x = animate(x, this.xGame, this.x, animationDuration);
         y = animate(y, this.yGame, this.y, animationDuration);
         textAlign(CENTER, CENTER);
-        textSize(this.size);
+        textSize(this.textSize);
         fill(0);
-        text(this.label, x, y + r / 2 + this.size / 2);
+        text(this.label, x, y + 20);
         stroke(0);
         
       }
@@ -72,9 +72,9 @@ class Node  {
         x = this.x;
         y = this.y;
         textAlign(CENTER, CENTER);
-        textSize(this.size);
+        textSize(this.textSize);
         fill(0);
-        text(this.label, x, y + r / 2 + this.size / 2);
+        text(this.label, x, y + 20);
         stroke(0);
       }
 

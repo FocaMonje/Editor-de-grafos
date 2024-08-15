@@ -137,16 +137,7 @@ class GraphManager {
 
   }
 
-  setAnimationMode(mode, year) {
-    this.animationMode = mode;
-    this.currentYear = year;
-    if (mode) {
-        this.nodes.setAllNodesInvisible();
-    } else {
-        this.nodes.setAllNodesVisible();
-    }
-    this.prepareJSONObject();
-  }
+ 
 
   getUniqueSortedYears() {
     // Recopilar todos los años de los nodos

@@ -1,7 +1,7 @@
 
 /* ------------------- GAME ANIMATION ----------------------------------*/
 
-function initAnimation(){
+function initNodeAnimation(){
     animationStart = millis();
     state.mode = "animationMode";
     setTimeout( function() { state.mode = "solutionMode"; }, animationDuration);
@@ -15,6 +15,24 @@ t = map(millis(), animationStart, animationStart + interval, 0.0, 1.0);
 y = y1 * (1 - t) + y2 * t;
 return y;
 }
+
+function initGridAnimation(){
+    genAlpha = alphaMaker();
+    draw_grid(width, height, genAlpha.next().value);
+}
+
+
+function* alphaMaker() {
+    let alpha = 0;
+    while (alpha < 255) {
+      if(alpha == 254 ){
+        alpha = 0;
+      }
+      yield alpha++;
+    }
+  }
+  
+  
 
 
 
