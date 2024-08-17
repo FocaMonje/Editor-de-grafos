@@ -116,14 +116,14 @@ function executeByMode() {
                                 //  initAnimation --> animationMode --> solutionMode --> (numNodesGame += 1) --> timeLineMode
                                 setTimeout(function(){initNodeAnimation();
                                                         initGridAnimation();}
-                                                        , 2000);
+                                                        , 800);
                                 
                                 setTimeout(function() { state.mode = "timeLineMode";
                                                         state.numNodesGame += 1;
                                                         state.gameNodes = [];
                                                         state.gameEdges = [];
                                                         enterTimeLineMode(); }
-                                                        , 6000);
+                                                        , 4000);
                             }
                         } else {
                             updateScore(-1);

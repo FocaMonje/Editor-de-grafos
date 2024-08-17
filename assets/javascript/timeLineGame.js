@@ -33,10 +33,10 @@ function enterTimeLineMode() {
     });
 
     // Ocultar la ventana de fin del juego si está visible
-    const gameOverWindow = document.getElementById("game-over-window");
-    if (gameOverWindow) {
-        gameOverWindow.style.display = 'none'; // Asegúrate de que esta línea está correcta
-    }
+    // const gameOverWindow = document.getElementById("game-over-window");
+    // if (gameOverWindow) {
+    //     gameOverWindow.style.display = 'none'; // Asegúrate de que esta línea está correcta
+    // }
 
      // Ocultar todos los nodos y mostrar solo los seleccionados para el juego
      state.graph.nodes.setAllNodesInvisible();
@@ -105,6 +105,15 @@ function enterTimeLineMode() {
     
     state.selectedNode = state.gameNodes[0];
     state.graph.prepareJSONObject(); // Actualizar el gráfico
+}
+
+
+function initTimeLineGame(){
+   
+    state.modo = "timeLineMode";
+    initTimeLineMode();
+    enterTimeLineMode();
+
 }
 
 

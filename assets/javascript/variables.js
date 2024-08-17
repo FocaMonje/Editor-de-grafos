@@ -52,7 +52,7 @@ let zoomX = 1;
 let zoomY = 1;
 
 let animationStart = 0;
-let animationDuration = 2000; // Duración en milisegundos
+let animationDuration = 1500; // Duración en milisegundos
 const alturaDibujo = canvas_height - 60;
 let genAlpha = {};
 
@@ -60,6 +60,8 @@ let y = canvas_height;
 
 
 let increaseX, increaseY, decreaseX, decreaseY;
+
+let initGameInterval = 0;
 
 
 
