@@ -18,39 +18,12 @@ function draw() {
     push();
     translate(scrollX , scrollY);
     scale(zoomX,zoomY);
-
-    if (animating) {
-       
-        for (let i = 0; i < state.graph.nodes.nodesList.length; i++) {
-            let node = state.graph.nodes.nodesList[i];
-            startPositions[i] = canvas_height;
-            endPositions[i] = node.y;
-        }
-        
-    }
     
-    
-    //state.graph.findEdgeUnderMouse();
+    state.graph.findEdgeUnderMouse();
 
     findNodesUnderMouse();
    
-    
-    state.graph.drawEdges();
-    state.graph.drawNodes(10); //slider_node_size.value() Aquí se usa el valor del deslizador para el tamaño
-
-    draw_grid(width, height);
-    
-    if (gameModeActive) {
-        checkGameCompletion();
-    }
-
-    if (gameMode2Active) {
-        checkGameCompletion2();
-    }
-
-    if (timeLineActive) {
-        checkGameCompletion();
-    }
+    state.graph.drawGraph();
 }
 
 function mousePressed(){

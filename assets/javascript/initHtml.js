@@ -144,6 +144,7 @@ function initHtml() {
                 resetButtonStyles();
                 modeDropdown.style.backgroundColor = '#ddd';
                 break;
+
             case "deleteMode":
                 state.modo = "editorMode";
                 state.herramienta = "delete";
@@ -152,6 +153,7 @@ function initHtml() {
                 console.log("Soy initHtml :" + state.herramienta);
                 console.log("Soy initHtml :" + state.modo);
                 break;
+
             case "animationMode":
                 state.modo = "animationMode";
                 resetButtonStyles();
@@ -161,6 +163,7 @@ function initHtml() {
                 activeNodes.setAllNodesInvisible();
                 activeGraph.prepareJSONObject();
                 break;
+
             case "gameMode":
                 resetButtonStyles();
                 state.modo = "gameMode";
@@ -171,6 +174,7 @@ function initHtml() {
                     exitGameMode();
                 }
                 break;
+
             case "gameMode2":
                 resetButtonStyles();
                 state.modo = "gameMode2";
@@ -181,15 +185,12 @@ function initHtml() {
                     exitGameMode2();
                 }
                 break;
+
             case "timeLineMode":
                 resetButtonStyles();
                 state.modo = "timeLineMode";
-                timeLineActive = !timeLineActive;
-                if (timeLineActive) {
-                    enterTimeLineMode();
-                } else {
-                    exitTimeLineMode();
-                }
+                initTimeLineMode();
+                enterTimeLineMode();
                 break;
         }
     });

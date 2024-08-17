@@ -97,14 +97,14 @@ class Edge {
       c = 180;
     }
 
-    strokeWeight(this.selected ? 4 : 1);
+    strokeWeight(this.selected ? 5 : 2);
     stroke(c);
 
     line(0, 0, arrowLength, 0);
     // Dibujar la punta de la flecha
     translate(arrowLength, 0);
     fill(c);
-    triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
+    triangle(0, arrowSize , 0, -arrowSize , arrowSize, 0);
     pop();
   }
 }
