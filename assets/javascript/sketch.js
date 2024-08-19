@@ -63,12 +63,12 @@ class Scene1 {
 class Scene2 {
 
     enter(){
-
+        initState();
+        setTimeout(initTimeLineGame, 2000);
     }
 
     setup(){
-        initState();
-        setTimeout(initTimeLineGame, 2000);
+        
     }
 
     draw(){
