@@ -12,7 +12,7 @@ class State {
         this.selectedEdge = {};
 
         this.numNodesGame = 2;
-        this.countdown = 120; // Cronometro del Juego
+        this.countdown = 12; // Cronometro del Juego
         this.gameNodes = [];
         this.gameEdges = [];
         this.score = 0;
@@ -51,6 +51,16 @@ class State {
     }
     
 
+}
+
+function initState(){
+
+    state = {};
+    state = new State();
+
+    fetch('assets/data/Grafo_cartas_inventos.json')
+    .then((response) => response.json())
+    .then((json) => state.graph.rebuildGraph(json));
 }
 
 // FUNCIONES QUE CAMBIAN EL ESTADO 

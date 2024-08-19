@@ -250,3 +250,5 @@ function randomIntFromInterval(min, max) { // min and max included
 }
 
 
+function deleteObject(obj) {   Object.keys(obj).forEach(key => delete obj[key]); }
+

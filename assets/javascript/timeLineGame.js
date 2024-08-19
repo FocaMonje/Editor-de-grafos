@@ -13,7 +13,6 @@ function initTimeLineMode(){
         }
         if (state.countdown <= 0) {
             clearInterval(countdownInterval);
-            endGame();
         }
     }, 1000);
 
